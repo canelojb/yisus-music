@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>YISUS MUSIC — Listening Room · V14.1 Sound Optimizer</title>
+<title>YISUS MUSIC — Listening Room · V15</title>
 <meta name="theme-color" content="#060807">
 <script>try{var __t=localStorage.getItem("yisus-theme")||localStorage.getItem("yisus-visual-mode");if(__t)document.documentElement.setAttribute("data-theme",__t)}catch(e){}</script>
 <meta name="mobile-web-app-capable" content="yes">
@@ -101,6 +101,14 @@ select.field{appearance:auto}
 input[type=range].rng{-webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:5px;background:linear-gradient(to right,var(--g) var(--p,0%),var(--s3) var(--p,0%));outline:none;cursor:pointer}
 input[type=range].rng::-webkit-slider-thumb{-webkit-appearance:none;width:13px;height:13px;border-radius:50%;background:#fff;border:0}
 input[type=range].rng::-moz-range-thumb{width:13px;height:13px;border-radius:50%;background:#fff;border:0}
+
+/* Reproducción directa por cada lista */
+.sel-item{display:inline-flex;align-items:center;gap:7px;padding:5px;margin:3px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.025);max-width:100%;vertical-align:top}
+.sel-item.active{border-color:var(--g)}
+.sel-item .sel-name{border:0;background:transparent;text-align:left;min-width:0}
+.sel-item .sel-play{white-space:nowrap;flex-shrink:0}
+.sel-item .sel-play:disabled{opacity:.4;cursor:not-allowed}
+@media(max-width:560px){.sel-item{display:flex;width:100%;justify-content:space-between}.sel-item .sel-name{flex:1}}
 
 /* listas */
 .list{display:flex;flex-direction:column}
@@ -909,7 +917,7 @@ body:not(.fx-off) .hero h1,body:not(.fx-off) .card h3,body:not(.fx-off) .card h2
     </div>
 
     <div class="card">
-      <div class="chead"><h2 id="songTitle">Canciones</h2></div>
+      <div class="chead"><h2 id="songTitle">Canciones</h2><div class="tools"><button class="btn sm primary" id="playSavedList" type="button">▶ Reproducir lista</button><button class="btn sm" id="shuffleSavedList" type="button">🔀 Aleatorio</button></div></div>
       <div class="list" id="songs"></div>
     </div>
   </section>
@@ -1153,6 +1161,28 @@ function dnaScore(t){var d=S.dna||{},n=0,aid=String(t.artistId||''),tid=String(t
 function dnaSummary(){var d=S.dna||{},terms=Object.keys(d.terms||{}).filter(function(k){return d.terms[k]>0}).sort(function(a,b){return d.terms[b]-d.terms[a]}).slice(0,4);return terms.length?terms.join(' · '):'aprendiendo con tus escuchas';}
 function sel(){return S.sels.filter(function(s){return s.id===S.cur})[0]||S.sels[0]}
 
+/* Reproducción secuencial de las canciones guardadas en la selección actual. */
+var favoriteListMode=false,favoriteTracks=[],favoriteIndex=-1,favoriteAdvanceCall=false,favoriteBusy=false;
+function playSavedList(shuffleList,selectionId){
+  var s=selectionId?S.sels.filter(function(x){return x.id===selectionId})[0]:sel();
+  if(!s||!s.songs||!s.songs.length){toast('Todavía no hay canciones guardadas en «'+(s?s.name:'Favoritos')+'». Añade canciones primero.');return}
+  favoriteTracks=s.songs.map(function(t){return Object.assign({},t)});
+  if(shuffleList)favoriteTracks=shuffle(favoriteTracks);
+  favoriteListMode=true;favoriteIndex=0;favoriteBusy=true;queue=[];localMode=false;gameMode=null;over=null;
+  goPage('home');toast((shuffleList?'Reproducción aleatoria':'Reproduciendo la lista')+' «'+s.name+'» · '+favoriteTracks.length+' canciones');
+  favoriteAdvanceCall=true;playFresh(favoriteTracks[favoriteIndex]).finally(function(){favoriteAdvanceCall=false;favoriteBusy=false});
+}
+function advanceFavorite(delta){
+  if(!favoriteListMode)return false;
+  if(favoriteBusy)return true;
+  var nextIndex=favoriteIndex+delta;
+  if(nextIndex<0){toast('Estás al principio de la lista');return true}
+  if(nextIndex>=favoriteTracks.length){favoriteListMode=false;favoriteIndex=-1;toast('Has terminado la lista ❤️');uiPlaying(false);return true}
+  favoriteIndex=nextIndex;favoriteBusy=true;stopForTransition();favoriteAdvanceCall=true;
+  playFresh(favoriteTracks[favoriteIndex]).finally(function(){favoriteAdvanceCall=false;favoriteBusy=false});
+  return true;
+}
+
 /* over: sesión temporal (radio de un artista, mezcla total o ánimo) */
 var over=null;
 function merge(list,name){
@@ -1363,8 +1393,15 @@ Array.prototype.forEach.call(document.querySelectorAll('#nav button'),function(b
 function renderSels(){
   var box=$('sels');box.innerHTML='';
   S.sels.forEach(function(s){
-    var b=el('button','chip'+(s.id===S.cur?' on':''),esc(s.name)+'<small>'+s.songs.length+' canciones</small>');
-    b.onclick=function(){S.cur=s.id;save();renderSels();renderSel();renderSources();renderTarget()};box.appendChild(b);
+    var wrap=el('div','sel-item'+(s.id===S.cur?' active':''));
+    var b=el('button','chip sel-name'+(s.id===S.cur?' on':''),esc(s.name)+'<small>'+s.songs.length+' canciones</small>');
+    b.type='button';
+    b.onclick=function(){S.cur=s.id;save();renderSels();renderSel();renderSources();renderTarget()};
+    var play=el('button','btn sm sel-play', '▶ Reproducir');
+    play.type='button';play.title='Reproducir todas las canciones de '+s.name+' una detrás de otra';
+    play.disabled=!s.songs||!s.songs.length;
+    play.onclick=function(ev){if(ev){ev.preventDefault();ev.stopPropagation()}playSavedList(false,s.id)};
+    wrap.appendChild(b);wrap.appendChild(play);box.appendChild(wrap);
   });
   $('libCount').textContent=S.sels.length+(S.sels.length===1?' selección':' selecciones');
 }
@@ -1662,6 +1699,7 @@ async function refill(){
   if(refillAgain){refillAgain=false;return refill()}
 }
 async function begin(){
+  favoriteListMode=false;favoriteTracks=[];favoriteIndex=-1;
   var v=view();
   if(!v.artists.length&&!v.songs.length){toast('Añade al menos un artista o una canción a la selección');goPage('search');return}
   showErr('');queue=[];cur=null;localMode=false;gameMode=null;
@@ -1675,6 +1713,8 @@ function startRadio(a){
   toast('Radio de '+a.name);begin();
 }
 $('hStart').onclick=startSel;$('playSel').onclick=startSel;
+$('playSavedList').onclick=function(){playSavedList(false)};
+$('shuffleSavedList').onclick=function(){playSavedList(true)};
 $('hRadio').onclick=function(){if(cur)startRadio({id:cur.artistId,name:cur.artist,pic:cur.art})};
 $('hLyr').onclick=function(){if(cur)window.open('https://genius.com/search?q='+encodeURIComponent(cur.artist+' '+cur.title),'_blank','noopener')};
 $('qMore').onclick=async function(){if(!cur&&!queue.length)return startSel();toast('Buscando más…');await refill()};
@@ -1771,6 +1811,7 @@ function play(t){
   renderQueue();renderHist();
 }
 async function playFresh(t){ // los enlaces de audio de Deezer caducan
+  if(!favoriteAdvanceCall){favoriteListMode=false;favoriteTracks=[];favoriteIndex=-1}
   try{var d=await jp('/track/'+t.id,{});if(d&&d.preview)t.preview=d.preview;if(d&&d.rank)t.rank=d.rank}catch(e){}
   play(t);
 }
@@ -1782,6 +1823,7 @@ function stopForTransition(){
   uiPlaying(false);
 }
 async function next(skip,auto){
+  if(favoriteListMode){advanceFavorite(1);return}
   if(roomRole==='guest'){if(!auto)roomVote();return}
   var quick=queue.length>0;
   if(!(auto&&quick)&&!(quick&&engine==='preview'))stopForTransition();
@@ -1794,6 +1836,7 @@ async function next(skip,auto){
   play(queue.shift());if(gameMode){if(queue.length<4)gameFill()}else if(queue.length<6&&!localMode)refill();
 }
 function prev(){
+  if(favoriteListMode){advanceFavorite(-1);return}
   if(S.hist.length<2){toast('No hay canción anterior');return}
   if(engine!=='preview')stopForTransition();
   S.hist.shift();play(S.hist.shift());
@@ -1840,7 +1883,7 @@ audio.addEventListener('error',async function(){
     t._ref=1;
     try{var d=await jp('/track/'+t.id,{});if(cur===t&&d&&d.preview){t.preview=d.preview;audio.src=d.preview;audio.play().catch(function(){});return}}catch(e){}
   }
-  if(srcKind==='audius'&&cur===t){S.aud[t.id]=0;save();previewStart(t,'El stream completo falló · vista previa');return}
+  if(srcKind==='audius'&&cur===t){S.aud[t.id]=0;save();fullFail(t,'El stream completo falló');return}
   toast('No se pudo reproducir esta canción, paso a otra');next(false,true);
 });
 audio.addEventListener('timeupdate',function(){if(engine==='preview')tick(audio.currentTime,audio.duration||30)});
@@ -3865,6 +3908,525 @@ if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){navigator.
 
 initFx();msInit();
 
+
+
+/* =====================================================================
+   v15: SIEMPRE SUENA (cadena de fuentes) + SALA reescrita + extras
+   ===================================================================== */
+S.audLoose=S.audLoose||{};
+
+/* ---------- limpieza de títulos y emparejado flexible ---------- */
+function cleanT(s){
+  return String(s||'').replace(/\s*[\(\[][^)\]]*[\)\]]/g,' ')
+    .replace(/\s[-–—]\s*(remaster(ed)?|single|version|radio edit|bonus|live|official|from).*$/i,'')
+    .replace(/\s(feat\.?|ft\.?|featuring|prod\.?)\s.*$/i,'').replace(/\s+/g,' ').trim();
+}
+function toks(s){return nrm(s).split(' ').filter(function(w){return w.length>=2||/^\d$/.test(w)})}
+
+/* ---------- Audius flexible: 2 búsquedas, artista suelto ---------- */
+function pickAudiusLoose(items,t){
+  var orig=String(t.title),ct=cleanT(t.title),tt=toks(ct),art=nrm(t.artist),best=null;
+  if(!tt.length)return null;
+  items.forEach(function(x){
+    if(!x||!x.id||!x.title||x.is_streamable===false||x.is_delete)return;
+    if((x.duration||0)<45)return;
+    if(ALT.test(x.title)&&!ALT.test(orig))return;
+    var xt=nrm(cleanT(x.title)),xw=xt.split(' '),xu=nrm(x.user&&(x.user.name||x.user.handle));
+    var hit=tt.filter(function(w){return xw.indexOf(w)>=0}).length,ratio=hit/tt.length;
+    var aTok=toks(t.artist),aHit=aTok.filter(function(w){return (xu+' '+xt).indexOf(w)>=0}).length,aRatio=aTok.length?aHit/aTok.length:0;
+    var extra=xw.length-tt.length;
+    if(ratio<.75||extra>5)return;
+    /* un título de una sola palabra sin artista coincidente es demasiado ambiguo */
+    if(aRatio<.5&&(tt.length<2||ratio<1))return;
+    var sc=ratio*10+aRatio*6-Math.max(0,extra)+Math.log10((x.play_count||0)+1);
+    if(!best||sc>best.sc)best={id:x.id,sc:sc};
+  });
+  return best;
+}
+async function audiusLoose(t){
+  var h=await audHost(),seen={},items=[];
+  var qs=[cleanT(t.title)+' '+t.artist,cleanT(t.title)];
+  for(var i=0;i<qs.length;i++){
+    try{
+      var r=await fetchT(h+'/v1/tracks/search?'+new URLSearchParams({query:qs[i],app_name:'YisusReproductor',limit:'15'}),7000);
+      if(!r.ok)continue;var j=await r.json();
+      (j.data||[]).forEach(function(x){if(x&&!seen[x.id]){seen[x.id]=1;items.push(x)}});
+    }catch(e){audHostP=null;if(i===qs.length-1&&!items.length)throw e}
+  }
+  var b=pickAudiusLoose(items,t);
+  S.audLoose[t.id]=b?b.id:0;
+  var ks=Object.keys(S.audLoose);if(ks.length>500)delete S.audLoose[ks[0]];
+  save();return S.audLoose[t.id];
+}
+
+/* ---------- fullStart: Audius estricto → Audius flexible → YouTube (si activo) → vista previa ---------- */
+async function fullStart(t){
+  var id=S.aud[t.id];
+  if(id===undefined){
+    if(document.hidden){previewStart(t,'Vista previa (pantalla bloqueada)');return}
+    try{audio.pause()}catch(e){}
+    engineChip('Buscando versión completa sin anuncios…');
+    try{id=await audiusFind(t)}catch(e){id=undefined}
+    if(cur!==t)return;
+    if(id===undefined){fallbackFull(t,'No pude conectar con Audius');return}
+  }
+  if(!id){
+    var l=S.audLoose[t.id];
+    if(l===undefined){
+      engineChip('Buscando otra versión…');
+      try{l=await audiusLoose(t)}catch(e){l=undefined}
+      if(cur!==t)return;
+    }
+    if(l)id=l;
+  }
+  if(!id){fallbackFull(t,'No está completa en Audius');return}
+  var h=await audHost();if(cur!==t)return;
+  srcStart(t,h+'/v1/tracks/'+encodeURIComponent(id)+'/stream?app_name=YisusReproductor','Canción completa · sin anuncios','audius');
+}
+/* el estricto ya no se guarda como "no existe" definitivo si fue un fallo de red */
+function fallbackFull(t,why){
+  if(S.opt.ytfb&&fullAvailable()){ytStart(t);return}
+  previewStart(t,why+' · vista previa de 30 s');
+}
+
+/* ---------- vigilante: si un stream se queda mudo, pasa a la siguiente fuente ---------- */
+var wdT=null;
+function srcStart(t,url,chip,kind){
+  engine='preview';srcKind=kind;
+  $('pip').classList.add('hide');$('videoRestore').classList.add('hide');videoMinimized=false;
+  try{if(yp&&ypReady)yp.stopVideo()}catch(e){}
+  setVol(S.opt.dj?0:S.opt.vol/100);
+  audio.src=url;
+  audio.play().catch(function(){toast('Pulsa reproducir para escuchar')});
+  engineChip(chip);
+  clearTimeout(wdT);
+  if(kind==='audius'){
+    wdT=setTimeout(function(){
+      if(cur!==t||engine!=='preview'||srcKind!=='audius')return;
+      if(audio.paused||audio.currentTime>.4||document.hidden)return;
+      if(t._aud){toast('Esa fuente no responde, paso a otra canción');next(false,true);return}
+      S.aud[t.id]=0;S.audLoose[t.id]=0;save();
+      if(t.preview)previewStart(t,'La fuente completa no responde · vista previa de 30 s');else next(false,true);
+    },11000);
+  }
+}
+
+/* ---------- YouTube: más buscadores y búsqueda flexible; si falla, suena la vista previa ---------- */
+PIPED=['https://pipedapi.kavin.rocks','https://pipedapi.adminforge.de','https://api.piped.private.coffee','https://pipedapi.leptons.xyz','https://pipedapi.nosebs.ru'];
+var INVID=['https://inv.nadeko.net','https://yewtu.be','https://invidious.nerdvpn.de','https://invidious.privacyredirect.com'];
+function pickLoose(items,t,avoid){
+  var tt=toks(cleanT(t.title)),at=toks(t.artist),wantsAlt=/\b(remix|8d|nightcore|slowed|sped up|edit|instrumental|acoustic|live)\b/i.test(t.title||''),best=null;
+  if(!tt.length)return null;
+  (items||[]).forEach(function(x){
+    if(!x||!x.id||avoid[x.id]||!x.title)return;
+    var hay=nrm(x.title)+' '+nrm(x.channel||''),hit=tt.filter(function(w){return hay.indexOf(w)>=0}).length,r=hit/tt.length;
+    var ah=at.filter(function(w){return hay.indexOf(w)>=0}).length,ar=at.length?ah/at.length:0;
+    if(r<.6)return;
+    if(ar<.5&&(tt.length<2||r<1))return;
+    var sc=r*7+ar*4;
+    if(/\b(karaoke|reaction|tutorial|gameplay|parody|meme|review|top 10|compilation|lyrics? only)\b/i.test(x.title))sc-=8;
+    if(!wantsAlt&&/\b(8d|nightcore|slowed|sped up|remix|cover|instrumental|reverb)\b/i.test(x.title))sc-=5;
+    if(/\b(official|oficial|audio|video)\b/i.test(x.title))sc+=1;
+    if(!best||sc>best.sc)best={id:x.id,sc:sc};
+  });
+  return best&&best.sc>=5?best.id:null;
+}
+function ytFetch(base,path,params,mapper,t,avoid,loose){
+  var ctl=new AbortController(),to=setTimeout(function(){ctl.abort()},7000);
+  return fetch(base+path+'?'+new URLSearchParams(params),{signal:ctl.signal})
+    .then(function(r){clearTimeout(to);if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})
+    .then(function(j){
+      var items=mapper(j),id=loose?pickLoose(items,t,avoid):pickId(items,t,avoid);
+      if(!id)throw new Error('sin coincidencia');return id;
+    });
+}
+function kSearch(t,avoid,loose){
+  var q=(loose?cleanT(t.title):t.title)+' '+t.artist,ps=[];
+  PIPED.forEach(function(b){ps.push(ytFetch(b,'/search',{q:q,filter:'music_videos'},function(j){
+    return(j.items||[]).map(function(x){var m=/[?&]v=([\w-]{6,})/.exec(x.url||x.urlPath||'');return m?{id:m[1],title:x.title||'',channel:x.uploaderName||x.uploader||''}:null}).filter(Boolean)},t,avoid,loose))});
+  INVID.forEach(function(b){ps.push(ytFetch(b,'/api/v1/search',{q:q,type:'video'},function(j){
+    return(Array.isArray(j)?j:[]).filter(function(x){return x.videoId}).map(function(x){return{id:x.videoId,title:x.title||'',channel:x.author||''}})},t,avoid,loose))});
+  return firstOk(ps);
+}
+async function resolveVideo(t){
+  var avoid=S.ytBad||(S.ytBad={}),c=S.yt[t.id],meta=(S.ytMeta||(S.ytMeta={}))[t.id];
+  if(c&&!avoid[c]&&meta&&meta.title===t.title&&meta.artist===t.artist)return c;
+  var id=null,err='';
+  if(S.opt.ytKey){try{id=await ytApiSearch(t,avoid)}catch(e){err=e.message}}
+  if(!id){try{id=await kSearch(t,avoid,false)}catch(e){err=err||e.message}}
+  if(!id){try{id=await kSearch(t,avoid,true)}catch(e){err=err||e.message}}
+  if(!id)throw new Error(err||'no encontré una coincidencia fiable');
+  S.yt[t.id]=id;S.ytMeta[t.id]={title:t.title,artist:t.artist};
+  var ks=Object.keys(S.yt);if(ks.length>600)delete S.yt[ks[0]];
+  save();return id;
+}
+async function ytStart(t){
+  try{
+    if(!fullAvailable()){previewStart(t,'YouTube necesita abrirse desde una web · vista previa');return}
+    engine='yt';audio.pause();
+    try{if(yp&&ypReady){yp.stopVideo();yp.clearVideo()}}catch(e){}
+    if(!videoMinimized){$('pip').classList.remove('hide');$('videoRestore').classList.add('hide')}engineChip('Buscando videoclip');
+    var id=await resolveVideo(t);
+    await ytReady();
+    if(cur!==t)return;
+    t._vid=id;yp.loadVideoById({videoId:id});setVol(S.opt.vol/100);engineChip('Videoclip · canción completa');
+  }catch(e){
+    if(cur!==t)return;
+    engine='preview';try{if(yp&&ypReady){yp.stopVideo();yp.clearVideo()}}catch(x){}
+    $('pip').classList.add('hide');
+    if(t.preview){previewStart(t,'Sin vídeo/versión completa · suena la vista previa de 30 s')}
+    else{toast('No encontré fuente para «'+t.title+'», paso a otra');next(false,true)}
+  }
+}
+function makeYP(){
+  if(yp)return;
+  yp=new YT.Player('ytp',{width:'100%',height:'100%',
+    playerVars:{controls:1,rel:0,playsinline:1,modestbranding:1,origin:location.origin},
+    events:{
+      onReady:function(){ypReady=true;ypWait.splice(0).forEach(function(f){f()})},
+      onStateChange:function(e){
+        if(engine!=='yt')return;
+        if(e.data===1)uiPlaying(true);
+        else if(e.data===2)uiPlaying(false);
+        else if(e.data===0){uiPlaying(false);if(!djGone)next(false,true)}
+      },
+      onError:async function(e){
+        if(engine!=='yt'||!cur)return;
+        var t=cur;
+        if(t._vid){(S.ytBad||(S.ytBad={}))[t._vid]=1;delete S.yt[t.id];save()}
+        if(t._try<1){t._try++;try{var id=await resolveVideo(t);if(cur===t){t._vid=id;yp.loadVideoById(id);return}}catch(x){}}
+        if(cur===t){
+          engine='preview';try{yp.stopVideo();yp.clearVideo()}catch(x){}$('pip').classList.add('hide');
+          if(t.preview)previewStart(t,'YouTube no deja ese vídeo · suena la vista previa');else next(false,true);
+        }
+      }
+    }
+  });
+}
+
+/* ---------- botones extra junto al enlace de YouTube: «Otra fuente» y «Dormir» ---------- */
+(function(){
+  var box=$('hlink');if(!box)return;
+  var b=el('button','btn','<span>🔁 Otra fuente</span>');b.id='altSrc';b.type='button';b.style.cssText='margin-left:8px;padding:6px 12px;font-size:12px';
+  var z=el('button','btn','<span>⏲ Dormir</span>');z.id='sleepBtn';z.type='button';z.style.cssText='margin-left:6px;padding:6px 12px;font-size:12px';
+  box.appendChild(b);box.appendChild(z);
+  var step=0;
+  b.onclick=async function(){
+    var t=cur;if(!t)return;
+    if(t._local&&!t._aud){toast('Es un archivo tuyo: no hay otra fuente');return}
+    step=(t._altStep||0);t._altStep=step+1;
+    var m=step%3;
+    if(m===0){
+      engineChip('Probando otra versión en Audius…');
+      try{audio.pause()}catch(e){}
+      var id=0;try{id=await audiusLoose(t)}catch(e){}
+      if(cur!==t)return;
+      if(id){var h=await audHost();srcStart(t,h+'/v1/tracks/'+encodeURIComponent(id)+'/stream?app_name=YisusReproductor','Audius · otra versión','audius');toast('Probando otra versión de Audius')}
+      else{toast('No hay otra versión en Audius. Pulsa otra vez para probar YouTube');if(t.preview)previewStart(t,'Vista previa de 30 s')}
+    }else if(m===1){
+      if(!fullAvailable()){toast('YouTube solo funciona abriendo la app desde una web');return}
+      toast('Probando videoclip de YouTube…');ytStart(t);
+    }else{
+      if(t.preview){previewStart(t,'Vista previa de 30 s');toast('Vista previa (30 s)')}else toast('Esta canción no tiene vista previa')
+    }
+  };
+  var sl=null,opts=[0,15,30,60];var si=0;
+  z.onclick=function(){
+    si=(si+1)%opts.length;clearTimeout(sl);
+    if(!opts[si]){z.firstChild.textContent='⏲ Dormir';toast('Temporizador apagado');return}
+    z.firstChild.textContent='⏲ '+opts[si]+' min';toast('La música se apagará en '+opts[si]+' minutos');
+    sl=setTimeout(function(){
+      var v=S.opt.vol/100,n=0,iv=setInterval(function(){
+        n++;try{audio.volume=Math.max(0,v*(1-n/16))}catch(e){}
+        if(n>=16){clearInterval(iv);try{audio.pause();if(yp&&ypReady&&engine==='yt')yp.pauseVideo()}catch(e){}uiPlaying(false);setVol(S.opt.vol/100);si=0;z.firstChild.textContent='⏲ Dormir';toast('Buenas noches 🌙')}
+      },500);
+    },opts[si]*60000);
+  };
+})();
+
+/* =====================================================================
+   SALA COMPARTIDA (reescrita)
+   ===================================================================== */
+var ICE={iceServers:[
+  {urls:'stun:stun.l.google.com:19302'},{urls:'stun:stun1.l.google.com:19302'},{urls:'stun:global.stun.twilio.com:3478'},
+  {urls:['turn:openrelay.metered.ca:80','turn:openrelay.metered.ca:443','turn:openrelay.metered.ca:443?transport=tcp'],username:'openrelayproject',credential:'openrelayproject'}]};
+var roomSync=null,roomPendingSeek=0;
+function loadScript(u){return new Promise(function(res,rej){var s=document.createElement('script');s.src=u;s.onload=res;s.onerror=function(){s.remove();rej(new Error('x'))};document.head.appendChild(s)})}
+async function roomLoad(){
+  if(window.Peer)return;
+  var urls=['https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js','https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js','https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.5.4/peerjs.min.js'];
+  for(var i=0;i<urls.length;i++){try{await loadScript(urls[i]);if(window.Peer)return}catch(e){}}
+  throw new Error('no se pudo cargar PeerJS');
+}
+function roomErr(e,guest){
+  var ty=e&&e.type||'';
+  if(ty==='peer-unavailable')return 'Esa sala no existe o el anfitrión ya la cerró. Revisa el código.';
+  if(ty==='unavailable-id')return 'Código ocupado, prueba otra vez.';
+  if(ty==='network'||ty==='server-error'||ty==='socket-error'||ty==='socket-closed')return 'No puedo llegar al servidor de salas. Revisa tu internet y reintenta.';
+  if(ty==='webrtc')return 'Tu red bloquea la conexión directa. Prueba con otros datos/wifi.';
+  return (guest?'No pude entrar: ':'Error de sala: ')+(ty||'desconocido');
+}
+function roomLink(){return location.protocol==='file:'?room.code:(location.origin+location.pathname+'#sala='+room.code)}
+function roomUI(){
+  var st=$('roomState'),ex=$('roomExtra');if(!st)return;
+  var n=room.conns.filter(function(c){return c.open}).length;
+  if(roomRole==='host')st.innerHTML='<b>Sala abierta</b> · conectados: '+n+'<br>Comparte el código o el enlace: cada persona oye la música desde su propio móvil o PC, sincronizada contigo.';
+  else if(roomRole==='guest')st.innerHTML='<b>Conectado a la sala '+esc(room.code)+'</b>'+(room.n?' · '+room.n+' personas':'')+'<br>Sigues al anfitrión. «Siguiente» cuenta como un voto para saltar.';
+  else st.textContent='Sin sala. Crea una o únete con un código.';
+  $('roomLeave').classList.toggle('hide',!roomRole);
+  if(ex){ex.classList.toggle('hide',!roomRole);var c=$('roomBig');if(c)c.textContent=room.code||''}
+}
+function roomSend(m){room.conns.forEach(function(c){try{if(c.open)c.send(m)}catch(e){}})}
+function trackMsg(t,pos){
+  return{k:'track',id:t.id,title:t.title,artist:t.artist,art:t.art||'',preview:t.preview||'',artistId:t.artistId||'',rank:t.rank||0,aud:t._aud||'',pos:pos||0,playing:!audio.paused};
+}
+function roomBroadcast(t){
+  if(roomRole!=='host')return;
+  if(t._local&&!t._aud){roomSend({k:'note',text:'El anfitrión suena un archivo propio; no se puede compartir.'});return}
+  roomSend(trackMsg(t,0));room.votes={};
+}
+async function roomGuestTrack(m){
+  var t={id:m.id,title:m.title,artist:m.artist,art:m.art||'',preview:m.preview||'',artistId:m.artistId||'',rank:m.rank||0,why:'Sala '+room.code};
+  if(m.aud){t._aud=m.aud;t._local=true;t._relaxed=true;t.preview=''}
+  else{try{var d=await jp('/track/'+m.id,{});if(d&&d.preview)t.preview=d.preview}catch(e){}}
+  if(!t.preview&&!t._aud){toast('No pude cargar la canción de la sala');return}
+  localMode=false;gameMode=null;favoriteListMode=false;
+  roomPendingSeek=m.pos>2?m.pos:0;
+  play(t);
+  if(m.playing===false)setTimeout(function(){try{audio.pause()}catch(e){}},600);
+}
+audio.addEventListener('playing',function(){
+  if(roomRole==='guest'&&roomPendingSeek){var p=roomPendingSeek;roomPendingSeek=0;try{if(p<(audio.duration||0)-1)audio.currentTime=p}catch(e){}}
+});
+function showReact(e){
+  var s=el('span','',esc(e));s.style.cssText='position:fixed;bottom:110px;left:'+(15+Math.random()*70)+'%;font-size:34px;z-index:170;pointer-events:none;transition:transform 2.2s ease-out,opacity 2.2s;opacity:1';
+  document.body.appendChild(s);requestAnimationFrame(function(){requestAnimationFrame(function(){s.style.transform='translateY(-'+(160+Math.random()*120)+'px) rotate('+(Math.random()*40-20)+'deg)';s.style.opacity='0'})});
+  setTimeout(function(){s.remove()},2400);
+}
+function roomReact(e){
+  showReact(e);
+  if(roomRole==='host')roomSend({k:'react',e:e});
+  else if(roomRole==='guest'&&room.host&&room.host.open)room.host.send({k:'react',e:e});
+}
+function roomHandle(c,m){
+  if(!m||!m.k)return;
+  if(roomRole==='host'){
+    if(m.k==='vote'){room.votes[c.peer]=1;var n=Object.keys(room.votes).length,need=Math.max(1,Math.ceil(room.conns.filter(function(x){return x.open}).length/2));roomSend({k:'votes',n:n,need:need});toast('Votos para saltar: '+n+'/'+need);if(n>=need){room.votes={};next(true)}}
+    if(m.k==='hello')try{c.send({k:'count',n:room.conns.filter(function(x){return x.open}).length+1})}catch(e){}
+    if(m.k==='hello'&&cur&&!(cur._local&&!cur._aud))try{c.send(trackMsg(cur,playPos()))}catch(e){}
+    if(m.k==='react'){showReact(m.e);room.conns.forEach(function(x){if(x!==c&&x.open)try{x.send({k:'react',e:m.e})}catch(e){}})}
+  }else if(roomRole==='guest'){
+    if(m.k==='track')roomGuestTrack(m);
+    if(m.k==='state'){try{m.playing?audio.play():audio.pause()}catch(e){}}
+    if(m.k==='sync'){
+      if(m.n&&m.n!==room.n){room.n=m.n;roomUI()}
+      if(!cur||cur.id!==m.id){if(!room.askT||Date.now()-room.askT>6000){room.askT=Date.now();try{c.send({k:'hello'})}catch(e){}}return}
+      if(engine==='preview'){
+        var d=audio.duration||0;
+        if(m.playing&&audio.paused)audio.play().catch(function(){});
+        if(!m.playing&&!audio.paused)audio.pause();
+        if(m.playing&&m.pos<d-1&&Math.abs(audio.currentTime-m.pos)>3){try{audio.currentTime=m.pos}catch(e){}}
+      }
+    }
+    if(m.k==='votes')toast('Votos para saltar: '+m.n+'/'+m.need);
+    if(m.k==='note')toast(m.text);
+    if(m.k==='count'){room.n=m.n;roomUI()}
+    if(m.k==='react')showReact(m.e);
+    if(m.k==='bye'){toast('El anfitrión cerró la sala');roomLeave()}
+  }
+}
+function genCode(){return Array.from({length:5},function(){return 'ABCDEFGHJKLMNPQRSTUVWXYZ'.charAt(Math.floor(Math.random()*24))}).join('')}
+async function roomHost(tries){
+  tries=typeof tries==='number'?tries:0;
+  toast('Creando sala…');
+  try{await roomLoad()}catch(e){toast('No pude cargar la librería de salas (¿sin internet?)');return}
+  roomLeave(true);
+  var code=genCode();room.code=code;room.conns=[];room.n=0;
+  var p=room.peer=new Peer('yisus-'+code,{config:ICE});
+  var to=setTimeout(function(){if(room.peer===p&&roomRole!=='host'){toast('El servidor de salas no responde. Reintenta en unos segundos.');roomLeave()}},15000);
+  p.on('open',function(){
+    clearTimeout(to);roomRole='host';roomUI();toast('Sala creada: '+code);
+    clearInterval(roomSync);
+    roomSync=setInterval(function(){
+      if(roomRole!=='host'||!cur||(cur._local&&!cur._aud))return;
+      roomSend({k:'sync',id:cur.id,pos:playPos(),playing:!audio.paused&&engine==='preview',n:room.conns.filter(function(x){return x.open}).length+1});
+    },4000);
+  });
+  p.on('connection',function(c){
+    room.conns.push(c);
+    c.on('open',function(){
+      roomUI();roomSend({k:'count',n:room.conns.filter(function(x){return x.open}).length+1});
+      if(cur&&!(cur._local&&!cur._aud))try{c.send(trackMsg(cur,playPos()))}catch(e){}
+    });
+    c.on('data',function(m){roomHandle(c,m)});
+    c.on('close',function(){room.conns=room.conns.filter(function(x){return x!==c});roomUI();roomSend({k:'count',n:room.conns.length+1})});
+    c.on('error',function(){});
+  });
+  p.on('disconnected',function(){try{if(room.peer===p&&!p.destroyed)p.reconnect()}catch(e){}});
+  p.on('error',function(e){
+    clearTimeout(to);
+    if(e&&e.type==='unavailable-id'&&tries<4){roomHost(tries+1);return}
+    if(roomRole==='host'&&e&&(e.type==='network'||e.type==='server-error'||e.type==='socket-error'))return; /* ya hay sala; PeerJS reconecta solo */
+    toast(roomErr(e));if(roomRole!=='host')roomLeave();
+  });
+}
+async function roomJoin(auto){
+  var code=String($('roomCode').value||'').trim().toUpperCase().replace(/[^A-Z]/g,'');
+  if(code.length<4){toast('Escribe el código de la sala');return}
+  toast('Conectando a la sala '+code+'…');
+  try{await roomLoad()}catch(e){toast('No pude cargar la librería de salas (¿sin internet?)');return}
+  roomLeave(true);room.code=code;room.n=0;
+  var p=room.peer=new Peer(undefined,{config:ICE}),done=false;
+  var to=setTimeout(function(){if(!done&&room.peer===p){toast('No conseguí conectar con la sala '+code+'. Comprueba el código y que el anfitrión la tenga abierta.');roomLeave()}},20000);
+  p.on('open',function(){
+    var c=p.connect('yisus-'+code,{reliable:true});room.host=c;
+    c.on('open',function(){
+      done=true;clearTimeout(to);roomRole='guest';gameMode=null;localMode=false;roomUI();
+      try{c.send({k:'hello'})}catch(e){}toast('Dentro de la sala '+code);
+    });
+    c.on('data',function(m){roomHandle(c,m)});
+    c.on('close',function(){if(roomRole==='guest'){toast('Se cerró la sala');roomLeave()}});
+    c.on('error',function(){});
+  });
+  p.on('disconnected',function(){try{if(room.peer===p&&!p.destroyed)p.reconnect()}catch(e){}});
+  p.on('error',function(e){clearTimeout(to);toast(roomErr(e,true));if(room.peer===p&&roomRole!=='guest')roomLeave()});
+}
+function roomLeave(quiet){
+  try{if(roomRole==='host')roomSend({k:'bye'})}catch(e){}
+  clearInterval(roomSync);roomSync=null;
+  try{if(room.peer)room.peer.destroy()}catch(e){}
+  room.peer=null;room.conns=[];room.host=null;room.n=0;roomRole=null;roomPendingSeek=0;
+  if(quiet!==true){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
+  roomUI();
+}
+function roomVote(){if(room.host&&room.host.open){room.host.send({k:'vote'});toast('Votaste saltar')}}
+(function(){
+  var card=$('roomState')&&$('roomState').parentNode;if(!card)return;
+  var ex=el('div','hide','<div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:12px"><div id="roomBig" style="font:800 34px var(--fd,inherit);letter-spacing:.18em;color:var(--g)"></div>'
+   +'<button class="btn" id="roomCopyL"><span>🔗 Copiar enlace</span></button><button class="btn" id="roomCopyC"><span>Copiar código</span></button></div>'
+   +'<div id="roomReacts" style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"></div>');
+  ex.id='roomExtra';
+  var tools=card.querySelector('.tools');tools.parentNode.insertBefore(ex,tools.nextSibling);
+  ['🔥','❤️','👏','😂','🎉','🤯'].forEach(function(e){var b=el('button','btn',e);b.style.cssText='font-size:20px;padding:6px 12px';b.onclick=function(){roomReact(e)};$('roomReacts').appendChild(b)});
+  function copy(txt,msg){try{navigator.clipboard.writeText(txt).then(function(){toast(msg)},function(){prompt('Copia esto:',txt)})}catch(e){prompt('Copia esto:',txt)}}
+  $('roomCopyL').onclick=function(){copy(roomLink(),'Enlace copiado: mándaselo a tus amigos')};
+  $('roomCopyC').onclick=function(){copy(room.code,'Código copiado')};
+  $('roomCode').addEventListener('keydown',function(e){if(e.key==='Enter')roomJoin()});
+  var p=card.querySelector('p.sub:last-child');if(p)p.textContent='Cada persona oye la música desde su propio móvil o PC, sincronizada con el anfitrión (se corrige sola si alguien se desfasa). Los amigos pueden votar «Siguiente» (con la mitad de votos se salta) y mandar reacciones. Necesita internet y carga una librería de conexión directa (PeerJS).';
+})();
+$('roomHost').onclick=function(){roomHost()};
+$('roomJoin').onclick=function(){roomJoin()};
+$('roomLeave').onclick=function(){roomLeave()};
+/* entrar con enlace: tuweb#sala=ABCDE */
+(function(){
+  var m=/[#&]sala=([A-Za-z]{4,6})/.exec(location.hash||'');if(!m)return;
+  $('roomCode').value=m[1].toUpperCase();
+  setTimeout(function(){goPage('room');roomJoin(true)},1800);
+})();
+
+
+/* =====================================================================
+   v15b: canción COMPLETA sí o sí (Audius → YouTube con 4 métodos → solo entonces vista previa/saltar)
+   ===================================================================== */
+if(!S.opt.v15b){S.opt.v15b=1;S.opt.full=true;S.opt.ytfb=true;S.opt.noPrev=true;save()}
+function ytScrapeParse(html){
+  var out=[],re=/"videoRenderer":\{"videoId":"([\w-]{11})"/g,m;
+  while((m=re.exec(html))&&out.length<14){
+    var seg=html.slice(m.index,m.index+2500),ti=/"title":\{"runs":\[\{"text":"((?:[^"\\]|\\.)*)"/.exec(seg),ch=/"ownerText":\{"runs":\[\{"text":"((?:[^"\\]|\\.)*)"/.exec(seg);
+    if(ti){var un=function(s){try{return JSON.parse('"'+s+'"')}catch(e){return s}};out.push({id:m[1],title:un(ti[1]),channel:ch?un(ch[1]):''})}
+  }
+  return out;
+}
+var PROXIES=['https://api.allorigins.win/raw?url=','https://corsproxy.io/?','https://api.codetabs.com/v1/proxy?quest='];
+function pickLoosest(items,t,avoid){ /* último recurso: cualquier resultado que contenga la mayoría de las palabras del título */
+  var tt=toks(cleanT(t.title));if(!tt.length)return null;var best=null;
+  (items||[]).forEach(function(x){
+    if(!x||avoid[x.id])return;var hay=nrm(x.title)+' '+nrm(x.channel||'');
+    var r=tt.filter(function(w){return hay.indexOf(w)>=0}).length/tt.length;
+    if(r<.5)return;if(/\b(karaoke|reaction|tutorial|parody|meme|review|compilation)\b/i.test(x.title))return;
+    var sc=r+(/oficial|official|audio|video/i.test(x.title)?.2:0)-(/remix|slowed|sped|nightcore|8d|cover/i.test(x.title)&&!/remix|slowed|sped|nightcore|8d|cover/i.test(t.title)?.6:0);
+    if(!best||sc>best.sc)best={id:x.id,sc:sc};
+  });
+  return best&&best.sc>=.45?best.id:null;
+}
+function ytScrape(t,avoid,level){
+  var q=cleanT(t.title)+' '+t.artist+(level<2?' official audio':''),u='https://www.youtube.com/results?hl=es&search_query='+encodeURIComponent(q);
+  return firstOk(PROXIES.map(function(p){
+    var ctl=new AbortController(),to=setTimeout(function(){ctl.abort()},9000);
+    return fetch(p+encodeURIComponent(u),{signal:ctl.signal}).then(function(r){clearTimeout(to);if(!r.ok)throw new Error('HTTP '+r.status);return r.text()}).then(function(h){
+      var items=ytScrapeParse(h);if(!items.length)throw new Error('sin resultados');
+      var id=level===0?pickLoose(items,t,avoid):pickLoosest(items,t,avoid);
+      if(!id)throw new Error('sin coincidencia');return id;
+    });
+  }));
+}
+async function resolveVideo(t){
+  var avoid=S.ytBad||(S.ytBad={}),c=S.yt[t.id],meta=(S.ytMeta||(S.ytMeta={}))[t.id];
+  if(c&&!avoid[c]&&meta&&meta.title===t.title&&meta.artist===t.artist)return c;
+  var id=null,err='';
+  if(S.opt.ytKey){try{id=await ytApiSearch(t,avoid)}catch(e){err=e.message}}
+  var steps=[function(){return kSearch(t,avoid,false)},function(){return ytScrape(t,avoid,0)},function(){return kSearch(t,avoid,true)},function(){return ytScrape(t,avoid,2)}];
+  for(var i=0;i<steps.length&&!id;i++){try{id=await steps[i]()}catch(e){err=err||e.message}}
+  if(!id)throw new Error(err||'no encontré el vídeo');
+  S.yt[t.id]=id;S.ytMeta[t.id]={title:t.title,artist:t.artist};
+  var ks=Object.keys(S.yt);if(ks.length>600)delete S.yt[ks[0]];
+  save();return id;
+}
+/* si no hay completa: YouTube; si tampoco, según ajuste, vista previa o siguiente canción */
+function fullFail(t,why){
+  if(cur!==t)return;
+  if(S.opt.ytfb&&fullAvailable()&&!t._ytTried){t._ytTried=1;ytStart(t);return}
+  noFull(t,why);
+}
+var nfN=0,nfT=0;
+audio.addEventListener('timeupdate',function(){if(audio.currentTime>3)nfN=0});
+function noFull(t,why){
+  nfN=(Date.now()-nfT<40000?nfN+1:1);nfT=Date.now();
+  if(nfN>=5){nfN=0;toast('Demasiados fallos seguidos: revisa tu conexión. Pongo la vista previa.');if(t.preview)previewStart(t,'Vista previa de 30 s');return}
+  if(S.opt.noPrev&&!t._forcePrev){toast('No encontré «'+t.title+'» completa, paso a la siguiente');next(false,true);return}
+  if(t.preview)previewStart(t,(why||'Sin versión completa')+' · vista previa de 30 s');else next(false,true);
+}
+function fallbackFull(t,why){fullFail(t,why)}
+async function ytStart(t){
+  t._ytTried=1;
+  try{
+    if(!fullAvailable()){noFull(t,'YouTube necesita abrirse desde una web');return}
+    engine='yt';audio.pause();
+    try{if(yp&&ypReady){yp.stopVideo();yp.clearVideo()}}catch(e){}
+    if(!videoMinimized){$('pip').classList.remove('hide');$('videoRestore').classList.add('hide')}engineChip('Buscando la canción completa…');
+    var id=await resolveVideo(t);
+    await ytReady();
+    if(cur!==t)return;
+    t._vid=id;yp.loadVideoById({videoId:id});setVol(S.opt.vol/100);engineChip('YouTube · canción completa');
+  }catch(e){
+    if(cur!==t)return;
+    engine='preview';try{if(yp&&ypReady){yp.stopVideo();yp.clearVideo()}}catch(x){}
+    $('pip').classList.add('hide');noFull(t,'Sin vídeo');
+  }
+}
+/* el vigilante y el error de stream ya no caen a los 30 s */
+(function(){
+  var _src=srcStart;
+  srcStart=function(t,url,chip,kind){
+    _src(t,url,chip,kind);clearTimeout(wdT);
+    if(kind==='audius'){wdT=setTimeout(function(){
+      if(cur!==t||engine!=='preview'||srcKind!=='audius')return;
+      if(audio.paused||audio.currentTime>.4||document.hidden)return;
+      if(t._aud){toast('Esa fuente no responde, paso a otra canción');next(false,true);return}
+      S.aud[t.id]=0;S.audLoose[t.id]=0;save();fullFail(t,'La fuente completa no responde');
+    },11000)}
+  };
+})();
+/* ajustes: chip «Si no hay completa → saltar / vista previa» */
+(function(){
+  var yb=$('sYtfb');if(!yb)return;var row=yb.parentNode;
+  var c=el('button','chip','<span></span>');c.id='sNoPrev';c.type='button';row.appendChild(c);
+  function paint(){c.className='chip'+(S.opt.noPrev?' on':'');c.firstChild.textContent=S.opt.noPrev?'Solo canciones completas (si no la encuentro, paso a la siguiente)':'Permitir vista previa de 30 s si no hay completa'}
+  c.onclick=function(){S.opt.noPrev=!S.opt.noPrev;save();paint();toast(S.opt.noPrev?'Solo completas: nunca vista previa':'Si no hay completa sonará la vista previa')};
+  paint();
+})();
+/* «Otra fuente»: el botón manual sí puede forzar la vista previa */
+(function(){var b=$('altSrc');if(!b)return;var o=b.onclick;b.onclick=function(){if(cur&&(cur._altStep||0)%3===2)cur._forcePrev=1;return o.apply(this,arguments)}})();
 
 (function(){var s=document.getElementById('splash');if(!s)return;var done=false;
  function go(){if(done)return;done=true;s.classList.add('out');setTimeout(function(){s.remove()},800)}
