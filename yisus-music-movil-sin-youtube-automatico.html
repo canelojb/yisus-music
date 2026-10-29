@@ -2509,7 +2509,7 @@ function msState(on){try{if('mediaSession' in navigator)navigator.mediaSession.p
 function bgStatusHTML(){
   var ua=navigator.userAgent,ios=/iP(hone|ad|od)/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),ms='mediaSession' in navigator,L=[];
   L.push(ms?'✅ Este navegador muestra los controles de la pantalla de bloqueo (anterior, pausa, siguiente y barra de tiempo).':'⚠️ Este navegador no ofrece controles en la pantalla de bloqueo. La música puede seguir sonando, pero sin botones.');
-  L.push(engine==='yt'?'⚠️ Ahora mismo suena por YouTube: al bloquear el móvil suele pausarse (sobre todo en iPhone) y puede llevar anuncios. Para segundo plano fiable usa Mi música (tus archivos) o las vistas previas.':'✅ Ahora mismo suena con audio nativo: sigue con la pantalla bloqueada y pasa solo a la siguiente canción.');
+  L.push(engine==='yt'?'⚠️ Ahora mismo suena por YouTube: al bloquear el móvil suele pausarse (sobre todo en iPhone) y puede llevar anuncios. Para segundo plano fiable usa Mi música (tus archivos).':'✅ Ahora mismo suena con audio nativo: sigue con la pantalla bloqueada y pasa solo a la siguiente canción.');
   L.push('La app mantiene siempre el mismo reproductor y tiene varias canciones preparadas de antemano, para que al cambiar de tema con el móvil bloqueado no haga falta internet en ese instante.');
   if(ios)L.push('📱 iPhone/iPad: ábrelo en Safari. iOS ignora el control de volumen de la web (usa los botones del móvil). Si lo instalas en la pantalla de inicio y no suena bloqueado, ábrelo desde Safari.');
   else L.push('📱 Android: si se corta, quita el «ahorro de batería» a tu navegador (Ajustes → Aplicaciones → batería → Sin restricciones).');
@@ -4487,6 +4487,120 @@ function setFull(on){
   if(cur&&!cur._local){if(on){cur._ytTried=0;startEngine(cur)}else previewStart(cur)}
   toast(on?'Canción completa (YouTube) activada':'Vuelvo a las vistas previas de 30 segundos');
 }
+
+
+/* =====================================================================
+   v15d: NUNCA vista previa de 30 s
+   ===================================================================== */
+S.opt.noPrev=true;S.opt.full=true;S.opt.ytfb=true;save();
+function previewStart(t,chip){ /* ya no existe la vista previa */
+  engine='stopped';try{audio.pause()}catch(e){}uiPlaying(false);engineChip('Sin canción completa');
+}
+var nfN2=0,nfT2=0;
+function noFull(t,why){
+  if(cur!==t)return;
+  nfN2=(Date.now()-nfT2<40000?nfN2+1:1);nfT2=Date.now();
+  if(nfN2>=5){nfN2=0;engine='stopped';uiPlaying(false);engineChip('Sin conexión con YouTube');toast('No consigo canciones completas ahora mismo: revisa tu conexión o abre la app desde una web (https)');return}
+  toast('No encontré «'+t.title+'» completa, paso a la siguiente');next(false,true);
+}
+async function fullStart(t){
+  if(t._aud){next(false,true);return}
+  if(!fullAvailable()){engine='stopped';uiPlaying(false);engineChip('Necesita abrirse desde una web');toast('Para canciones completas hay que abrir la app desde una web (https o localhost). Como archivo suelto solo suenan tus archivos de «Mi música».');return}
+  t._ytTried=0;ytStart(t);
+}
+function setFull(on){toast('Siempre se usan canciones completas')}
+(function(){
+  var t=$('tFull');if(t)t.style.display='none';
+  var n=$('sNoPrev');if(n)n.style.display='none';
+  var b=$('altSrc');if(b)b.onclick=function(){
+    var t=cur;if(!t)return;
+    if(t._local){toast('Es un archivo tuyo: no hay otra fuente');return}
+    if(t._vid){(S.ytBad||(S.ytBad={}))[t._vid]=1;delete S.yt[t.id];save()}
+    toast('Buscando otro vídeo de esta canción…');t._ytTried=0;ytStart(t);
+  };
+})();
+var _rs2=renderSettings;
+renderSettings=function(){_rs2();var st=$('fullStatus');if(st)st.textContent=fullAvailable()?'Siempre canción completa desde YouTube. Si una canción no aparece, se salta a la siguiente.':'Abre la app desde una web (https) para que YouTube funcione.'};
+try{renderSettings()}catch(e){}
+
+
+/* =====================================================================
+   v15e: «🎬 Vídeo original» (el oficial de esa canción, nunca otra versión)
+   ===================================================================== */
+var NEGV=/\b(remix|cover|live|en vivo|directo|lyrics?|letra|karaoke|slowed|sped|speed|nightcore|8d|reverb|instrumental|acoustic|ac[uú]stic[oa]|mashup|reaction|reacci[oó]n|tutorial|parody|parodia|fan ?made|extended|loop|1 hour|hora|bass boosted|tiktok|shorts|version|versi[oó]n|performance|sesi[oó]n|session|bts|behind the scenes|making of)\b/i;
+function pickOriginal(items,t,avoid){
+  var tt=toks(cleanT(t.title)),at=toks(t.artist),best=null,orig=String(t.title);
+  if(!tt.length)return null;
+  (items||[]).forEach(function(x){
+    if(!x||!x.id||avoid[x.id]||!x.title)return;
+    var title=nrm(x.title),ch=nrm(x.channel||''),hay=title+' '+ch;
+    var r=tt.filter(function(w){return title.indexOf(w)>=0}).length/tt.length;
+    var ar=at.length?at.filter(function(w){return hay.indexOf(w)>=0}).length/at.length:1;
+    if(r<.8||ar<.5)return;
+    var neg=x.title.match(NEGV);if(neg&&!new RegExp('\\b'+neg[0]+'\\b','i').test(orig))return;
+    var sc=r*4+ar*2;
+    if(/\b(official|oficial|videoclip|music video|video oficial|official video|official music video)\b/i.test(x.title))sc+=3;
+    if(/\b(official audio|audio oficial)\b/i.test(x.title))sc+=1.5;
+    if(ch&&at.length&&at.filter(function(w){return ch.indexOf(w)>=0}).length===at.length)sc+=3;
+    if(/vevo|topic$/.test(ch)||/\btopic\b/.test(ch))sc+=2;
+    var extra=title.split(' ').length-tt.length-at.length;if(extra>6)sc-=1;
+    if(!best||sc>best.sc)best={id:x.id,sc:sc};
+  });
+  return best&&best.sc>=6?best.id:null;
+}
+function origQueries(t){var c=cleanT(t.title);return [t.artist+' '+c+' official video',t.artist+' '+c+' videoclip oficial']}
+function findOriginal(t,avoid){
+  var ps=[];
+  origQueries(t).forEach(function(q){
+    PIPED.forEach(function(b){ps.push(ytFetchQ(b,'/search',{q:q,filter:'music_videos'},function(j){
+      return(j.items||[]).map(function(x){var m=/[?&]v=([\w-]{6,})/.exec(x.url||x.urlPath||'');return m?{id:m[1],title:x.title||'',channel:x.uploaderName||x.uploader||''}:null}).filter(Boolean)},t,avoid))});
+    INVID.forEach(function(b){ps.push(ytFetchQ(b,'/api/v1/search',{q:q,type:'video'},function(j){
+      return(Array.isArray(j)?j:[]).filter(function(x){return x.videoId}).map(function(x){return{id:x.videoId,title:x.title||'',channel:x.author||''}})},t,avoid))});
+    PROXIES.forEach(function(p){
+      var u='https://www.youtube.com/results?hl=es&search_query='+encodeURIComponent(q),ctl=new AbortController(),to=setTimeout(function(){ctl.abort()},9000);
+      ps.push(fetch(p+encodeURIComponent(u),{signal:ctl.signal}).then(function(r){clearTimeout(to);if(!r.ok)throw new Error('HTTP '+r.status);return r.text()}).then(function(h){
+        var id=pickOriginal(ytScrapeParse(h),t,avoid);if(!id)throw new Error('sin coincidencia');return id}));
+    });
+  });
+  return firstOk(ps);
+}
+function ytFetchQ(base,path,params,mapper,t,avoid){
+  var ctl=new AbortController(),to=setTimeout(function(){ctl.abort()},7000);
+  return fetch(base+path+'?'+new URLSearchParams(params),{signal:ctl.signal}).then(function(r){clearTimeout(to);if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})
+    .then(function(j){var id=pickOriginal(mapper(j),t,avoid);if(!id)throw new Error('sin coincidencia');return id});
+}
+/* resolveVideo: primero el vídeo original; si no hay, el resto de métodos de siempre */
+var _rv=resolveVideo;
+async function resolveVideo(t){
+  var avoid=S.ytBad||(S.ytBad={}),c=S.yt[t.id],meta=(S.ytMeta||(S.ytMeta={}))[t.id];
+  if(c&&!avoid[c]&&meta&&meta.title===t.title&&meta.artist===t.artist)return c;
+  try{
+    var id=await findOriginal(t,avoid);
+    S.yt[t.id]=id;S.ytMeta[t.id]={title:t.title,artist:t.artist,orig:1};save();return id;
+  }catch(e){}
+  return _rv(t);
+}
+(function(){
+  var b=$('altSrc');if(!b)return;
+  b.firstChild.textContent='🎬 Vídeo original';b.title='Pone el videoclip/vídeo oficial de esta canción (sin remixes ni otras versiones)';
+  b.onclick=async function(){
+    var t=cur;if(!t)return;
+    if(t._local){toast('Es un archivo tuyo');return}
+    if(!fullAvailable()){toast('YouTube necesita abrir la app desde una web');return}
+    toast('Buscando el vídeo original…');
+    var avoid=S.ytBad||(S.ytBad={}),id=null;
+    try{id=await findOriginal(t,{})}catch(e){}
+    if(cur!==t)return;
+    if(!id){toast('No encontré el vídeo original con seguridad; dejo el que suena');return}
+    if(id===t._vid){toast('Ya está sonando el vídeo original');return}
+    if(t._vid&&S.ytBad)delete avoid[id];
+    S.yt[t.id]=id;S.ytMeta[t.id]={title:t.title,artist:t.artist,orig:1};save();
+    t._vid=id;engine='yt';
+    try{audio.pause()}catch(e){}
+    if(!videoMinimized){$('pip').classList.remove('hide');$('videoRestore').classList.add('hide')}
+    try{await ytReady();yp.loadVideoById({videoId:id});setVol(S.opt.vol/100);engineChip('YouTube · vídeo original');toast('Vídeo original puesto 🎬')}catch(e){toast('No pude cargar YouTube')}
+  };
+})();
 
 (function(){var s=document.getElementById('splash');if(!s)return;var done=false;
  function go(){if(done)return;done=true;s.classList.add('out');setTimeout(function(){s.remove()},800)}
