@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>YISUS MUSIC — Listening Room</title>
+<title>YISUS MUSIC — Listening Room · V14.1 Sound Optimizer</title>
 <meta name="theme-color" content="#060807">
 <script>try{var __t=localStorage.getItem("yisus-theme")||localStorage.getItem("yisus-visual-mode");if(__t)document.documentElement.setAttribute("data-theme",__t)}catch(e){}</script>
 <meta name="mobile-web-app-capable" content="yes">
@@ -734,6 +734,15 @@ body:not(.fx-off) .hero h1,body:not(.fx-off) .card h3,body:not(.fx-off) .card h2
 .aimix-copy{min-width:0;flex:1}.aimix-copy h2{font-size:19px;margin:3px 0 5px}.aimix-copy p{max-width:720px;margin:0;line-height:1.5}.aimix-card>.btn{flex-shrink:0}
 .aimix-modal{width:min(620px,calc(100vw - 28px));max-height:84vh;overflow:auto;padding:22px}.aimix-modal h2{margin:0 0 5px}.aimix-modal .sub{line-height:1.5}.aimix-playlists{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:14px 0}.aimix-pick{display:flex;align-items:center;gap:9px;padding:11px;border:1px solid var(--line);border-radius:12px;min-width:0;cursor:pointer;background:rgba(255,255,255,.02)}.aimix-pick input{accent-color:var(--g);width:17px;height:17px;flex-shrink:0}.aimix-pick span{overflow-wrap:anywhere;font-size:13px}.aimix-modal .field{width:100%;margin:5px 0 12px}.aimix-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.aimix-status{margin-top:10px;min-height:18px;font-size:12px;color:var(--muted)}
 @media(max-width:620px){.aimix-card{align-items:flex-start;flex-wrap:wrap}.aimix-mark{width:42px;height:42px;flex-basis:42px}.aimix-copy{width:calc(100% - 60px);flex:1}.aimix-card>.btn{width:100%;justify-content:center}.aimix-playlists{grid-template-columns:1fr}}
+
+/* V14.1 · Sound Optimizer */
+.sound-mode-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.sound-mode-card{display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;min-width:0;padding:16px;border:1px solid var(--line2);border-radius:13px;background:rgba(255,255,255,.025);transition:border-color .15s,background .15s}
+.sound-mode-card[aria-pressed="true"]{border-color:var(--g);background:var(--gbg);box-shadow:inset 0 0 0 1px rgba(var(--rgb),.12)}
+.sound-mode-icon{font-size:28px}.sound-mode-card b{font-family:var(--fd);font-size:16px}.sound-mode-card small,.sound-check small{display:block;color:var(--mut);font-size:12px;line-height:1.5;margin-top:3px}
+.sound-note{margin-top:14px;border:1px solid var(--line);background:rgba(255,255,255,.025);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--mut);line-height:1.6}
+.sound-check{display:flex;align-items:flex-start;gap:11px;padding:13px 0;border-bottom:1px solid var(--line);cursor:pointer}.sound-check:last-of-type{border-bottom:0}.sound-check input{margin-top:4px;accent-color:var(--g);width:17px;height:17px;flex:none}.sound-check b{font-size:14px}
+@media(max-width:700px){.sound-mode-grid{grid-template-columns:1fr}.sound-mode-card{display:grid;grid-template-columns:36px 1fr;column-gap:10px;align-items:center}.sound-mode-icon{grid-row:span 2}.sound-mode-card small{grid-column:2}}
 </style>
 </head>
 <body>
@@ -748,6 +757,7 @@ body:not(.fx-off) .hero h1,body:not(.fx-off) .card h3,body:not(.fx-off) .card h2
   </div>
   <nav class="nav" id="nav">
     <button data-page="home" class="on"><i data-ic="home"></i><span>Inicio</span></button>
+    <button data-page="sound"><i data-ic="volume"></i><span>Sound Optimizer</span></button>
     <button data-page="search"><i data-ic="search"></i><span>Buscar</span></button>
     <button data-page="library"><i data-ic="library"></i><span>Biblioteca</span></button>
     <button data-page="local"><i data-ic="radio"></i><span>Mi música</span></button>
@@ -826,6 +836,31 @@ body:not(.fx-off) .hero h1,body:not(.fx-off) .card h3,body:not(.fx-off) .card h2
         <div class="rx"><button class="btn sm" id="qMore"><i data-ic="plus"></i><span>Traer más</span></button><button class="btn sm" id="qClear"><i data-ic="x"></i><span>Vaciar</span></button></div>
       </div>
       <div class="list" id="queue"></div>
+    </div>
+  </section>
+
+  <!-- SOUND OPTIMIZER -->
+  <section class="page" id="p-sound">
+    <div class="phead"><div><h1>Sound Optimizer</h1><p class="sub" style="margin-top:8px">Un perfil de escucha para auriculares, altavoces o sonido original.</p></div><span class="pill low">YISUS SOUND</span></div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="chead"><h2>¿Dónde vas a escuchar?</h2><span class="pill" id="soundActiveBadge">Perfil: Original</span></div>
+      <div class="sound-mode-grid" id="soundModeGrid">
+        <button type="button" class="sound-mode-card" data-sound-mode="headphones" aria-pressed="false"><span class="sound-mode-icon">🎧</span><b>Auriculares</b><small>Prioriza versiones estéreo y espaciales cuando se busquen alternativas.</small></button>
+        <button type="button" class="sound-mode-card" data-sound-mode="speaker" aria-pressed="false"><span class="sound-mode-icon">🔊</span><b>Altavoces</b><small>Prioriza versiones oficiales y mezclas claras; evita 8D como opción preferida.</small></button>
+        <button type="button" class="sound-mode-card" data-sound-mode="original" aria-pressed="true"><span class="sound-mode-icon">🎼</span><b>Original</b><small>Conserva la preferencia por la canción original, sin buscar efectos añadidos.</small></button>
+      </div>
+      <div class="sound-note" id="soundModeDescription" aria-live="polite">Modo original: se prioriza la canción exacta y se evita sustituirla por remixes o vídeos aleatorios.</div>
+      <div class="tools"><button class="btn primary" id="saveSoundMode">Guardar perfil</button><button class="btn" id="resetSoundMode">Restablecer</button></div>
+    </div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="chead"><h2>Preferencias de versiones</h2></div>
+      <label class="sound-check"><input type="checkbox" id="soundAllow8d"><span><b>Permitir versiones 8D / espaciales</b><small>Solo como alternativa opcional. Una versión 8D no significa que tenga mayor calidad de grabación.</small></span></label>
+      <label class="sound-check"><input type="checkbox" id="soundPreferOfficial" checked><span><b>Priorizar fuentes oficiales</b><small>Cuando haya varias coincidencias, favorecer audio o vídeo oficial en lugar de contenido aleatorio.</small></span></label>
+      <p class="sub" style="margin-top:14px">Estas opciones guardan tu preferencia para el proyecto. No modifican por sí solas el audio de YouTube ni garantizan que una versión tenga mayor calidad; la fuente y la mezcla disponible determinan el resultado.</p>
+    </div>
+    <div class="card">
+      <div class="chead"><h2>Cómo funciona</h2></div>
+      <p class="sub" style="line-height:1.7">YISUS MUSIC puede usar este perfil para orientar la búsqueda de versiones, pero no puede medir la calidad real de cualquier vídeo solo por su título. El audio de YouTube incrustado tampoco se puede procesar libremente con un ecualizador propio debido a las restricciones del navegador. La reproducción original sigue priorizando que coincidan la canción y el artista.</p>
     </div>
   </section>
 
@@ -1104,7 +1139,7 @@ if(!S||!S.sels||!S.sels.length){
 S.xp=S.xp||0;S.likes=S.likes||0;S.hist=S.hist||[];S.badges=S.badges||{};S.listened=S.listened||0;S.yt=S.yt||{};
 /* YISUS MUSIC DNA: aprendizaje local a partir de guardados, escuchas, saltos y metadatos. No analiza el audio crudo de YouTube. */
 S.dna=S.dna||{artists:{},terms:{},tracks:{},positive:0,negative:0};S.dna.artists=S.dna.artists||{};S.dna.terms=S.dna.terms||{};S.dna.tracks=S.dna.tracks||{};S.dna.positive=S.dna.positive||0;S.dna.negative=S.dna.negative||0;
-S.opt=Object.assign({under:70,dj:true,vol:80,full:false,ytKey:'',aiKey:'',aiModel:'claude-sonnet-5-5'},S.opt||{});
+S.opt=Object.assign({under:70,dj:true,vol:80,full:false,ytKey:'',aiKey:'',aiModel:'claude-sonnet-5-5',soundMode:'original',soundAllow8d:false,soundPreferOfficial:true},S.opt||{});
 delete S.opt.mix;
 S.sels.forEach(function(s){s.moods=s.moods||[];s.seen=s.seen||[];s.w=s.w||{};s.songs=s.songs||[];s.artists=s.artists||[]});
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
@@ -1319,6 +1354,7 @@ function goPage(n){
   if(n==='library')renderSel();
   if(n==='search'){renderTarget();setTimeout(function(){$('q').focus()},50)}
   if(n==='settings')renderSettings();
+  if(n==='sound')renderSoundOptimizer();
   if(n==='ai')renderChat();
 }
 Array.prototype.forEach.call(document.querySelectorAll('#nav button'),function(b){b.onclick=function(){goPage(b.getAttribute('data-page'))}});
@@ -1841,46 +1877,68 @@ async function ytStart(t){
   }
 }
 function pickId(items,t,avoid){
-  function norm(s){return String(s||'').toLowerCase().replace(/\([^)]*\)|\[[^\]]*\]/g,' ').replace(/[^a-z0-9\u00c0-\u024f\u4e00-\u9fff]+/g,' ').trim()}
-  var title=norm(t.title),artist=norm(t.artist),tokens=title.split(/\s+/).filter(function(w){return w.length>2});
-  var candidates=items.filter(function(x){return x&&x.id&&!avoid[x.id]&&x.title});
-  candidates=candidates.map(function(x){
-    var n=norm(x.title),matches=tokens.filter(function(w){return n.indexOf(w)>=0}).length;
-    var ratio=tokens.length?matches/tokens.length:0;
-    var a=artist&&n.indexOf(artist)>=0?3:0;
-    var official=/official|music video|official video|clip officiel|videoclip|video oficial/i.test(x.title)?1:0;
-    var bad=/karaoke|8d audio|nightcore|slowed|sped up|reaction|tutorial|gameplay|cover/i.test(x.title)?-4:0;
-    return {id:x.id,score:ratio*5+a+official+bad,ratio:ratio};
-  }).filter(function(x){return x.ratio>=0.5}).sort(function(a,b){return b.score-a.score});
-  return candidates.length&&candidates[0].score>0?candidates[0].id:null;
+  /* Búsqueda estricta: es preferible no reproducir un vídeo que poner una canción distinta. */
+  function norm(v){
+    return String(v||'').toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/\b(feat\.?|ft\.?|featuring)\b/g,' ')
+      .replace(/[^a-z0-9\u4e00-\u9fff]+/g,' ').trim();
+  }
+  var title=norm(t.title), artist=norm(t.artist);
+  var stop={'the':1,'and':1,'los':1,'las':1,'del':1,'con':1,'para':1,'una':1,'uno':1,'por':1,'feat':1,'ft':1};
+  var tokens=title.split(/\s+/).filter(function(w){return w.length>=2&&!stop[w]});
+  if(!tokens.length)return null;
+  var wantsAlt=/\b(remix|8d|nightcore|slowed|sped up|edit|version|instrumental|acoustic|live)\b/i.test(t.title||'');
+  var candidates=(items||[]).filter(function(x){return x&&x.id&&!avoid[x.id]&&x.title;}).map(function(x){
+    var raw=norm(x.title), channel=norm(x.channel||x.author||x.uploader||'');
+    var hay=raw+' '+channel;
+    var matches=tokens.filter(function(w){return hay.indexOf(w)>=0}).length;
+    var ratio=matches/tokens.length;
+    var titleMatches=tokens.filter(function(w){return raw.indexOf(w)>=0}).length;
+    var titleRatio=titleMatches/tokens.length;
+    var artistTokens=artist.split(/\s+/).filter(function(w){return w.length>=2&&!stop[w]});
+    var artistMatches=artistTokens.filter(function(w){return hay.indexOf(w)>=0}).length;
+    var artistRatio=artistTokens.length?artistMatches/artistTokens.length:1;
+    var artistOK=!artistTokens.length || artistRatio>=0.75;
+    var bad=/\b(karaoke|reaction|tutorial|gameplay|lyrics only|fan made|parody|meme|review|top 10|compilation)\b/i.test(x.title)?-8:0;
+    var unwantedAlt=!wantsAlt&&/\b(8d audio|nightcore|slowed|super slowed|sped up|speed up|remix|cover|karaoke|instrumental|reverb)\b/i.test(x.title)?-5:0;
+    var positive=/\b(official|video oficial|videoclip oficial|official music video|official audio|video oficial)\b/i.test(x.title)?1:0;
+    var score=titleRatio*7+artistRatio*4+positive+bad+unwantedAlt;
+    return {id:x.id,score:score,titleRatio:titleRatio,artistOK:artistOK,artistRatio:artistRatio};
+  }).filter(function(x){
+    /* Exige el título prácticamente completo y una coincidencia razonable del artista. */
+    return x.titleRatio>=0.72 && x.artistOK && (artist ? x.artistRatio>=0.75 : x.titleRatio>=0.9);
+  }).sort(function(a,b){return b.score-a.score});
+  return candidates.length&&candidates[0].score>=8?candidates[0].id:null;
 }
 async function ytApiSearch(t,avoid){
-  var r=await fetch('https://www.googleapis.com/youtube/v3/search?'+new URLSearchParams({part:'snippet',type:'video',videoEmbeddable:'true',videoSyndicated:'true',maxResults:'6',q:t.artist+' '+t.title+' official music video videoclip',key:S.opt.ytKey}));
+  var r=await fetch('https://www.googleapis.com/youtube/v3/search?'+new URLSearchParams({part:'snippet',type:'video',videoEmbeddable:'true',videoSyndicated:'true',maxResults:'10',order:'relevance',q:t.artist+' '+t.title,key:S.opt.ytKey}));
   var j=await r.json();
   if(j.error)throw new Error(j.error.code===403?'cuota o clave de YouTube':(j.error.message||'error de YouTube'));
-  return pickId((j.items||[]).filter(function(x){return x.id&&x.id.videoId}).map(function(x){return{id:x.id.videoId,title:x.snippet.title}}),t,avoid);
+  return pickId((j.items||[]).filter(function(x){return x.id&&x.id.videoId}).map(function(x){return{id:x.id.videoId,title:x.snippet.title,channel:x.snippet.channelTitle}}),t,avoid);
 }
-var PIPED=['https://pipedapi.kavin.rocks','https://pipedapi.adminforge.de','https://api.piped.private.coffee'];
+var PIPED=['https://pipedapi.adminforge.de','https://api.piped.private.coffee','https://pipedapi.kavin.rocks'];
 function firstOk(ps){return new Promise(function(res,rej){var n=ps.length,errs=[];ps.forEach(function(p){p.then(res,function(e){errs.push(e&&e.message||'error');if(--n===0)rej(new Error(errs[0]||'sin resultados'))})})})}
 async function keylessSearch(t,avoid){
   return firstOk(PIPED.map(function(base){
     var ctl=new AbortController(),to=setTimeout(function(){ctl.abort()},6500);
-    return fetch(base+'/search?'+new URLSearchParams({q:t.artist+' '+t.title+' videoclip official video',filter:'music_videos'}),{signal:ctl.signal})
+    return fetch(base+'/search?'+new URLSearchParams({q:t.artist+' '+t.title,filter:'music_videos'}),{signal:ctl.signal})
       .then(function(r){clearTimeout(to);if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})
       .then(function(j){
-        var items=(j.items||[]).map(function(x){var m=/[?&]v=([\w-]{6,})/.exec(x.url||'');return m?{id:m[1],title:x.title||''}:null}).filter(Boolean);
-        var id=pickId(items,t,avoid);if(!id)throw new Error('sin resultados');return id;
+        var items=(j.items||[]).map(function(x){var m=/[?&]v=([\w-]{6,})/.exec(x.url||x.urlPath||'');return m?{id:m[1],title:x.title||'',channel:x.uploaderName||x.uploader||x.author||''}:null}).filter(Boolean);
+        var id=pickId(items,t,avoid);if(!id)throw new Error('no hay coincidencia suficientemente segura');return id;
       });
   }));
 }
 async function resolveVideo(t){
-  var avoid=S.ytBad||(S.ytBad={}),c=S.yt[t.id];
-  if(c&&!avoid[c])return c;
+  var avoid=S.ytBad||(S.ytBad={}),c=S.yt[t.id],meta=(S.ytMeta||(S.ytMeta={}))[t.id];
+  /* Los ID guardados por versiones antiguas no tenían validación; se vuelven a buscar una vez. */
+  if(c&&!avoid[c]&&meta&&meta.title===t.title&&meta.artist===t.artist)return c;
   var id=null,err='';
   if(S.opt.ytKey){try{id=await ytApiSearch(t,avoid)}catch(e){err=e.message}}
   if(!id){try{id=await keylessSearch(t,avoid)}catch(e){err=err||e.message}}
-  if(!id)throw new Error(err||'sin resultados');
-  S.yt[t.id]=id;
+  if(!id)throw new Error(err||'no encontré una coincidencia fiable; no pondré un vídeo aleatorio');
+  S.yt[t.id]=id;S.ytMeta[t.id]={title:t.title,artist:t.artist};
   var ks=Object.keys(S.yt);if(ks.length>600)delete S.yt[ks[0]];
   save();return id;
 }
@@ -2161,6 +2219,25 @@ async function sendAI(text){
   addMsg('assistant',r.text,{sug:r.sug,raw:r.raw,error:r.error});
 }
 $('aiForm').onsubmit=function(e){e.preventDefault();var v=$('aiIn').value;$('aiIn').value='';sendAI(v)};
+
+/* ---------- YISUS SOUND OPTIMIZER ---------- */
+var soundModeCopy={
+  headphones:{name:'Auriculares',desc:'Modo auriculares: cuando busques alternativas, prioriza versiones estéreo o espaciales. La reproducción normal sigue respetando la coincidencia exacta de canción y artista.'},
+  speaker:{name:'Altavoces',desc:'Modo altavoces: prioriza versiones oficiales y una selección clara; no se favorecen versiones 8D como opción principal.'},
+  original:{name:'Original',desc:'Modo original: se prioriza la canción exacta y se evita sustituirla por remixes o vídeos aleatorios.'}
+};
+function renderSoundOptimizer(){
+  var mode=soundModeCopy[S.opt.soundMode]?S.opt.soundMode:'original';
+  document.querySelectorAll('[data-sound-mode]').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-sound-mode')===mode))});
+  var badge=$('soundActiveBadge'),desc=$('soundModeDescription'),a=$('soundAllow8d'),o=$('soundPreferOfficial');
+  if(badge)badge.textContent='Perfil: '+soundModeCopy[mode].name;
+  if(desc)desc.textContent=soundModeCopy[mode].desc;
+  if(a)a.checked=!!S.opt.soundAllow8d;if(o)o.checked=S.opt.soundPreferOfficial!==false;
+}
+document.querySelectorAll('[data-sound-mode]').forEach(function(b){b.addEventListener('click',function(){S.opt.soundMode=b.getAttribute('data-sound-mode');renderSoundOptimizer()})});
+if($('saveSoundMode'))$('saveSoundMode').addEventListener('click',function(){S.opt.soundAllow8d=$('soundAllow8d').checked;S.opt.soundPreferOfficial=$('soundPreferOfficial').checked;save();renderSoundOptimizer();toast('Perfil de sonido guardado')});
+if($('resetSoundMode'))$('resetSoundMode').addEventListener('click',function(){S.opt.soundMode='original';S.opt.soundAllow8d=false;S.opt.soundPreferOfficial=true;save();renderSoundOptimizer();toast('Perfil de sonido restablecido')});
+renderSoundOptimizer();
 
 /* ---------- ajustes ---------- */
 function renderSettings(){
