@@ -2509,7 +2509,7 @@ function msState(on){try{if('mediaSession' in navigator)navigator.mediaSession.p
 function bgStatusHTML(){
   var ua=navigator.userAgent,ios=/iP(hone|ad|od)/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),ms='mediaSession' in navigator,L=[];
   L.push(ms?'✅ Este navegador muestra los controles de la pantalla de bloqueo (anterior, pausa, siguiente y barra de tiempo).':'⚠️ Este navegador no ofrece controles en la pantalla de bloqueo. La música puede seguir sonando, pero sin botones.');
-  L.push(engine==='yt'?'⚠️ Ahora mismo suena por YouTube: al bloquear el móvil suele pausarse (sobre todo en iPhone) y puede llevar anuncios. Para segundo plano fiable usa Mi música (tus archivos).':'✅ Ahora mismo suena con audio nativo: sigue con la pantalla bloqueada y pasa solo a la siguiente canción.');
+  L.push(engine==='yt'?'⚠️ Ahora mismo suena por YouTube: al bloquear el móvil suele pausarse (sobre todo en iPhone) y puede llevar anuncios. Para segundo plano fiable usa Mi música (tus archivos) o las vistas previas.':'✅ Ahora mismo suena con audio nativo: sigue con la pantalla bloqueada y pasa solo a la siguiente canción.');
   L.push('La app mantiene siempre el mismo reproductor y tiene varias canciones preparadas de antemano, para que al cambiar de tema con el móvil bloqueado no haga falta internet en ese instante.');
   if(ios)L.push('📱 iPhone/iPad: ábrelo en Safari. iOS ignora el control de volumen de la web (usa los botones del móvil). Si lo instalas en la pantalla de inicio y no suena bloqueado, ábrelo desde Safari.');
   else L.push('📱 Android: si se corta, quita el «ahorro de batería» a tu navegador (Ajustes → Aplicaciones → batería → Sin restricciones).');
@@ -4432,7 +4432,7 @@ async function ytStart(t){
 /* =====================================================================
    v15c: SOLO YouTube como fuente de canción completa (Audius eliminado)
    ===================================================================== */
-S.opt.ytfb=true;S.opt.full=true;save();
+S.opt.ytfb=true;if(S.opt.full===undefined)S.opt.full=true;save();
 async function fullStart(t){
   if(t._aud){next(false,true);return}
   if(!fullAvailable()){
@@ -4492,25 +4492,22 @@ function setFull(on){
 /* =====================================================================
    v15d: NUNCA vista previa de 30 s
    ===================================================================== */
-S.opt.noPrev=true;S.opt.full=true;S.opt.ytfb=true;save();
-function previewStart(t,chip){ /* ya no existe la vista previa */
-  engine='stopped';try{audio.pause()}catch(e){}uiPlaying(false);engineChip('Sin canción completa');
-}
+S.opt.ytfb=true;if(S.opt.full===undefined)S.opt.full=true;save();
 var nfN2=0,nfT2=0;
 function noFull(t,why){
   if(cur!==t)return;
+  if(!S.opt.full){if(t.preview)previewStart(t);return}
   nfN2=(Date.now()-nfT2<40000?nfN2+1:1);nfT2=Date.now();
   if(nfN2>=5){nfN2=0;engine='stopped';uiPlaying(false);engineChip('Sin conexión con YouTube');toast('No consigo canciones completas ahora mismo: revisa tu conexión o abre la app desde una web (https)');return}
   toast('No encontré «'+t.title+'» completa, paso a la siguiente');next(false,true);
 }
 async function fullStart(t){
   if(t._aud){next(false,true);return}
+  if(!S.opt.full){previewStart(t);return}
   if(!fullAvailable()){engine='stopped';uiPlaying(false);engineChip('Necesita abrirse desde una web');toast('Para canciones completas hay que abrir la app desde una web (https o localhost). Como archivo suelto solo suenan tus archivos de «Mi música».');return}
   t._ytTried=0;ytStart(t);
 }
-function setFull(on){toast('Siempre se usan canciones completas')}
 (function(){
-  var t=$('tFull');if(t)t.style.display='none';
   var n=$('sNoPrev');if(n)n.style.display='none';
   var b=$('altSrc');if(b)b.onclick=function(){
     var t=cur;if(!t)return;
@@ -4520,8 +4517,16 @@ function setFull(on){toast('Siempre se usan canciones completas')}
   };
 })();
 var _rs2=renderSettings;
-renderSettings=function(){_rs2();var st=$('fullStatus');if(st)st.textContent=fullAvailable()?'Siempre canción completa desde YouTube. Si una canción no aparece, se salta a la siguiente.':'Abre la app desde una web (https) para que YouTube funcione.'};
+renderSettings=function(){_rs2();var st=$('fullStatus');if(st)st.textContent=!S.opt.full?'Desactivado: suenan las vistas previas de 30 segundos (sin anuncios).':(fullAvailable()?'Activado: canción completa desde YouTube. Si una canción no aparece, se salta a la siguiente.':'Abre la app desde una web (https) para que YouTube funcione.')};
 try{renderSettings()}catch(e){}
+
+function setFull(on){
+  S.opt.full=on;save();paintToggles();renderSettings();
+  if(cur&&!cur._local){if(on){cur._ytTried=0;startEngine(cur)}else{try{if(yp&&ypReady){yp.stopVideo();yp.clearVideo()}}catch(e){}$('pip').classList.add('hide');previewStart(cur)}}
+  toast(on?'Canción completa (YouTube) activada':'Vistas previas de 30 segundos activadas');
+}
+(function(){var c=$('sFull');if(c)c.firstChild.textContent='Canción completa (YouTube) · desactívala para oír solo 30 s'})();
+try{paintToggles();renderSettings()}catch(e){}
 
 
 /* =====================================================================
