@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>YISUS MUSIC — Listening Room · V15</title>
+<title>YISUS MUSIC — Premium Interface · V20</title>
 <meta name="theme-color" content="#060807">
 <script>try{var __t=localStorage.getItem("yisus-theme")||localStorage.getItem("yisus-visual-mode");if(__t)document.documentElement.setAttribute("data-theme",__t)}catch(e){}</script>
 <meta name="mobile-web-app-capable" content="yes">
@@ -751,10 +751,79 @@ body:not(.fx-off) .hero h1,body:not(.fx-off) .card h3,body:not(.fx-off) .card h2
 .sound-note{margin-top:14px;border:1px solid var(--line);background:rgba(255,255,255,.025);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--mut);line-height:1.6}
 .sound-check{display:flex;align-items:flex-start;gap:11px;padding:13px 0;border-bottom:1px solid var(--line);cursor:pointer}.sound-check:last-of-type{border-bottom:0}.sound-check input{margin-top:4px;accent-color:var(--g);width:17px;height:17px;flex:none}.sound-check b{font-size:14px}
 @media(max-width:700px){.sound-mode-grid{grid-template-columns:1fr}.sound-mode-card{display:grid;grid-template-columns:36px 1fr;column-gap:10px;align-items:center}.sound-mode-icon{grid-row:span 2}.sound-mode-card small{grid-column:2}}
+
+/* V19 · DISCOVERY */
+.discover-hero{position:relative;overflow:hidden;background:radial-gradient(ellipse at 90% 0%,rgba(var(--rgb),.16),transparent 48%),var(--card)}
+.discover-kicker{font:700 11px var(--fd);letter-spacing:.18em;color:var(--g);margin-bottom:10px}
+.discover-hero h2{font:800 clamp(23px,4vw,34px) var(--fd);max-width:680px;margin-bottom:8px}
+.discover-hero>p{max-width:700px;line-height:1.65}
+.discover-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px}
+.discover-controls .field{width:auto;min-width:min(250px,100%);margin:0}
+.discover-status{margin-top:12px;min-height:20px}
+.discover-foot{line-height:1.6;margin:10px 2px 24px}
+
+</style>
+<style>
+
+/* ===== V20 · PREMIUM INTERFACE REDESIGN ===== */
+:root{--r:18px;--rs:12px}
+body{background:radial-gradient(ellipse at 78% 0%,rgba(var(--rgb),.055),transparent 34%),var(--bg)}
+.app{grid-template-columns:250px minmax(0,1fr)}
+.side{padding:25px 15px 17px;background:linear-gradient(180deg,rgba(12,18,14,.98),rgba(7,11,8,.98));border-right:1px solid rgba(var(--lt),.12)}
+.brand{padding:2px 10px 27px;gap:13px}.brand svg{width:39px;height:39px}.brand b{font-size:22px;letter-spacing:.035em}.brand small{font-size:10px;letter-spacing:.17em;color:var(--dim)}
+.nav{gap:4px}.nav button{min-height:43px;padding:10px 13px;border:1px solid transparent;border-radius:11px;font-size:13px;letter-spacing:.005em;position:relative}.nav button .ic{width:17px;height:17px}.nav button.on{background:linear-gradient(100deg,rgba(var(--rgb),.15),rgba(var(--rgb),.045));border-color:rgba(var(--rgb),.17);color:var(--g);box-shadow:inset 3px 0 var(--g)}.nav button:hover:not(.on){background:rgba(255,255,255,.035);color:var(--tx)}
+.nav button:nth-child(4),.nav button:nth-child(7),.nav button:nth-child(10){margin-top:13px}.nav button:nth-child(4):before,.nav button:nth-child(7):before,.nav button:nth-child(10):before{content:"";position:absolute;left:0;right:0;top:-8px;height:1px;background:rgba(var(--lt),.12)}
+.sidefoot{padding:15px 11px 2px;border-top-color:rgba(var(--lt),.13)}.lvl{font-size:12px}.meter{height:4px}
+.main{padding:26px clamp(18px,3vw,46px) 46px;scrollbar-width:thin;scrollbar-color:rgba(var(--rgb),.3) transparent}
+.ys-topbar{max-width:1220px;margin-bottom:30px;padding:0 3px 17px;border-bottom:1px solid rgba(var(--lt),.12);position:sticky;top:-26px;z-index:20;background:linear-gradient(180deg,rgba(6,8,7,.97) 75%,rgba(6,8,7,.0));backdrop-filter:blur(16px)}
+.ys-topbrand{font-size:13px;letter-spacing:.08em}.ys-topbrand small{font-size:9px;letter-spacing:.18em}.ys-searchjump{border-radius:999px;background:rgba(255,255,255,.035);border:1px solid rgba(var(--lt),.13);padding:9px 14px;min-width:220px}.ys-searchjump:hover{border-color:rgba(var(--rgb),.45);background:rgba(var(--rgb),.06)}
+.page{max-width:1220px}.phead{margin-bottom:24px}.phead h1{font-size:clamp(28px,3vw,38px);letter-spacing:-.04em}.phead .sub{max-width:680px;line-height:1.65}
+.card{background:linear-gradient(145deg,rgba(17,24,19,.96),rgba(10,14,11,.98));border-color:rgba(var(--lt),.105);border-radius:17px;padding:21px;box-shadow:0 8px 28px rgba(0,0,0,.12)}.card+.card,.stack>*+*{margin-top:18px}.chead{margin-bottom:15px}.chead h2{font-size:17px;letter-spacing:-.02em}
+.btn{border-radius:11px;padding:10px 15px}.btn.primary{box-shadow:0 5px 18px rgba(var(--rgb),.12)}.icon-btn{width:40px;height:40px}
+/* Inicio: portada editorial y módulos */
+#p-home{display:flex;flex-direction:column;gap:18px}
+#p-home>.hero{margin:0!important;min-height:320px;grid-template-columns:minmax(220px,310px) minmax(0,1fr);gap:clamp(22px,4vw,44px);padding:clamp(20px,3vw,34px);border-color:rgba(var(--rgb),.19);background:radial-gradient(ellipse at 85% 10%,rgba(var(--rgb),.12),transparent 40%),linear-gradient(125deg,#111a13,#0a0e0b 68%);box-shadow:0 18px 55px rgba(0,0,0,.2)}
+#p-home>.hero:after{content:"NOW PLAYING";position:absolute;right:25px;top:22px;color:rgba(var(--lt),.45);font-size:9px;letter-spacing:.22em;font-weight:800}
+#p-home .hcover{width:100%;height:auto;aspect-ratio:1;max-width:310px;border-radius:15px;box-shadow:0 22px 55px rgba(0,0,0,.42);border-color:rgba(255,255,255,.12)}
+#p-home .hinfo .kick{font-size:10px;letter-spacing:.19em;text-transform:uppercase;color:var(--g);font-weight:800;margin-bottom:12px}
+#p-home .hinfo h1{font-size:clamp(29px,4.3vw,49px);line-height:1.02;letter-spacing:-.045em;max-width:650px}
+#p-home .hartist{font-size:17px;margin-top:5px}#p-home .why{font-size:13px}#p-home .hact{margin-top:22px;gap:10px}
+#p-home>.aimix-card{margin:0!important;display:grid;grid-template-columns:54px minmax(0,1fr) auto;align-items:center;gap:17px;padding:18px 22px;background:linear-gradient(105deg,rgba(var(--rgb),.09),rgba(13,19,15,.98) 55%);border-color:rgba(var(--rgb),.17)}
+#p-home .aimix-mark{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:rgba(var(--rgb),.12);color:var(--g);font-size:24px}
+#p-home .aimix-copy .kick{font-size:9px;letter-spacing:.2em;color:var(--g);font-weight:800}#p-home .aimix-copy h2{font-size:18px;margin:3px 0}#p-home .aimix-copy p{font-size:12px;line-height:1.5}
+#p-home>.srcgrid{margin:0!important;gap:18px}#p-home>.srcgrid>.card{min-height:170px}
+#p-home>.srcgrid>.card:first-child{background:linear-gradient(145deg,rgba(var(--rgb),.07),rgba(12,17,13,.98) 58%)}
+#p-home>.srcgrid>.card:nth-child(2){background:linear-gradient(145deg,rgba(232,196,94,.055),rgba(12,17,13,.98) 58%)}
+#p-home>.card:last-child{margin:0!important}
+/* Listas y controles más limpios */
+.row{padding:10px 11px;border-radius:12px}.cv{width:50px;height:50px;border-radius:10px}.rt b{font-size:14px}.rt span{font-size:12px}.scroll{scrollbar-width:thin;scrollbar-color:rgba(var(--rgb),.25) transparent}
+/* Barra de reproducción: aspecto de consola premium */
+.pbar{background:rgba(7,11,8,.97);border-top:1px solid rgba(var(--lt),.16);box-shadow:0 -15px 48px rgba(0,0,0,.35);padding:13px 26px calc(13px + env(safe-area-inset-bottom));gap:24px;backdrop-filter:blur(18px)}
+.pcov{width:54px;height:54px;border-radius:10px;border:1px solid rgba(var(--lt),.12)}.ptxt b{font-size:13px}.ptxt span{font-size:11px}.playbtn{width:43px;height:43px;box-shadow:0 4px 16px rgba(255,255,255,.08)}.pseek{font-size:10px}.pright{gap:10px}.tg{font-size:10px;letter-spacing:.04em}
+/* Transiciones discretas, respetando accesibilidad */
+.page.on{animation:v20PageIn .24s ease-out both}@keyframes v20PageIn{from{opacity:.65;transform:translateY(5px)}to{opacity:1;transform:none}}
+@media(max-width:1100px){.app{grid-template-columns:220px minmax(0,1fr)}#p-home>.hero{grid-template-columns:minmax(190px,260px) minmax(0,1fr)}#p-home .hcover{max-width:260px}}
+@media(max-width:900px){.app{grid-template-columns:minmax(0,1fr)}.side{padding:10px 12px 8px}.brand{display:none}.nav{flex-direction:row;overflow-x:auto;gap:5px;padding:2px 0;scrollbar-width:none}.nav::-webkit-scrollbar{display:none}.nav button{flex:0 0 auto;min-height:40px;padding:8px 11px;font-size:12px}.nav button:nth-child(4),.nav button:nth-child(7),.nav button:nth-child(10){margin-top:0}.nav button:nth-child(4):before,.nav button:nth-child(7):before,.nav button:nth-child(10):before{display:none}.sidefoot,.mode-label,.themes{display:none}.main{padding:19px 18px 28px}.ys-topbar{top:-19px;margin-bottom:20px}}
+@media(max-width:650px){#p-home>.hero{grid-template-columns: minmax(105px,34%) minmax(0,1fr);gap:16px;padding:16px;min-height:0}#p-home .hcover{max-width:none;border-radius:11px}#p-home .hinfo h1{font-size:clamp(22px,6vw,31px)}#p-home .hartist{font-size:14px}#p-home>.hero:after{display:none}#p-home>.aimix-card{grid-template-columns:42px minmax(0,1fr);gap:12px;padding:14px}#p-home .aimix-mark{width:40px;height:40px}#p-home .aimix-card>.btn{grid-column:1/-1;justify-content:center}.srcgrid{grid-template-columns:1fr}.ys-topbar{align-items:center}.ys-topright{gap:6px}.ys-edition{display:none}.ys-searchjump{min-width:0;padding:8px 11px;font-size:11px}.main{padding:15px 12px 22px}.card{padding:16px}.pbar{padding:9px 12px calc(9px + env(safe-area-inset-bottom));gap:7px}.pbar .pright{display:none}.pbar .pnow{min-width:0}.pbar .pcov{width:43px;height:43px}.pbar .pmid{gap:3px}.pbar .pctrl{gap:2px}.pbar .playbtn{width:38px;height:38px}.pbar .icon-btn{width:34px;height:34px}.pbar .pseek{gap:7px}.pbar .ptxt b{font-size:12px}.pbar .ptxt span{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.page.on{animation:none}}
 </style>
 </head>
 <body>
-<div id="splash" role="presentation" aria-hidden="true"><div class="spl-rays"></div><i class="spl-r r1"></i><i class="spl-r r2"></i><i class="spl-r r3"></i><svg class="lg" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="ygS" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:rgb(var(--lt))"/><stop offset=".55" style="stop-color:var(--g)"/><stop offset="1" style="stop-color:var(--g2)"/></linearGradient></defs><path class="hx" d="M32 3.5 57 18v28L32 60.5 7 46V18Z" fill="rgba(var(--rgb),.10)" stroke="url(#ygS)" stroke-width="2.6" stroke-linejoin="round"/><path class="yy" d="M19 16 32 34 45 16M32 34v19" fill="none" stroke="url(#ygS)" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><circle class="dt" cx="32" cy="34" r="3.2" fill="#fff"/></svg><h1 class="spl-t"><span style="--i:0">Y</span><span style="--i:1">I</span><span style="--i:2">S</span><span style="--i:3">U</span><span style="--i:4">S</span><b><span style="--i:6">M</span><span style="--i:7">U</span><span style="--i:8">S</span><span style="--i:9">I</span><span style="--i:10">C</span></b></h1><div class="sub2">Personal sound system</div><div class="spl-eq"><i style="--d:0.00;--h:30"></i><i style="--d:0.11;--h:67"></i><i style="--d:0.22;--h:44"></i><i style="--d:0.33;--h:81"></i><i style="--d:0.44;--h:58"></i><i style="--d:0.55;--h:35"></i><i style="--d:0.66;--h:72"></i><i style="--d:0.77;--h:49"></i><i style="--d:0.88;--h:86"></i><i style="--d:0.99;--h:63"></i><i style="--d:1.10;--h:40"></i><i style="--d:1.21;--h:77"></i><i style="--d:0.02;--h:54"></i><i style="--d:0.13;--h:31"></i><i style="--d:0.24;--h:68"></i><i style="--d:0.35;--h:45"></i><i style="--d:0.46;--h:82"></i><i style="--d:0.57;--h:59"></i><i style="--d:0.68;--h:36"></i><i style="--d:0.79;--h:73"></i><i style="--d:0.90;--h:50"></i><i style="--d:1.01;--h:87"></i><i style="--d:1.12;--h:64"></i><i style="--d:1.23;--h:41"></i><i style="--d:0.04;--h:78"></i><i style="--d:0.15;--h:55"></i><i style="--d:0.26;--h:32"></i><i style="--d:0.37;--h:69"></i><i style="--d:0.48;--h:46"></i><i style="--d:0.59;--h:83"></i></div><div class="bar"><i></i></div><div class="tip">Toca para entrar</div></div>
+<div id="splash" role="dialog" aria-modal="true" aria-label="Bienvenido a YISUS MUSIC">
+  <div class="intro-noise" aria-hidden="true"></div>
+  <div class="intro-orbit intro-orbit-a" aria-hidden="true"></div><div class="intro-orbit intro-orbit-b" aria-hidden="true"></div>
+  <div class="intro-top"><span class="intro-brand"><span class="intro-brand-dot"></span> YISUS <i>MUSIC</i></span><span class="intro-version">PERSONAL SOUND SYSTEM <b>·</b> V19</span></div>
+  <main class="intro-main">
+    <div class="intro-mark-wrap"><div class="intro-mark-glow"></div><svg class="lg intro-mark" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="ygS" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:rgb(var(--lt))"/><stop offset=".55" style="stop-color:var(--g)"/><stop offset="1" style="stop-color:var(--g2)"/></linearGradient></defs><path class="hx" d="M32 3.5 57 18v28L32 60.5 7 46V18Z" fill="rgba(var(--rgb),.10)" stroke="url(#ygS)" stroke-width="2.6" stroke-linejoin="round"/><path class="yy" d="M19 16 32 34 45 16M32 34v19" fill="none" stroke="url(#ygS)" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><circle class="dt" cx="32" cy="34" r="3.2" fill="#fff"/></svg></div>
+    <div class="intro-eyebrow"><span></span> YOUR SOUND. YOUR UNIVERSE.</div>
+    <h1 class="intro-title">YISUS <em>MUSIC</em></h1>
+    <p class="intro-copy">No es solo darle al play.<br><strong>Es descubrir tu próximo sonido favorito.</strong></p>
+    <div class="intro-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <button class="intro-enter" id="introEnter" type="button"><span>ENTRAR A YISUS</span><b aria-hidden="true">↗</b></button>
+    <div class="intro-caption">DISCOVER <span>·</span> LISTEN <span>·</span> EVOLVE</div>
+  </main>
+  <div class="intro-bottom"><span>MADE FOR THE WAY YOU LISTEN</span><span class="intro-bottom-right"><i></i> MUSIC EXPERIENCE</span></div>
+</div>
 <canvas id="fxbg"></canvas><canvas id="fxp"></canvas>
 <div class="app">
 
@@ -766,6 +835,7 @@ body:not(.fx-off) .hero h1,body:not(.fx-off) .card h3,body:not(.fx-off) .card h2
   <nav class="nav" id="nav">
     <button data-page="home" class="on"><i data-ic="home"></i><span>Inicio</span></button>
     <button data-page="sound"><i data-ic="volume"></i><span>Sound Optimizer</span></button>
+    <button data-page="discover"><i data-ic="sparkles"></i><span>Discovery</span></button>
     <button data-page="search"><i data-ic="search"></i><span>Buscar</span></button>
     <button data-page="library"><i data-ic="library"></i><span>Biblioteca</span></button>
     <button data-page="local"><i data-ic="radio"></i><span>Mi música</span></button>
@@ -845,6 +915,20 @@ body:not(.fx-off) .hero h1,body:not(.fx-off) .card h3,body:not(.fx-off) .card h2
       </div>
       <div class="list" id="queue"></div>
     </div>
+  </section>
+
+  <!-- YISUS DISCOVERY -->
+  <section class="page" id="p-discover">
+    <div class="phead"><div><h1>YISUS Discovery</h1><p class="sub" style="margin-top:7px">Joyas nuevas guiadas por tu ADN musical, no solo por tus artistas favoritos.</p></div><span class="pill low">DISCOVERY ENGINE</span></div>
+    <div class="card discover-hero">
+      <div class="discover-kicker">✦ YOUR NEXT OBSESSION</div><h2>Encuentra algo que todavía no conoces.</h2>
+      <p class="sub">Busca temas relacionados con tu selección actual, evita canciones que ya has escuchado y ordena los resultados según tus señales de gusto.</p>
+      <div class="discover-controls"><label class="sub" for="disMood">Vibe</label><select class="field" id="disMood"><option value="personal">Mi ADN (personalizado)</option><option value="dark">Dark / Underground</option><option value="electro">Electrónico / Synth</option><option value="rage">Rage / Energético</option><option value="melodic">Melódico / Atmosférico</option><option value="phonk">Phonk / Drill</option><option value="surprise">Sorpréndeme</option></select><button class="btn primary" id="discoverGo">✦ Descubrir música</button></div>
+      <div class="discover-controls"><label class="sub" for="disVariety">Exploración</label><select class="field" id="disVariety"><option value="balanced">Equilibrada</option><option value="underground">Más underground</option><option value="adjacent">Salir de mi zona habitual</option><option value="diverse">Más variedad de artistas</option></select><label class="sub" style="display:flex;align-items:center;gap:7px"><input id="disNoSeen" type="checkbox" checked> Evitar escuchadas</label></div>
+      <div class="discover-status sub" id="discoverStatus" aria-live="polite">Listo para explorar. Usa una selección con artistas o canciones guardadas.</div>
+    </div>
+    <div class="card"><div class="chead"><h2>Tu siguiente descubrimiento</h2><span class="pill" id="discoverCount">0 temas</span></div><div class="list" id="discoverResults"><div class="empty">Pulsa «Descubrir música» para generar recomendaciones nuevas.</div></div><div class="tools"><button class="btn" id="discoverAgain">Buscar otra tanda</button><button class="btn primary" id="discoverPlayAll">▶ Reproducir descubrimientos</button></div></div>
+    <p class="sub discover-foot">Discovery usa el catálogo y los metadatos disponibles de Deezer, tu historial local y tu ADN. No analiza directamente la forma de onda ni garantiza que cada recomendación sea inédita en todo internet. La curva del DJ estima energía mediante metadatos; no mide BPM reales.</p>
   </section>
 
   <!-- SOUND OPTIMIZER -->
@@ -1385,6 +1469,7 @@ function goPage(n){
   if(n==='search'){renderTarget();setTimeout(function(){$('q').focus()},50)}
   if(n==='settings')renderSettings();
   if(n==='sound')renderSoundOptimizer();
+  if(n==='discover')renderDiscoveryState();
   if(n==='ai')renderChat();
 }
 Array.prototype.forEach.call(document.querySelectorAll('#nav button'),function(b){b.onclick=function(){goPage(b.getAttribute('data-page'))}});
@@ -1731,23 +1816,26 @@ function openAIMix(){
   $('runAIMix').onclick=createAIMix;
 }
 function mixLocalOrder(tracks,vibe){
-  var a=tracks.slice();
-  // Evita artistas consecutivos y construye una curva de energía aproximada con los datos disponibles.
-  function energy(t){var title=(t.title+' '+t.artist).toLowerCase(),r=Number(t.rank)||0;var e=r/1000000;
-    if(/rage|phonk|drill|hard|fast|aggressive|trap/.test(title))e+=.25;
-    if(/ambient|chill|slow|dream|night|acoustic/.test(title))e-=.2;
-    if(vibe==='energy')e+=/rage|drill|phonk|hard|trap/.test(title)?.5:0;
-    if(vibe==='dark')e+=/dark|night|shadow|underground/.test(title)?.3:0;
-    if(vibe==='electro')e+=/electro|electronic|synth|techno|house|hyper/.test(title)?.4:0;
-    if(vibe==='chill')e+=/ambient|chill|dream|slow|melodic/.test(title)?.4:0;
-    return e;
+  // Curva de energía estimada por metadatos y popularidad: no afirma conocer BPM reales.
+  function energy(t){var z=(String(t.title||'')+' '+String(t.artist||'')).toLowerCase(),r=Number(t.rank)||0,e=.35+(r/1000000)*.35;
+    if(/rage|phonk|drill|hard|fast|aggressive|trap|punk/.test(z))e+=.28;
+    if(/ambient|chill|slow|dream|night|acoustic|piano/.test(z))e-=.22;
+    if(/electro|electronic|synth|techno|house|hyper/.test(z))e+=.12;
+    if(vibe==='energy')e+=/rage|drill|phonk|hard|trap/.test(z)?.35:0;
+    if(vibe==='dark')e+=/dark|night|shadow|underground/.test(z)?.25:0;
+    if(vibe==='electro')e+=/electro|electronic|synth|techno|house|hyper/.test(z)?.3:0;
+    if(vibe==='chill')e-=.25;
+    return Math.max(0,Math.min(1,e));
   }
-  a.sort(function(x,y){return energy(x)-energy(y)});
-  if(vibe==='energy'||vibe==='electro')a.reverse();
-  var out=[],last='',guard=0;
-  while(a.length&&guard++<tracks.length*2){var idx=a.findIndex(function(t){return String(t.artistId)!==String(last)});if(idx<0)idx=0;var t=a.splice(idx,1)[0];out.push(t);last=t.artistId;}
-  // Pequeña variación para que no sea siempre idéntico, sin destruir la progresión.
-  for(var i=3;i<out.length-2;i+=5){if(Math.random()>.5){var tmp=out[i];out[i]=out[i+1];out[i+1]=tmp}}
+  var remaining=tracks.map(function(t){return {t:t,e:energy(t)}}),out=[],last='',step=0,n=remaining.length;
+  while(remaining.length){var progress=out.length/Math.max(1,n-1),target;
+    if(vibe==='chill')target=.25+Math.sin(progress*Math.PI)*.25;
+    else if(vibe==='energy'||vibe==='electro')target=.25+progress*.65;
+    else if(vibe==='dark')target=.38+Math.sin(progress*Math.PI)*.22;
+    else target=.28+Math.sin(progress*Math.PI)*.42;
+    remaining.sort(function(a,b){var ap=Math.abs(a.e-target)+(String(a.t.artistId)===String(last)?.22:0),bp=Math.abs(b.e-target)+(String(b.t.artistId)===String(last)?.22:0);return ap-bp});
+    var chosen=remaining.shift();out.push(chosen.t);last=chosen.t.artistId;step++;
+  }
   return out;
 }
 async function orderWithClaude(tracks,vibe){
@@ -4607,12 +4695,156 @@ async function resolveVideo(t){
   };
 })();
 
-(function(){var s=document.getElementById('splash');if(!s)return;var done=false;
- function go(){if(done)return;done=true;s.classList.add('out');setTimeout(function(){s.remove()},800)}
- s.addEventListener('click',go);
+(function(){var s=document.getElementById('splash');if(!s)return;var done=false,timer;
+ function go(){if(done)return;done=true;if(timer)clearTimeout(timer);s.classList.add('out');setTimeout(function(){s.remove()},850)}
+ var enter=document.getElementById('introEnter');if(enter)enter.addEventListener('click',go);
+ s.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}});
  var red=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
- setTimeout(go,red?300:3400);
+ timer=setTimeout(go,red?900:9000);
 })();
 </script>
+
+<style>
+/* ===== YISUS MUSIC V19 · DISCOVERY ENGINE ===== */
+var discoveryTracks=[];
+var discoveryBusy=false;
+var discoveryRejected={};try{discoveryRejected=JSON.parse(localStorage.getItem("yisus-discovery-rejected")||"{}")}catch(e){discoveryRejected={}}
+function renderDiscoveryState(){
+  var c=$('discoverCount');if(c)c.textContent=discoveryTracks.length+' temas';
+  var b=$('discoverPlayAll');if(b)b.disabled=!discoveryTracks.length;
+}
+function discoveryTerms(mode){
+  var map={dark:'dark underground trap',electro:'electronic alternative trap synth',rage:'rage trap energetic',melodic:'melodic atmospheric trap',phonk:'phonk drill',surprise:'alternative electronic rap'};
+  return map[mode]||'';
+}
+async function runDiscovery(){
+  if(discoveryBusy)return;
+  var status=$('discoverStatus'),box=$('discoverResults'),mode=$('disMood').value,v=sel();
+  var seeds=pickSeeds(v,4);
+  if(!seeds.length){status.textContent='Añade primero algún artista o canción a tu selección y vuelve aquí.';return}
+  discoveryBusy=true;$('discoverGo').disabled=true;$('discoverAgain').disabled=true;
+  status.textContent='Explorando radios de artistas, estilos y señales de tu ADN…';box.innerHTML='<div class="empty">Buscando canciones que todavía no están en tu biblioteca…</div>';
+  try{
+    var jobs=seeds.slice(0,4).map(function(id){return safe(jp('/artist/'+id+'/radio',{}))});
+    var term=discoveryTerms(mode);
+    if(term)jobs.push(safe(jp('/search/track',{q:term,limit:30})));
+    var raw=await Promise.all(jobs),pool=[],ok=false;
+    raw.forEach(function(arr){if(arr!==null){ok=true;pool=pool.concat(arr)}});
+    if(!ok){netErr();status.textContent='No he podido conectar con el catálogo. Inténtalo de nuevo.';box.innerHTML='';return}
+    var mapped=pool.map(function(t){return tr(t)}).filter(Boolean),saved={},seen={};
+    S.sels.forEach(function(list){list.songs.forEach(function(t){saved[String(t.id)]=1});(list.seen||[]).forEach(function(id){seen[String(id)]=1})});
+    (S.hist||[]).forEach(function(t){seen[String(t.id)]=1});
+    var unique={};mapped=mapped.filter(function(t){var id=String(t.id);if(unique[id]||saved[id]||discoveryRejected[id]||( $('disNoSeen')&&$('disNoSeen').checked&&seen[id]))return false;unique[id]=1;return true});
+    var moodWords={dark:/dark|night|shadow|underground|trap/i,electro:/electro|electronic|synth|techno|house|hyper/i,rage:/rage|hard|fast|aggressive|trap|drill/i,melodic:/melodic|melody|dream|ambient|atmospheric/i,phonk:/phonk|drill| Memphis|trap/i};
+    var variety=$('disVariety')?$('disVariety').value:'balanced';
+    mapped.forEach(function(t){var base=dnaScore(t),underground=Math.max(0,500000-(t.rank||500000))/180000,mood=(mode==='personal'?0:((t.title+' '+t.artist).match(moodWords[mode]||/$^/) ? 1.2:0));var novelty=variety==='adjacent'?-Math.min(2,Math.max(0,base)*.25):0;t._discoveryScore=base+(variety==='underground'?underground*2:underground)+mood+novelty+(Math.random()*.12);t.why='YISUS Discovery · '+(mode==='personal'?'afinidad con tu ADN':mode)+' · '+variety});
+    mapped.sort(function(a,b){return b._discoveryScore-a._discoveryScore});
+    if(variety==='diverse'){var diversified=[],used={};mapped.forEach(function(t){var k=String(t.artistId);if(!used[k]){used[k]=1;diversified.push(t)}});mapped=diversified.concat(mapped.filter(function(t){return !diversified.includes(t)}));}
+    discoveryTracks=mapped.slice(0,18);
+    box.innerHTML='';
+    if(!discoveryTracks.length){box.innerHTML='<div class="empty">No he encontrado temas nuevos esta vez. Prueba otro vibe o añade artistas diferentes a tu selección.</div>';status.textContent='Exploración terminada · sin coincidencias nuevas.'}
+    else{
+      discoveryTracks.forEach(function(t,i){var row=trackRow(t,{forceSel:sel(),sub:'Discovery #'+(i+1)+' · '+(t.rank?popInfo(t.rank).t:'popularidad sin datos'),play:function(){queue=discoveryTracks.slice(i+1);over=null;localMode=false;gameMode=null;playFresh(t);goPage('home')}});var reject=document.createElement('button');reject.className='btn sm';reject.type='button';reject.textContent='No recomendar';reject.title='Ocultar este tema en futuros descubrimientos';reject.onclick=function(){discoveryRejected[String(t.id)]=1;try{localStorage.setItem('yisus-discovery-rejected',JSON.stringify(discoveryRejected))}catch(e){}row.remove();discoveryTracks=discoveryTracks.filter(function(x){return String(x.id)!==String(t.id)});renderDiscoveryState();toast('Tema excluido de Discovery')};row.appendChild(reject);box.appendChild(row)});
+      status.textContent='He encontrado '+discoveryTracks.length+' canciones nuevas y las he ordenado usando tu ADN, popularidad y variedad.';
+    }
+    renderDiscoveryState();
+  }catch(e){status.textContent='Error al descubrir música: '+(e.message||e);box.innerHTML='<div class="empty">No se ha podido completar la búsqueda.</div>'}
+  finally{discoveryBusy=false;$('discoverGo').disabled=false;$('discoverAgain').disabled=false}
+}
+if($('discoverGo'))$('discoverGo').addEventListener('click',runDiscovery);
+if($('discoverAgain'))$('discoverAgain').addEventListener('click',runDiscovery);
+if($('discoverPlayAll'))$('discoverPlayAll').addEventListener('click',function(){if(!discoveryTracks.length)return;queue=discoveryTracks.slice(1);over=null;localMode=false;gameMode=null;playFresh(discoveryTracks[0]);goPage('home');toast('Reproduciendo tus descubrimientos')});
+renderDiscoveryState();
+
+/* ===== YISUS DNA V16 · adaptive listening intelligence ===== */
+.dna-panel{position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(17,35,23,.96),rgba(9,15,11,.98));border:1px solid rgba(var(--rgb),.24);border-radius:20px;padding:22px;margin:16px 0;box-shadow:0 18px 55px #0005}
+.dna-panel:before{content:"";position:absolute;right:-70px;top:-110px;width:260px;height:260px;border-radius:50%;border:1px solid rgba(var(--rgb),.18);box-shadow:0 0 0 24px rgba(var(--rgb),.025),0 0 0 52px rgba(var(--rgb),.018);pointer-events:none}
+.dna-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;position:relative}.dna-kicker{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--g);font-weight:800}.dna-title{font:800 clamp(23px,3vw,32px)/1.05 var(--fd);margin-top:6px}.dna-lead{color:var(--mut);font-size:13px;max-width:620px;margin-top:8px;line-height:1.6}.dna-live{border:1px solid var(--gline);background:var(--gbg);color:var(--g);border-radius:999px;padding:6px 10px;font-size:11px;white-space:nowrap}.dna-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:18px;position:relative}.dna-metric{background:rgba(255,255,255,.035);border:1px solid rgba(var(--lt),.1);border-radius:12px;padding:12px}.dna-metric b{font:800 23px var(--fd);display:block}.dna-metric span{font-size:11px;color:var(--mut)}.dna-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.dna-tag{padding:7px 10px;border-radius:999px;background:rgba(var(--rgb),.1);border:1px solid rgba(var(--rgb),.2);color:var(--tx);font-size:12px}.dna-listgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:9px;margin-top:12px}.dna-listcard{border:1px solid rgba(var(--lt),.1);background:rgba(255,255,255,.025);padding:12px;border-radius:12px;min-width:0}.dna-listcard b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dna-listcard small{color:var(--mut);font-size:11px}.dna-bar{height:5px;background:rgba(255,255,255,.08);border-radius:8px;overflow:hidden;margin-top:9px}.dna-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--g2),var(--g));border-radius:8px}.dna-foot{color:var(--dim);font-size:11px;line-height:1.5;margin-top:14px;max-width:780px}
+@media(max-width:650px){.dna-panel{padding:16px}.dna-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.dna-live{display:none}.dna-top{display:block}}
+
+/* ===== V18 · CINEMATIC PREMIUM INTRO ===== */
+#splash{isolation:isolate;overflow:hidden;display:grid;grid-template-rows:auto 1fr auto;gap:0;padding:clamp(20px,4vw,46px) clamp(20px,5vw,72px);cursor:default;background:radial-gradient(ellipse at 50% 42%,rgba(var(--rgb),.13),transparent 36%),radial-gradient(ellipse at 12% 90%,rgba(var(--rgb),.07),transparent 32%),linear-gradient(145deg,#050806 0%,var(--bg) 48%,#030504 100%);}
+#splash:before{content:"";position:absolute;inset:18px;border:1px solid rgba(var(--rgb),.13);border-radius:22px;pointer-events:none;z-index:-1}
+#splash:after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 0 48%,rgba(255,255,255,.018) 50%,transparent 52%);pointer-events:none;z-index:-1}
+#splash .intro-noise{position:absolute;inset:0;opacity:.14;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E")}
+#splash .intro-top,#splash .intro-bottom{position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;max-width:1320px;margin:0 auto;color:var(--dim);font-size:10px;letter-spacing:.2em;font-weight:700}
+#splash .intro-brand{display:flex;align-items:center;gap:9px;color:var(--tx);font:800 13px var(--fd);letter-spacing:.13em}
+#splash .intro-brand i{font-style:normal;color:var(--g)}#splash .intro-brand-dot{width:7px;height:7px;border-radius:50%;background:var(--g);box-shadow:0 0 13px var(--g)}
+#splash .intro-version b{color:var(--g);padding:0 5px}
+#splash .intro-main{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;max-width:760px;margin:auto;padding:26px 0 34px}
+#splash .intro-mark-wrap{position:relative;width:clamp(94px,12vw,142px);height:clamp(94px,12vw,142px);display:grid;place-items:center;margin-bottom:28px}
+#splash .intro-mark-glow{position:absolute;inset:10%;border-radius:50%;background:var(--g);opacity:.15;filter:blur(34px);animation:introGlow 4s ease-in-out infinite}
+#splash .intro-mark{position:relative;width:100%;height:100%;filter:drop-shadow(0 0 20px rgba(var(--rgb),.28));animation:introFloat 5s ease-in-out infinite}
+#splash .intro-mark .hx{stroke-dasharray:190;stroke-dashoffset:190;animation:spldraw 1.1s .15s ease-out forwards}
+#splash .intro-mark .yy{stroke-dasharray:80;stroke-dashoffset:80;animation:spldraw .8s .65s ease-out forwards}
+#splash .intro-mark .dt{animation:splpulse 2.4s ease-in-out infinite}
+#splash .intro-eyebrow{display:flex;align-items:center;gap:10px;color:var(--g);font-size:10px;font-weight:800;letter-spacing:.28em;margin-bottom:14px;animation:introRise .7s .25s both}
+#splash .intro-eyebrow span{width:22px;height:1px;background:var(--g);box-shadow:0 0 8px var(--g)}
+#splash .intro-title{font:800 clamp(38px,8.5vw,88px)/.98 var(--fd);letter-spacing:-.065em;color:var(--tx);text-shadow:0 12px 50px rgba(0,0,0,.35);animation:introRise .8s .38s both}
+#splash .intro-title em{font-style:normal;color:var(--g);text-shadow:0 0 32px rgba(var(--rgb),.24)}
+#splash .intro-copy{font-size:clamp(14px,2vw,18px);line-height:1.65;color:var(--mut);margin-top:18px;animation:introRise .8s .52s both}
+#splash .intro-copy strong{font-weight:600;color:var(--tx)}
+#splash .intro-wave{height:34px;display:flex;align-items:center;justify-content:center;gap:4px;margin:25px 0 24px;opacity:.8;animation:introRise .8s .65s both}
+#splash .intro-wave i{width:3px;height:var(--h,14px);border-radius:5px;background:linear-gradient(180deg,var(--lt),var(--g));box-shadow:0 0 10px rgba(var(--rgb),.3);animation:introBar 1.15s ease-in-out infinite alternate;animation-delay:var(--d,0s)}
+#splash .intro-wave i:nth-child(3n){--h:25px;--d:-.4s}#splash .intro-wave i:nth-child(3n+1){--h:13px;--d:-.8s}#splash .intro-wave i:nth-child(3n+2){--h:31px;--d:-.2s}
+#splash .intro-enter{display:flex;align-items:center;justify-content:center;gap:30px;min-width:230px;padding:15px 19px 15px 25px;border:1px solid var(--gline);border-radius:999px;background:linear-gradient(110deg,var(--g),var(--g2));color:#041008;font-size:11px;font-weight:900;letter-spacing:.16em;box-shadow:0 8px 35px rgba(var(--rgb),.2),inset 0 1px rgba(255,255,255,.28);transition:transform .2s,box-shadow .2s,filter .2s;animation:introRise .8s .78s both}
+#splash .intro-enter b{display:grid;place-items:center;width:27px;height:27px;border-radius:50%;background:rgba(0,0,0,.12);font-size:18px;font-weight:500;transition:transform .2s}
+#splash .intro-enter:hover{transform:translateY(-3px);box-shadow:0 12px 42px rgba(var(--rgb),.32);filter:brightness(1.07)}#splash .intro-enter:hover b{transform:translate(2px,-2px)}#splash .intro-enter:focus-visible{outline:2px solid var(--tx);outline-offset:5px}
+#splash .intro-caption{margin-top:18px;color:var(--dim);font-size:9px;font-weight:700;letter-spacing:.24em;animation:introRise .8s .9s both}#splash .intro-caption span{color:var(--g);padding:0 6px}
+#splash .intro-bottom{font-size:9px;letter-spacing:.18em;padding-bottom:2px}#splash .intro-bottom-right{display:flex;align-items:center;gap:8px}#splash .intro-bottom-right i{width:6px;height:6px;border-radius:50%;background:var(--g);box-shadow:0 0 10px var(--g)}
+#splash .intro-orbit{position:absolute;left:50%;top:48%;width:min(62vw,650px);aspect-ratio:1;border:1px solid rgba(var(--rgb),.08);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0}
+#splash .intro-orbit-b{width:min(82vw,880px);border-style:dashed;border-color:rgba(var(--rgb),.045);animation:splspin 90s linear infinite}
+@keyframes introRise{from{opacity:0;transform:translateY(16px);filter:blur(5px)}to{opacity:1;transform:none;filter:none}}
+@keyframes introFloat{50%{transform:translateY(-5px) rotate(1deg)}}@keyframes introGlow{50%{opacity:.27;transform:scale(1.18)}}@keyframes introBar{from{transform:scaleY(.35);opacity:.55}to{transform:scaleY(1);opacity:1}}
+#splash.out{opacity:0;transform:scale(1.025);filter:blur(5px);visibility:hidden;pointer-events:none}
+@media(max-width:600px){#splash{padding:calc(18px + env(safe-area-inset-top)) 22px calc(18px + env(safe-area-inset-bottom))}#splash:before{inset:8px;border-radius:17px}#splash .intro-top,#splash .intro-bottom{font-size:8px;letter-spacing:.12em}#splash .intro-version{font-size:7px}#splash .intro-main{padding:20px 0 26px}#splash .intro-mark-wrap{margin-bottom:24px}#splash .intro-eyebrow{font-size:8px;letter-spacing:.2em}#splash .intro-copy{font-size:14px}#splash .intro-wave{margin:21px 0}#splash .intro-enter{min-width:215px}#splash .intro-bottom>span:first-child{max-width:48%;line-height:1.5}}
+@media(prefers-reduced-motion:reduce){#splash *,#splash *:before,#splash *:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+<script>
+/* YISUS DNA V16: personalización automática local, explicable y por selección.
+   Aprende de guardados, reproducciones sostenidas, saltos rápidos y dislikes.
+   Solo utiliza metadatos disponibles; no afirma analizar el audio de YouTube. */
+(function(){
+  if(window.__YISUS_DNA_V16__)return;window.__YISUS_DNA_V16__=true;
+  var oldFeedback=window.dnaFeedback,oldScore=window.score;
+  S.dna=S.dna||{};S.dna.lists=S.dna.lists||{};S.dna.events=S.dna.events||[];
+  function profileFor(id){var d=S.dna.lists[id];if(!d)d=S.dna.lists[id]={terms:{},artists:{},tracks:{},positive:0,negative:0,plays:0,skips:0,saved:0};d.terms=d.terms||{};d.artists=d.artists||{};d.tracks=d.tracks||{};return d}
+  function currentListIds(){if(over&&over.ids)return over.ids.slice();if(over&&over.radio)return S.sels.filter(function(s){return s.artists.some(function(a){return String(a.id)===String(over.radio.id)})}).map(function(s){return s.id});return [sel().id]}
+  function safeTerm(t){return typeof dnaTerms==='function'?dnaTerms(t):[]}
+  window.dnaFeedback=function(t,delta,kind){
+    if(oldFeedback)oldFeedback(t,delta,kind);if(!t||t._local)return;
+    var ids=currentListIds(),terms=safeTerm(t),aid=String(t.artistId||''),tid=String(t.id||'');
+    ids.forEach(function(id){var d=profileFor(id);if(aid)d.artists[aid]=(d.artists[aid]||0)+delta;if(tid)d.tracks[tid]=(d.tracks[tid]||0)+delta;terms.forEach(function(k){d.terms[k]=(d.terms[k]||0)+delta});if(delta>0)d.positive++;if(delta<0)d.negative++;if(kind==='save')d.saved++;if(kind==='listen')d.plays++;if(kind==='quick-skip'||kind==='dislike')d.skips++});
+    S.dna.events.push({at:Date.now(),kind:kind||'feedback',track:tid,artist:aid,delta:delta,lists:ids});if(S.dna.events.length>500)S.dna.events=S.dna.events.slice(-400);
+    save();if($('dnaDashboard'))renderDNADashboard();
+  };
+  window.score=function(t,v){
+    var base=oldScore?oldScore(t,v):0;if(!t)return base;
+    var ids=currentListIds(),extra=0,n=0;
+    ids.forEach(function(id){var d=S.dna.lists[id];if(!d)return;var z=0,aid=String(t.artistId||''),tid=String(t.id||'');z+=(d.artists[aid]||0)*.85;z+=(d.tracks[tid]||0)*1.1;safeTerm(t).forEach(function(k){z+=(d.terms[k]||0)*.95});extra+=z;n++});
+    return base+(n?extra/n:0);
+  };
+  function totalEvents(){return S.dna.events||[]}
+  function topTerms(obj){return Object.keys(obj||{}).filter(function(k){return obj[k]>0}).sort(function(a,b){return obj[b]-obj[a]}).slice(0,6)}
+  function listInsights(s){var d=profileFor(s.id),terms=topTerms(d.terms);return {terms:terms,plays:d.plays||0,saved:d.saved||0,skips:d.skips||0,artists:Object.keys(d.artists||{}).length,songs:s.songs.length}}
+  window.renderDNADashboard=function(){
+    var box=$('dnaDashboard');if(!box)return;var d=S.dna||{},ev=totalEvents(),terms=topTerms(d.terms),lists=S.sels.map(function(s){return {s:s,d:listInsights(s)}});
+    var positives=d.positive||0,negatives=d.negative||0,confidence=Math.min(100,Math.round((positives+negatives)/Math.max(1,positives+negatives+8)*100));
+    var totalPlays=lists.reduce(function(a,x){return a+x.d.plays},0),totalSkips=lists.reduce(function(a,x){return a+x.d.skips},0);
+    var html='<div class="dna-panel"><div class="dna-top"><div><div class="dna-kicker">YISUS INTELLIGENCE · PERSONAL SOUND PROFILE</div><div class="dna-title">Tu ADN musical evoluciona.</div><p class="dna-lead">Aprende automáticamente de lo que guardas, escuchas durante más tiempo y saltas. Usa señales distintas para cada selección y ajusta el orden de futuras recomendaciones.</p></div><span class="dna-live">● APRENDIZAJE LOCAL ACTIVO</span></div>';
+    html+='<div class="dna-metrics"><div class="dna-metric"><b>'+ev.length+'</b><span>Señales aprendidas</span></div><div class="dna-metric"><b>'+totalPlays+'</b><span>Escuchas sostenidas</span></div><div class="dna-metric"><b>'+totalSkips+'</b><span>Saltos / descartes</span></div><div class="dna-metric"><b>'+confidence+'%</b><span>Datos acumulados*</span></div></div>';
+    html+='<h3>Rasgos que más aparecen en tu ADN</h3><div class="dna-tags">'+(terms.length?terms.map(function(k){return '<span class="dna-tag">✦ '+esc(k)+'</span>'}).join(''):'<span class="sub">Aún está aprendiendo. Guarda y escucha canciones para construir tu perfil.</span>')+'</div>';
+    html+='<div class="evo-note"><b>LECTURA DEL ADN</b><br>'+(terms.length?'Tus señales positivas se concentran en: '+terms.slice(0,3).join(', ')+'. Las recomendaciones priorizan esos rasgos sin limitarse a tus artistas habituales.':'Todavía faltan señales para identificar patrones estables. Guarda canciones y escucha temas durante un rato para que el sistema aprenda.')+'</div>';
+    html+='<h3>ADN independiente por lista</h3><div class="dna-listgrid">';
+    lists.forEach(function(x){var t=x.d.terms||[],best=topTerms(t).slice(0,3),strength=Math.min(100,Math.round((x.d.plays+x.d.saved+x.d.skips)/Math.max(1,x.d.plays+x.d.saved+x.d.skips+5)*100));html+='<div class="dna-listcard"><b>'+esc(x.s.name)+'</b><small>'+x.d.songs+' canciones guardadas · '+x.d.plays+' escuchas registradas</small><div class="dna-tags">'+(best.length?best.map(function(k){return '<span class="dna-tag">'+esc(k)+'</span>'}).join(''):'<span class="sub">Sin patrón todavía</span>')+'</div><div class="dna-bar"><i style="width:'+strength+'%"></i></div></div>'});
+    html+='</div><p class="dna-foot">*Indicador orientativo de cantidad de señales, no una medida científica de precisión. El aprendizaje se guarda en este navegador. Analiza metadatos y tus acciones; no escucha ni descompone el audio de YouTube. Las listas y el historial no se envían a un servidor por este módulo.</p></div>';
+    box.innerHTML=html;
+  };
+  var profile=$('p-profile');if(profile&&!$('dnaDashboard')){var anchor=profile.querySelector('#stats');var card=document.createElement('div');card.className='card';card.innerHTML='<div id="dnaDashboard"></div>';if(anchor&&anchor.parentNode)anchor.parentNode.insertBefore(card,anchor.parentNode.children[1]||null);else profile.appendChild(card)}
+  var _renderProfile=window.renderProfile;window.renderProfile=function(){if(_renderProfile)_renderProfile();renderDNADashboard()};
+  renderDNADashboard();
+})();
+</script>
+
 </body>
 </html>
