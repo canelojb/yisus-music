@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>YISUS MUSIC — Premium Interface · V24</title>
+<title>YISUS MUSIC — Premium Interface · V25</title>
 <meta name="theme-color" content="#060807">
 <script>try{var __t=localStorage.getItem("yisus-theme")||localStorage.getItem("yisus-visual-mode");if(__t)document.documentElement.setAttribute("data-theme",__t)}catch(e){}</script>
 <meta name="mobile-web-app-capable" content="yes">
@@ -5119,9 +5119,9 @@ renderDiscoveryState();
    ===================================================================== */
 (function(){
 var SK='yisus_studio_v1',D={name:'',status:'',frame:'auto',badges:[],shape:'round',font:'def',
-  theme:{on:false,c1:'#35e07a',c2:'#7a5cff',bg:'#07090d',fx:'neon'},bg:{kind:'',op:.55,blur:0,dim:.25},has:{avatar:0,banner:0,bg:0}};
+  theme:{on:false,c1:'#35e07a',c2:'#7a5cff',bg:'#07090d',fx:'neon'},bg:{kind:'',op:.92,blur:0,dim:.12,stc:.38,scene:0,v2:1},bio:'',pin:null,bannerC:'#35e07a',has:{avatar:0,banner:0,bg:0}};
 var ST;try{ST=JSON.parse(localStorage.getItem(SK)||'null')}catch(e){}
-ST=Object.assign({},D,ST||{});ST.theme=Object.assign({},D.theme,ST.theme||{});ST.bg=Object.assign({},D.bg,ST.bg||{});ST.has=Object.assign({},D.has,ST.has||{});
+ST=Object.assign({},D,ST||{});ST.theme=Object.assign({},D.theme,ST.theme||{});ST.bg=Object.assign({},D.bg,ST.bg||{});ST.has=Object.assign({},D.has,ST.has||{});if(!ST.bg.v2){ST.bg.op=.92;ST.bg.dim=.12;ST.bg.stc=.38;ST.bg.scene=0;ST.bg.v2=1;try{localStorage.setItem(SK,JSON.stringify(ST))}catch(e){}}
 function sv(){try{localStorage.setItem(SK,JSON.stringify(ST))}catch(e){toast('No pude guardar (almacenamiento lleno)')}}
 /* ---------- blobs en IndexedDB ---------- */
 var db=null,urls={};
@@ -5167,8 +5167,12 @@ var css=document.createElement('style');css.textContent=`
 #stBg>*{position:absolute;inset:-30px;width:calc(100% + 60px);height:calc(100% + 60px);object-fit:cover}
 #stBg:after{content:"";position:absolute;inset:0;background:rgba(0,0,0,var(--stdim,.25))}
 body.st-bg #stBg{opacity:var(--stop,.55)}
-body.st-bg .card,body.st-bg .stat,body.st-bg .badge{background:rgba(var(--pan),.55)!important;backdrop-filter:blur(7px)}
-body.st-bg .side{background:rgba(var(--pan),.62)!important}
+body.st-bg .card,body.st-bg .stat,body.st-bg .badge,body.st-bg .hero,body.st-bg .aimix-card{background:rgba(var(--pan),var(--stc,.38))!important;backdrop-filter:blur(6px)}
+body.st-bg .side{background:rgba(var(--pan),.5)!important}
+body.st-bg .ys-topbar{background:rgba(var(--pan),.45)!important}
+body.st-bg.st-noscene #fxbg{display:none}
+body.st-bg,body.st-bg .app,body.st-bg .main{background:transparent!important}
+#stBg{z-index:0;transform:translateZ(0)}
 body.sh-sq{--r:5px;--rs:3px}body.sh-pill{--r:30px;--rs:20px}
 body.sh-glass .card,body.sh-glass .stat{background:rgba(var(--pan),.38)!important;backdrop-filter:blur(14px) saturate(1.3);border-color:rgba(255,255,255,.14)}
 .stp{overflow:hidden;padding:0!important}
@@ -5189,6 +5193,9 @@ body.sh-glass .card,body.sh-glass .stat{background:rgba(var(--pan),.38)!importan
 @keyframes stspin{to{transform:rotate(360deg)}}
 .stp-info{flex:1;min-width:180px;padding-top:50px}
 .stp-info h2{margin:0;font:800 24px var(--fd,inherit)}.stp-info .st{color:var(--mut);margin-top:2px}
+.stp-info .bio{margin-top:8px;color:var(--tx);font-size:14px;max-width:560px;line-height:1.4}
+.stp-info .pin{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px;color:var(--mut)}.stp-info .pin img{width:34px;height:34px;border-radius:6px;object-fit:cover}.stp-info .pin b{color:var(--tx)}
+.stp-info .tops{margin-top:8px;font-size:13px;color:var(--mut)}
 .stp-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .stp-chips span{font-size:12px;padding:3px 10px;border-radius:99px;background:rgba(var(--rgb),.14);border:1px solid var(--gline);color:var(--g)}
 .stu .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0}
@@ -5214,7 +5221,7 @@ async function paintBg(){
   var u=await load('bg');bgEl.innerHTML='';
   document.body.classList.toggle('st-bg',!!u);
   if(!u)return;
-  var rs=document.documentElement.style;rs.setProperty('--stop',ST.bg.op);rs.setProperty('--stdim',ST.bg.dim);
+  var rs=document.documentElement.style;rs.setProperty('--stop',ST.bg.op);rs.setProperty('--stdim',ST.bg.dim);rs.setProperty('--stc',ST.bg.stc);document.body.classList.toggle('st-noscene',!ST.bg.scene);
   var n;if(ST.bg.kind==='video'){n=document.createElement('video');n.muted=true;n.loop=true;n.autoplay=true;n.playsInline=true;n.setAttribute('muted','');n.src=u;n.play().catch(function(){})}
   else{n=document.createElement('img');n.src=u}
   n.style.filter='blur('+ST.bg.blur+'px)';bgEl.appendChild(n);
@@ -5246,6 +5253,7 @@ function curFrame(){
   var f=FRAMES.filter(function(x){return x.id===ST.frame})[0];return f&&f.ok()?f.id:'neon';
 }
 /* ---------- tarjeta de perfil ---------- */
+function topArtists(n){var c={};(S.log||[]).forEach(function(x){if(x.a)c[x.a]=(c[x.a]||0)+1});return Object.keys(c).sort(function(a,b){return c[b]-c[a]}).slice(0,n)}
 async function avatarHTML(){
   var u=await load('avatar'),ini=esc((ST.name||'Y').trim().charAt(0).toUpperCase()||'Y');
   var inner=u?(ST.has.avatarKind==='video'?'<video src="'+u+'" muted loop autoplay playsinline></video>':'<img src="'+u+'" alt="">'):ini;
@@ -5255,8 +5263,9 @@ async function renderCard(){
   var box=document.getElementById('stCard');if(!box)return;
   var ban=await load('banner'),r=rankOf(level());
   var bs=(ST.badges||[]).map(function(id){var b=BADGES.filter(function(x){return x.id===id})[0];return b&&S.badges[id]?'<span>🏅 '+esc(b.n)+'</span>':''}).join('');
-  box.innerHTML='<div class="stp-ban"'+(ban?' style="background-image:url('+ban+')"':'')+'></div><div class="stp-body">'+await avatarHTML()+
-   '<div class="stp-info"><h2>'+esc(ST.name||'Tu nombre')+'</h2><div class="st">'+esc(ST.status||'Escribe tu estado en el estudio de abajo')+'</div><div class="stp-chips"><span>'+r.e+' '+esc(r.n)+'</span><span>Nivel '+level()+'</span><span>🔥 '+streakN()+' días</span>'+bs+'</div></div></div>';
+  var tops=topArtists(3),pin=ST.pin;
+  box.innerHTML='<div class="stp-ban" style="'+(ban?'background-image:url('+ban+')':'background-image:linear-gradient(120deg,'+ST.bannerC+',var(--s3))')+'"></div><div class="stp-body">'+await avatarHTML()+
+   '<div class="stp-info"><h2>'+esc(ST.name||'Tu nombre')+'</h2><div class="st">'+esc(ST.status||'Escribe tu estado en el estudio de abajo')+'</div>'+(ST.bio?'<div class="bio">'+esc(ST.bio)+'</div>':'')+'<div class="stp-chips"><span>'+r.e+' '+esc(r.n)+'</span><span>Nivel '+level()+'</span><span>🔥 '+streakN()+' días</span>'+bs+'</div>'+(pin?'<div class="pin">'+(pin.art?'<img src="'+esc(pin.art)+'" alt="">':'')+'<span>📌 <b>'+esc(pin.title)+'</b> · '+esc(pin.artist)+'</span></div>':'')+(tops.length?'<div class="tops">🎧 Más escuchados: '+tops.map(esc).join(', ')+'</div>':'')+'</div></div>';
 }
 
 /* ===== v24: foto de perfil en el logo (menú lateral grande + cabecera) ===== */
@@ -5289,6 +5298,9 @@ function renderStudio(){
   h('Perfil');
   box.appendChild(rowE('Nombre',inp('text',ST.name,function(v){ST.name=v.slice(0,24);sv();renderCard()},{maxlength:24,placeholder:'Cómo te ven'})));
   box.appendChild(rowE('Estado',inp('text',ST.status,function(v){ST.status=v.slice(0,60);sv();renderCard()},{maxlength:60,placeholder:'Ej. Escuchando trap a las 3 AM'})));
+  var bio=document.createElement('textarea');bio.rows=2;bio.maxLength=140;bio.placeholder='Sobre mí (máx. 140 letras)';bio.value=ST.bio||'';bio.style.cssText='flex:1;min-width:200px;resize:vertical';bio.oninput=function(){ST.bio=bio.value.slice(0,140);sv();renderCard()};box.appendChild(rowE('Sobre mí',bio));
+  var pr=el('div','row','<label>Canción del momento</label>');pr.appendChild(btn('📌 Fijar la que suena',function(){if(!cur){toast('Pon una canción primero');return}ST.pin={title:cur.title,artist:cur.artist,art:cur.art||''};sv();renderCard();toast('Fijada en tu perfil')}));pr.appendChild(btn('Quitar',function(){ST.pin=null;sv();renderCard()}));box.appendChild(pr);
+  box.appendChild(rowE('Color del banner',inp('color',ST.bannerC,function(v){ST.bannerC=v;sv();renderCard()})));
   var r=el('div','row','<label>Imágenes</label>');
   r.appendChild(btn('Avatar (img/GIF/vídeo)',async function(){var f=await pick('image/*,video/*');if(!f)return;if(f.size>12e6){toast('Máximo 12 MB');return}
     var b=await shrink(f,384,.9);delete urls.avatar;ST.has.avatar=1;ST.has.avatarKind=/video/.test(f.type)?'video':'img';if(await put('avatar',b)){sv();renderCard();toast('Avatar guardado')}}));
@@ -5326,6 +5338,8 @@ function renderStudio(){
   rb.appendChild(btn('Quitar fondo',async function(){ST.has.bg=0;delete urls.bg;await del('bg');sv();paintBg();toast('Fondo quitado')}));
   box.appendChild(rb);
   box.appendChild(rowE('Visibilidad',inp('range',ST.bg.op,function(v){ST.bg.op=+v;sv();document.documentElement.style.setProperty('--stop',v)},{min:.1,max:1,step:.05})));
+  box.appendChild(rowE('Tarjetas transparentes',inp('range',ST.bg.stc,function(v){ST.bg.stc=+v;sv();document.documentElement.style.setProperty('--stc',v)},{min:.1,max:.9,step:.05})));
+  var sc=document.createElement('input');sc.type='checkbox';sc.checked=!!ST.bg.scene;sc.onchange=function(){ST.bg.scene=sc.checked;sv();document.body.classList.toggle('st-noscene',!sc.checked)};box.appendChild(rowE('Mostrar también la escena animada',sc));
   box.appendChild(rowE('Oscurecer',inp('range',ST.bg.dim,function(v){ST.bg.dim=+v;sv();document.documentElement.style.setProperty('--stdim',v)},{min:0,max:.8,step:.05})));
   box.appendChild(rowE('Desenfoque',inp('range',ST.bg.blur,function(v){ST.bg.blur=+v;sv();var n=bgEl.firstChild;if(n)n.style.filter='blur('+v+'px)'},{min:0,max:20,step:1})));
   /* Aspecto */
@@ -5346,12 +5360,12 @@ function renderStudio(){
 }
 /* ---------- tarjeta PNG ---------- */
 async function cardPNG(){
-  var W=1080,H=600,c=document.createElement('canvas');c.width=W;c.height=H;var x=c.getContext('2d'),o=themeVars();
+  var W=1080,H=700,c=document.createElement('canvas');c.width=W;c.height=H;var x=c.getContext('2d'),o=themeVars();
   var g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,o['--bg']);g.addColorStop(1,o['--gbg']);x.fillStyle=g;x.fillRect(0,0,W,H);
   function img(u){return new Promise(function(r){if(!u)return r(null);var i=new Image();i.onload=function(){r(i)};i.onerror=function(){r(null)};i.src=u})}
   var ban=await img(await load('banner')),av=ST.has.avatarKind==='video'?null:await img(await load('avatar'));
   if(ban){var s=Math.max(W/ban.width,220/ban.height);x.drawImage(ban,(W-ban.width*s)/2,0,ban.width*s,ban.height*s);x.save();x.globalCompositeOperation='destination-over';x.restore()}
-  else{var bg2=x.createLinearGradient(0,0,W,220);bg2.addColorStop(0,'rgba('+o['--rgb']+',.55)');bg2.addColorStop(1,o['--s3']);x.fillStyle=bg2;x.fillRect(0,0,W,220)}
+  else{var bg2=x.createLinearGradient(0,0,W,220);bg2.addColorStop(0,ST.bannerC);bg2.addColorStop(1,o['--s3']);x.fillStyle=bg2;x.fillRect(0,0,W,220)}
   var fade=x.createLinearGradient(0,150,0,230);fade.addColorStop(0,'rgba(0,0,0,0)');fade.addColorStop(1,o['--bg']);x.fillStyle=fade;x.fillRect(0,150,W,80);
   var ax=150,ay=250,R=80,fr=curFrame(),rg=x.createLinearGradient(ax-R,ay-R,ax+R,ay+R);
   var fc={neon:[o['--g'],o['--g2']],bronce:['#8a4b1d','#e0a064'],plata:['#8f9aa8','#f2f6fa'],oro:['#b8860b','#fff0a0'],platino:['#5fd0d8','#e8ffff'],diamante:['#7ee8ff','#c18cff'],fuego:['#ff3b00','#ffd24a'],cosmos:['#7a5cff','#ff5ccf'],ninguno:['transparent','transparent']}[fr]||[o['--g'],o['--g2']];
@@ -5365,11 +5379,14 @@ async function cardPNG(){
   x.fillStyle=o['--g'];x.font='700 30px sans-serif';x.fillText(rk.e+' '+rk.n+' · Nivel '+level()+' · 🔥 '+streakN()+' días',270,392);
   var st=[[S.listened,'canciones escuchadas'],[S.likes,'guardadas'],[S.xp,'XP']];
   st.forEach(function(a,i){var bx=70+i*320;x.fillStyle='rgba('+o['--rgb']+',.12)';x.strokeStyle='rgba('+o['--rgb']+',.35)';x.lineWidth=2;
-    x.beginPath();x.roundRect?x.roundRect(bx,440,290,100,18):x.rect(bx,440,290,100);x.fill();x.stroke();
-    x.fillStyle=o['--tx'];x.font='800 44px sans-serif';x.fillText(String(a[0]),bx+22,492);x.fillStyle=o['--mut'];x.font='20px sans-serif';x.fillText(a[1],bx+22,522)});
+    x.beginPath();x.roundRect?x.roundRect(bx,545,290,100,18):x.rect(bx,545,290,100);x.fill();x.stroke();
+    x.fillStyle=o['--tx'];x.font='800 44px sans-serif';x.fillText(String(a[0]),bx+22,597);x.fillStyle=o['--mut'];x.font='20px sans-serif';x.fillText(a[1],bx+22,627)});
+  x.fillStyle=o['--tx'];x.font='24px sans-serif';if(ST.bio)x.fillText(ST.bio.slice(0,70),70,450);
+  x.fillStyle=o['--mut'];x.font='22px sans-serif';if(ST.pin)x.fillText('📌 '+ST.pin.title.slice(0,34)+' · '+ST.pin.artist.slice(0,24),70,488);
+  var tp=topArtists(3);if(tp.length)x.fillText('🎧 Más escuchados: '+tp.join(', ').slice(0,70),70,524);
   var bt=(ST.badges||[]).map(function(id){var b=BADGES.filter(function(q){return q.id===id})[0];return b&&S.badges[id]?'🏅 '+b.n:''}).filter(Boolean).join('   ');
-  if(bt){x.fillStyle=o['--g'];x.font='22px sans-serif';x.fillText(bt,70,575)}
-  x.fillStyle=o['--dim'];x.font='700 18px sans-serif';x.textAlign='right';x.fillText('YISUS MUSIC',W-40,H-20);
+  if(bt){x.fillStyle=o['--g'];x.font='22px sans-serif';x.fillText(bt,70,680)}
+  x.fillStyle=o['--dim'];x.font='700 18px sans-serif';x.textAlign='right';x.fillText('YISUS MUSIC',W-40,H-14);
   c.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='mi-perfil-yisus.png';a.click();toast('Tarjeta descargada')});
 }
 /* ---------- montaje en la página de Perfil ---------- */
