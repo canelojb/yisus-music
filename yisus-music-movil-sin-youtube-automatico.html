@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>YISUS MUSIC — Premium Interface · V25b</title>
+<title>YISUS MUSIC — Premium Interface · V26b</title>
 <meta name="theme-color" content="#060807">
 <script>try{var __t=localStorage.getItem("yisus-theme")||localStorage.getItem("yisus-visual-mode");if(__t)document.documentElement.setAttribute("data-theme",__t)}catch(e){}</script>
 <meta name="mobile-web-app-capable" content="yes">
@@ -1076,29 +1076,51 @@ body{background:radial-gradient(ellipse at 78% 0%,rgba(var(--rgb),.055),transpar
 @media(max-width:650px){#p-home>.hero{grid-template-columns: minmax(105px,34%) minmax(0,1fr);gap:16px;padding:16px;min-height:0}#p-home .hcover{max-width:none;border-radius:11px}#p-home .hinfo h1{font-size:clamp(22px,6vw,31px)}#p-home .hartist{font-size:14px}#p-home>.hero:after{display:none}#p-home>.aimix-card{grid-template-columns:42px minmax(0,1fr);gap:12px;padding:14px}#p-home .aimix-mark{width:40px;height:40px}#p-home .aimix-card>.btn{grid-column:1/-1;justify-content:center}.srcgrid{grid-template-columns:1fr}.ys-topbar{align-items:center}.ys-topright{gap:6px}.ys-edition{display:none}.ys-searchjump{min-width:0;padding:8px 11px;font-size:11px}.main{padding:15px 12px 22px}.card{padding:16px}.pbar{padding:9px 12px calc(9px + env(safe-area-inset-bottom));gap:7px}.pbar .pright{display:none}.pbar .pnow{min-width:0}.pbar .pcov{width:43px;height:43px}.pbar .pmid{gap:3px}.pbar .pctrl{gap:2px}.pbar .playbtn{width:38px;height:38px}.pbar .icon-btn{width:34px;height:34px}.pbar .pseek{gap:7px}.pbar .ptxt b{font-size:12px}.pbar .ptxt span{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.page.on{animation:none}}
 </style>
+<style>
+/* ===== v26 · intro minimalista ===== */
+#ysx{position:fixed;inset:0;z-index:300;display:grid;place-items:center;background:var(--bg,#050607);color:var(--tx);overflow:hidden;transition:opacity .7s ease,transform .7s cubic-bezier(.4,0,.2,1)}
+#ysx.out{opacity:0;transform:scale(1.04);visibility:hidden;pointer-events:none}
+.ysx-glow{position:absolute;left:50%;top:50%;width:min(80vw,640px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(var(--rgb),.16),transparent 62%);opacity:0;animation:ysxIn 1.6s .1s ease forwards}
+.ysx-c{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
+.ysx-logo{width:clamp(84px,14vw,120px);height:auto;opacity:0;transform:scale(.86);animation:ysxLogo .9s .15s cubic-bezier(.2,.8,.2,1) forwards;filter:drop-shadow(0 12px 34px rgba(var(--rgb),.35))}
+.ysx-logo .yy{stroke-dasharray:110;stroke-dashoffset:110;animation:ysxDraw .8s .55s cubic-bezier(.5,0,.2,1) forwards}
+.ysx-word{margin-top:clamp(22px,4vh,34px);font:700 clamp(30px,5.4vw,50px)/1 var(--fd);letter-spacing:-.025em;opacity:0;transform:translateY(8px);animation:ysxUp .8s .95s ease forwards}
+.ysx-sub{margin-top:8px;font:500 clamp(11px,1.5vw,13px) var(--fb,system-ui);letter-spacing:.5em;text-indent:.5em;text-transform:uppercase;color:var(--mut);opacity:0;animation:ysxUp .8s 1.15s ease forwards}
+.ysx-line{width:96px;height:2px;margin-top:clamp(26px,5vh,40px);border-radius:2px;background:rgba(255,255,255,.1);overflow:hidden;opacity:0;animation:ysxUp .5s 1.2s ease forwards}
+.ysx-line i{display:block;height:100%;width:100%;background:var(--g);transform:scaleX(0);transform-origin:left;animation:ysxLoad 1.5s 1.3s cubic-bezier(.4,0,.2,1) forwards}
+.ysx-skip{position:absolute;bottom:calc(26px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:none;border:0;color:var(--dim,#888);font:500 11px var(--fb,system-ui);letter-spacing:.12em;cursor:pointer;opacity:0;animation:ysxIn 1s 1.6s ease forwards}
+@keyframes ysxIn{to{opacity:1}}
+@keyframes ysxUp{to{opacity:1;transform:none}}
+@keyframes ysxLogo{to{opacity:1;transform:none}}
+@keyframes ysxDraw{to{stroke-dashoffset:0}}
+@keyframes ysxLoad{to{transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){#ysx *{animation-duration:.01ms!important;animation-delay:0s!important}}
+</style>
 </head>
 <body>
-<div id="splash" role="dialog" aria-modal="true" aria-label="Bienvenido a YISUS MUSIC">
-  <div class="intro-noise" aria-hidden="true"></div>
-  <div class="intro-orbit intro-orbit-a" aria-hidden="true"></div><div class="intro-orbit intro-orbit-b" aria-hidden="true"></div>
-  <div class="intro-top"><span class="intro-brand"><span class="intro-brand-dot"></span> YISUS <i>MUSIC</i></span><span class="intro-version">PERSONAL SOUND SYSTEM <b>·</b> V19</span></div>
-  <main class="intro-main">
-    <div class="intro-mark-wrap"><div class="intro-mark-glow"></div><svg class="lg intro-mark" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="ygS" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:rgb(var(--lt))"/><stop offset=".55" style="stop-color:var(--g)"/><stop offset="1" style="stop-color:var(--g2)"/></linearGradient></defs><path class="hx" d="M32 3.5 57 18v28L32 60.5 7 46V18Z" fill="rgba(var(--rgb),.10)" stroke="url(#ygS)" stroke-width="2.6" stroke-linejoin="round"/><path class="yy" d="M19 16 32 34 45 16M32 34v19" fill="none" stroke="url(#ygS)" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><circle class="dt" cx="32" cy="34" r="3.2" fill="#fff"/></svg></div>
-    <div class="intro-eyebrow"><span></span> YOUR SOUND. YOUR UNIVERSE.</div>
-    <h1 class="intro-title">YISUS <em>MUSIC</em></h1>
-    <p class="intro-copy">No es solo darle al play.<br><strong>Es descubrir tu próximo sonido favorito.</strong></p>
-    <div class="intro-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-    <button class="intro-enter" id="introEnter" type="button"><span>ENTRAR A YISUS</span><b aria-hidden="true">↗</b></button>
-    <div class="intro-caption">DISCOVER <span>·</span> LISTEN <span>·</span> EVOLVE</div>
+<div id="ysx" role="dialog" aria-modal="true" aria-label="YISUS MUSIC">
+  <div class="ysx-glow" aria-hidden="true"></div>
+  <main class="ysx-c">
+    <svg class="ysx-logo" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="ysxG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:rgb(var(--lt))"/><stop offset="1" style="stop-color:var(--g)"/></linearGradient></defs><circle class="disc" cx="50" cy="50" r="46" fill="url(#ysxG)"/><path class="yy" d="M31 30 50 54 69 30M50 54V74" fill="none" stroke="#06100a" stroke-width="10.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="ysx-word">Yisus</div>
+    <div class="ysx-sub">Music</div>
+    <div class="ysx-line" aria-hidden="true"><i></i></div>
   </main>
-  <div class="intro-bottom"><span>MADE FOR THE WAY YOU LISTEN</span><span class="intro-bottom-right"><i></i> MUSIC EXPERIENCE</span></div>
+  <button id="introEnter" class="ysx-skip" type="button">Toca para entrar</button>
 </div>
+<script>
+(function(){var s=document.getElementById('ysx');if(!s)return;var done=false,red=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function go(){if(done)return;done=true;s.classList.add('out');setTimeout(function(){s.remove()},700)}
+ s.addEventListener('click',go);s.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '||e.key==='Escape'){e.preventDefault();go()}});
+ setTimeout(go,red?700:3000);
+})();
+</script>
 <canvas id="fxbg"></canvas><canvas id="fxp"></canvas>
 <div class="app">
 
 <aside class="side">
   <div class="brand">
-    <svg class="lgo" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="ygB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:rgb(var(--lt))"/><stop offset=".55" style="stop-color:var(--g)"/><stop offset="1" style="stop-color:var(--g2)"/></linearGradient></defs><path class="hx" d="M32 3.5 57 18v28L32 60.5 7 46V18Z" fill="rgba(var(--rgb),.10)" stroke="url(#ygB)" stroke-width="2.6" stroke-linejoin="round"/><path class="yy" d="M19 16 32 34 45 16M32 34v19" fill="none" stroke="url(#ygB)" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><circle class="dt" cx="32" cy="34" r="3.2" fill="#fff"/></svg>
+    <svg class="lgo" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="ygB2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:rgb(var(--lt))"/><stop offset="1" style="stop-color:var(--g)"/></linearGradient></defs><circle cx="50" cy="50" r="46" fill="url(#ygB2)"/><path d="M31 30 50 54 69 30M50 54V74" fill="none" stroke="#06100a" stroke-width="10.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     <div><b>YISUS</b><small>MUSIC SYSTEM</small></div>
   </div>
   <nav class="nav" id="nav">
