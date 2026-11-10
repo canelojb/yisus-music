@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>YISUS MUSIC — Premium Interface · V25</title>
+<title>YISUS MUSIC — Premium Interface · V25b</title>
 <meta name="theme-color" content="#060807">
 <script>try{var __t=localStorage.getItem("yisus-theme")||localStorage.getItem("yisus-visual-mode");if(__t)document.documentElement.setAttribute("data-theme",__t)}catch(e){}</script>
 <meta name="mobile-web-app-capable" content="yes">
@@ -5119,9 +5119,9 @@ renderDiscoveryState();
    ===================================================================== */
 (function(){
 var SK='yisus_studio_v1',D={name:'',status:'',frame:'auto',badges:[],shape:'round',font:'def',
-  theme:{on:false,c1:'#35e07a',c2:'#7a5cff',bg:'#07090d',fx:'neon'},bg:{kind:'',op:.92,blur:0,dim:.12,stc:.38,scene:0,v2:1},bio:'',pin:null,bannerC:'#35e07a',has:{avatar:0,banner:0,bg:0}};
+  theme:{on:false,c1:'#35e07a',c2:'#7a5cff',bg:'#07090d',fx:'neon'},bg:{kind:'',op:1,blur:0,dim:0,stc:.06,scene:0,v2:2},bio:'',pin:null,bannerC:'#35e07a',has:{avatar:0,banner:0,bg:0}};
 var ST;try{ST=JSON.parse(localStorage.getItem(SK)||'null')}catch(e){}
-ST=Object.assign({},D,ST||{});ST.theme=Object.assign({},D.theme,ST.theme||{});ST.bg=Object.assign({},D.bg,ST.bg||{});ST.has=Object.assign({},D.has,ST.has||{});if(!ST.bg.v2){ST.bg.op=.92;ST.bg.dim=.12;ST.bg.stc=.38;ST.bg.scene=0;ST.bg.v2=1;try{localStorage.setItem(SK,JSON.stringify(ST))}catch(e){}}
+ST=Object.assign({},D,ST||{});ST.theme=Object.assign({},D.theme,ST.theme||{});ST.bg=Object.assign({},D.bg,ST.bg||{});ST.has=Object.assign({},D.has,ST.has||{});if(!ST.bg.v2||ST.bg.v2<2){ST.bg.op=1;ST.bg.dim=0;ST.bg.stc=.06;ST.bg.op=1;ST.bg.dim=0;ST.bg.stc=.06;ST.bg.scene=0;ST.bg.v2=2;try{localStorage.setItem(SK,JSON.stringify(ST))}catch(e){}}
 function sv(){try{localStorage.setItem(SK,JSON.stringify(ST))}catch(e){toast('No pude guardar (almacenamiento lleno)')}}
 /* ---------- blobs en IndexedDB ---------- */
 var db=null,urls={};
@@ -5166,10 +5166,15 @@ var css=document.createElement('style');css.textContent=`
 #stBg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:0;transition:opacity .4s}
 #stBg>*{position:absolute;inset:-30px;width:calc(100% + 60px);height:calc(100% + 60px);object-fit:cover}
 #stBg:after{content:"";position:absolute;inset:0;background:rgba(0,0,0,var(--stdim,.25))}
-body.st-bg #stBg{opacity:var(--stop,.55)}
-body.st-bg .card,body.st-bg .stat,body.st-bg .badge,body.st-bg .hero,body.st-bg .aimix-card{background:rgba(var(--pan),var(--stc,.38))!important;backdrop-filter:blur(6px)}
-body.st-bg .side{background:rgba(var(--pan),.5)!important}
-body.st-bg .ys-topbar{background:rgba(var(--pan),.45)!important}
+body.st-bg #stBg{opacity:var(--stop,1)}
+body.st-bg .card,body.st-bg .stat,body.st-bg .badge,body.st-bg .hero,body.st-bg .aimix-card,body.st-bg .chip,body.st-bg .empty{background:rgba(var(--pan),var(--stc,.06))!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important;border-color:rgba(255,255,255,.14)!important}
+body.st-bg .card *,body.st-bg .hero *,body.st-bg .stat *,body.st-bg .aimix-card *,body.st-bg .page>h1,body.st-bg .page>h2,body.st-bg .page>p{text-shadow:0 1px 3px rgba(0,0,0,.95),0 0 10px rgba(0,0,0,.7)}
+body.st-bg .btn,body.st-bg .btn *,body.st-bg button.primary,body.st-bg button.primary *{text-shadow:none!important}
+body.st-bg .side,body.st-bg .side *,body.st-bg nav *,body.st-bg .ys-topbar *{text-shadow:0 1px 3px rgba(0,0,0,.95),0 0 8px rgba(0,0,0,.8)}
+body.st-bg .side{background:rgba(var(--pan),.18)!important;backdrop-filter:none!important}
+body.st-bg .ys-topbar{background:rgba(var(--pan),.12)!important;backdrop-filter:none!important}
+body.st-bg .hero .cover,body.st-bg #art{background-color:transparent!important}
+body.st-bg .player,body.st-bg .pbar,body.st-bg #bar{background:rgba(var(--pan),.35)!important;backdrop-filter:none!important}
 body.st-bg.st-noscene #fxbg{display:none}
 body.st-bg,body.st-bg .app,body.st-bg .main{background:transparent!important}
 #stBg{z-index:0;transform:translateZ(0)}
@@ -5338,7 +5343,7 @@ function renderStudio(){
   rb.appendChild(btn('Quitar fondo',async function(){ST.has.bg=0;delete urls.bg;await del('bg');sv();paintBg();toast('Fondo quitado')}));
   box.appendChild(rb);
   box.appendChild(rowE('Visibilidad',inp('range',ST.bg.op,function(v){ST.bg.op=+v;sv();document.documentElement.style.setProperty('--stop',v)},{min:.1,max:1,step:.05})));
-  box.appendChild(rowE('Tarjetas transparentes',inp('range',ST.bg.stc,function(v){ST.bg.stc=+v;sv();document.documentElement.style.setProperty('--stc',v)},{min:.1,max:.9,step:.05})));
+  box.appendChild(rowE('Tarjetas transparentes',inp('range',ST.bg.stc,function(v){ST.bg.stc=+v;sv();document.documentElement.style.setProperty('--stc',v)},{min:0,max:.9,step:.02})));
   var sc=document.createElement('input');sc.type='checkbox';sc.checked=!!ST.bg.scene;sc.onchange=function(){ST.bg.scene=sc.checked;sv();document.body.classList.toggle('st-noscene',!sc.checked)};box.appendChild(rowE('Mostrar también la escena animada',sc));
   box.appendChild(rowE('Oscurecer',inp('range',ST.bg.dim,function(v){ST.bg.dim=+v;sv();document.documentElement.style.setProperty('--stdim',v)},{min:0,max:.8,step:.05})));
   box.appendChild(rowE('Desenfoque',inp('range',ST.bg.blur,function(v){ST.bg.blur=+v;sv();var n=bgEl.firstChild;if(n)n.style.filter='blur('+v+'px)'},{min:0,max:20,step:1})));
