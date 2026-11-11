@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>YISUS MUSIC — Premium Interface · V27b</title>
+<title>YISUS MUSIC — V39 Signature Studio</title>
 <meta name="theme-color" content="#060807">
 <script>try{var __t=localStorage.getItem("yisus-theme")||localStorage.getItem("yisus-visual-mode");if(__t)document.documentElement.setAttribute("data-theme",__t)}catch(e){}</script>
 <meta name="mobile-web-app-capable" content="yes">
@@ -359,7 +359,7 @@ body.mode-cosmic::before{background:radial-gradient(circle at 15% 20%,rgba(182,1
 }
 
 
-/* ===== YISUS MUSIC V11 — LISTENING ROOM REDESIGN ===== */
+/* ===== YISUS MUSIC V11 — SIGNATURE FLOW · V43 REDESIGN ===== */
 .app{grid-template-columns:248px minmax(0,1fr) auto;grid-template-rows:minmax(0,1fr) auto}
 .side{padding:26px 16px 18px;background:linear-gradient(180deg,rgba(12,19,14,.98),rgba(7,10,8,.98));border-right:1px solid rgba(var(--lt),.11)}
 .brand{padding:0 8px 30px;gap:12px}
@@ -1031,6 +1031,22 @@ html[data-theme=neon] body:not(.fx-off):not(.fx-soft) .nav button.on,html[data-t
 .brand.has-av{align-items:center}
 .brand.has-av b{font-size:20px;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}
 
+
+/* ===== V43 SIGNATURE INTERFACE / FLOW SYSTEM ===== */
+:root{--bg:#050806;--s1:#0b110d;--s2:#101a13;--s3:#17251b;--line:#1a2a20;--line2:#294331;--g:#57f58d;--g2:#29c96a;--gbg:#10291a;--gline:#286b43;--r:18px}
+body{background:radial-gradient(ellipse at 76% -12%,rgba(45,170,94,.11),transparent 36%),var(--bg)}
+.side{background:linear-gradient(180deg,#0b120e 0%,#080d0a 100%);border-right-color:rgba(87,245,141,.12);padding:24px 14px 17px}
+.brand{padding-bottom:26px}.brand b{letter-spacing:.035em}.nav{gap:5px}.nav button{padding:11px 13px;border:1px solid transparent;border-radius:12px;transition:all .2s ease}.nav button.on{background:linear-gradient(100deg,rgba(87,245,141,.14),rgba(87,245,141,.035));border-color:rgba(87,245,141,.18);box-shadow:inset 3px 0 var(--g),0 6px 18px #0002}.nav button:hover{transform:translateX(2px)}
+.main{padding:30px clamp(18px,3.2vw,48px) 48px}.ys-topbar{max-width:1220px;margin-bottom:30px;padding-bottom:19px;border-bottom-color:rgba(87,245,141,.14)}.ys-topbrand{font-size:13px;letter-spacing:.2em}.ys-edition{padding:8px 11px;border:1px solid var(--line2);border-radius:999px;background:#ffffff04}
+.page{max-width:1220px}.card{background:linear-gradient(145deg,rgba(17,27,20,.97),rgba(9,15,11,.98));border-color:rgba(130,190,145,.13);border-radius:18px;padding:22px;box-shadow:0 12px 36px rgba(0,0,0,.13);transition:border-color .2s,transform .2s}.card:hover{border-color:rgba(87,245,141,.22)}.chead{margin-bottom:16px}h1{letter-spacing:-.04em}h2{letter-spacing:-.025em}.btn{border-radius:11px;min-height:40px}.btn.primary{box-shadow:0 7px 22px rgba(41,201,106,.16)}
+.hero{min-height:330px;border-color:rgba(87,245,141,.23);background:linear-gradient(115deg,rgba(14,29,19,.96),rgba(8,13,10,.95))}.hero:after{opacity:.75}.hinfo{max-width:760px}.hinfo h1{font-size:clamp(30px,4vw,48px);max-width:720px}.hcover{border-radius:17px;box-shadow:0 14px 42px #0007}.aimix-card{padding:24px;background:radial-gradient(ellipse at 10% 50%,rgba(87,245,141,.14),transparent 42%),linear-gradient(115deg,#101b14,#0a100c 70%)!important;border-color:rgba(87,245,141,.28)!important}.aimix-mark{width:58px;height:58px;border-radius:18px;background:linear-gradient(145deg,rgba(87,245,141,.2),rgba(87,245,141,.05));box-shadow:inset 0 0 24px rgba(87,245,141,.08)}.aimix-copy h2{font-size:22px}.aimix-copy p{max-width:760px}
+.pbar{background:rgba(6,11,8,.97);backdrop-filter:blur(18px);border-top-color:rgba(87,245,141,.18);padding-top:14px;padding-bottom:calc(14px + env(safe-area-inset-bottom))}.pcov{border-radius:10px}.playbtn{box-shadow:0 0 0 5px rgba(87,245,141,.08)}.pline{background:var(--g)}
+.ys42-dna{border-color:rgba(87,245,141,.25);background:radial-gradient(ellipse at 90% 0%,rgba(87,245,141,.1),transparent 38%),linear-gradient(145deg,#101a13,#0a100c)}.ys42-dna-head h2{font-size:25px}.ys42-dna-orb{box-shadow:0 0 50px rgba(87,245,141,.12)}
+.aimix-modal{border:1px solid rgba(87,245,141,.22);border-radius:20px;background:linear-gradient(145deg,#101a13,#080d0a);box-shadow:0 25px 90px #000b}.aimix-modal h2{font-size:27px;margin:5px 0 8px}.aimix-pick{border-radius:12px;background:#ffffff04;border:1px solid var(--line2);padding:12px}.aimix-pick:has(input:checked){border-color:var(--g);background:rgba(87,245,141,.08)}.aimix-smooth{display:flex;align-items:center;gap:12px;padding:13px 14px;margin:13px 0;border:1px solid rgba(87,245,141,.24);border-radius:13px;background:rgba(87,245,141,.055);cursor:pointer}.aimix-smooth input{width:18px;height:18px;accent-color:var(--g);flex:none}.aimix-smooth span{display:grid;gap:3px}.aimix-smooth small,.aimix-dj-note span{color:var(--mut);font-size:12px;line-height:1.45}.aimix-dj-note{display:grid;gap:4px;padding:13px 14px;border-radius:12px;background:#ffffff05;border:1px solid var(--line);margin:10px 0 14px}.aimix-dj-note b{font-size:12px;color:var(--g);letter-spacing:.08em;text-transform:uppercase}
+@media(max-width:900px){.main{padding:22px 18px 34px}.side{padding-left:10px;padding-right:10px}.hero{min-height:300px}.pbar{gap:10px;padding-left:12px;padding-right:12px}}
+@media(max-width:680px){.ys-topbar{align-items:flex-start;gap:10px;flex-wrap:wrap}.ys-topbrand small{display:none}.ys-topright{width:100%;justify-content:space-between}.main{padding:18px 12px 28px}.card{padding:16px;border-radius:15px}.aimix-card{align-items:flex-start;flex-wrap:wrap}.aimix-copy{flex-basis:calc(100% - 74px)}.aimix-card>.btn{width:100%;justify-content:center}.aimix-playlists{grid-template-columns:1fr}.pbar{grid-template-columns:minmax(0,1fr) auto;gap:8px}.pbar .pmid{grid-column:1/3;grid-row:2}.pbar .pright{grid-column:2;grid-row:1}.pbar .pnow{grid-column:1;grid-row:1;min-width:0}.pright [data-vol],.pright input{display:none}.ptxt{min-width:0}.ptxt b,.ptxt span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
 </style>
 <style>
 
@@ -1281,6 +1297,123 @@ html[data-theme=storm] .btn:hover:before,html[data-theme=storm] .chip:hover:befo
 @keyframes bnFl{0%{opacity:0}10%{opacity:1}20%{opacity:.1}35%{opacity:.9}100%{opacity:0}}
 @media(prefers-reduced-motion:reduce){.btn:before,.chip:before,.btn.primary{animation:none!important}}
 </style>
+
+<style id="yisus-v32-community-redesign">
+
+/* ==========================================================
+   YISUS MUSIC V32 — COMMUNITY / DISCORD INSPIRED REDESIGN
+   Visual-only layer: preserves the existing app logic and IDs.
+   ========================================================== */
+:root{
+ --bg:#111318;--s1:#191c24;--s2:#20242e;--s3:#292e3a;
+ --line:rgba(255,255,255,.075);--line2:rgba(255,255,255,.13);
+ --tx:#f5f6fa;--mut:#a6adbb;--dim:#737d8e;
+ --discord:#7184ff;--discord2:#9b7bff;--g:#66e6a3;--g2:#39c985;
+ --gbg:rgba(102,230,163,.12);--gline:rgba(102,230,163,.28);
+ --r:20px;--rs:13px;
+}
+html{background:#101116;scroll-behavior:smooth}
+body{background:radial-gradient(ellipse at 18% 0%,rgba(88,101,242,.12),transparent 34%),radial-gradient(ellipse at 90% 75%,rgba(102,230,163,.075),transparent 32%),#111318!important;color:var(--tx)}
+.app{display:grid!important;grid-template-columns:264px minmax(0,1fr)!important;gap:0!important;max-width:none!important;width:100%!important;min-height:100vh!important;background:transparent!important}
+.side{width:264px!important;min-width:264px!important;position:sticky!important;top:0!important;height:100vh!important;overflow-y:auto!important;padding:24px 15px 120px!important;background:linear-gradient(180deg,#191b23 0%,#171920 58%,#14161d 100%)!important;border-right:1px solid rgba(255,255,255,.08)!important;box-shadow:12px 0 45px rgba(0,0,0,.2)!important;z-index:30!important}
+.brand{padding:7px 10px 22px!important;margin-bottom:14px!important;border-bottom:1px solid rgba(255,255,255,.075)!important;gap:12px!important}
+.brand .lgo{width:46px!important;height:46px!important;filter:drop-shadow(0 0 14px rgba(102,230,163,.24))!important}
+.brand b{font-size:19px!important;letter-spacing:.15em!important;font-weight:900!important}
+.brand small{font-size:9px!important;letter-spacing:.22em!important;color:#8d96a8!important}
+.nav{display:flex!important;flex-direction:column!important;gap:5px!important;margin:12px 0 18px!important}
+.nav:before{content:"TU ESPACIO";display:block;padding:10px 12px 6px;color:#788194;font-size:9px;font-weight:900;letter-spacing:.2em}
+.nav button{position:relative!important;min-height:43px!important;padding:0 13px!important;border:1px solid transparent!important;border-radius:12px!important;background:transparent!important;color:#aeb5c4!important;font-weight:650!important;letter-spacing:.01em!important;transition:background .18s,border-color .18s,transform .18s,color .18s!important}
+.nav button:hover{background:rgba(255,255,255,.055)!important;color:#fff!important;transform:translateX(2px)!important}
+.nav button.on{background:linear-gradient(100deg,rgba(88,101,242,.23),rgba(88,101,242,.08))!important;border-color:rgba(123,139,255,.2)!important;color:#fff!important;box-shadow:inset 3px 0 #8292ff,0 5px 18px rgba(0,0,0,.12)!important}
+.nav button.on:after{content:"";position:absolute;right:12px;width:6px;height:6px;border-radius:50%;background:#8d9bff;box-shadow:0 0 12px #8d9bff}
+.nav button i{opacity:.9!important}
+.mode-label{padding:15px 12px 8px!important;color:#778194!important;font-size:9px!important;letter-spacing:.2em!important;font-weight:900!important;text-transform:uppercase!important}
+.themes{padding:0 5px!important;gap:7px!important}
+#tuneBox{margin:8px 0 18px!important;padding:15px!important;border-radius:16px!important;background:linear-gradient(145deg,rgba(88,101,242,.17),rgba(102,230,163,.07) 65%,rgba(255,255,255,.025))!important;border:1px solid rgba(133,145,255,.24)!important;box-shadow:0 12px 28px rgba(0,0,0,.2)!important}
+#tuneBox:before{width:3px!important;background:linear-gradient(180deg,#8b9aff,#65e5a4)!important}
+#tuneBox:hover{transform:translateY(-3px)!important;border-color:rgba(145,157,255,.6)!important;box-shadow:0 14px 34px rgba(88,101,242,.16)!important}
+.tn-card{border-radius:20px!important;background:linear-gradient(145deg,#222633,#1a1d27)!important;border:1px solid rgba(255,255,255,.09)!important;padding:22px!important;box-shadow:0 18px 45px rgba(0,0,0,.2)!important}
+.sidefoot{margin:18px 4px 0!important;padding:14px!important;border-radius:14px!important;background:rgba(255,255,255,.035)!important;border:1px solid rgba(255,255,255,.06)!important}
+.main{min-width:0!important;padding:0 clamp(18px,3vw,48px) 145px!important;overflow:hidden!important}
+.ys-topbar{position:sticky!important;top:0!important;z-index:20!important;margin:0 calc(clamp(18px,3vw,48px)*-1) 28px!important;padding:17px clamp(18px,3vw,48px)!important;min-height:76px!important;background:rgba(17,19,24,.82)!important;backdrop-filter:blur(22px)!important;border-bottom:1px solid rgba(255,255,255,.07)!important}
+.ys-topbrand{font-weight:900!important;letter-spacing:.12em!important}
+.ys-topbrand small{color:#818b9d!important;letter-spacing:.17em!important}
+.ys-edition{border:1px solid rgba(102,230,163,.2)!important;background:rgba(102,230,163,.07)!important;border-radius:99px!important;padding:8px 12px!important;color:#b8f4d2!important}
+.ys-searchjump{border-radius:12px!important;background:#252936!important;border:1px solid rgba(255,255,255,.1)!important;color:#dce1ec!important;min-height:40px!important}
+.page{max-width:1500px!important;margin:0 auto!important;animation:v32in .35s ease both}
+@keyframes v32in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.phead{margin:0 0 20px!important}
+.phead h1{font-size:clamp(27px,3vw,38px)!important;font-weight:900!important;letter-spacing:-.045em!important}
+.card{position:relative!important;background:linear-gradient(145deg,rgba(35,39,51,.96),rgba(25,28,37,.96))!important;border:1px solid rgba(255,255,255,.075)!important;border-radius:20px!important;padding:clamp(17px,2vw,25px)!important;box-shadow:0 12px 34px rgba(0,0,0,.16)!important;overflow:hidden!important}
+.card:after{content:"";position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.13),transparent);pointer-events:none}
+.card+.card{margin-top:16px!important}
+.chead{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;margin-bottom:16px!important}
+.chead h2,.card h2{font-weight:850!important;letter-spacing:-.025em!important}
+.sub,.card p{color:#aab2c1!important;line-height:1.65!important}
+.hero{min-height:330px!important;display:grid!important;grid-template-columns:minmax(180px, .72fr) minmax(0,1.5fr)!important;align-items:center!important;gap:clamp(20px,4vw,50px)!important;padding:clamp(22px,3.4vw,42px)!important;background:radial-gradient(ellipse at 15% 50%,rgba(88,101,242,.28),transparent 43%),radial-gradient(ellipse at 85% 10%,rgba(102,230,163,.13),transparent 35%),linear-gradient(135deg,#242a3b,#191d29 70%)!important;border-color:rgba(143,155,255,.19)!important;box-shadow:0 24px 60px rgba(0,0,0,.24)!important}
+.hcover{width:min(100%,250px)!important;aspect-ratio:1!important;border-radius:23px!important;box-shadow:0 22px 55px rgba(0,0,0,.42),0 0 0 1px rgba(255,255,255,.1)!important;overflow:hidden!important}
+.hinfo h1{font-size:clamp(28px,4vw,48px)!important;line-height:1.03!important;letter-spacing:-.055em!important;font-weight:950!important;max-width:800px!important}
+.kick{color:#a4b0ff!important;font-size:10px!important;font-weight:900!important;letter-spacing:.19em!important}
+.hartist{color:#b5f3d0!important;font-weight:700!important}
+.why{color:#aab3c3!important;max-width:650px!important;line-height:1.6!important}
+.btn,.chip,.icon-btn,.tg{border-radius:12px!important;transition:transform .16s ease,background .16s ease,border-color .16s ease,box-shadow .16s ease!important}
+.btn{min-height:42px!important;padding:0 16px!important;border:1px solid rgba(255,255,255,.11)!important;background:#303544!important;color:#f4f6fb!important;font-weight:750!important;box-shadow:0 4px 12px rgba(0,0,0,.12)!important}
+.btn:hover,.chip:hover,.icon-btn:hover{transform:translateY(-2px)!important;background:#3a4154!important;border-color:rgba(255,255,255,.2)!important;box-shadow:0 8px 20px rgba(0,0,0,.2)!important}
+.btn.primary{background:linear-gradient(110deg,#6579ff,#5865f2)!important;border-color:rgba(168,177,255,.45)!important;color:white!important;box-shadow:0 8px 22px rgba(88,101,242,.25)!important}
+.btn.primary:hover{background:linear-gradient(110deg,#7c8cff,#6876ff)!important;box-shadow:0 10px 28px rgba(88,101,242,.36)!important}
+.btn.sm{min-height:35px!important;padding:0 12px!important;font-size:12px!important}
+.chip{background:#292e3b!important;border:1px solid rgba(255,255,255,.09)!important;color:#dce2ed!important;padding:10px 13px!important}
+.chip.on,.chip.active,.tg.on{background:rgba(88,101,242,.2)!important;border-color:rgba(130,145,255,.5)!important;color:#dfe3ff!important}
+.icon-btn{background:#2b3040!important;border:1px solid rgba(255,255,255,.08)!important;color:#e9edf7!important}
+.srcgrid{gap:16px!important}
+.srcgrid>.card{min-height:180px!important}
+.burn{padding:18px!important;border-radius:15px!important;background:rgba(0,0,0,.15)!important;border:1px solid rgba(255,255,255,.06)!important}
+.list,.scroll{border-radius:14px!important}
+.list>*,.scroll>*{border-bottom:1px solid rgba(255,255,255,.055)!important}
+.thgrid{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(145px,1fr))!important;gap:13px!important;margin:15px 0 24px!important}
+.thgrid>*{min-height:112px!important;border-radius:16px!important;border:1px solid rgba(255,255,255,.1)!important;background:linear-gradient(145deg,#2a3040,#202430)!important;transition:transform .2s,border-color .2s,box-shadow .2s!important}
+.thgrid>*:hover{transform:translateY(-4px)!important;border-color:rgba(135,149,255,.5)!important;box-shadow:0 12px 25px rgba(0,0,0,.22)!important}
+.thgrid>*.on,.thgrid>*.active{border-color:#8190ff!important;box-shadow:0 0 0 1px rgba(129,144,255,.3),0 10px 26px rgba(88,101,242,.13)!important}
+#fxChips{display:flex!important;flex-wrap:wrap!important;gap:10px!important}
+#fxChips .chip{min-height:42px!important}
+#fxDesc{padding:13px 15px!important;border-radius:13px!important;background:rgba(88,101,242,.09)!important;border:1px solid rgba(130,145,255,.15)!important}
+.dna-panel{background:linear-gradient(140deg,rgba(88,101,242,.15),rgba(102,230,163,.06) 55%,rgba(255,255,255,.02))!important;border:1px solid rgba(135,149,255,.18)!important;border-radius:20px!important;padding:22px!important}
+.dna-title{font-size:clamp(23px,3vw,34px)!important;font-weight:950!important;letter-spacing:-.04em!important}
+.dna-metric{background:rgba(12,14,20,.35)!important;border:1px solid rgba(255,255,255,.08)!important;border-radius:15px!important;padding:16px!important}
+.dna-live{border-radius:99px!important;background:rgba(102,230,163,.1)!important;border:1px solid rgba(102,230,163,.2)!important;padding:8px 12px!important}
+#flowBoard .card,#flowCel .card{border-radius:22px!important}
+.pbar{position:fixed!important;left:264px!important;right:0!important;bottom:0!important;z-index:80!important;display:grid!important;grid-template-columns:minmax(180px,1fr) minmax(240px,1.25fr) minmax(160px,1fr)!important;align-items:center!important;gap:18px!important;padding:13px 24px max(13px,env(safe-area-inset-bottom))!important;background:rgba(24,27,36,.94)!important;backdrop-filter:blur(24px)!important;border-top:1px solid rgba(255,255,255,.1)!important;box-shadow:0 -15px 45px rgba(0,0,0,.28)!important;min-height:92px!important}
+.pcov{border-radius:12px!important;box-shadow:0 5px 18px rgba(0,0,0,.3)!important}
+.ptxt b{font-weight:850!important;color:#f7f8fc!important}
+.ptxt span{color:#9ba5b6!important}
+.pctrl{gap:10px!important}
+.playbtn{width:48px!important;height:48px!important;border-radius:50%!important;background:linear-gradient(135deg,#7184ff,#5865f2)!important;color:white!important;box-shadow:0 7px 22px rgba(88,101,242,.32)!important}
+.pseek{gap:10px!important}
+.pseek span{color:#9ba5b6!important;font-variant-numeric:tabular-nums!important}
+.pright{gap:10px!important}
+.rng{accent-color:#8292ff!important}
+.modal .mbox{border:1px solid rgba(255,255,255,.1)!important;border-radius:22px!important;background:#202431!important;box-shadow:0 25px 90px rgba(0,0,0,.55)!important}
+input.field,select.field,textarea.field{background:#171a23!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:12px!important;color:#f4f6fb!important;min-height:42px!important}
+input:focus,select:focus,textarea:focus{outline:none!important;border-color:#8292ff!important;box-shadow:0 0 0 3px rgba(88,101,242,.17)!important}
+#rmBar,.rm-bar,.undoBar{border-radius:14px!important}
+#rmGo{background:#d94b65!important;color:white!important;border:0!important}
+#rmEnd{background:#303544!important}
+.alert{border-radius:14px!important}
+@media(max-width:1050px){.app{grid-template-columns:220px minmax(0,1fr)!important}.side{width:220px!important;min-width:220px!important}.pbar{left:220px!important;grid-template-columns:1fr 1.2fr!important}.pright{display:none!important}.hero{grid-template-columns:190px minmax(0,1fr)!important}}
+@media(max-width:760px){.app{display:block!important}.side{position:fixed!important;left:0!important;top:0!important;bottom:0!important;width:min(285px,84vw)!important;min-width:0!important;z-index:100!important;transform:translateX(-105%);transition:transform .25s ease!important}.side.mobile-open{transform:translateX(0)!important}.main{padding:0 14px 160px!important}.ys-topbar{margin:0 -14px 18px!important;padding:13px 14px!important;min-height:64px!important}.ys-edition{display:none!important}.hero{grid-template-columns:1fr!important;text-align:left!important;gap:20px!important}.hcover{width:150px!important}.hinfo h1{font-size:31px!important}.pbar{left:0!important;right:0!important;grid-template-columns:minmax(0,1fr) minmax(130px,.9fr)!important;gap:9px!important;padding:10px 12px max(10px,env(safe-area-inset-bottom))!important;min-height:82px!important}.pnow{min-width:0!important}.ptxt{min-width:0!important}.ptxt b,.ptxt span{overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;display:block!important}.pmid{min-width:0!important}.pctrl{gap:3px!important}.pctrl .icon-btn{width:32px!important;height:32px!important}.playbtn{width:40px!important;height:40px!important}.pseek{gap:5px!important}.pseek span{font-size:9px!important}.srcgrid{grid-template-columns:1fr!important}.card{border-radius:17px!important}.thgrid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(prefers-reduced-motion:reduce){.page{animation:none!important}*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+</style>
+
+<style>
+/* YISUS V41 · Guess the song game */
+.guess-hero{display:flex;align-items:center;gap:20px;overflow:hidden;position:relative;background:linear-gradient(115deg,rgba(var(--rgb),.13),transparent 65%),var(--s1)}
+.guess-orb{width:86px;height:86px;flex:0 0 86px;border-radius:50%;display:grid;place-items:center;font-size:38px;color:var(--g);border:1px solid var(--gline);background:radial-gradient(circle,rgba(var(--rgb),.2),transparent 70%);box-shadow:0 0 35px rgba(var(--rgb),.16);animation:guessPulse 2.6s ease-in-out infinite}
+.guess-intro h2{margin:5px 0}.guess-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}.guess-stats .card{padding:14px}.guess-stats small{display:block;color:var(--mut);font-size:10px;letter-spacing:.1em}.guess-stats b{display:block;font-size:25px;margin-top:5px}.guess-settings{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0}.guess-settings label{font-size:12px;color:var(--mut)}.guess-settings .field{width:100%;margin-top:6px}.guess-game-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.guess-score,.guess-streak{font-size:11px;color:var(--mut);letter-spacing:.08em}.guess-score b,.guess-streak b{color:var(--tx);font-size:16px;margin-left:4px}.guess-progress{height:5px;background:var(--s3);border-radius:9px;overflow:hidden;margin:15px 0}.guess-progress i{display:block;height:100%;width:0;background:var(--g);box-shadow:0 0 12px var(--g);transition:width .25s}.guess-player{display:flex;align-items:center;gap:16px;padding:16px 0}.guess-disc{width:82px;height:82px;flex:0 0 82px;border-radius:50%;display:grid;place-items:center;font-size:30px;color:#07100b;background:radial-gradient(circle at 50%,#111 0 13%,var(--g) 14% 17%,#111 18% 100%);border:4px solid rgba(var(--rgb),.45);box-shadow:0 0 25px rgba(var(--rgb),.18);animation:guessSpin 5s linear infinite}.guess-disc.playing{animation-duration:1.8s}.guess-player h2{margin:4px 0}.guess-actions{display:flex;gap:9px;flex-wrap:wrap}.guess-hint{min-height:20px;color:var(--g);font-size:13px;margin:10px 0}.guess-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}.guess-option{min-height:64px;text-align:left;display:flex;align-items:center;gap:10px;padding:12px;border-radius:13px;border:1px solid var(--line2);background:var(--s2);color:var(--tx);cursor:pointer;transition:.18s}.guess-option .letter{width:30px;height:30px;flex:0 0 30px;border-radius:9px;display:grid;place-items:center;background:var(--s3);color:var(--g);font-weight:800}.guess-option span:last-child{min-width:0;overflow-wrap:anywhere}.guess-option small{display:block;color:var(--mut);font-size:11px;margin-top:3px}.guess-option:disabled{cursor:default;opacity:.8}.guess-option.correct{border-color:#36d98a;background:rgba(54,217,138,.12)}.guess-option.wrong{border-color:#e16b75;background:rgba(225,107,117,.12)}.guess-feedback{min-height:24px;margin:8px 0 12px;font-weight:700}.guess-result{text-align:center;padding:25px}.guess-result h2{font-size:27px}.guess-result .bigscore{font-size:48px;color:var(--g);font-weight:900}.guess-result .sub{margin:8px auto 16px;max-width:520px}.guess-result .btn{margin:4px}.guess-empty{padding:14px;border:1px dashed var(--line2);border-radius:12px;color:var(--mut)}@keyframes guessSpin{to{transform:rotate(360deg)}}@keyframes guessPulse{50%{transform:scale(1.05);box-shadow:0 0 45px rgba(var(--rgb),.3)}}
+@media(max-width:620px){.guess-hero{align-items:flex-start;gap:12px}.guess-orb{width:58px;height:58px;flex-basis:58px;font-size:27px}.guess-stats{gap:7px}.guess-stats .card{padding:10px}.guess-stats b{font-size:21px}.guess-options{grid-template-columns:1fr}.guess-player{gap:12px}.guess-disc{width:64px;height:64px;flex-basis:64px}.guess-game-head{gap:8px}.guess-settings{gap:8px}}
+@media(prefers-reduced-motion:reduce){.guess-orb,.guess-disc{animation:none}}
+</style>
+
 </head>
 <body>
 <div id="ysx" role="dialog" aria-modal="true" aria-label="YISUS MUSIC">
@@ -1317,6 +1450,7 @@ html[data-theme=storm] .btn:hover:before,html[data-theme=storm] .chip:hover:befo
     <button data-page="local"><i data-ic="radio"></i><span>Mi música</span></button>
     <button data-page="radar"><i data-ic="flame"></i><span>Radar</span></button>
     <button data-page="duel"><i data-ic="award"></i><span>Duelo</span></button>
+    <button data-page="guess"><i data-ic="sparkles"></i><span>Adivina la canción</span></button>
     <button data-page="room"><i data-ic="share"></i><span>Sala</span></button>
     <button data-page="ai"><i data-ic="sparkles"></i><span>Asistente</span></button>
     <button data-page="profile"><i data-ic="award"></i><span>Perfil</span></button>
@@ -1391,7 +1525,15 @@ html[data-theme=storm] .btn:hover:before,html[data-theme=storm] .chip:hover:befo
       </div>
       <div class="list" id="queue"></div>
     </div>
-  </section>
+  
+    <section class="ys42-dna card" id="ys42-dna-studio">
+      <div class="ys42-dna-head"><div><span class="ys42-kicker">YISUS INTELLIGENCE / PERSONAL SOUND PROFILE</span><h2>Music DNA Studio</h2><p>Enséñale directamente qué sonidos quieres descubrir. Tus ajustes se guardan en este navegador.</p></div><div class="ys42-dna-orb">✦</div></div>
+      <div class="ys42-dna-metrics" id="ys42-dna-metrics"></div>
+      <div class="ys42-dna-label"><b>¿Qué sonidos quieres escuchar más?</b><small>Marca «Me encanta» para priorizarlos o «Evitar» para reducirlos.</small></div>
+      <div class="ys42-dna-tags" id="ys42-dna-tags"></div>
+      <div class="ys42-dna-footer"><span id="ys42-dna-status">Tu perfil se adapta con tus elecciones.</span><button type="button" class="btn sm" id="ys42-dna-reset">Restablecer preferencias</button></div>
+    </section>
+</section>
 
   <!-- YISUS DISCOVERY -->
   <section class="page" id="p-discover">
@@ -1504,6 +1646,33 @@ html[data-theme=storm] .btn:hover:before,html[data-theme=storm] .chip:hover:befo
     <div class="card"><p class="sub">Cuatro canciones recomendadas se enfrentan en dos semifinales y una final. Lo que eliges enseña a la app qué artistas te gustan más, y la campeona se guarda en tu lista.</p><div id="duelBox"></div></div>
   </section>
 
+  <section class="page" id="p-guess">
+    <div class="phead"><div><h1>Adivina la canción</h1><p class="sub" style="margin-top:7px">Escucha un fragmento, reconoce el tema y demuestra cuánto sabes de música.</p></div><span class="pill low">YISUS MUSIC GAME</span></div>
+    <div class="guess-hero card"><div class="guess-orb">♫</div><div class="guess-intro"><span class="kick">SOUND QUIZ · TEST YOUR EARS</span><h2>¿Reconoces este tema?</h2><p class="sub">Tienes cuatro opciones, varias rondas y puntos extra por mantener la racha. Se utilizan canciones guardadas, tu cola y tu historial que tengan vista previa disponible.</p></div></div>
+    <div class="guess-stats">
+      <div class="card"><small>MEJOR PUNTUACIÓN</small><b id="guessBest">0</b></div>
+      <div class="card"><small>PARTIDAS JUGADAS</small><b id="guessGames">0</b></div>
+      <div class="card"><small>ACIERTOS TOTALES</small><b id="guessWins">0</b></div>
+    </div>
+    <div class="card guess-setup" id="guessSetup">
+      <div class="chead"><h2>Prepara la partida</h2><span class="pill">4 opciones</span></div>
+      <div class="guess-settings"><label>Dificultad<select class="field" id="guessDifficulty"><option value="easy">Fácil · 8 segundos</option><option value="normal" selected>Normal · 5 segundos</option><option value="hard">Difícil · 3 segundos</option></select></label><label>Rondas<select class="field" id="guessRounds"><option value="5">5 rondas</option><option value="10" selected>10 rondas</option><option value="15">15 rondas</option></select></label></div>
+      <p class="sub" id="guessPoolInfo">Preparando canciones disponibles…</p>
+      <button type="button" class="btn primary" id="guessStart">▶ EMPEZAR A JUGAR</button>
+    </div>
+    <div class="card guess-game hide" id="guessGame">
+      <div class="guess-game-head"><span class="pill low" id="guessRound">RONDA 1/10</span><span class="guess-score">PUNTOS <b id="guessScore">0</b></span><span class="guess-streak">🔥 RACHA <b id="guessStreak">0</b></span></div>
+      <div class="guess-progress"><i id="guessProgress"></i></div>
+      <div class="guess-player"><div class="guess-disc" id="guessDisc">♫</div><div><span class="kick">LISTEN CLOSELY</span><h2>¿Qué canción está sonando?</h2><p class="sub" id="guessStatus" aria-live="polite">Pulsa reproducir para escuchar la pista.</p></div></div>
+      <div class="guess-actions"><button type="button" class="btn primary" id="guessPlay">▶ Escuchar fragmento</button><button type="button" class="btn" id="guessHint">💡 Pista (-3 puntos)</button></div>
+      <p class="guess-hint" id="guessHintText" aria-live="polite"></p>
+      <div class="guess-options" id="guessOptions"></div>
+      <div class="guess-feedback" id="guessFeedback" aria-live="polite"></div>
+      <button type="button" class="btn primary hide" id="guessNext">Siguiente ronda →</button>
+    </div>
+    <div class="card guess-result hide" id="guessResult"></div>
+  </section>
+
   <section class="page" id="p-room">
     <div class="phead"><h1>Sala compartida</h1></div>
     <div class="card"><div class="chead"><h2>Escuchar con amigos</h2></div>
@@ -1527,6 +1696,16 @@ html[data-theme=storm] .btn:hover:before,html[data-theme=storm] .chip:hover:befo
   <!-- PERFIL -->
   <section class="page" id="p-profile">
     <div class="phead"><h1>Perfil</h1></div>
+    <section class="ys39-profile card" id="ys39-profile">
+      <div class="ys39-banner" id="ys39-banner"><span class="ys39-banner-label">YISUS IDENTITY / LISTENING PROFILE</span><button type="button" id="ys39-edit" class="ys39-edit">Editar perfil</button></div>
+      <div class="ys39-profile-main"><div class="ys39-avatar" id="ys39-avatar">Y</div><div class="ys39-person"><div class="ys39-name-row"><h2 id="ys39-name-view">YISUS listener</h2><span class="ys39-status" id="ys39-status-view">● ONLINE</span></div><p id="ys39-bio-view">Tu música. Tu identidad. Tu espacio.</p><div class="ys39-pin" id="ys39-pin-view">♫ Todavía no has fijado una canción</div></div></div>
+      <div class="ys39-stats"><span><b id="ys39-stat-likes">0</b><small>ME GUSTA</small></span><span><b id="ys39-stat-songs">0</b><small>CANCIONES</small></span><span><b id="ys39-stat-lists">0</b><small>PLAYLISTS</small></span><span><b id="ys39-stat-feedback">0</b><small>SEÑALES ADN</small></span></div>
+      <div class="ys39-editor hide" id="ys39-editor">
+        <div class="ys39-editor-grid"><label>Nombre visible<input id="ys39-name" maxlength="28" placeholder="Tu nombre musical"></label><label>Estado<select id="ys39-status"><option>ONLINE</option><option>FOCUS</option><option>LISTENING</option><option>OFFLINE</option></select></label><label class="ys39-wide">Biografía<textarea id="ys39-bio" maxlength="120" rows="2" placeholder="Describe tu sonido en una frase..."></textarea></label><label>Color del banner<input type="color" id="ys39-banner-color" value="#5865f2"></label><label>Avatar / imagen<input type="file" id="ys39-avatar-file" accept="image/*"></label></div>
+        <div class="ys39-actions"><button type="button" class="btn primary" id="ys39-save">Guardar identidad</button><button type="button" class="btn" id="ys39-pin">Fijar canción actual</button><button type="button" class="btn" id="ys39-share">Compartir perfil</button><button type="button" class="btn" id="ys39-cancel">Cerrar</button></div><small class="ys39-note">Tu perfil se guarda en este navegador. La imagen se reduce antes de guardarse y no se sube a ningún servidor.</small>
+      </div>
+    </section>
+    <section class="ys39-dna card" id="ys39-dna"><div class="ys39-section-head"><div><span class="ys39-eyebrow">PERSONAL SOUND INTELLIGENCE</span><h2>Tu ADN musical · evolución</h2><p>Señales que has dejado al guardar, escuchar y descartar música.</p></div><span class="ys39-dna-mark">DNA 3.0</span></div><div class="ys39-dna-metrics"><div><b id="ys39-positive">0</b><small>SEÑALES POSITIVAS</small></div><div><b id="ys39-negative">0</b><small>DESCARTES</small></div><div><b id="ys39-traits">0</b><small>RASGOS DETECTADOS</small></div></div><div class="ys39-traits" id="ys39-traits-list"><p>Aún faltan señales. Guarda canciones y utiliza «No me gusta» para construir tu mapa.</p></div><div class="ys39-dna-actions"><button type="button" class="btn" id="ys39-dna-export">Exportar mi ADN</button><button type="button" class="btn" id="ys39-dna-refresh">Actualizar análisis</button></div><small class="ys39-note">Importante: el ADN actual interpreta metadatos, artistas y etiquetas; no escucha ni analiza directamente el audio.</small></section>
     <div class="card"><div class="stats" id="stats"></div></div>
     <div class="card"><div class="chead"><h2>Rango</h2></div><div id="rankBox"></div></div>
     <div class="card"><div class="chead"><h2>Misiones de hoy</h2></div><div id="missions"></div></div>
@@ -1538,6 +1717,8 @@ html[data-theme=storm] .btn:hover:before,html[data-theme=storm] .chip:hover:befo
   <!-- AJUSTES -->
   <section class="page" id="p-settings">
     <div class="phead"><h1>Ajustes</h1></div>
+
+    <section class="ys39-theme-lab card" id="ys39-theme-lab"><div class="ys39-section-head"><div><span class="ys39-eyebrow">CREATIVE CONTROL ROOM</span><h2>Theme Studio · crea tu espacio</h2><p>Personaliza el acento, la profundidad y el ambiente de toda la interfaz.</p></div><span class="ys39-dna-mark">LIVE LAB</span></div><div class="ys39-theme-preview" id="ys39-theme-preview"><div class="ys39-preview-top"><i></i><i></i><i></i><span>YISUS MUSIC / YOUR STAGE</span></div><div class="ys39-preview-content"><div class="ys39-preview-disc">♫</div><div><b>Midnight frequency</b><small>Tu espacio · tus reglas</small><div class="ys39-preview-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div><div class="ys39-theme-controls"><label>Color principal<input type="color" id="ys39-accent" value="#35e07a"></label><label>Ambiente<select id="ys39-mood"><option value="deep">Deep space</option><option value="midnight">Midnight</option><option value="light">Soft light</option></select></label><label>Intensidad del brillo<input type="range" id="ys39-glow" min="0" max="100" value="45"></label></div><div class="ys39-presets"><button type="button" data-ys39-preset="#35e07a">NEON GREEN</button><button type="button" data-ys39-preset="#8b94ff">ULTRAVIOLET</button><button type="button" data-ys39-preset="#29c7d8">CYBER ICE</button><button type="button" data-ys39-preset="#ff719a">PULSE PINK</button><button type="button" data-ys39-preset="#f2b85b">AMBER</button></div><div class="ys39-actions"><button type="button" class="btn primary" id="ys39-theme-apply">Aplicar tema</button><button type="button" class="btn" id="ys39-theme-reset">Restaurar original</button></div><small class="ys39-note">Los cambios se aplican a la interfaz completa y se guardan en este dispositivo.</small></section>
 
     <div class="card">
       <div class="chead"><h2>Tema gaming y efectos</h2></div>
@@ -1717,7 +1898,8 @@ function dnaTerms(t){
   return Object.keys(dict).filter(function(k){return dict[k].test(raw)});
 }
 function dnaFeedback(t,delta,kind){if(!t||t._local)return;var d=S.dna||(S.dna={artists:{},terms:{},tracks:{},positive:0,negative:0});var aid=String(t.artistId||'');if(aid)d.artists[aid]=(d.artists[aid]||0)+delta;var tid=String(t.id||'');if(tid)d.tracks[tid]=(d.tracks[tid]||0)+delta;dnaTerms(t).forEach(function(k){d.terms[k]=(d.terms[k]||0)+delta});if(delta>0)d.positive++;if(delta<0)d.negative++;S.dna=d;save();}
-function dnaScore(t){var d=S.dna||{},n=0,aid=String(t.artistId||''),tid=String(t.id||'');n+=(d.artists&&d.artists[aid]||0)*1.15;n+=(d.tracks&&d.tracks[tid]||0)*1.8;dnaTerms(t).forEach(function(k){n+=(d.terms&&d.terms[k]||0)*0.7});return n;}
+function dnaScore(t){var d=S.dna||{},n=0,aid=String(t.artistId||''),tid=String(t.id||'');n+=(d.artists&&d.artists[aid]||0)*1.15;n+=(d.tracks&&d.tracks[tid]||0)*1.8;dnaTerms(t).forEach(function(k){n+=(d.terms&&d.terms[k]||0)*0.7;n+=(d.manual&&d.manual[k]||0)*2.5});return n;}
+S.dna.manual=S.dna.manual||{};
 function dnaSummary(){var d=S.dna||{},terms=Object.keys(d.terms||{}).filter(function(k){return d.terms[k]>0}).sort(function(a,b){return d.terms[b]-d.terms[a]}).slice(0,4);return terms.length?terms.join(' · '):'aprendiendo con tus escuchas';}
 function sel(){return S.sels.filter(function(s){return s.id===S.cur})[0]||S.sels[0]}
 
@@ -1933,10 +2115,12 @@ function artistRow(a,o){
 
 /* ---------- navegación ---------- */
 function goPage(n){
+  if(n==='home'&&window.renderYisusDNAStudio)window.renderYisusDNAStudio();
   if(n==='local')renderLocal();
   if(n==='radar'){loadRadar();renderGames()}
   if(n==='profile')renderMissions();
   if(n!=='duel')duelStop();
+  if(n!=='guess')guessStop();
   Array.prototype.forEach.call(document.querySelectorAll('.page'),function(p){p.classList.toggle('on',p.id==='p-'+n)});
   Array.prototype.forEach.call(document.querySelectorAll('#nav button'),function(b){b.classList.toggle('on',b.getAttribute('data-page')===n)});
   $('main').scrollTop=0;
@@ -2286,49 +2470,45 @@ function openAIMix(){
   var box=$('modalBody');
   var html='<div class="aimix-modal"><div class="kick">YISUS SMART DJ · PERSONAL DJ</div><h2>Tu DJ para cada lista</h2><p class="sub">Elige una sola lista. La IA trabajará únicamente con sus canciones y creará una sesión propia para ese estilo, sin mezclarla con otras listas.</p><h3>¿Qué lista tendrá su DJ?</h3><div class="aimix-playlists">';
   S.sels.forEach(function(s){html+='<label class="aimix-pick"><input type="radio" name="aimixPlaylist" value="'+esc(s.id)+'" '+(s.id===S.cur?'checked':'')+'><span><b>'+esc(s.name)+'</b><br><small>'+s.songs.length+' canciones · '+s.artists.length+' artistas</small></span></label>'});
-  html+='</div><label class="sub" for="aimixVibe">Estilo que debe seguir su DJ</label><select class="field" id="aimixVibe"><option value="flow">Fluida y equilibrada</option><option value="energy">Subida de energía · trap / drill / rage</option><option value="dark">Oscura y nocturna · underground</option><option value="electro">Electrónica + trap alternativo</option><option value="chill">Suave y atmosférica</option></select><label class="sub" for="aimixLength">Duración aproximada</label><select class="field" id="aimixLength"><option value="15">15 canciones</option><option value="25" selected>25 canciones</option><option value="40">40 canciones</option><option value="all">Todas las disponibles</option></select><div class="sub" id="aimixAiNote">'+(S.opt.aiKey?'✦ Claude está conectado: podrá elegir el orden según el ambiente.':'✦ Modo inteligente local. Para que una IA generativa decida el orden, conecta Claude en Ajustes.')+'</div><div class="aimix-actions"><button class="btn primary" id="runAIMix">✦ Activar DJ de esta lista</button><button class="btn" id="cancelAIMix">Cancelar</button></div><div class="aimix-status" id="aimixStatus" aria-live="polite"></div></div>';
+  html+='</div><label class="sub" for="aimixVibe">Personalidad de la sesión</label><select class="field" id="aimixVibe"><option value="flow">Cinematic Flow · empieza suave y evoluciona</option><option value="energy">High Energy · trap / drill / rage</option><option value="dark">Midnight · oscuro y underground</option><option value="electro">Neon Pulse · electrónica + trap alternativo</option><option value="chill">Afterhours · suave y atmosférica</option></select><label class="sub" for="aimixLength">Duración aproximada</label><select class="field" id="aimixLength"><option value="15">15 canciones</option><option value="25" selected>25 canciones</option><option value="40">40 canciones</option><option value="all">Todas las disponibles</option></select><label class="aimix-smooth"><input type="checkbox" id="aimixSmooth" '+(S.opt.dj?'checked':'')+'><span><b>Transiciones suaves</b><small>Fundidos de entrada y salida cuando el reproductor lo permite.</small></span></label><div class="aimix-dj-note"><b>Cómo construye el set</b><span>Ordena canciones por energía estimada, variedad de artistas y ambiente. No analiza BPM reales ni mezcla listas ajenas.</span></div><div class="sub" id="aimixAiNote">'+(S.opt.aiKey?'✦ Claude está conectado: podrá elegir el orden según el ambiente.':'✦ Modo inteligente local. Para que una IA generativa decida el orden, conecta Claude en Ajustes.')+'</div><div class="aimix-actions"><button class="btn primary" id="runAIMix">✦ Activar DJ de esta lista</button><button class="btn" id="cancelAIMix">Cancelar</button></div><div class="aimix-status" id="aimixStatus" aria-live="polite"></div></div>';
   box.innerHTML=html;$('modal').className='modal';
   $('cancelAIMix').onclick=closeModal;
   $('runAIMix').onclick=createAIMix;
 }
 function mixLocalOrder(tracks,vibe){
-  // Curva de energía estimada por metadatos y popularidad: no afirma conocer BPM reales.
-  function energy(t){var z=(String(t.title||'')+' '+String(t.artist||'')).toLowerCase(),r=Number(t.rank)||0,e=.35+(r/1000000)*.35;
-    if(/rage|phonk|drill|hard|fast|aggressive|trap|punk/.test(z))e+=.28;
-    if(/ambient|chill|slow|dream|night|acoustic|piano/.test(z))e-=.22;
-    if(/electro|electronic|synth|techno|house|hyper/.test(z))e+=.12;
-    if(vibe==='energy')e+=/rage|drill|phonk|hard|trap/.test(z)?.35:0;
-    if(vibe==='dark')e+=/dark|night|shadow|underground/.test(z)?.25:0;
-    if(vibe==='electro')e+=/electro|electronic|synth|techno|house|hyper/.test(z)?.3:0;
-    if(vibe==='chill')e-=.25;
-    return Math.max(0,Math.min(1,e));
+  // DJ local: estima energía por metadatos, no inventa BPM ni analiza el audio.
+  function energy(t){
+    var z=(String(t.title||'')+' '+String(t.artist||'')).toLowerCase(),r=Number(t.rank)||0,e=.34+Math.min(.25,r/1200000);
+    if(/rage|phonk|drill|hard|fast|aggressive|trap|punk/.test(z))e+=.25;
+    if(/ambient|chill|slow|dream|night|acoustic|piano/.test(z))e-=.2;
+    if(/electro|electronic|synth|techno|house|hyper/.test(z))e+=.13;
+    if(vibe==='energy'&&/rage|drill|phonk|hard|trap/.test(z))e+=.22;
+    if(vibe==='dark'&&/dark|night|shadow|underground|noir/.test(z))e+=.2;
+    if(vibe==='electro'&&/electro|electronic|synth|techno|house|hyper/.test(z))e+=.22;
+    if(vibe==='chill')e-=.18;
+    return Math.max(.05,Math.min(.98,e));
   }
-  var remaining=tracks.map(function(t){return {t:t,e:energy(t)}}),out=[],last='',step=0,n=remaining.length;
-  while(remaining.length){var progress=out.length/Math.max(1,n-1),target;
-    if(vibe==='chill')target=.25+Math.sin(progress*Math.PI)*.25;
-    else if(vibe==='energy'||vibe==='electro')target=.25+progress*.65;
-    else if(vibe==='dark')target=.38+Math.sin(progress*Math.PI)*.22;
-    else target=.28+Math.sin(progress*Math.PI)*.42;
-    remaining.sort(function(a,b){var ap=Math.abs(a.e-target)+(String(a.t.artistId)===String(last)?.22:0),bp=Math.abs(b.e-target)+(String(b.t.artistId)===String(last)?.22:0);return ap-bp});
-    var chosen=remaining.shift();out.push(chosen.t);last=chosen.t.artistId;step++;
+  var remaining=tracks.map(function(t,i){return {t:t,e:energy(t),i:i}}),out=[],lastArtist='',n=remaining.length;
+  while(remaining.length){
+    var progress=out.length/Math.max(1,n-1),target;
+    if(vibe==='chill')target=.25+Math.sin(progress*Math.PI)*.22;
+    else if(vibe==='energy')target=.48+Math.sin(progress*Math.PI*.72)*.42;
+    else if(vibe==='electro')target=.34+progress*.48;
+    else if(vibe==='dark')target=.42+Math.sin(progress*Math.PI)*.2;
+    else target=.22+Math.sin(progress*Math.PI)*.52;
+    remaining.sort(function(a,b){
+      function cost(x){var same=String(x.t.artistId||x.t.artist)===String(lastArtist)? .24:0;return Math.abs(x.e-target)+same+(x.i*.000001)}
+      return cost(a)-cost(b);
+    });
+    var chosen=remaining.shift();out.push(chosen.t);lastArtist=chosen.t.artistId||chosen.t.artist;
   }
   return out;
-}
-async function orderWithClaude(tracks,vibe){
-  var list=tracks.map(function(t,i){return i+' | '+t.artist+' - '+t.title+' | popularidad '+(t.rank||0)}).join('\n');
-  var prompt='Eres DJ y selector musical. Ordena estas canciones para una mezcla continua con transiciones de energía naturales y sin repetir artista en canciones consecutivas cuando sea posible. Ambiente: '+vibe+'. Devuelve SOLO un array JSON con los índices de las canciones, cada índice una sola vez, sin explicación. Canciones:\n'+list;
-  var r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'content-type':'application/json','x-api-key':S.opt.aiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:S.opt.aiModel||'claude-sonnet-5-5',max_tokens:Math.min(1200,tracks.length*8+100),messages:[{role:'user',content:prompt}]})});
-  var j=await r.json().catch(function(){return {}});if(!r.ok)throw new Error((j.error&&j.error.message)||('Claude respondió '+r.status));
-  var raw=(j.content||[]).map(function(x){return x.text||''}).join('').trim().replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/,'');
-  var ids=JSON.parse(raw);if(!Array.isArray(ids))throw new Error('La IA no devolvió un orden válido');
-  var seen={},out=[];ids.forEach(function(i){i=Number(i);if(Number.isInteger(i)&&i>=0&&i<tracks.length&&!seen[i]){seen[i]=1;out.push(tracks[i])}});
-  tracks.forEach(function(t,i){if(!seen[i])out.push(t)});return out;
 }
 async function createAIMix(){
   var selected=document.querySelector('.aimix-pick input[name="aimixPlaylist"]:checked');
   var ids=selected?[selected.value]:[];
   if(!ids.length){$('aimixStatus').textContent='Elige una lista para activar su DJ.';return}
-  var vibe=$('aimixVibe').value,lim=$('aimixLength').value,btn=$('runAIMix');btn.disabled=true;btn.textContent='Preparando mezcla…';
+  var vibe=$('aimixVibe').value,lim=$('aimixLength').value,btn=$('runAIMix');S.opt.dj=!!$('aimixSmooth').checked;save();paintToggles();btn.disabled=true;btn.textContent='Preparando mezcla…';
   var status=$('aimixStatus');status.textContent='Reuniendo canciones y evitando duplicados…';
   try{
     var lists=S.sels.filter(function(s){return s.id===ids[0]}),tracks=[],seen={};
@@ -2364,6 +2544,7 @@ function paintNow(t){
 }
 function engineChip(txt){var c=$('engChip');if(c)c.textContent=txt}
 function play(t){
+  if(autoAdvancePendingFor&&autoAdvancePendingFor!==t)autoAdvancePendingFor=null;
   cur=t;playedAt=Date.now();djGone=false;t._try=0;
   t._dnaAtStart=Date.now();
   if(!t._local)markSeen(t.id);
@@ -2385,6 +2566,18 @@ function stopForTransition(){
   try{audio.pause()}catch(e){}
   try{if(yp&&ypReady){yp.stopVideo();yp.clearVideo()}}catch(e){}
   uiPlaying(false);
+}
+/* Avance automático robusto: evita perder el final y evita dobles saltos. */
+var autoAdvancePendingFor=null;
+function autoAdvanceEnded(){
+  var endedTrack=cur;
+  if(!endedTrack||autoAdvancePendingFor===endedTrack)return;
+  autoAdvancePendingFor=endedTrack;
+  Promise.resolve().then(function(){
+    if(cur===endedTrack)return next(false,true);
+  }).catch(function(err){console.warn('YISUS auto-next:',err)}).finally(function(){
+    if(autoAdvancePendingFor===endedTrack)autoAdvancePendingFor=null;
+  });
 }
 async function next(skip,auto){
   if(favoriteListMode){advanceFavorite(1);return}
@@ -2433,11 +2626,11 @@ function tick(ct,d){
   $('seek').value=d?ct/d*1000:0;paintRange($('seek'));$('cur').textContent=fmt(ct);$('dur').textContent=fmt(d);
   if(S.opt.dj){
     if(ct<1.5)f=ct/1.5;if(rem<2.5)f=Math.min(f,Math.max(0,rem/2.5));
-    if(rem<.5&&!djGone&&d>5){djGone=true;next(false,true)}
+    /* El fundido solo baja el volumen; el evento ended realiza el cambio. */
   }
   if(!djFxBusy)setVol(S.opt.vol/100*f);
 }
-audio.addEventListener('ended',function(){if(engine==='preview'&&!djGone)next(false,true)});
+audio.addEventListener('ended',function(){if(engine==='preview')autoAdvanceEnded()});
 audio.addEventListener('play',function(){if(engine==='preview')uiPlaying(true)});
 audio.addEventListener('pause',function(){if(engine==='preview')uiPlaying(false)});
 audio.addEventListener('error',async function(){
@@ -2572,7 +2765,7 @@ function makeYP(){
         if(engine!=='yt')return;
         if(e.data===1)uiPlaying(true);
         else if(e.data===2)uiPlaying(false);
-        else if(e.data===0){uiPlaying(false);if(!djGone)next(false,true)}
+        else if(e.data===0){uiPlaying(false);autoAdvanceEnded()}
       },
       onError:async function(e){
         if(engine!=='yt'||!cur)return;
@@ -3521,6 +3714,39 @@ function duelPick(pair,i){
   duelShow();
 }
 $('duelStart').onclick=duelStart;
+
+/* ---------- YISUS GAME: adivina la canción ---------- */
+var GU=null,guessAudio=new Audio(),guessClipTimer=null,guessPool=[];
+function guessStop(){if(guessClipTimer){clearTimeout(guessClipTimer);guessClipTimer=null}try{guessAudio.pause();guessAudio.currentTime=0}catch(e){}var d=$('guessDisc');if(d)d.classList.remove('playing')}
+function guessTrackPool(){
+  var raw=[];S.sels.forEach(function(s){(s.songs||[]).forEach(function(t){raw.push(t)})});
+  (queue||[]).forEach(function(t){raw.push(t)});(S.hist||[]).forEach(function(t){raw.push(t)});
+  var seen={},out=[];raw.forEach(function(t){if(!t||!t.preview||!t.title||!t.artist||t._local)return;var key=String(t.id||'')+'|'+String(t.artist)+'|'+String(t.title);if(seen[key])return;seen[key]=1;out.push({id:t.id||key,title:String(t.title),artist:typeof t.artist==='string'?t.artist:(t.artist.name||'Artista desconocido'),preview:t.preview,art:t.art||''})});
+  return out;
+}
+function guessRefreshPool(){guessPool=guessTrackPool();var info=$('guessPoolInfo');if(info)info.textContent=guessPool.length+' canciones con fragmento disponible. Necesitas al menos 4 para jugar.';var b=$('guessStart');if(b)b.disabled=guessPool.length<4;return guessPool}
+function guessStats(){var g=S.guessStats||{best:0,games:0,wins:0};$('guessBest').textContent=g.best||0;$('guessGames').textContent=g.games||0;$('guessWins').textContent=g.wins||0}
+async function guessStart(){
+  guessStop();var pool=guessRefreshPool();if(pool.length<4){$('guessPoolInfo').textContent='Buscando canciones para preparar la partida…';try{await refill()}catch(e){}pool=guessRefreshPool()}if(pool.length<4){toast('Necesitas al menos 4 canciones con vista previa. Guarda canciones o carga más música en Inicio.');return}
+  if(engine==='yt'&&yp&&ypReady){try{yp.pauseVideo()}catch(e){}}else{try{audio.pause()}catch(e){}}
+  var rounds=Math.min(parseInt($('guessRounds').value,10)||10,pool.length),deck=shuffle(pool.slice()).slice(0,rounds);
+  GU={deck:deck,index:0,score:0,streak:0,wins:0,answered:false,plays:0,hinted:false,difficulty:$('guessDifficulty').value};
+  $('guessSetup').classList.add('hide');$('guessResult').classList.add('hide');$('guessGame').classList.remove('hide');guessShow();
+}
+function guessShow(){
+  if(!GU)return;guessStop();var t=GU.deck[GU.index],opts=[t];var others=shuffle(guessPool.filter(function(x){return x!==t&&x.title!==t.title})).slice(0,3);opts=shuffle(opts.concat(others));
+  if(opts.length<4){guessEnd();return}GU.current=t;GU.options=opts;GU.answered=false;GU.plays=0;GU.hinted=false;
+  $('guessRound').textContent='RONDA '+(GU.index+1)+'/'+GU.deck.length;$('guessScore').textContent=GU.score;$('guessStreak').textContent=GU.streak;$('guessProgress').style.width=(GU.index/GU.deck.length*100)+'%';$('guessStatus').textContent='Pulsa reproducir para escuchar el fragmento.';$('guessHintText').textContent='';$('guessFeedback').textContent='';$('guessNext').classList.add('hide');$('guessPlay').disabled=false;$('guessPlay').textContent='▶ Escuchar fragmento';$('guessHint').disabled=false;$('guessDisc').classList.remove('playing');
+  var box=$('guessOptions');box.innerHTML='';['A','B','C','D'].forEach(function(letter,i){var x=opts[i],b=el('button','guess-option');b.type='button';b.innerHTML='<span class="letter">'+letter+'</span><span><b>'+esc(x.title)+'</b><small>'+esc(x.artist)+'</small></span>';b.onclick=function(){guessAnswer(i,b)};box.appendChild(b)});
+}
+function guessPlay(){if(!GU||GU.answered)return;var t=GU.current;guessStop();GU.plays++;var duration=GU.difficulty==='easy'?8:GU.difficulty==='hard'?3:5;$('guessStatus').textContent='Escuchando… '+duration+' segundos';$('guessPlay').textContent='↻ Repetir ('+(3-GU.plays)+' restantes)';$('guessPlay').disabled=GU.plays>=3;guessAudio.src=t.preview;guessAudio.volume=Math.max(0,Math.min(1,(S.opt.vol||80)/100));var started=false;guessAudio.onplaying=function(){started=true;$('guessDisc').classList.add('playing')};guessAudio.onended=function(){guessStop();$('guessStatus').textContent='Fragmento terminado. Elige tu respuesta.'};guessAudio.onerror=function(){guessStop();$('guessStatus').textContent='No se pudo cargar este fragmento. Prueba otra ronda.';$('guessPlay').disabled=false};guessAudio.play().then(function(){guessClipTimer=setTimeout(function(){guessStop();$('guessStatus').textContent='Fragmento terminado. ¿Cuál era?';},duration*1000)}).catch(function(){guessStop();$('guessStatus').textContent='El navegador no pudo reproducirlo. Pulsa otra vez.';$('guessPlay').disabled=false});}
+function guessHint(){if(!GU||GU.answered||GU.hinted)return;GU.hinted=true;GU.score=Math.max(0,GU.score-3);$('guessScore').textContent=GU.score;$('guessHintText').textContent='Pista: el artista es «'+GU.current.artist+'».';$('guessHint').disabled=true}
+function guessAnswer(i,btn){if(!GU||GU.answered)return;GU.answered=true;guessStop();var correct=GU.options[i]===GU.current;var buttons=$('guessOptions').querySelectorAll('button');Array.prototype.forEach.call(buttons,function(b,j){b.disabled=true;if(GU.options[j]===GU.current)b.classList.add('correct')});if(!correct)btn.classList.add('wrong');if(correct){GU.streak++;GU.wins++;var points=GU.hinted?5:10;points+=Math.min(10,(GU.streak-1)*2);GU.score+=points;addXP(2);$('guessFeedback').textContent='🔥 ¡Correcto! +'+points+' puntos · '+GU.current.title+' — '+GU.current.artist;dnaFeedback({id:GU.current.id,title:GU.current.title,artist:GU.current.artist,artistId:''},1,'guess')}else{GU.streak=0;$('guessFeedback').textContent='Casi. Era «'+GU.current.title+'» de '+GU.current.artist+'.'}$('guessScore').textContent=GU.score;$('guessStreak').textContent=GU.streak;$('guessStatus').textContent='Respuesta registrada.';$('guessPlay').disabled=true;$('guessHint').disabled=true;$('guessNext').classList.remove('hide');$('guessNext').textContent=GU.index===GU.deck.length-1?'Ver resultados →':'Siguiente ronda →';}
+function guessNext(){if(!GU)return;GU.index++;if(GU.index>=GU.deck.length){guessEnd();return}guessShow()}
+function guessEnd(){guessStop();var g=S.guessStats||(S.guessStats={best:0,games:0,wins:0});g.games++;g.wins+=GU?GU.wins:0;g.best=Math.max(g.best,GU?GU.score:0);save();guessStats();$('guessGame').classList.add('hide');var score=GU?GU.score:0,wins=GU?GU.wins:0,total=GU?GU.deck.length:0;GU=null;var r=$('guessResult');r.innerHTML='<span class="kick">YISUS MUSIC · GAME OVER</span><h2>Partida completada</h2><div class="bigscore">'+score+'</div><b>PUNTOS</b><p class="sub">Has acertado '+wins+' de '+total+' canciones. '+(wins===total?'¡Perfecto! Tienes oído de DJ.':wins>=Math.ceil(total*.7)?'Muy buena partida. Vas afinando el oído.':'Sigue jugando y supera tu récord.')+'</p><button type="button" class="btn primary" id="guessAgain">↻ Jugar otra vez</button><button type="button" class="btn" id="guessBack">Cambiar dificultad</button>';r.classList.remove('hide');$('guessProgress').style.width='100%';$('guessAgain').onclick=guessStart;$('guessBack').onclick=function(){r.classList.add('hide');$('guessSetup').classList.remove('hide');guessRefreshPool()};}
+$('guessStart').onclick=guessStart;$('guessPlay').onclick=guessPlay;$('guessHint').onclick=guessHint;$('guessNext').onclick=guessNext;
+$('guessDifficulty').onchange=guessRefreshPool;$('guessRounds').onchange=guessRefreshPool;
+guessRefreshPool();guessStats();
 
 /* ---------- panel DJ (efectos sin WebAudio, para no romper el segundo plano) ---------- */
 var djFxBusy=false;
@@ -4652,7 +4878,7 @@ function makeYP(){
         if(engine!=='yt')return;
         if(e.data===1)uiPlaying(true);
         else if(e.data===2)uiPlaying(false);
-        else if(e.data===0){uiPlaying(false);if(!djGone)next(false,true)}
+        else if(e.data===0){uiPlaying(false);autoAdvanceEnded()}
       },
       onError:async function(e){
         if(engine!=='yt'||!cur)return;
@@ -5694,7 +5920,7 @@ try{fl(theme)}catch(e){}
   q('.tn-flows').textContent=t.f?'🔥 '+t.f+' Flow'+(t.f>1?'s':''):''}
  function ui(){
   var g=totals(),gi=lvIdx(g.T,GL);
-  box.innerHTML='<div class="fx-box" style="--lc:'+LC[gi]+'">'+ring(g.T,GL,48)+'<div class="fx-t"><div class="fx-k">Sintonía IA</div><b>'+LV[gi].n+'</b><div class="fx-s"><em>'+fmt(GS(g.T))+'</em> / 10.000</div></div><div class="fx-lv"><b>'+(gi+1)+'</b><small>/10</small></div></div>'+dots(g.T,GL)+'<div class="tn-f"><span><b>'+g.F+'</b> Flow'+(g.F===1?'':'s')+'</span><small>Abrir Flow ›</small></div>';
+  box.innerHTML='<div class="fx-box" style="--lc:'+LC[gi]+'">'+ring(g.T,GL,48)+'<div class="fx-t"><div class="fx-k">Sintonía IA</div><b>'+LV[gi].n+'</b><div class="fx-s"><em>'+fmt(GS(g.T))+'</em> / 10.000</div></div><div class="fx-lv"><b>'+(gi+1)+'</b><small>/10</small></div></div>'+dots(g.T,GL)+'<div class="ys-flow-track" aria-label="Progreso global de Flow"><i style="width:'+GS(g.T)+'%"></i></div><div class="tn-f"><span><b>🔥 '+g.F+'</b> Flow'+(g.F===1?'':'s')+'</span><small>Abrir marcador ↗</small></div>';
   var s=sel();if(!s)return;var t=tn(s),li=lvIdx(t.p,LA);
   if(card.__sid!==s.id||!card.querySelector('.tn-head')){card.innerHTML=skel();card.__sid=s.id;$$('tnBoard').onclick=openBoard;$$('tnRm').onclick=toggleRm}
   paint(s,t,li);var sc=SC(t.p);cnt(card.querySelector('.tn-score'),LAST[s.id]==null?sc:LAST[s.id],sc);LAST[s.id]=sc;
@@ -5886,6 +6112,704 @@ bind(document.querySelector('.pbar'));bind(document.getElementById('hero'));bind
 /* aviso la primera vez que suena una canción */
 try{if(!localStorage.getItem('ys_swipe_hint')){var f=function(){audio.removeEventListener('playing',f);localStorage.setItem('ys_swipe_hint','1');setTimeout(function(){toast('Desliza hacia la derecha para pasar de canción')},1500)};audio.addEventListener('playing',f)}}catch(e){}
 }catch(e){console.warn('Deslizar',e)}})();
+</script>
+
+<style id="yisus-v31-polish">
+/* YISUS MUSIC V31 — controles, ADN, listas y experiencia visual */
+:root{
+  --ys-ease:cubic-bezier(.2,.8,.2,1);
+  --ys-glow:0 0 24px rgba(var(--rgb),.18);
+}
+button,.btn,.chip,.icon-btn,.thc,.mode-switch button{
+  -webkit-tap-highlight-color:transparent;
+}
+button:focus-visible,.btn:focus-visible,.chip:focus-visible,.icon-btn:focus-visible{
+  outline:2px solid var(--g)!important;outline-offset:3px!important;
+}
+.btn{
+  min-height:39px;justify-content:center;font-weight:650;letter-spacing:.005em;
+  box-shadow:0 3px 12px rgba(0,0,0,.12);
+}
+.btn:not(:disabled):active{transform:translateY(1px) scale(.975)}
+.btn.primary{
+  background:linear-gradient(135deg,var(--g),var(--g2));
+  border-color:transparent;color:#06130a;
+  box-shadow:0 7px 22px rgba(var(--rgb),.2),inset 0 1px 0 rgba(255,255,255,.25);
+}
+.btn.primary:hover{filter:brightness(1.1);box-shadow:0 9px 30px rgba(var(--rgb),.3)}
+.btn.danger{color:#ff9ba4;border-color:rgba(255,101,115,.24);background:rgba(255,101,115,.06)}
+.btn.danger:hover{background:rgba(255,101,115,.14);border-color:#ff6573;color:#fff}
+.btn:disabled{filter:saturate(.4);box-shadow:none}
+.icon-btn{width:40px;height:40px;border:1px solid transparent;flex:none}
+.icon-btn:focus-visible{background:rgba(var(--rgb),.12)}
+.icon-btn .ic{width:18px;height:18px}
+.btn .ic{width:16px;height:16px}
+
+/* ADN / Sintonía IA: se presenta como un panel interactivo real */
+#tuneBox{
+  position:relative;display:block;margin:0 2px 18px;padding:13px 13px 11px;
+  border:1px solid rgba(var(--rgb),.23);border-radius:16px;
+  background:linear-gradient(145deg,rgba(var(--rgb),.105),rgba(255,255,255,.025) 55%,rgba(0,0,0,.12));
+  box-shadow:0 8px 24px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.055);
+  cursor:pointer;transition:transform .22s var(--ys-ease),border-color .22s,box-shadow .22s;
+  overflow:hidden;
+}
+#tuneBox:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(180deg,var(--g),transparent);opacity:.8}
+#tuneBox:hover{transform:translateY(-2px);border-color:rgba(var(--rgb),.5);box-shadow:var(--ys-glow),0 12px 30px rgba(0,0,0,.24)}
+#tuneBox:focus-visible{outline:2px solid var(--g);outline-offset:3px}
+#tuneBox .fx-box{gap:10px}
+#tuneBox .fx-ring{width:46px;height:46px;filter:drop-shadow(0 0 9px var(--lc))}
+#tuneBox .fx-k{font-size:9px;letter-spacing:.18em;font-weight:800}
+#tuneBox .fx-t b{font-size:14px;letter-spacing:.01em}
+#tuneBox .fx-s em{color:var(--tx);font-size:14px;font-weight:900}
+#tuneBox .fx-lv b{font-size:25px;text-shadow:0 0 16px var(--lc)}
+#tuneBox .fx-dots{margin:10px 0 8px;gap:3px}
+#tuneBox .fx-dots i{height:4px;border-radius:8px}
+#tuneBox .tn-f{font-size:11px;align-items:center}
+#tuneBox .tn-f small{color:var(--g);font-weight:800;letter-spacing:.04em}
+.tn-card{
+  position:relative;overflow:hidden;
+  background:linear-gradient(145deg,rgba(var(--rgb),.075),var(--s1) 48%);
+  border-color:rgba(var(--rgb),.22)!important;
+}
+.tn-card:after{content:"";position:absolute;right:-70px;top:-95px;width:210px;height:210px;border-radius:50%;border:1px solid rgba(var(--rgb),.1);box-shadow:0 0 0 24px rgba(var(--rgb),.025),0 0 0 50px rgba(var(--rgb),.018);pointer-events:none}
+.tn-head{position:relative;z-index:1}
+.tn-btns .btn{min-height:35px}
+.tn-ttl{letter-spacing:.03em!important;text-transform:uppercase;font-size:10px!important}
+.tn-name{font-size:clamp(16px,2vw,20px)!important}
+.tn-sc b{font-variant-numeric:tabular-nums;text-shadow:0 0 18px rgba(var(--rgb),.2)}
+.tn-track{height:12px!important;border:1px solid rgba(255,255,255,.07)}
+.tn-rules span{border-radius:999px;padding:5px 9px!important;background:rgba(255,255,255,.025)}
+.tn-ring{filter:drop-shadow(0 0 12px rgba(var(--rgb),.22))}
+
+/* Quitar canciones: botón visible y claramente distinguible */
+#songs .row{gap:10px;padding:10px 12px;border-bottom:1px solid rgba(var(--lt),.055)}
+#songs .row .rx{gap:5px}
+#songs .row .tn-del{
+  width:36px;height:36px;border-radius:11px;opacity:.78;
+  color:#ff8993;border:1px solid rgba(255,101,115,.18);
+  background:rgba(255,101,115,.055);
+  transition:all .18s var(--ys-ease);
+}
+#songs .row .tn-del:hover{
+  opacity:1;color:#fff;background:#d94355;border-color:#ff6573;
+  box-shadow:0 0 18px rgba(255,75,95,.25);transform:scale(1.06);
+}
+#songs .row .tn-del:active{transform:scale(.92)}
+#songs .row .tn-del .ic{width:17px;height:17px}
+#songs .row:hover .tn-del{opacity:1}
+body.rm-mode #songs .row{border-radius:10px;margin:3px 0}
+body.rm-mode #songs .row.picked{
+  background:rgba(255,75,95,.12)!important;
+  outline:1px solid rgba(255,101,115,.55);
+  box-shadow:inset 3px 0 #ff6573;
+}
+body.rm-mode #songs .row.picked:before{
+  border-color:#ff6573;background:#ff6573;
+  box-shadow:inset 0 0 0 4px var(--pan2,#111);
+}
+#rmBar,#undoBar{
+  border-radius:16px;padding:11px 14px;
+  background:linear-gradient(135deg,rgba(var(--pan),.98),rgba(var(--pan2),.98));
+  border-color:rgba(var(--rgb),.25);
+  box-shadow:0 16px 48px rgba(0,0,0,.48),0 0 22px rgba(var(--rgb),.08);
+  backdrop-filter:blur(18px);
+}
+#rmBar>span b{color:var(--g);font-size:16px}
+#rmBar #rmGo{background:#d94355;color:white;border-color:#ff6573}
+#rmBar #rmGo:disabled{background:var(--s2);color:var(--dim);border-color:var(--line)}
+#undoBar button{padding:7px 11px;border-radius:9px;background:rgba(var(--rgb),.12)}
+#undoBar button:hover{background:rgba(var(--rgb),.22)}
+
+/* Temas: tarjetas con muestra, estado activo y feedback */
+.thgrid{gap:11px!important}
+.thc{
+  position:relative;overflow:hidden;min-height:88px;padding:12px!important;
+  border-radius:14px!important;background:linear-gradient(145deg,var(--s2),rgba(255,255,255,.018))!important;
+  border-color:rgba(var(--lt),.13)!important;
+  transition:transform .2s var(--ys-ease),border-color .2s,box-shadow .2s!important;
+}
+.thc:hover{transform:translateY(-3px);border-color:rgba(var(--rgb),.45)!important;box-shadow:0 10px 24px rgba(0,0,0,.22),0 0 18px rgba(var(--rgb),.08)}
+.thc i{height:38px!important;border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 5px 12px rgba(0,0,0,.18)}
+.thc b{font-size:13px!important;letter-spacing:.015em}
+.thc small{font-size:10px!important}
+.thc.on{
+  border-color:var(--g)!important;
+  box-shadow:0 0 0 1px rgba(var(--rgb),.3),0 0 24px rgba(var(--rgb),.16)!important;
+}
+.thc.on:after{content:"✓ ACTIVO";position:absolute;right:8px;top:8px;font-size:8px;font-weight:900;letter-spacing:.1em;color:var(--g);background:rgba(var(--pan2),.85);padding:4px 6px;border-radius:6px}
+#fxChips{gap:9px}
+#fxChips .chip{min-height:38px;padding:8px 13px;font-weight:700}
+#fxChips .chip.on{box-shadow:0 0 16px rgba(var(--rgb),.12)}
+.fxopts{gap:9px!important}
+.fxopts>*{border-radius:12px!important}
+#fxDesc{padding:10px 12px;border-left:2px solid var(--g);background:rgba(var(--rgb),.045);border-radius:0 10px 10px 0;line-height:1.55}
+
+/* Player, navegación y controles secundarios */
+.nav button{min-height:42px}
+.nav button.on{position:relative}
+.nav button.on:after{content:"";position:absolute;right:8px;width:5px;height:5px;border-radius:50%;background:var(--g);box-shadow:0 0 10px var(--g)}
+.pctrl .icon-btn{width:38px;height:38px}
+.pctrl .playbtn{width:46px;height:46px}
+.tg{padding:7px 12px;border-radius:999px}
+input[type=range].rng{height:6px}
+input[type=range].rng::-webkit-slider-thumb{width:16px;height:16px;box-shadow:0 0 0 4px rgba(var(--rgb),.12),0 0 12px rgba(var(--rgb),.3)}
+input[type=range].rng::-moz-range-thumb{width:16px;height:16px;box-shadow:0 0 0 4px rgba(var(--rgb),.12),0 0 12px rgba(var(--rgb),.3)}
+.row{transition:background .18s,border-color .18s,transform .18s}
+.row:focus-within{outline:1px solid rgba(var(--rgb),.35)}
+#toast{backdrop-filter:blur(16px);box-shadow:0 12px 36px rgba(0,0,0,.35)}
+@media(max-width:900px){
+  #tuneBox{margin:8px 0 10px;padding:10px}
+  #tuneBox .fx-ring{width:40px;height:40px}
+  .thgrid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #songs .row .tn-del{opacity:1;width:38px;height:38px}
+  #rmBar,#undoBar{bottom:calc(100px + env(safe-area-inset-bottom));max-width:calc(100vw - 20px);white-space:normal}
+}
+@media(max-width:430px){
+  .thgrid{gap:8px!important}
+  .thc{min-height:82px;padding:9px!important}
+  .tn-head{gap:10px}
+  .tn-ring{width:58px!important;height:58px!important}
+  .tn-btns{width:100%}
+  .tn-btns .btn{flex:1}
+}
+@media(prefers-reduced-motion:reduce){
+  #tuneBox,.thc,.btn,.icon-btn,.row{transition:none!important}
+}
+</style>
+
+
+<style id="yisus-v33-profile-dna">
+/* V33 — Discord-inspired identity studio + visual DNA */
+:root{--ys-discord:#5865f2;--ys-discord2:#8b94ff;--ys-panel:rgba(20,22,31,.88)}
+#p-profile .stp{position:relative!important;border:1px solid rgba(140,150,255,.24)!important;border-radius:22px!important;background:linear-gradient(145deg,rgba(34,37,52,.97),rgba(17,19,27,.98))!important;box-shadow:0 22px 65px rgba(0,0,0,.34),0 0 40px rgba(88,101,242,.08)!important}
+#p-profile .stp-ban{height:190px!important;background-color:#30344b!important;background-image:linear-gradient(115deg,rgba(88,101,242,.28),rgba(34,211,238,.10))!important;background-size:cover!important;position:relative!important}
+#p-profile .stp-ban:after{content:"YISUS COMMUNITY PROFILE";position:absolute;right:20px;bottom:16px;color:#fff9;font-size:10px;font-weight:900;letter-spacing:.2em;text-shadow:0 2px 10px #000}
+#p-profile .stp-body{padding:0 26px 24px!important;margin-top:-58px!important;gap:20px!important;align-items:flex-end!important}
+#p-profile .stp-av{width:116px!important;height:116px!important;filter:drop-shadow(0 8px 18px #0008)}
+#p-profile .stp-av .img{inset:7px!important;background:#202331!important;border:4px solid #222532!important}
+#p-profile .stp-info{padding-top:65px!important;min-width:220px!important}
+#p-profile .stp-info h2{font-size:clamp(24px,3vw,32px)!important;letter-spacing:-.04em!important;color:#fff!important}
+#p-profile .stp-info .st{color:#b6bac8!important;font-size:13px!important}
+#p-profile .stp-info .bio{color:#e1e3eb!important;background:rgba(255,255,255,.045)!important;border:1px solid rgba(255,255,255,.07)!important;border-radius:12px!important;padding:10px 12px!important;max-width:720px!important}
+#p-profile .stp-chips span{background:rgba(88,101,242,.17)!important;border:1px solid rgba(139,148,255,.25)!important;color:#cdd1ff!important;padding:6px 10px!important;font-weight:750!important}
+#p-profile .stp-info .pin,#p-profile .stp-info .tops{background:rgba(255,255,255,.045)!important;border:1px solid rgba(255,255,255,.07)!important;border-radius:12px!important;padding:9px 11px!important;width:fit-content;max-width:100%}
+#p-profile .stu{border:1px solid rgba(139,148,255,.2)!important;border-radius:22px!important;background:linear-gradient(150deg,rgba(30,32,45,.96),rgba(17,19,27,.98))!important;padding:22px!important;box-shadow:0 18px 55px #0003!important}
+#p-profile .stu>.chead h2{font-size:21px!important;letter-spacing:-.03em!important}
+#p-profile .stu>.sub{line-height:1.65!important;color:#aeb3c5!important;max-width:760px}
+#stPanel{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important;align-items:start!important;margin-top:18px!important}
+#stPanel .ys-studio-section{min-width:0!important;padding:17px!important;border-radius:17px!important;border:1px solid rgba(255,255,255,.075)!important;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018))!important;box-shadow:inset 0 1px rgba(255,255,255,.035)!important}
+#stPanel .ys-studio-section>h3{margin:0 0 14px!important;padding:0 0 11px!important;border-bottom:1px solid rgba(139,148,255,.18)!important;color:#c8ccff!important;font-size:13px!important;font-weight:900!important;letter-spacing:.11em!important;text-transform:uppercase!important}
+#stPanel .ys-studio-section .row{display:grid!important;grid-template-columns:minmax(105px,.7fr) minmax(0,1.3fr)!important;gap:10px!important;align-items:center!important;margin:10px 0!important}
+#stPanel .ys-studio-section .row>label{min-width:0!important;color:#aeb3c5!important;font-size:12px!important;font-weight:750!important}
+#stPanel .ys-studio-section input[type=text],#stPanel .ys-studio-section textarea,#stPanel .ys-studio-section select{width:100%!important;min-width:0!important;background:rgba(9,11,18,.72)!important;color:#f3f4fa!important;border:1px solid rgba(150,158,190,.22)!important;border-radius:11px!important;padding:11px 12px!important;outline:none!important;transition:border-color .18s,box-shadow .18s!important}
+#stPanel .ys-studio-section input:focus,#stPanel .ys-studio-section textarea:focus,#stPanel .ys-studio-section select:focus{border-color:#818cf8!important;box-shadow:0 0 0 3px rgba(88,101,242,.16)!important}
+#stPanel .ys-studio-section button{border-radius:11px!important;border:1px solid rgba(139,148,255,.2)!important;background:rgba(88,101,242,.12)!important;color:#e7e9ff!important;padding:9px 12px!important;font-weight:750!important;transition:transform .18s,border-color .18s,background .18s!important}
+#stPanel .ys-studio-section button:hover{transform:translateY(-2px)!important;background:rgba(88,101,242,.24)!important;border-color:rgba(139,148,255,.55)!important}
+#stPanel .ys-studio-section .frs{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(76px,1fr))!important;gap:13px!important}
+#stPanel .ys-studio-section .fro{width:auto!important;padding:9px 5px!important;border-radius:14px!important;background:rgba(255,255,255,.035)!important;border:1px solid rgba(255,255,255,.07)!important}
+#stPanel .ys-studio-section .fro.on{background:rgba(88,101,242,.17)!important;border-color:#818cf8!important;color:#fff!important}
+#stPanel .ys-studio-section .bpick{display:flex!important;flex-wrap:wrap!important;gap:8px!important}
+#stPanel .ys-studio-section .bpick button.on{background:rgba(88,101,242,.28)!important;border-color:#9aa2ff!important;color:#fff!important}
+#stPanel .ys-studio-section .prev{height:58px!important;border-radius:13px!important;margin-top:14px!important}
+#stPanel .ys-studio-section p.sub{line-height:1.55!important;color:#aeb3c5!important}
+/* The DNA panel gets a distinct intelligence dashboard */
+#dnaDashboard{width:100%}
+.dna-panel{border:1px solid rgba(139,148,255,.25)!important;border-radius:24px!important;padding:clamp(18px,3vw,28px)!important;background:radial-gradient(ellipse at 92% 0%,rgba(88,101,242,.19),transparent 38%),linear-gradient(145deg,#1b1e2c,#10121b 70%,#121c21)!important;box-shadow:0 22px 65px rgba(0,0,0,.3),inset 0 1px rgba(255,255,255,.05)!important}
+.dna-kicker{color:#aeb5ff!important;letter-spacing:.2em!important}
+.dna-title{font-size:clamp(27px,4vw,40px)!important;line-height:1.04!important;color:#fff!important}
+.dna-lead{font-size:14px!important;color:#b7bbca!important;max-width:720px!important}
+.dna-live{background:rgba(68,211,155,.1)!important;border-color:rgba(68,211,155,.24)!important;color:#72e8b7!important;font-weight:800!important}
+.dna-metrics{gap:11px!important}
+.dna-metric{background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025))!important;border:1px solid rgba(255,255,255,.09)!important;border-radius:16px!important;padding:17px!important;min-height:90px!important}
+.dna-metric b{font-size:29px!important;color:#fff!important;letter-spacing:-.05em!important}
+.dna-metric span{color:#aeb4c7!important;font-size:11px!important;font-weight:700!important}
+.dna-panel h3{margin:24px 0 11px!important;color:#e6e8ff!important;font-size:13px!important;letter-spacing:.12em!important;text-transform:uppercase!important}
+.dna-tag{background:rgba(88,101,242,.16)!important;border:1px solid rgba(139,148,255,.27)!important;color:#e1e4ff!important;border-radius:10px!important;padding:8px 11px!important;font-weight:750!important}
+.dna-listgrid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))!important;gap:12px!important}
+.dna-listcard{background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018))!important;border:1px solid rgba(255,255,255,.09)!important;border-radius:16px!important;padding:16px!important}
+.dna-listcard b{color:#fff!important;font-size:14px!important}
+.dna-listcard small{color:#aeb4c7!important;line-height:1.5!important}
+.dna-bar{height:8px!important;background:rgba(255,255,255,.09)!important;border-radius:99px!important}
+.dna-bar i{background:linear-gradient(90deg,#5865f2,#8b94ff,#53d8c5)!important;box-shadow:0 0 14px rgba(88,101,242,.4)!important}
+.evo-note{border:1px solid rgba(139,148,255,.17)!important;background:rgba(88,101,242,.075)!important;border-radius:14px!important;padding:14px 16px!important;color:#c6c9d8!important;line-height:1.65!important}
+.dna-foot{color:#888fa4!important;border-top:1px solid rgba(255,255,255,.07)!important;padding-top:13px!important}
+@media(max-width:760px){#stPanel{grid-template-columns:1fr!important}#stPanel .ys-studio-section .row{grid-template-columns:1fr!important;gap:6px!important}#p-profile .stp-ban{height:145px!important}#p-profile .stp-body{padding:0 16px 18px!important;gap:12px!important}#p-profile .stp-av{width:94px!important;height:94px!important}#p-profile .stp-info{padding-top:58px!important}.dna-metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(prefers-reduced-motion:reduce){#stPanel button{transition:none!important}}
+</style>
+<script id="yisus-v33-enhancements">
+(function(){
+  // Organiza el estudio existente en secciones visuales sin sustituir sus controles ni su almacenamiento.
+  function organizeStudio(){
+    var box=document.getElementById('stPanel'); if(!box||box.dataset.v33==='1')return;
+    var nodes=Array.from(box.childNodes); if(!nodes.some(function(n){return n.nodeType===1&&n.tagName==='H3'}))return;
+    var frag=document.createDocumentFragment(),section=null;
+    nodes.forEach(function(node){
+      if(node.nodeType===1&&node.tagName==='H3'){
+        section=document.createElement('section');section.className='ys-studio-section';
+        section.appendChild(node);frag.appendChild(section);
+      }else if(section){section.appendChild(node)}else{frag.appendChild(node)}
+    });
+    box.innerHTML='';box.appendChild(frag);box.dataset.v33='1';
+  }
+  function watchStudio(){var box=document.getElementById('stPanel');if(!box||box.dataset.v33watch)return;box.dataset.v33watch='1';new MutationObserver(function(){if(box.querySelector(':scope > h3')){box.dataset.v33='0';organizeStudio()}}).observe(box,{childList:true});organizeStudio()}
+  function enhanceDNA(){
+    document.querySelectorAll('.dna-panel').forEach(function(panel){
+      var tags=panel.querySelector('.dna-tags');if(!tags||panel.querySelector('.ys-dna-spectrum'))return;
+      var labels=Array.from(tags.querySelectorAll('.dna-tag')).map(function(t){return t.textContent.replace(/^✦\s*/, '').trim()}).filter(Boolean).slice(0,8);
+      if(!labels.length)return;
+      var chart=document.createElement('div');chart.className='ys-dna-spectrum';
+      chart.innerHTML='<div class="ys-dna-spectrum-title">TU FIRMA SONORA <span>afinidad relativa · basada en señales guardadas</span></div>';
+      labels.forEach(function(label,index){var row=document.createElement('div');row.className='ys-dna-spectrum-row';var name=document.createElement('b');name.textContent=label;var track=document.createElement('span');track.className='ys-dna-track';var fill=document.createElement('i');fill.style.width=Math.max(18,100-index*10)+'%';track.appendChild(fill);row.appendChild(name);row.appendChild(track);chart.appendChild(row)});
+      tags.parentNode.insertBefore(chart,tags.nextSibling);
+    });
+  }
+  var css=document.createElement('style');css.textContent='.ys-dna-spectrum{margin-top:16px;padding:16px;border:1px solid rgba(139,148,255,.16);border-radius:16px;background:rgba(7,9,16,.3)}.ys-dna-spectrum-title{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:#e4e6ff;font-size:11px;font-weight:900;letter-spacing:.13em;margin-bottom:12px}.ys-dna-spectrum-title span{color:#8e95aa;font-size:10px;letter-spacing:0;font-weight:600}.ys-dna-spectrum-row{display:grid;grid-template-columns:minmax(90px,160px) 1fr;align-items:center;gap:12px;margin:9px 0}.ys-dna-spectrum-row b{font-size:12px;color:#dfe2f5;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ys-dna-track{height:8px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}.ys-dna-track i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#5865f2,#8b94ff,#53d8c5);box-shadow:0 0 12px rgba(88,101,242,.35)}@media(max-width:520px){.ys-dna-spectrum-row{grid-template-columns:90px 1fr}}';document.head.appendChild(css);
+  watchStudio();enhanceDNA();
+  var mo=new MutationObserver(function(){watchStudio();enhanceDNA()});mo.observe(document.body,{childList:true,subtree:true});
+})();
+</script>
+
+
+<style id="yisus-v34-flow-scroll-fix">
+/* V34 — navegación y scroll reconstruidos; reproductor siempre accesible */
+html,body{height:auto!important;min-height:100%!important;overflow-x:hidden!important;overflow-y:auto!important;overscroll-behavior-y:auto!important;scroll-behavior:smooth!important}
+body{position:relative!important;padding-bottom:112px!important}
+.app{display:block!important;width:100%!important;min-height:100vh!important;height:auto!important;overflow:visible!important}
+.side{position:fixed!important;left:0!important;top:0!important;bottom:0!important;width:264px!important;min-width:264px!important;height:100dvh!important;max-height:100dvh!important;overflow-x:hidden!important;overflow-y:auto!important;overscroll-behavior:contain!important;z-index:90!important;padding-bottom:26px!important;scrollbar-width:thin!important;scrollbar-color:rgba(139,148,255,.35) transparent!important}
+.side::-webkit-scrollbar{width:7px!important}.side::-webkit-scrollbar-thumb{background:rgba(139,148,255,.3)!important;border-radius:20px!important}
+.main{display:block!important;min-width:0!important;min-height:100vh!important;height:auto!important;margin-left:264px!important;padding:0 clamp(18px,3vw,48px) 150px!important;overflow:visible!important;overflow-y:visible!important;overscroll-behavior:contain!important}
+.page{overflow:visible!important;min-height:0!important}
+.ys-topbar{position:sticky!important;top:0!important;z-index:75!important}
+.pbar{position:fixed!important;left:264px!important;right:0!important;bottom:0!important;width:auto!important;min-height:88px!important;z-index:120!important;grid-column:auto!important;grid-row:auto!important;display:grid!important;grid-template-columns:minmax(0,1fr) minmax(250px,1.15fr) minmax(0,1fr)!important;gap:clamp(8px,1.5vw,22px)!important;padding:12px clamp(12px,2vw,26px) calc(12px + env(safe-area-inset-bottom))!important;background:rgba(15,17,24,.96)!important;border-top:1px solid rgba(139,148,255,.22)!important;box-shadow:0 -16px 55px rgba(0,0,0,.48)!important;backdrop-filter:blur(24px)!important;-webkit-backdrop-filter:blur(24px)!important}
+.pbar .pline{top:0!important;height:3px!important;z-index:2!important;box-shadow:0 0 14px currentColor!important}
+.pbar .pnow,.pbar .pmid,.pbar .pright{min-width:0!important}
+.pbar .pmid{width:100%!important}.pbar .pseek{max-width:520px!important}.pbar .rng{accent-color:#8794ff!important}
+/* El Flow deja de depender de los puntos pequeños: ahora tiene una barra legible */
+#tuneBox{min-height:146px!important;padding:14px 14px 12px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;gap:9px!important;overflow:visible!important}
+#tuneBox .fx-box{display:flex!important;align-items:center!important;min-width:0!important}
+#tuneBox .fx-dots{display:flex!important;width:100%!important;gap:4px!important;margin:2px 0 1px!important}
+#tuneBox .fx-dots i{display:block!important;flex:1!important;min-width:0!important;height:5px!important;background:rgba(255,255,255,.12)!important;border-radius:99px!important}
+#tuneBox .fx-dots i.d,#tuneBox .fx-dots i.c{background:var(--lc,#8b94ff)!important;box-shadow:0 0 9px color-mix(in srgb,var(--lc,#8b94ff) 55%,transparent)!important}
+.ys-flow-track{height:8px!important;width:100%!important;overflow:hidden!important;border-radius:99px!important;background:rgba(255,255,255,.1)!important;box-shadow:inset 0 1px 3px rgba(0,0,0,.3)!important}
+.ys-flow-track i{display:block!important;height:100%!important;min-width:2px!important;border-radius:99px!important;background:linear-gradient(90deg,#5865f2,#8b94ff,#53d8c5)!important;box-shadow:0 0 12px rgba(120,135,255,.45)!important;transition:width .55s cubic-bezier(.2,.8,.2,1)!important}
+#tuneBox .tn-f{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:8px!important;font-size:11px!important}
+#tuneBox .tn-f span{color:#f0f2ff!important}#tuneBox .tn-f span b{color:#ffbd65!important}#tuneBox .tn-f small{color:#aeb8ff!important;font-weight:800!important}
+/* Controles más visibles y accesibles */
+.btn,.chip,.icon-btn,.playbtn,.tg{touch-action:manipulation}
+.btn:focus-visible,.icon-btn:focus-visible,.chip:focus-visible,.playbtn:focus-visible{outline:2px solid #9ba6ff!important;outline-offset:3px!important}
+input[type=range].rng{cursor:pointer!important;min-height:18px!important}
+/* listas y paneles: no cortan el contenido ni la rueda del ratón */
+.card,.list,.scroll{overscroll-behavior:contain}
+#flowBoard .fb-box{max-height:min(86dvh,900px)!important;overflow-y:auto!important;overscroll-behavior:contain!important}
+@media(max-width:1050px){.side{width:230px!important;min-width:230px!important}.main{margin-left:230px!important}.pbar{left:230px!important;grid-template-columns:minmax(0,1fr) minmax(210px,1.1fr)!important}.pbar .pright{display:none!important}}
+@media(max-width:760px){
+ body{padding-bottom:112px!important}
+ .side{width:min(285px,84vw)!important;min-width:0!important;transform:translateX(-105%)!important;transition:transform .25s ease!important;z-index:150!important}
+ .side.mobile-open{transform:translateX(0)!important}
+ .main{margin-left:0!important;padding:0 14px 130px!important;min-height:100vh!important}
+ .ys-topbar{margin:0 -14px 18px!important;padding:13px 14px!important;min-height:64px!important}
+ .pbar{left:0!important;right:0!important;bottom:0!important;min-height:82px!important;grid-template-columns:minmax(0,1fr) minmax(125px,.9fr)!important;gap:8px!important;padding:9px 10px calc(9px + env(safe-area-inset-bottom))!important}
+ .pbar .pright{display:none!important}.pbar .pcov{width:42px!important;height:42px!important}.pbar .pnow{gap:8px!important}.pbar .pmid{gap:3px!important}.pbar .pctrl{gap:2px!important}.pbar .pctrl .icon-btn{width:31px!important;height:31px!important}.pbar .playbtn{width:38px!important;height:38px!important}.pbar .pseek{gap:5px!important}.pbar .pseek span{font-size:9px!important}
+ #tuneBox{min-height:0!important}
+}
+@media(max-width:430px){.pbar{grid-template-columns:minmax(0,1fr) minmax(116px,.82fr)!important}.pbar .pctrl .icon-btn{width:28px!important;height:28px!important}.pbar .playbtn{width:35px!important;height:35px!important}.pbar .ptxt b{font-size:11px!important}.pbar .ptxt span{font-size:9px!important}}
+@media(prefers-reduced-motion:reduce){html,body{scroll-behavior:auto!important}.ys-flow-track i{transition:none!important}}
+</style>
+
+
+<style id="yisus-v35-theme-dna">
+/* V35 — visual overhaul: themes, effects, studio and musical DNA */
+:root{--ys-accent-glow:rgba(88,101,242,.24)}
+#themeGrid{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(148px,1fr))!important;gap:12px!important;margin-top:14px!important}
+.thc{position:relative!important;min-height:112px!important;padding:13px!important;border-radius:16px!important;background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.018))!important;border:1px solid rgba(255,255,255,.09)!important;overflow:hidden!important;isolation:isolate;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease!important}
+.thc:after{content:"";position:absolute;inset:auto -20% -58% -20%;height:85%;background:radial-gradient(ellipse,rgba(var(--rgb),.19),transparent 68%);z-index:-1;opacity:.65;transition:opacity .25s}
+.thc:hover{transform:translateY(-4px)!important;border-color:rgba(var(--rgb),.65)!important;box-shadow:0 12px 28px rgba(0,0,0,.24),0 0 24px rgba(var(--rgb),.12)!important}
+.thc.on{border-color:rgba(var(--rgb),.9)!important;box-shadow:0 0 0 1px rgba(var(--rgb),.25),0 12px 30px rgba(var(--rgb),.13)!important;background:linear-gradient(145deg,rgba(var(--rgb),.15),rgba(255,255,255,.025))!important}
+.thc i{height:42px!important;border-radius:11px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 7px 18px rgba(0,0,0,.25)!important}
+.thc b{font-size:13px!important;font-weight:850!important;letter-spacing:.01em}
+.thc small{font-size:11px!important;line-height:1.4!important;margin-top:4px!important;color:rgba(235,239,255,.64)!important}
+.thc.on:before{content:"✓ ACTIVO";position:absolute;right:9px;top:9px;font-size:8px;letter-spacing:.1em;font-weight:900;color:#fff;background:rgba(88,101,242,.85);padding:4px 6px;border-radius:99px}
+.thc.lock{filter:saturate(.5);opacity:.62!important}
+#visualModes{display:flex!important;flex-wrap:wrap!important;gap:8px!important}
+#visualModes .th{width:36px!important;height:36px!important;border-radius:12px!important;background:rgba(255,255,255,.055)!important;border:1px solid rgba(255,255,255,.1)!important;transition:.2s!important}
+#visualModes .th:hover,#visualModes .th.on{transform:translateY(-2px);border-color:rgba(var(--rgb),.7)!important;box-shadow:0 0 18px rgba(var(--rgb),.2)!important;color:var(--tx)!important}
+/* Estudio de personalización */
+#p-profile .stu{position:relative!important;overflow:hidden!important;background:linear-gradient(145deg,rgba(23,27,43,.98),rgba(10,13,22,.98))!important;border:1px solid rgba(139,148,255,.22)!important;box-shadow:0 22px 65px rgba(0,0,0,.25)!important}
+#p-profile .stu:before{content:"";position:absolute;right:-120px;top:-150px;width:330px;height:330px;border-radius:50%;border:1px solid rgba(139,148,255,.14);box-shadow:0 0 0 30px rgba(139,148,255,.025),0 0 0 70px rgba(139,148,255,.018);pointer-events:none}
+#p-profile .stu .chead,#p-profile .stu #stPanel{position:relative;z-index:1}
+#stPanel>h3{margin:24px 0 11px!important;padding:9px 12px!important;border-left:3px solid #8b94ff!important;border-radius:0 10px 10px 0!important;background:linear-gradient(90deg,rgba(88,101,242,.16),transparent)!important;color:#dfe2ff!important;font-size:11px!important;letter-spacing:.13em!important;text-transform:uppercase!important}
+#stPanel .row{padding:10px 12px!important;border:1px solid rgba(255,255,255,.065)!important;border-radius:13px!important;background:rgba(255,255,255,.025)!important;margin:8px 0!important}
+#stPanel .row>label{color:#b9c0df!important;font-weight:650!important}
+#stPanel input[type=text],#stPanel select,#stPanel textarea{background:rgba(7,9,17,.82)!important;border:1px solid rgba(139,148,255,.2)!important;color:#f4f5ff!important;border-radius:10px!important;min-height:38px}
+#stPanel input[type=color]{width:52px!important;height:40px!important;border-radius:12px!important;background:#101321!important;border:1px solid rgba(255,255,255,.15)!important;cursor:pointer}
+#stPanel .btn{border-radius:11px!important;border:1px solid rgba(139,148,255,.2)!important;background:rgba(88,101,242,.12)!important;color:#e9eaff!important;font-weight:750!important}
+#stPanel .btn:hover{background:rgba(88,101,242,.25)!important;border-color:rgba(139,148,255,.55)!important;transform:translateY(-1px)}
+#stPanel .prev{display:flex!important;gap:5px!important;height:58px!important;padding:6px!important;border-radius:14px!important;overflow:hidden!important;border:1px solid rgba(255,255,255,.12)!important;background:rgba(0,0,0,.25)!important}
+#stPanel .prev>*{border-radius:9px!important}
+#stPanel .frs{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(74px,1fr))!important;gap:14px!important;padding:14px!important;border:1px solid rgba(255,255,255,.07)!important;border-radius:15px!important;background:rgba(255,255,255,.025)!important}
+#stPanel .fro{width:auto!important;padding:6px 2px!important;border-radius:12px!important;transition:.2s!important}
+#stPanel .fro:hover{background:rgba(139,148,255,.09)!important;transform:translateY(-2px)}
+#stPanel .fro.on{background:rgba(88,101,242,.14)!important;box-shadow:inset 0 0 0 1px rgba(139,148,255,.32)!important}
+#stPanel .bpick button{border-radius:999px!important;padding:8px 12px!important;background:rgba(255,255,255,.045)!important;border:1px solid rgba(255,255,255,.1)!important}
+#stPanel .bpick button.on{background:rgba(88,101,242,.22)!important;border-color:#8b94ff!important;color:#fff!important}
+.ys-preset-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(142px,1fr));gap:9px;margin:10px 0 14px}
+.ys-preset{display:flex;align-items:center;gap:9px;padding:10px;border-radius:13px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.035);color:#e9eaff;text-align:left;font-size:12px;font-weight:800;transition:.2s}
+.ys-preset:hover{transform:translateY(-2px);border-color:rgba(139,148,255,.6);background:rgba(88,101,242,.12)}
+.ys-preset i{width:30px;height:30px;border-radius:10px;flex:none;box-shadow:inset 0 1px 0 #ffffff66,0 4px 12px #0005}
+.ys-preset small{display:block;color:#9da5c7;font-size:10px;font-weight:500;margin-top:2px}
+.ys-preset-tools{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px}
+/* ADN: aspecto de consola de sonido, sin alterar el cálculo */
+.dna-panel{background:radial-gradient(ellipse at 100% 0,rgba(88,101,242,.2),transparent 42%),linear-gradient(145deg,#151a2b,#0a0d16 70%)!important;border:1px solid rgba(139,148,255,.27)!important;border-radius:24px!important;padding:clamp(16px,2.5vw,28px)!important;box-shadow:0 24px 65px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.06)!important}
+.dna-panel:after{content:"Y·DNA";position:absolute;right:18px;bottom:6px;font:900 42px/1 Orbitron,sans-serif;letter-spacing:-.08em;color:rgba(255,255,255,.025);pointer-events:none}
+.dna-kicker{color:#aeb5ff!important;letter-spacing:.2em!important}
+.dna-title{color:#f2f3ff!important;text-shadow:0 5px 25px rgba(139,148,255,.15)!important}
+.dna-lead{color:#aeb5cb!important;max-width:680px!important}
+.dna-metric{position:relative!important;overflow:hidden!important;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.018))!important;border:1px solid rgba(255,255,255,.1)!important;border-radius:16px!important;transition:transform .2s,border-color .2s!important}
+.dna-metric:hover{transform:translateY(-3px);border-color:rgba(139,148,255,.45)!important}
+.dna-metric b{font-size:clamp(22px,3vw,30px)!important;color:#f3f4ff!important}
+.dna-metric span{color:#aeb5cb!important;letter-spacing:.04em}
+.dna-tag{background:rgba(88,101,242,.13)!important;border:1px solid rgba(139,148,255,.22)!important;color:#dfe2ff!important;border-radius:9px!important}
+.dna-listcard{background:rgba(255,255,255,.035)!important;border:1px solid rgba(255,255,255,.085)!important;border-radius:15px!important}
+.dna-bar{height:8px!important;background:rgba(255,255,255,.09)!important}
+.dna-bar i{background:linear-gradient(90deg,#5865f2,#9b8cff,#5be1ce)!important;box-shadow:0 0 14px rgba(139,148,255,.28)!important}
+.dna-foot{color:#8f98b5!important}
+@media(max-width:650px){#themeGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.ys-preset-wrap{grid-template-columns:repeat(2,minmax(0,1fr))}#stPanel .row{align-items:flex-start!important}.dna-panel:after{font-size:28px}}
+@media(prefers-reduced-motion:reduce){.thc,.ys-preset,#stPanel .btn,#stPanel .fro,.dna-metric{transition:none!important}}
+</style>
+<script id="yisus-v35-presets">
+(function(){
+  'use strict';
+  var presets=[
+    {n:'Midnight Discord',d:'Índigo · violeta',a:'#5865f2',b:'#9b8cff',bg:'#090b16',fx:'cosmic'},
+    {n:'Cyberpunk',d:'Rosa eléctrico · azul',a:'#ff4fd8',b:'#36d9ff',bg:'#100817',fx:'synthwave'},
+    {n:'Toxic Green',d:'Verde ácido · negro',a:'#a3ff12',b:'#20d889',bg:'#07110b',fx:'toxic'},
+    {n:'Blood Moon',d:'Rojo · carbón',a:'#ff405d',b:'#ff9b54',bg:'#14080d',fx:'crimson'},
+    {n:'Arctic Glass',d:'Hielo · azul claro',a:'#7cecff',b:'#b6c8ff',bg:'#08131d',fx:'snow'},
+    {n:'Sakura Night',d:'Rosa suave · noche',a:'#ff86bd',b:'#a78bfa',bg:'#160d1b',fx:'sakura'},
+    {n:'Golden Hour',d:'Oro · ámbar',a:'#ffc857',b:'#ff914d',bg:'#151007',fx:'amber'},
+    {n:'Deep Ocean',d:'Turquesa · abismo',a:'#22d3c5',b:'#397bff',bg:'#061218',fx:'ocean'},
+    {n:'Violet Haze',d:'Púrpura · lavanda',a:'#a78bfa',b:'#ec70ff',bg:'#10091b',fx:'aurora'},
+    {n:'Pure Mono',d:'Blanco · grafito',a:'#e5e7eb',b:'#9ca3af',bg:'#0b0d10',fx:'night'}
+  ];
+  function makePresets(){
+    var panel=document.getElementById('stPanel');if(!panel||panel.querySelector('.ys-preset-wrap'))return;
+    var heads=[].slice.call(panel.querySelectorAll('h3')),head=heads.find(function(h){return /creador de temas/i.test(h.textContent)});if(!head)return;
+    var wrap=document.createElement('div');wrap.className='ys-preset-wrap';
+    var colorInputs=[].slice.call(panel.querySelectorAll('input[type=color]'));
+    var selects=[].slice.call(panel.querySelectorAll('select'));
+    presets.forEach(function(p){var b=document.createElement('button');b.type='button';b.className='ys-preset';b.innerHTML='<i style="background:linear-gradient(135deg,'+p.a+','+p.b+','+p.bg+')"></i><span>'+p.n+'<small>'+p.d+'</small></span>';
+      b.addEventListener('click',function(){
+        var current=[].slice.call(panel.querySelectorAll('input[type=color]'));
+        if(current.length>=3){[p.a,p.b,p.bg].forEach(function(v,i){current[i].value=v;current[i].dispatchEvent(new Event('input',{bubbles:true}))})}
+        var sel=[].slice.call(panel.querySelectorAll('select')).find(function(x){return [].some.call(x.options,function(o){return o.value===p.fx})});
+        if(sel){sel.value=p.fx;sel.dispatchEvent(new Event('change',{bubbles:true}))}
+        var custom=[].slice.call(document.querySelectorAll('#themeGrid button')).find(function(x){return /personalizado/i.test(x.textContent)});if(custom)custom.click();
+        var st=document.querySelector('#stPanel .ys-preset-wrap');if(st){[].forEach.call(st.children,function(x){x.classList.remove('chosen')});b.classList.add('chosen')}
+        var toastFn=window.toast;if(typeof toastFn==='function')toastFn('Preset aplicado: '+p.n);
+      });wrap.appendChild(b)
+    });
+    head.insertAdjacentElement('afterend',wrap);
+    var tools=document.createElement('div');tools.className='ys-preset-tools';
+    var random=document.createElement('button');random.type='button';random.className='btn';random.textContent='✦ Crear paleta aleatoria';random.onclick=function(){var h=function(){return Math.floor(Math.random()*360)};var x=h(),y=(x+65+Math.floor(Math.random()*100))%360;var a='hsl('+x+' 90% 65%)',b='hsl('+y+' 85% 66%)';var tmp=document.createElement('canvas').getContext('2d');tmp.fillStyle=a;tmp.fillRect(0,0,1,1);var c1=tmp.fillStyle;tmp.fillStyle=b;tmp.fillRect(0,0,1,1);var c2=tmp.fillStyle;var ins=[].slice.call(panel.querySelectorAll('input[type=color]'));if(ins.length>=3){ins[0].value=rgbHex(c1);ins[1].value=rgbHex(c2);ins[0].dispatchEvent(new Event('input',{bubbles:true}));ins[1].dispatchEvent(new Event('input',{bubbles:true}));}var t=document.querySelector('#themeGrid button');if(t){var custom=[].slice.call(document.querySelectorAll('#themeGrid button')).find(function(q){return /personalizado/i.test(q.textContent)});if(custom)custom.click()}if(window.toast)toast('Nueva combinación creada')};
+    var reset=document.createElement('button');reset.type='button';reset.className='btn';reset.textContent='↺ Volver a editar';reset.onclick=function(){var ins=[].slice.call(panel.querySelectorAll('input[type=color]'));ins.forEach(function(i){i.focus()});if(window.toast)toast('Ajusta los tres colores y la escena a tu gusto')};
+    tools.appendChild(random);tools.appendChild(reset);wrap.insertAdjacentElement('afterend',tools);
+  }
+  function rgbHex(s){var m=s.match(/\d+/g);if(!m||m.length<3)return '#5865f2';return '#'+m.slice(0,3).map(function(n){return (+n).toString(16).padStart(2,'0')}).join('')}
+  var obs=new MutationObserver(makePresets);obs.observe(document.documentElement,{childList:true,subtree:true});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',makePresets);else makePresets();
+  setTimeout(makePresets,500);setTimeout(makePresets,1500);
+})();
+</script>
+
+
+<style id="yisus-v36-evolution">
+/* V36 — Theme Vault + DNA Studio refinement */
+:root{--ys-ease:cubic-bezier(.2,.8,.2,1)}
+button,.btn,.icon-btn,.thc,.ys-preset{transition:transform .2s var(--ys-ease),background .2s,border-color .2s,box-shadow .2s!important}
+button:active,.btn:active,.icon-btn:active{transform:scale(.97)!important}
+#p-profile .stu{border-radius:24px!important}
+#p-profile .stu .chead{padding-bottom:14px!important;border-bottom:1px solid rgba(255,255,255,.08)!important}
+#p-profile .stu .chead h2,#p-profile .stu .chead h3{letter-spacing:-.025em}
+#stPanel .row:focus-within{border-color:rgba(139,148,255,.48)!important;box-shadow:0 0 0 3px rgba(88,101,242,.09)!important}
+#stPanel input[type=text]:focus,#stPanel select:focus,#stPanel textarea:focus{border-color:#8b94ff!important;box-shadow:0 0 0 3px rgba(88,101,242,.15)!important}
+.ys-preset.chosen{border-color:#8b94ff!important;background:linear-gradient(120deg,rgba(88,101,242,.2),rgba(139,148,255,.06))!important;box-shadow:0 0 0 1px rgba(139,148,255,.22),0 10px 24px rgba(0,0,0,.18)!important}
+.ys-vault{margin:16px 0 8px;padding:16px;border-radius:18px;border:1px solid rgba(139,148,255,.2);background:linear-gradient(145deg,rgba(88,101,242,.10),rgba(255,255,255,.025) 55%,rgba(91,225,206,.045));box-shadow:inset 0 1px 0 rgba(255,255,255,.045)}
+.ys-vault-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.ys-vault-head b{display:block;color:#f1f2ff;font-size:14px;letter-spacing:.02em}
+.ys-vault-head small{display:block;color:#9ea6c4;font-size:11px;margin-top:3px;line-height:1.5}
+.ys-vault-count{padding:5px 9px;border-radius:999px;background:rgba(88,101,242,.17);border:1px solid rgba(139,148,255,.25);color:#dfe2ff;font-size:10px;font-weight:850;white-space:nowrap}
+.ys-vault-actions{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.ys-vault-actions button{padding:9px 12px;border-radius:10px;border:1px solid rgba(139,148,255,.22);background:rgba(88,101,242,.13);color:#eef0ff;font-size:11px;font-weight:800}
+.ys-vault-actions button:hover{background:rgba(88,101,242,.25);border-color:#8b94ff;transform:translateY(-1px)}
+.ys-vault-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:9px}
+.ys-vault-item{position:relative;min-width:0;padding:9px;border-radius:13px;border:1px solid rgba(255,255,255,.09);background:rgba(5,7,14,.46);color:#eef0ff;text-align:left;overflow:hidden}
+.ys-vault-item:hover{border-color:rgba(139,148,255,.55);transform:translateY(-2px)}
+.ys-vault-swatches{display:flex;height:30px;gap:4px;margin-bottom:8px}
+.ys-vault-swatches i{flex:1;border-radius:6px;border:1px solid rgba(255,255,255,.13)}
+.ys-vault-item b{display:block;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:20px}
+.ys-vault-item small{display:block;color:#9da5c7;font-size:9px;margin-top:3px}
+.ys-vault-del{position:absolute;right:6px;top:6px;width:22px;height:22px;border-radius:7px;background:rgba(255,75,100,.13);color:#ff9aa9;font-weight:900}
+.ys-vault-empty{padding:13px;border:1px dashed rgba(255,255,255,.13);border-radius:12px;color:#9da5c7;font-size:11px;line-height:1.6}
+.dna-panel{position:relative!important;isolation:isolate;overflow:hidden!important}
+.dna-panel:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.025) 48%,transparent 72%);transform:translateX(-100%);animation:ys-dna-sheen 11s ease-in-out infinite;pointer-events:none;z-index:-1}
+@keyframes ys-dna-sheen{0%,65%,100%{transform:translateX(-100%)}85%{transform:translateX(100%)}}
+.dna-top{align-items:flex-start!important;gap:16px!important}
+.dna-live{padding:7px 10px!important;border-radius:999px!important;background:rgba(61,220,151,.09)!important;border:1px solid rgba(61,220,151,.2)!important;white-space:nowrap!important;font-size:9px!important;letter-spacing:.08em!important}
+.dna-metrics{gap:10px!important;margin:18px 0 22px!important}
+.dna-metric{min-height:94px!important;padding:15px!important;display:flex!important;flex-direction:column!important;justify-content:center!important}
+.dna-metric:after{content:"";position:absolute;right:-22px;bottom:-34px;width:85px;height:85px;border-radius:50%;border:1px solid rgba(139,148,255,.12);box-shadow:0 0 0 12px rgba(139,148,255,.025)}
+.dna-panel h3{margin:20px 0 10px!important;color:#e5e8ff!important;font-size:12px!important;letter-spacing:.11em!important;text-transform:uppercase!important}
+.dna-tags{display:flex!important;gap:7px!important;flex-wrap:wrap!important}
+.dna-tag{padding:7px 10px!important;font-size:10px!important;font-weight:750!important}
+.dna-listgrid{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))!important;gap:10px!important}
+.dna-listcard{padding:14px!important;min-width:0!important;transition:transform .2s,border-color .2s,background .2s!important}
+.dna-listcard:hover{transform:translateY(-2px);border-color:rgba(139,148,255,.36)!important;background:rgba(255,255,255,.055)!important}
+.dna-listcard>b{display:block;color:#f0f1ff!important;font-size:13px!important;margin-bottom:5px!important;overflow-wrap:anywhere}
+.dna-listcard>small{display:block;color:#9da5c2!important;line-height:1.5!important;margin-bottom:10px!important}
+.dna-bar{overflow:hidden!important;border-radius:999px!important;margin-top:12px!important}
+.dna-bar i{display:block!important;border-radius:inherit!important;transition:width .7s var(--ys-ease)!important}
+.evo-note{border-left:3px solid #8b94ff!important;background:linear-gradient(90deg,rgba(88,101,242,.12),rgba(88,101,242,.015))!important;border-radius:0 12px 12px 0!important;padding:12px 14px!important;color:#c0c6df!important;line-height:1.65!important}
+@media(max-width:650px){.ys-vault{padding:12px}.ys-vault-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dna-top{display:block!important}.dna-live{display:inline-flex!important;margin-top:12px}.dna-metric{min-height:78px!important;padding:11px!important}}
+@media(prefers-reduced-motion:reduce){.dna-panel:before{animation:none!important}.dna-listcard,.ys-vault-item{transition:none!important}}
+</style>
+
+<script id="yisus-v36-theme-vault">
+(function(){
+ 'use strict';
+ var KEY='yisus_theme_vault_v1',MAX=12;
+ function read(){try{var x=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(x)?x.slice(0,MAX):[]}catch(e){return[]}}
+ function write(x){try{localStorage.setItem(KEY,JSON.stringify(x));return true}catch(e){say('No se pudo guardar: almacenamiento lleno.');return false}}
+ function say(t){if(typeof window.toast==='function')window.toast(t);else{var n=document.getElementById('ys-vault-toast');if(!n){n=document.createElement('div');n.id='ys-vault-toast';n.style.cssText='position:fixed;z-index:99999;bottom:90px;left:50%;transform:translateX(-50%);padding:10px 14px;border-radius:12px;background:#171a2c;color:white;border:1px solid #5865f2;font:700 12px sans-serif;box-shadow:0 8px 30px #0008';document.body.appendChild(n)}n.textContent=t;n.style.display='block';clearTimeout(n._timer);n._timer=setTimeout(function(){n.style.display='none'},2200)}}
+ function panel(){return document.getElementById('stPanel')}
+ function inputs(){var p=panel();return p?Array.prototype.slice.call(p.querySelectorAll('input[type=color]')):[]}
+ function current(){var p=panel(),ins=inputs(),sels=p?Array.prototype.slice.call(p.querySelectorAll('select')):[];return {name:'Mi look',colors:ins.slice(0,3).map(function(i){return /^#[0-9a-f]{6}$/i.test(i.value)?i.value:'#5865f2'}),fx:(sels.find(function(s){return s.value})||{}).value||''}}
+ function apply(x){var ins=inputs(),p=panel();if(!p||!Array.isArray(x.colors)||x.colors.length<3){say('No se ha podido aplicar este look.');return}ins.slice(0,3).forEach(function(i,n){i.value=x.colors[n];i.dispatchEvent(new Event('input',{bubbles:true}));i.dispatchEvent(new Event('change',{bubbles:true}))});var s=Array.prototype.slice.call(p.querySelectorAll('select')).find(function(q){return Array.prototype.some.call(q.options,function(o){return o.value===x.fx})});if(s){s.value=x.fx;s.dispatchEvent(new Event('change',{bubbles:true}))}var custom=Array.prototype.slice.call(document.querySelectorAll('#themeGrid button')).find(function(q){return /personalizado/i.test(q.textContent)});if(custom)custom.click();say('Look aplicado: '+x.name)}
+ function render(){var p=panel();if(!p)return;var root=p.querySelector('.ys-vault');if(!root){root=document.createElement('section');root.className='ys-vault';root.innerHTML='<div class="ys-vault-head"><div><b>✦ TU BIBLIOTECA DE LOOKS</b><small>Guarda tus combinaciones favoritas y recupéralas cuando quieras. Se almacenan en este navegador.</small></div><span class="ys-vault-count"></span></div><div class="ys-vault-actions"><button type="button" data-act="save">＋ Guardar look actual</button><button type="button" data-act="export">⇧ Exportar biblioteca</button><button type="button" data-act="import">⇩ Importar looks</button><input type="file" accept="application/json,.json" hidden></div><div class="ys-vault-grid"></div>';var tools=p.querySelector('.ys-preset-tools');(tools||p).insertAdjacentElement('afterend',root);root.addEventListener('keydown',function(e){var item=e.target.closest('[data-look]');if(item&&(e.key==='Enter'||e.key===' ')){e.preventDefault();var idx=Number(item.dataset.look),list=read();if(list[idx])apply(list[idx])}});root.addEventListener('click',function(e){var act=e.target.closest('[data-act]');if(act){var a=act.dataset.act;if(a==='save'){var c=current(),name=prompt('Ponle un nombre a tu look:','Mi look '+(read().length+1));if(name===null)return;c.name=name.trim().slice(0,32)||'Mi look';var arr=read();if(arr.length>=MAX){say('Has llegado al máximo de '+MAX+' looks. Borra uno antes.');return}arr.push(c);if(write(arr)){render();say('Look guardado en tu biblioteca.')}}if(a==='export'){var blob=new Blob([JSON.stringify({app:'YISUS MUSIC',version:1,looks:read()},null,2)],{type:'application/json'}),u=URL.createObjectURL(blob),a2=document.createElement('a');a2.href=u;a2.download='yisus-mis-looks.json';a2.click();setTimeout(function(){URL.revokeObjectURL(u)},1000);say('Biblioteca exportada.')}if(a==='import'){root.querySelector('input[type=file]').click()}}
+ var item=e.target.closest('[data-look]');if(item){var idx=Number(item.dataset.look),list=read();if(list[idx])apply(list[idx])}var del=e.target.closest('[data-del]');if(del){e.stopPropagation();var ix=Number(del.dataset.del),l=read();l.splice(ix,1);write(l);render();say('Look eliminado.')}});
+ root.querySelector('input[type=file]').addEventListener('change',function(){var f=this.files&&this.files[0];if(!f)return;var r=new FileReader();r.onload=function(){try{var obj=JSON.parse(r.result),arr=Array.isArray(obj)?obj:obj.looks;if(!Array.isArray(arr))throw Error('Formato');var valid=arr.filter(function(x){return x&&Array.isArray(x.colors)&&x.colors.length>=3&&x.colors.slice(0,3).every(function(c){return /^#[0-9a-f]{6}$/i.test(c)})}).slice(0,MAX-read().length);var merged=read().concat(valid).slice(0,MAX);write(merged);render();say('Importados '+valid.length+' looks.')}catch(e){say('El archivo no contiene una biblioteca válida.')}};r.readAsText(f);this.value=''});
+ }
+ var arr=read(),grid=root.querySelector('.ys-vault-grid'),count=root.querySelector('.ys-vault-count');count.textContent=arr.length+' / '+MAX+' guardados';grid.innerHTML='';if(!arr.length){grid.innerHTML='<div class="ys-vault-empty">Todavía no has guardado ningún look. Ajusta los colores de arriba y pulsa <b>Guardar look actual</b>.</div>';return}arr.forEach(function(x,i){var b=document.createElement('div');b.className='ys-vault-item';b.dataset.look=String(i);b.setAttribute('role','button');b.tabIndex=0;var sw=document.createElement('span');sw.className='ys-vault-swatches';(x.colors||[]).slice(0,3).forEach(function(c){var z=document.createElement('i');z.style.background=c;sw.appendChild(z)});var title=document.createElement('b');title.textContent=x.name||'Mi look';var meta=document.createElement('small');meta.textContent='Efecto: '+(x.fx||'predeterminado');var d=document.createElement('button');d.type='button';d.className='ys-vault-del';d.dataset.del=String(i);d.setAttribute('aria-label','Eliminar '+(x.name||'look'));d.textContent='×';b.appendChild(sw);b.appendChild(title);b.appendChild(meta);b.appendChild(d);grid.appendChild(b)})}
+ function boot(){if(panel()){render();return true}return false;}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){if(!boot()){var tries=0,timer=setInterval(function(){tries++;if(boot()||tries>20)clearInterval(timer)},400)}});else if(!boot()){var tries=0,timer=setInterval(function(){tries++;if(boot()||tries>20)clearInterval(timer)},400)}
+ // Sin MutationObserver global: render() modifica el DOM y observarlo aquí provocaba un bucle infinito.
+})();
+</script>
+
+
+<style id="yisus-v38-signature">
+:root{--ys38-indigo:#7482ff;--ys38-cyan:#5ce5d2;--ys38-panel:rgba(13,17,31,.94)}
+.ys38-identity{position:relative;overflow:hidden;margin:12px 0 18px;border:1px solid rgba(139,148,255,.25);border-radius:24px;background:linear-gradient(145deg,#151a2c,#0b0e18 72%);box-shadow:0 24px 70px #0005}
+.ys38-banner{height:116px;background:radial-gradient(ellipse at 18% 0,color-mix(in srgb,var(--profile-accent) 62%,transparent),transparent 56%),linear-gradient(115deg,color-mix(in srgb,var(--profile-accent) 28%,#101426),#171b30 58%,#0d1721);position:relative}
+.ys38-banner:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);transform:skewX(-20deg) translateX(-70%);animation:ys38-sheen 8s ease-in-out infinite}
+@keyframes ys38-sheen{0%,70%,100%{transform:skewX(-20deg) translateX(-70%)}85%{transform:skewX(-20deg) translateX(160%)}}
+.ys38-id-content{display:flex;align-items:flex-end;gap:15px;padding:0 22px;position:relative;margin-top:-42px}
+.ys38-avatar{width:84px;height:84px;flex:none;display:grid;place-items:center;border-radius:25px;border:4px solid #101321;background:linear-gradient(145deg,#6575ff,#3fdbc9);color:white;font-size:34px;font-weight:950;box-shadow:0 10px 30px #0007}
+.ys38-id-main{min-width:0;flex:1;padding:0 0 3px}.ys38-eyebrow{display:block;color:#9faaff;font-size:9px;font-weight:900;letter-spacing:.2em}.ys38-name{font-size:clamp(20px,3vw,28px);line-height:1.1;color:#fff;margin:5px 0 4px;letter-spacing:-.04em}.ys38-status{color:#79e7bd;font-size:11px;font-weight:750}.ys38-bio{margin:8px 0 0;color:#aeb6d0;font-size:12px;line-height:1.5;max-width:620px}.ys38-edit{flex:none;padding:10px 13px;border-radius:11px;border:1px solid rgba(139,148,255,.3);background:rgba(88,101,242,.16);color:#eef0ff;font-size:10px;font-weight:900;letter-spacing:.06em}.ys38-edit:hover{background:rgba(88,101,242,.3);transform:translateY(-2px)}
+.ys38-id-stats{display:flex;gap:9px;flex-wrap:wrap;padding:17px 22px 18px;margin-top:13px;border-top:1px solid rgba(255,255,255,.07)}.ys38-id-stats span{padding:7px 10px;border-radius:10px;background:rgba(255,255,255,.045);color:#aeb6d0;font-size:10px}.ys38-id-stats b{color:#fff;font-size:13px;margin-right:4px}
+.ys38-dna-lab{margin-top:20px;padding:clamp(15px,2.5vw,24px);border:1px solid rgba(126,140,255,.27);border-radius:22px;background:radial-gradient(ellipse at 100% 0,rgba(88,101,242,.18),transparent 45%),linear-gradient(145deg,#101729,#0a0d17);box-shadow:0 18px 55px #0004}
+.ys38-lab-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:16px}.ys38-lab-head h3{font-size:clamp(20px,3vw,28px)!important;letter-spacing:-.04em!important;color:#f5f6ff!important;text-transform:none!important;margin:5px 0!important}.ys38-lab-head p{margin:0;color:#aeb6d0;font-size:12px;line-height:1.55;max-width:650px}.ys38-live{white-space:nowrap;padding:7px 10px;border-radius:99px;background:#2ed69a16;border:1px solid #2ed69a35;color:#76e8ba;font-size:9px;font-weight:900;letter-spacing:.1em}
+.ys38-lab-grid{display:grid;grid-template-columns:minmax(260px,.85fr) minmax(280px,1.15fr);gap:13px}.ys38-radar,.ys38-tuner{min-width:0;border:1px solid rgba(255,255,255,.08);border-radius:17px;background:rgba(255,255,255,.035);padding:14px}.ys38-card-title{font-size:10px;font-weight:900;letter-spacing:.13em;color:#dfe3ff}.ys38-card-title small{display:block;margin-top:4px;color:#818ba9;font-size:9px;font-weight:600;letter-spacing:0}.ys38-radar svg{width:100%;max-width:340px;display:block;margin:4px auto 0;overflow:visible}.ys38-radar-foot{font-size:9px;line-height:1.5;color:#7f89a7;text-align:center}.ys38-modes{display:grid;gap:8px;margin-top:12px}.ys38-mode{display:block;text-align:left;padding:11px 12px;border:1px solid rgba(255,255,255,.09);border-radius:12px;background:rgba(255,255,255,.025);color:#edf0ff}.ys38-mode b{display:block;font-size:12px}.ys38-mode small{display:block;margin-top:3px;color:#929dbb;font-size:10px;line-height:1.4}.ys38-mode.on{border-color:#8792ff;background:linear-gradient(100deg,rgba(88,101,242,.22),rgba(88,101,242,.055));box-shadow:inset 3px 0 #8b94ff,0 7px 18px #0002}.ys38-weightline{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:12px;padding:9px;border-radius:10px;background:rgba(0,0,0,.2);color:#929dbb;font-size:9px}.ys38-weightline b{color:#e6e9ff;margin-right:7px;font-size:10px}.ys38-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.ys38-actions button,.ys38-theme-bottom button{padding:8px 10px;border-radius:9px;border:1px solid rgba(139,148,255,.22);background:rgba(88,101,242,.12);color:#e9ebff;font-size:9px;font-weight:850}.ys38-actions button:hover,.ys38-theme-bottom button:hover{background:rgba(88,101,242,.25);border-color:#8b94ff}.ys38-dna-foot{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;padding-top:11px;border-top:1px solid rgba(255,255,255,.07);color:#8f99b6;font-size:9px}.ys38-dna-foot span{padding:5px 8px;border-radius:8px;background:rgba(255,255,255,.03)}.ys38-dna-foot b{color:#fff}
+.ys38-theme-stage{display:grid;grid-template-columns:minmax(180px,.8fr) minmax(260px,1.2fr);gap:14px;align-items:center;padding:16px;margin:10px 0 15px;border:1px solid rgba(139,148,255,.2);border-radius:18px;background:linear-gradient(115deg,rgba(88,101,242,.12),rgba(255,255,255,.02) 60%,rgba(91,225,206,.05))}.ys38-theme-stage h3{font-size:18px;margin:5px 0;color:#f4f5ff}.ys38-theme-stage p{font-size:11px;line-height:1.5;color:#9ea7c2;margin:0}.ys38-theme-preview{border:1px solid rgba(255,255,255,.12);border-radius:13px;overflow:hidden;background:#0b0e18;box-shadow:0 12px 28px #0004}.ys38-preview-top{display:flex;align-items:center;gap:5px;padding:9px 10px;background:rgba(255,255,255,.045);border-bottom:1px solid rgba(255,255,255,.07)}.ys38-preview-top i{width:6px;height:6px;border-radius:50%;background:#8792ff}.ys38-preview-top span{margin-left:auto;color:#7782a4;font-size:8px;letter-spacing:.12em;font-weight:900}.ys38-preview-body{display:flex;align-items:center;gap:12px;padding:13px}.ys38-preview-cover{width:52px;height:52px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(135deg,var(--g2,#5865f2),var(--g,#9b8cff));color:#fff;font-size:26px;box-shadow:0 6px 18px rgba(var(--rgb,88,101,242),.28)}.ys38-preview-body b{display:block;color:#f1f3ff;font-size:11px}.ys38-preview-body small{display:block;color:#8e98b8;font-size:9px;margin-top:3px}.ys38-preview-bars{display:flex;align-items:flex-end;gap:3px;height:13px;margin-top:6px}.ys38-preview-bars i{width:3px;border-radius:4px;background:var(--g,#8b94ff);height:40%}.ys38-preview-bars i:nth-child(2){height:90%}.ys38-preview-bars i:nth-child(3){height:60%}.ys38-preview-bars i:nth-child(4){height:100%}.ys38-preview-bars i:nth-child(5){height:55%}.ys38-theme-bottom{display:flex;justify-content:space-between;align-items:center;padding:8px 11px;border-top:1px solid rgba(255,255,255,.07);color:#aeb6d0;font-size:9px}
+#ys38-command{position:fixed;inset:0;z-index:999990;display:none;place-items:start center;padding:13vh 16px 20px;background:rgba(3,5,12,.76);backdrop-filter:blur(12px)}#ys38-command.on{display:grid}.ys38-command-box{width:min(540px,100%);max-height:70vh;overflow:auto;padding:15px;border:1px solid rgba(139,148,255,.3);border-radius:19px;background:#111626;box-shadow:0 28px 90px #0009}.ys38-command-head{display:flex;justify-content:space-between;align-items:center;color:#aab4ff;font-size:9px;font-weight:950;letter-spacing:.18em;margin-bottom:10px}.ys38-command-box input{width:100%;padding:13px;border:1px solid rgba(139,148,255,.25);border-radius:11px;background:#080c17;color:#fff;outline:none}.ys38-command-results{display:grid;gap:5px;margin:10px 0}.ys38-command-results button{display:flex;justify-content:space-between;padding:11px;border:1px solid transparent;border-radius:9px;background:rgba(255,255,255,.035);color:#eef0ff;text-align:left}.ys38-command-results button.on,.ys38-command-results button:hover{background:rgba(88,101,242,.2);border-color:rgba(139,148,255,.3)}.ys38-command-results p{color:#9ba5c1;font-size:12px;padding:8px}.ys38-command-box>small{display:block;color:#7f89a6;font-size:9px;padding:5px 2px}.ys38-command-box kbd{padding:3px 6px;border:1px solid rgba(255,255,255,.14);border-radius:5px;color:#aeb6d0;font-size:9px}
+@media(max-width:700px){.ys38-id-content{align-items:flex-start;flex-wrap:wrap}.ys38-edit{margin-left:auto}.ys38-lab-grid,.ys38-theme-stage{grid-template-columns:1fr}.ys38-lab-head{display:block}.ys38-live{display:inline-flex;margin-top:10px}.ys38-id-stats{padding:12px 15px}.ys38-avatar{width:70px;height:70px;border-radius:20px}.ys38-banner{height:96px}}
+@media(prefers-reduced-motion:reduce){.ys38-banner:after{animation:none!important}}
+</style>
+
+<script id="yisus-v38-signature-system">
+(function(){
+ 'use strict';
+ if(window.__YISUS_V38__) return; window.__YISUS_V38__=true;
+ var DNA_KEY='yisus_dna_tuning_v38';
+ function readMode(){try{return localStorage.getItem(DNA_KEY)||'balanced'}catch(e){return 'balanced'}}
+ function saveMode(v){try{localStorage.setItem(DNA_KEY,v)}catch(e){}}
+ function safe(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+ function toast38(t){if(typeof window.toast==='function')window.toast(t)}
+ function state(){return window.S||null}
+ function modeWeights(m){return m==='personal'?{a:1.45,t:2.1,k:.55}:m==='explore'?{a:.35,t:.65,k:1.55}:{a:.85,t:1.25,k:1.05}}
+ // Cambia de verdad la ponderación del ADN en el motor de recomendaciones.
+ if(typeof window.dnaScore==='function' && typeof window.dnaTerms==='function'){
+   window.dnaScore=function(track){var s=state(),d=s&&s.dna||{},w=modeWeights(readMode()),n=0,aid=String(track&&track.artistId||''),tid=String(track&&track.id||'');
+     n+=(d.artists&&d.artists[aid]||0)*w.a;
+     n+=(d.tracks&&d.tracks[tid]||0)*w.t;
+     window.dnaTerms(track).forEach(function(k){n+=(d.terms&&d.terms[k]||0)*w.k});
+     return n;
+   };
+ }
+ function radarSvg(){
+   var s=state(),terms=s&&s.dna&&s.dna.terms||{},keys=['trap','drill','electronic','phonk','rage','melodic','dark','ambient'],vals=keys.map(function(k){return Math.max(0,Number(terms[k])||0)}),max=Math.max.apply(null,vals.concat([1]));
+   var cx=150,cy=132,r=83,pts=[];
+   keys.forEach(function(k,i){var a=(-Math.PI/2)+(Math.PI*2*i/keys.length),v=Math.max(.07,vals[i]/max),x=cx+Math.cos(a)*r*v,y=cy+Math.sin(a)*r*v;pts.push(x.toFixed(1)+','+y.toFixed(1))});
+   var grid='';[.25,.5,.75,1].forEach(function(q){var p=keys.map(function(k,i){var a=(-Math.PI/2)+(Math.PI*2*i/keys.length);return (cx+Math.cos(a)*r*q).toFixed(1)+','+(cy+Math.sin(a)*r*q).toFixed(1)}).join(' ');grid+='<polygon points="'+p+'" fill="none" stroke="rgba(180,190,255,.16)" stroke-width="1"/>'});
+   keys.forEach(function(k,i){var a=(-Math.PI/2)+(Math.PI*2*i/keys.length),x=cx+Math.cos(a)*r,y=cy+Math.sin(a)*r;grid+='<line x1="'+cx+'" y1="'+cy+'" x2="'+x.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="rgba(180,190,255,.13)"/>'});
+   var labels=keys.map(function(k,i){var a=(-Math.PI/2)+(Math.PI*2*i/keys.length),x=cx+Math.cos(a)*(r+22),y=cy+Math.sin(a)*(r+22);return '<text x="'+x.toFixed(1)+'" y="'+(y+3).toFixed(1)+'" text-anchor="middle" fill="#aeb7d8" font-size="9" font-weight="700">'+k.toUpperCase()+'</text>'}).join('');
+   return '<svg viewBox="0 0 300 264" role="img" aria-label="Radar de rasgos musicales">'+grid+'<polygon points="'+pts.join(' ')+'" fill="rgba(111,125,255,.25)" stroke="#9ca8ff" stroke-width="2.5" stroke-linejoin="round"/><circle cx="150" cy="132" r="3" fill="#fff"/>'+labels+'</svg>';
+ }
+ function dnaMarkup(){
+   var s=state(),d=s&&s.dna||{},mode=readMode(),w=modeWeights(mode),positive=Number(d.positive)||0,negative=Number(d.negative)||0;
+   return '<section class="ys38-dna-lab"><div class="ys38-lab-head"><div><span class="ys38-eyebrow">YISUS INTELLIGENCE / CONTROL ROOM</span><h3>ADN musical · laboratorio de afinidad</h3><p>Decide cuánto debe parecerse la música nueva a tus gustos o cuánto debe explorar fuera de ellos.</p></div><span class="ys38-live">● MOTOR LOCAL</span></div>'+
+   '<div class="ys38-lab-grid"><div class="ys38-radar"><div class="ys38-card-title">MAPA DE RASGOS <small>Señales positivas acumuladas</small></div>'+radarSvg()+'<div class="ys38-radar-foot">El mapa usa etiquetas y metadatos; no analiza el audio directamente.</div></div>'+
+   '<div class="ys38-tuner"><div class="ys38-card-title">PERFIL DE RECOMENDACIÓN <small>Se aplica al puntuar canciones</small></div><div class="ys38-modes">'+[['personal','Mi ADN','Más peso a artistas y canciones que ya te gustan'],['balanced','Equilibrado','Mezcla afinidad y rasgos musicales'],['explore','Explorar','Menos repetición de artistas; más peso a estilos y rasgos']].map(function(x){return '<button type="button" data-dna-mode="'+x[0]+'" class="ys38-mode '+(mode===x[0]?'on':'')+'"><b>'+x[1]+'</b><small>'+x[2]+'</small></button>'}).join('')+'</div><div class="ys38-weightline"><span>Artistas</span><b>'+w.a.toFixed(2)+'×</b><span>Canciones</span><b>'+w.t.toFixed(2)+'×</b><span>Rasgos</span><b>'+w.k.toFixed(2)+'×</b></div><div class="ys38-actions"><button type="button" data-dna-action="export">⇧ Exportar ADN</button><button type="button" data-dna-action="refresh">↻ Actualizar mapa</button><button type="button" data-dna-action="reset">Reiniciar aprendizaje</button></div></div></div><div class="ys38-dna-foot"><span><b>'+positive+'</b> señales positivas</span><span><b>'+negative+'</b> señales negativas</span><span>Guardado localmente en este navegador</span></div></section>';
+ }
+ function injectDNA(){var box=document.getElementById('dnaDashboard');if(!box)return;var old=box.querySelector('.ys38-dna-lab');if(old)old.remove();box.insertAdjacentHTML('beforeend',dnaMarkup());}
+ if(typeof window.renderDNADashboard==='function'){
+   var oldRender=window.renderDNADashboard;
+   window.renderDNADashboard=function(){oldRender();injectDNA()};
+   setTimeout(injectDNA,500);
+ }
+ document.addEventListener('click',function(e){
+   var mode=e.target.closest('[data-dna-mode]');if(mode){saveMode(mode.dataset.dnaMode);injectDNA();toast38('Perfil ADN: '+mode.querySelector('b').textContent);return}
+   var action=e.target.closest('[data-dna-action]');if(!action)return;var s=state();
+   if(action.dataset.dnaAction==='refresh'){injectDNA();toast38('Mapa de ADN actualizado');return}
+   if(action.dataset.dnaAction==='reset'){
+     if(!s||!confirm('¿Reiniciar solo el aprendizaje del ADN? No se borrarán tus listas, canciones ni historial.'))return;
+     s.dna={artists:{},terms:{},tracks:{},positive:0,negative:0};if(typeof window.save==='function')window.save();if(typeof window.renderDNADashboard==='function')window.renderDNADashboard();toast38('ADN reiniciado. Tu biblioteca sigue intacta.');return;
+   }
+   if(action.dataset.dnaAction==='export'){
+     var d=s&&s.dna||{},payload={app:'YISUS MUSIC',type:'DNA_PROFILE',version:1,exportedAt:new Date().toISOString(),positive:d.positive||0,negative:d.negative||0,traits:d.terms||{},recommendationMode:readMode()};
+     var blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='yisus-adn-musical.json';a.click();setTimeout(function(){URL.revokeObjectURL(url)},1200);toast38('Perfil ADN exportado');
+   }
+ });
+ function profileCard(){
+   var profile=document.getElementById('p-profile');if(!profile||profile.querySelector('.ys38-identity'))return;
+   var st={};try{st=JSON.parse(localStorage.getItem('yisus_studio_v1')||'{}')}catch(e){}
+   var name=st.name||'Tu identidad musical',status=st.status||'Explorando nuevos sonidos',bio=st.bio||'Este es tu espacio. Dale forma desde el Estudio de personalización.';
+   var hero=document.createElement('div');hero.className='ys38-identity';hero.innerHTML='<div class="ys38-banner" style="--profile-accent:'+( /^#[0-9a-f]{6}$/i.test(st.bannerC||'')?st.bannerC:'#5865f2')+'"></div><div class="ys38-id-content"><div class="ys38-avatar">'+safe((name.trim()[0]||'Y').toUpperCase())+'</div><div class="ys38-id-main"><span class="ys38-eyebrow">YISUS MEMBER CARD</span><h2 class="ys38-name"></h2><div class="ys38-status"></div><p class="ys38-bio"></p></div><button type="button" class="ys38-edit">✦ EDITAR IDENTIDAD</button></div><div class="ys38-id-stats"><span><b class="ys38-list-count">0</b> listas</span><span><b class="ys38-song-count">0</b> canciones guardadas</span><span><b class="ys38-level">1</b> nivel</span></div>';
+   hero.querySelector('.ys38-name').textContent=name;hero.querySelector('.ys38-status').textContent='● '+status;hero.querySelector('.ys38-bio').textContent=bio;
+   var head=profile.querySelector('.phead');if(head)head.insertAdjacentElement('afterend',hero);else profile.insertBefore(hero,profile.firstChild);
+   hero.querySelector('.ys38-edit').addEventListener('click',function(){var target=profile.querySelector('.stu')||document.getElementById('stPanel');if(target)target.scrollIntoView({behavior:'smooth',block:'start'});else toast38('Busca el Estudio de personalización en tu perfil.')});
+ }
+ function refreshProfile(){var hero=document.querySelector('.ys38-identity'),s=state();if(!hero||!s)return;var st={};try{st=JSON.parse(localStorage.getItem('yisus_studio_v1')||'{}')}catch(e){};var name=st.name||'Tu identidad musical';hero.querySelector('.ys38-avatar').textContent=(name.trim()[0]||'Y').toUpperCase();hero.querySelector('.ys38-name').textContent=name;hero.querySelector('.ys38-status').textContent='● '+(st.status||'Explorando nuevos sonidos');hero.querySelector('.ys38-bio').textContent=st.bio||'Este es tu espacio. Dale forma desde el Estudio de personalización.';hero.querySelector('.ys38-banner').style.setProperty('--profile-accent',/^#[0-9a-f]{6}$/i.test(st.bannerC||'')?st.bannerC:'#5865f2');hero.querySelector('.ys38-list-count').textContent=(s.sels||[]).length;hero.querySelector('.ys38-song-count').textContent=(s.sels||[]).reduce(function(n,x){return n+(x.songs||[]).length},0);hero.querySelector('.ys38-level').textContent=typeof window.level==='function'?window.level():1;}
+ if(typeof window.renderProfile==='function'){var rp=window.renderProfile;window.renderProfile=function(){rp();profileCard();refreshProfile()}}
+ profileCard();refreshProfile();
+ function themeStage(){var grid=document.getElementById('themeGrid');if(!grid||grid.parentNode.querySelector('.ys38-theme-stage'))return;var stage=document.createElement('div');stage.className='ys38-theme-stage';stage.innerHTML='<div><span class="ys38-eyebrow">LIVE THEME PREVIEW</span><h3>Tu sala, tus reglas.</h3><p>Vista previa de la identidad visual que tienes activa.</p></div><div class="ys38-theme-preview"><div class="ys38-preview-top"><i></i><i></i><i></i><span>YISUS / PLAYER INTERFACE</span></div><div class="ys38-preview-body"><div class="ys38-preview-cover">♫</div><div><b>Midnight session</b><small>Personaliza la experiencia</small><div class="ys38-preview-bars"><i></i><i></i><i></i><i></i><i></i></div></div></div><div class="ys38-theme-bottom"><span class="ys38-theme-name">Tema activo</span><button type="button" data-theme-copy>Copiar paleta</button></div></div>';
+   grid.insertAdjacentElement('beforebegin',stage);
+   stage.querySelector('[data-theme-copy]').addEventListener('click',function(){var cs=getComputedStyle(document.documentElement),rgb=(cs.getPropertyValue('--rgb')||'88,101,242').trim(),bg=cs.getPropertyValue('--bg').trim();var hex='#'+rgb.split(',').map(function(v){return Math.max(0,Math.min(255,+v||0)).toString(16).padStart(2,'0')}).join('');var out='Acento: '+hex+'\nFondo: '+bg; if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(out).then(function(){toast38('Paleta copiada')}).catch(function(){toast38(out)});else toast38(out)});
+ }
+ themeStage();
+ // Command palette: Ctrl/Cmd + K. Uses the app's real navigation buttons.
+ function commandPalette(){if(document.getElementById('ys38-command'))return;var m=document.createElement('div');m.id='ys38-command';m.innerHTML='<div class="ys38-command-box"><div class="ys38-command-head"><span>YISUS COMMAND CENTER</span><kbd>ESC</kbd></div><input type="search" placeholder="Ir a una sección…" aria-label="Buscar sección"><div class="ys38-command-results"></div><small>↑ ↓ para moverte · Enter para abrir · Ctrl K para cerrar</small></div>';document.body.appendChild(m);var input=m.querySelector('input'),results=m.querySelector('.ys38-command-results'),active=0;
+ function items(q){var nav=document.querySelectorAll('#nav [data-page]');return Array.prototype.map.call(nav,function(b){return {name:(b.textContent||b.getAttribute('data-page')||'').trim(),page:b.getAttribute('data-page'),el:b}}).filter(function(x){return !q||x.name.toLowerCase().indexOf(q.toLowerCase())>=0||x.page.toLowerCase().indexOf(q.toLowerCase())>=0})}
+ function draw(){var arr=items(input.value);active=Math.max(0,Math.min(active,arr.length-1));results.innerHTML='';arr.forEach(function(x,i){var b=document.createElement('button');b.type='button';b.className=i===active?'on':'';b.innerHTML='<span>'+safe(x.name)+'</span><kbd>↵</kbd>';b.addEventListener('click',function(){x.el.click();m.classList.remove('on')});results.appendChild(b)});if(!arr.length)results.innerHTML='<p>No encuentro esa sección.</p>'}
+ function open(){m.classList.add('on');input.value='';active=0;draw();setTimeout(function(){input.focus()},20)}function close(){m.classList.remove('on')}
+ input.addEventListener('input',draw);input.addEventListener('keydown',function(e){var arr=items(input.value);if(e.key==='ArrowDown'){e.preventDefault();active=Math.min(arr.length-1,active+1);draw()}if(e.key==='ArrowUp'){e.preventDefault();active=Math.max(0,active-1);draw()}if(e.key==='Enter'&&arr[active]){arr[active].el.click();close()}});m.addEventListener('click',function(e){if(e.target===m)close()});document.addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();m.classList.contains('on')?close():open()}if(e.key==='Escape')close()});
+ }
+ commandPalette();
+})();
+
+</script>
+
+<style id="yisus-v39-signature-studio">
+:root{--ys39-accent:#35e07a;--ys39-glow:.45}
+.ys39-profile,.ys39-dna,.ys39-theme-lab{position:relative;overflow:hidden;border:1px solid color-mix(in srgb,var(--ys39-accent) 24%,var(--line))!important;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012)),var(--s1)!important;border-radius:20px!important;box-shadow:0 18px 55px rgba(0,0,0,.22),0 0 calc(48px * var(--ys39-glow)) color-mix(in srgb,var(--ys39-accent) 16%,transparent)!important;margin-bottom:16px!important}
+.ys39-banner{height:126px;padding:16px 18px;display:flex;align-items:flex-start;justify-content:space-between;background:radial-gradient(ellipse at 80% 10%,rgba(255,255,255,.25),transparent 38%),linear-gradient(115deg,color-mix(in srgb,var(--ys39-banner,#5865f2) 88%,#080b14),#111827 78%);position:relative}.ys39-banner:after{content:"";position:absolute;inset:auto -5% -45px 35%;height:90px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--ys39-banner,#5865f2) 40%,transparent),transparent);filter:blur(22px);transform:rotate(-9deg)}.ys39-banner-label,.ys39-eyebrow{font-size:9px;letter-spacing:.2em;font-weight:900;color:rgba(255,255,255,.75)}.ys39-edit{position:relative;z-index:1;padding:8px 12px;border:1px solid #ffffff35;border-radius:9px;background:#080b1477;color:white;font-size:11px;font-weight:800}.ys39-profile-main{display:flex;align-items:flex-end;gap:16px;padding:0 22px;margin-top:-42px;position:relative;z-index:2}.ys39-avatar{width:88px;height:88px;flex:none;border-radius:24px;border:4px solid var(--s1);display:grid;place-items:center;background:linear-gradient(145deg,var(--ys39-accent),#101827);color:#06100a;font-size:32px;font-weight:1000;box-shadow:0 8px 28px #0008;background-size:cover;background-position:center}.ys39-person{min-width:0;padding:0 0 7px}.ys39-name-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.ys39-name-row h2{font-size:clamp(19px,3vw,25px);letter-spacing:-.04em}.ys39-status{font-size:9px;letter-spacing:.12em;color:var(--ys39-accent);font-weight:900}.ys39-person p{color:var(--mut);font-size:12px;margin-top:3px}.ys39-pin{margin-top:8px;color:var(--ys39-accent);font-size:11px;font-weight:750}.ys39-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:20px 22px 0;padding:14px 0;border-top:1px solid var(--line)}.ys39-stats span,.ys39-dna-metrics>div{display:grid;gap:2px}.ys39-stats b,.ys39-dna-metrics b{font-size:20px;font-weight:900}.ys39-stats small,.ys39-dna-metrics small{font-size:8px;letter-spacing:.13em;color:var(--dim);font-weight:900}.ys39-editor{margin:8px 22px 20px;padding:16px;border:1px solid var(--line2);border-radius:15px;background:rgba(0,0,0,.18)}.ys39-editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.ys39-editor label,.ys39-theme-controls label{display:grid;gap:6px;color:var(--mut);font-size:10px;font-weight:850;letter-spacing:.05em}.ys39-editor input:not([type=file]),.ys39-editor select,.ys39-editor textarea,.ys39-theme-controls select{width:100%;min-width:0;padding:10px;border:1px solid var(--line2);border-radius:9px;background:var(--bg);color:var(--tx);font:inherit;font-size:12px}.ys39-editor input[type=color],.ys39-theme-controls input[type=color]{height:40px;width:100%;padding:3px;border:1px solid var(--line2);border-radius:9px;background:var(--bg)}.ys39-editor input[type=file]{font-size:10px;max-width:100%;color:var(--mut)}.ys39-wide{grid-column:1/-1}.ys39-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.ys39-note{display:block;color:var(--dim);font-size:10px;line-height:1.55;margin-top:12px}.ys39-section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:18px}.ys39-section-head h2{font-size:20px;letter-spacing:-.035em;margin-top:4px}.ys39-section-head p{font-size:11px;color:var(--mut);margin-top:4px}.ys39-dna-mark{padding:7px 9px;border:1px solid color-mix(in srgb,var(--ys39-accent) 35%,transparent);border-radius:8px;color:var(--ys39-accent);font-size:9px;letter-spacing:.12em;font-weight:950;white-space:nowrap}.ys39-dna,.ys39-theme-lab{padding:20px}.ys39-dna-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px 0;border-block:1px solid var(--line)}.ys39-dna-metrics b{font-size:25px;color:var(--ys39-accent)}.ys39-traits{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px;margin-top:14px}.ys39-trait{padding:11px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.025)}.ys39-trait b{display:block;font-size:12px;text-transform:capitalize}.ys39-trait small{color:var(--mut);font-size:9px}.ys39-trait i{display:block;height:5px;margin-top:9px;border-radius:9px;background:var(--line);overflow:hidden}.ys39-trait i:after{content:"";display:block;height:100%;width:var(--w);background:var(--ys39-accent);border-radius:9px;box-shadow:0 0 12px var(--ys39-accent)}.ys39-theme-preview{border:1px solid var(--line2);border-radius:15px;overflow:hidden;background:radial-gradient(ellipse at 90% 0%,color-mix(in srgb,var(--ys39-accent) 22%,transparent),transparent 50%),#090d13;padding:13px}.ys39-preview-top{display:flex;align-items:center;gap:6px;color:#7e8b9b;font-size:8px;letter-spacing:.15em}.ys39-preview-top i{width:6px;height:6px;border-radius:50%;background:var(--ys39-accent)}.ys39-preview-top span{margin-left:7px}.ys39-preview-content{display:flex;align-items:center;gap:14px;padding:23px 12px}.ys39-preview-disc{width:62px;height:62px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(145deg,var(--ys39-accent),#182130);color:#06100a;font-size:30px;box-shadow:0 0 28px color-mix(in srgb,var(--ys39-accent) 28%,transparent)}.ys39-preview-content b{display:block;font-size:17px;color:white}.ys39-preview-content small{color:#8290a2;font-size:10px}.ys39-preview-bars{display:flex;align-items:center;gap:3px;height:20px;margin-top:8px}.ys39-preview-bars i{width:4px;height:var(--h,10px);border-radius:5px;background:var(--ys39-accent);animation:ys39-eq .8s ease-in-out infinite alternate}.ys39-preview-bars i:nth-child(2n){animation-delay:.2s}.ys39-preview-bars i:nth-child(3n){animation-delay:.4s}.ys39-preview-bars i:nth-child(1){--h:8px}.ys39-preview-bars i:nth-child(2){--h:17px}.ys39-preview-bars i:nth-child(3){--h:12px}.ys39-preview-bars i:nth-child(4){--h:19px}.ys39-preview-bars i:nth-child(5){--h:9px}.ys39-preview-bars i:nth-child(6){--h:15px}.ys39-preview-bars i:nth-child(7){--h:6px}@keyframes ys39-eq{to{transform:scaleY(.45);opacity:.6}}.ys39-theme-controls{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:12px;margin-top:15px}.ys39-theme-controls input[type=range]{width:100%;accent-color:var(--ys39-accent)}.ys39-presets{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}.ys39-presets button{padding:8px 10px;border:1px solid var(--line2);border-radius:8px;color:var(--mut);font-size:8px;font-weight:900;letter-spacing:.08em}.ys39-presets button:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--preset);margin-right:6px}.ys39-presets button:hover{border-color:var(--ys39-accent);color:var(--tx)}.ys39-compact-toggle{padding:8px 10px;border:1px solid color-mix(in srgb,var(--ys39-accent) 35%,var(--line));border-radius:9px;color:var(--ys39-accent);font-size:9px;font-weight:950;letter-spacing:.1em;white-space:nowrap;background:color-mix(in srgb,var(--ys39-accent) 7%,transparent)}.ys39-compact .pbar{height:58px!important;min-height:58px!important}.ys39-compact .pbar .pright,.ys39-compact .pbar .pseek,.ys39-compact .pbar .pctrl #bDis,.ys39-compact .pbar .pctrl #bPrev,.ys39-compact .pbar .pctrl #bNext,.ys39-compact .pbar .pctrl #bParty{display:none!important}.ys39-compact .pbar .pmid{flex:0 0 auto}.ys39-compact .pbar .pnow{flex:1}.ys39-compact .pbar{padding-block:5px!important}.ys39-compact .pbar .pcov{width:38px!important;height:38px!important}
+@media(max-width:700px){.ys39-profile-main{padding-inline:14px;gap:11px}.ys39-avatar{width:70px;height:70px;border-radius:18px}.ys39-person{padding-bottom:3px}.ys39-stats{margin-inline:14px;grid-template-columns:repeat(2,1fr);row-gap:12px}.ys39-editor{margin-inline:12px}.ys39-editor-grid,.ys39-theme-controls{grid-template-columns:1fr}.ys39-dna,.ys39-theme-lab{padding:15px}.ys39-section-head{display:block}.ys39-dna-mark{display:inline-flex;margin-top:10px}.ys39-dna-metrics{gap:5px}.ys39-dna-metrics b{font-size:20px}.ys39-banner{height:108px}}
+@media(prefers-reduced-motion:reduce){.ys39-preview-bars i{animation:none}}
+</style>
+<script id="yisus-v39-signature-studio-js">
+(function(){
+ 'use strict';
+ if(window.__YISUS_V39__)return;window.__YISUS_V39__=true;
+ var $39=function(id){return document.getElementById(id)};
+ var PROFILE_KEY='yisus_profile_identity_v39',THEME_KEY='yisus_theme_studio_v39';
+ function read(key,def){try{return JSON.parse(localStorage.getItem(key)||'null')||def}catch(e){return def}}
+ function write(key,val){try{localStorage.setItem(key,JSON.stringify(val));return true}catch(e){return false}}
+ function toast39(msg){if(typeof window.toast==='function')window.toast(msg);else alert(msg)}
+ var profile=read(PROFILE_KEY,{name:'YISUS listener',status:'ONLINE',bio:'Tu música. Tu identidad. Tu espacio.',banner:'#5865f2',avatar:'',pin:''});
+ function currentTrack(){var title=($39('bTitle')?.textContent||$39('title')?.textContent||'').trim(),artist=($39('bArtist')?.textContent||$39('artist')?.textContent||'').trim();if(!title||/nada sonando|elige de dónde/i.test(title))return '';return title+(artist?' — '+artist:'')}
+ function paintProfile(){if(!$39('ys39-profile'))return;$39('ys39-name-view').textContent=profile.name||'YISUS listener';$39('ys39-status-view').textContent='● '+(profile.status||'ONLINE');$39('ys39-bio-view').textContent=profile.bio||'Tu música. Tu identidad. Tu espacio.';$39('ys39-banner').style.setProperty('--ys39-banner',profile.banner||'#5865f2');$39('ys39-banner-color').value=profile.banner||'#5865f2';$39('ys39-name').value=profile.name||'';$39('ys39-status').value=profile.status||'ONLINE';$39('ys39-bio').value=profile.bio||'';var av=$39('ys39-avatar');av.textContent=profile.avatar?'':(profile.name||'Y').slice(0,1).toUpperCase();av.style.backgroundImage=profile.avatar?'url("'+profile.avatar+'")':'';$39('ys39-pin-view').textContent=profile.pin?'♫ '+profile.pin:'♫ Todavía no has fijado una canción';var stats=window.S||{};$39('ys39-stat-likes').textContent=stats.likes||0;$39('ys39-stat-songs').textContent=(stats.listened||0);$39('ys39-stat-lists').textContent=(stats.sels||[]).length;$39('ys39-stat-feedback').textContent=((stats.dna&&stats.dna.positive||0)+(stats.dna&&stats.dna.negative||0));}
+ function openEditor(){ $39('ys39-editor').classList.remove('hide');$39('ys39-name').focus() }
+ function closeEditor(){ $39('ys39-editor').classList.add('hide') }
+ $39('ys39-edit').addEventListener('click',openEditor);$39('ys39-cancel').addEventListener('click',closeEditor);
+ $39('ys39-save').addEventListener('click',function(){profile.name=$39('ys39-name').value.trim().slice(0,28)||'YISUS listener';profile.status=$39('ys39-status').value;profile.bio=$39('ys39-bio').value.trim().slice(0,120);profile.banner=$39('ys39-banner-color').value;write(PROFILE_KEY,profile);paintProfile();closeEditor();toast39('Identidad guardada en este dispositivo')});
+ $39('ys39-avatar-file').addEventListener('change',function(e){var f=e.target.files&&e.target.files[0];if(!f)return;if(!f.type.startsWith('image/')){toast39('Elige un archivo de imagen');return}if(f.size>8*1024*1024){toast39('La imagen pesa demasiado. Máximo 8 MB.');e.target.value='';return}var url=URL.createObjectURL(f),img=new Image();img.onload=function(){var c=document.createElement('canvas'),max=420,scale=Math.min(1,max/Math.max(img.width,img.height));c.width=Math.round(img.width*scale);c.height=Math.round(img.height*scale);c.getContext('2d').drawImage(img,0,0,c.width,c.height);profile.avatar=c.toDataURL('image/jpeg',.78);write(PROFILE_KEY,profile);paintProfile();URL.revokeObjectURL(url);toast39('Avatar actualizado')};img.onerror=function(){URL.revokeObjectURL(url);toast39('No se pudo leer esa imagen')};img.src=url});
+ $39('ys39-pin').addEventListener('click',function(){var t=currentTrack();if(!t){toast39('Pon una canción antes de fijarla');return}profile.pin=t;write(PROFILE_KEY,profile);paintProfile();toast39('Canción fijada en tu perfil')});
+ $39('ys39-share').addEventListener('click',async function(){var text='🎧 '+profile.name+' · YISUS MUSIC\n'+(profile.bio||'')+'\nEstado: '+profile.status+(profile.pin?'\nCanción fijada: '+profile.pin:'');try{if(navigator.share)await navigator.share({title:'Mi perfil YISUS MUSIC',text:text});else if(navigator.clipboard){await navigator.clipboard.writeText(text);toast39('Perfil copiado para compartir')}else toast39(text)}catch(e){if(e.name!=='AbortError')toast39('No se pudo compartir desde este navegador')}});
+ function renderDNA(){var d=(window.S&&S.dna)||{artists:{},terms:{},positive:0,negative:0};var terms=Object.entries(d.terms||{}).filter(function(x){return x[1]>0}).sort(function(a,b){return b[1]-a[1]});$39('ys39-positive').textContent=d.positive||0;$39('ys39-negative').textContent=d.negative||0;$39('ys39-traits').textContent=terms.length;$39('ys39-stat-feedback').textContent=(d.positive||0)+(d.negative||0);var box=$39('ys39-traits-list');if(!terms.length){box.innerHTML='<p>Aún faltan señales positivas. Guarda canciones que te gusten y descarta las que no encajen.</p>';return}var max=Math.max.apply(null,terms.map(function(x){return x[1]}));box.innerHTML=terms.slice(0,8).map(function(x){var w=Math.max(8,Math.round(x[1]/max*100));return '<div class="ys39-trait"><b>'+String(x[0]).replace(/[&<>"']/g,'')+'</b><small>'+x[1]+' puntos de afinidad</small><i style="--w:'+w+'%"></i></div>'}).join('')}
+ $39('ys39-dna-refresh').addEventListener('click',function(){renderDNA();paintProfile();toast39('ADN actualizado con tus señales guardadas')});
+ $39('ys39-dna-export').addEventListener('click',function(){var data={app:'YISUS MUSIC',version:'V39',exportedAt:new Date().toISOString(),dna:(window.S&&S.dna)||{},profile:{name:profile.name,status:profile.status,bio:profile.bio,pinnedTrack:profile.pin}};var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='yisus-mi-adn-musical.json';a.click();setTimeout(function(){URL.revokeObjectURL(a.href)},1000);toast39('Tu ADN se ha exportado')});
+ var theme=read(THEME_KEY,{accent:'#35e07a',mood:'deep',glow:45});
+ function hexRgb(hex){var h=String(hex).replace('#','');if(h.length===3)h=h.split('').map(function(x){return x+x}).join('');var n=parseInt(h,16);return [(n>>16)&255,(n>>8)&255,n&255].join(',')}
+ function applyTheme(previewOnly){var root=document.documentElement,accent=$39('ys39-accent').value,mood=$39('ys39-mood').value,glow=+$39('ys39-glow').value;root.style.setProperty('--ys39-accent',accent);root.style.setProperty('--ys39-glow',glow/100);$39('ys39-theme-preview').style.setProperty('--ys39-accent',accent);$39('ys39-theme-preview').style.setProperty('--ys39-glow',glow/100);$39('ys39-theme-preview').style.setProperty('--ys39-accent',accent);var rgb=hexRgb(accent),light=mood==='light';root.style.setProperty('--g',accent);root.style.setProperty('--g2','color-mix(in srgb,'+accent+' 72%,#07100b)');root.style.setProperty('--gbg','color-mix(in srgb,'+accent+' 14%,#07100b)');root.style.setProperty('--gline','color-mix(in srgb,'+accent+' 40%,#152019)');root.style.setProperty('--rgb',rgb);if(mood==='midnight'){root.style.setProperty('--bg','#050711');root.style.setProperty('--s1','#0a0e1c');root.style.setProperty('--s2','#10162a');root.style.setProperty('--s3','#171f38')}else if(light){root.style.setProperty('--bg','#11151b');root.style.setProperty('--s1','#1a2029');root.style.setProperty('--s2','#202936');root.style.setProperty('--s3','#2a3544')}else{root.style.setProperty('--bg','#060807');root.style.setProperty('--s1','#0b0f0c');root.style.setProperty('--s2','#101611');root.style.setProperty('--s3','#171f19')}if(!previewOnly){theme={accent:accent,mood:mood,glow:glow};write(THEME_KEY,theme);toast39('Theme Studio aplicado y guardado')}}
+ $39('ys39-accent').value=theme.accent;$39('ys39-mood').value=theme.mood;$39('ys39-glow').value=theme.glow;
+ ['ys39-accent','ys39-mood','ys39-glow'].forEach(function(id){$39(id).addEventListener('input',function(){applyTheme(true)})});
+ document.querySelectorAll('[data-ys39-preset]').forEach(function(b){b.style.setProperty('--preset',b.getAttribute('data-ys39-preset'));b.addEventListener('click',function(){$39('ys39-accent').value=b.getAttribute('data-ys39-preset');applyTheme(true)})});
+ $39('ys39-theme-apply').addEventListener('click',function(){applyTheme(false)});
+ $39('ys39-theme-reset').addEventListener('click',function(){theme={accent:'#35e07a',mood:'deep',glow:45};$39('ys39-accent').value=theme.accent;$39('ys39-mood').value=theme.mood;$39('ys39-glow').value=theme.glow;applyTheme(false)});
+ applyTheme(true);
+ // Compact mode only changes the existing player layout; original playback controls remain in use.
+ var compact=localStorage.getItem('yisus_player_compact_v39')==='1';function compactPaint(){document.body.classList.toggle('ys39-compact',compact)}compactPaint();
+ var compactBtn=document.createElement('button');compactBtn.type='button';compactBtn.className='ys39-compact-toggle';compactBtn.textContent=compact?'PLAYER FULL':'PLAYER MINI';compactBtn.title='Alternar reproductor compacto';compactBtn.addEventListener('click',function(){compact=!compact;localStorage.setItem('yisus_player_compact_v39',compact?'1':'0');compactPaint();compactBtn.textContent=compact?'PLAYER FULL':'PLAYER MINI';toast39(compact?'Reproductor compacto activado':'Reproductor completo activado')});var topbar=document.querySelector('.ys-topright');if(topbar)topbar.appendChild(compactBtn);
+ // Refresh the live profile counts when the existing app updates its player or navigation.
+ var last='';setInterval(function(){var t=currentTrack();if(t!==last){last=t;paintProfile()}},1800);
+ document.addEventListener('keydown',function(e){if(e.target&&/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='m'){e.preventDefault();compactBtn.click()}if(e.key==='?'&&!e.ctrlKey&&!e.metaKey){toast39('Atajos: Ctrl+K abrir secciones · Ctrl+M reproductor mini · Espacio reproducir/pausar')}});
+ paintProfile();renderDNA();
+ // Repaint when the user opens the profile page, keeping counts current.
+ var nav=document.getElementById('nav');if(nav)new MutationObserver(function(){if(document.getElementById('p-profile')?.classList.contains('on')){paintProfile();renderDNA()}}).observe(document.getElementById('main'),{subtree:true,attributes:true,attributeFilter:['class']});
+})();
+</script>
+
+
+<style id="ys40-insights-css">
+.ys40-insights{margin:22px 0 30px;padding:clamp(16px,2.4vw,26px);border:1px solid rgba(132,146,255,.2);border-radius:22px;background:linear-gradient(145deg,rgba(23,27,49,.94),rgba(8,12,22,.96));box-shadow:0 18px 55px rgba(0,0,0,.22);color:var(--tx,#f4f5ff)}
+.ys40-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:18px}.ys40-kicker{font-size:10px;letter-spacing:2px;font-weight:900;color:#9da9ff}.ys40-head h3{font-size:clamp(19px,2.5vw,25px);margin:5px 0}.ys40-head p{margin:0;color:#a9b0c8;font-size:13px;max-width:650px;line-height:1.5}.ys40-tools{display:flex;gap:8px;flex-wrap:wrap}.ys40-tools button{border:1px solid rgba(157,169,255,.24);border-radius:11px;background:rgba(255,255,255,.055);color:#eef0ff;padding:9px 12px;font-weight:800;cursor:pointer}.ys40-tools button:hover{background:rgba(120,133,255,.18)}
+.ys40-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0}.ys40-stat{padding:14px;border-radius:15px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.07);min-width:0}.ys40-stat b{display:block;font-size:25px;line-height:1.1}.ys40-stat span{display:block;margin-top:6px;color:#aab1ca;font-size:10px;font-weight:900;letter-spacing:1px}
+.ys40-columns{display:grid;grid-template-columns:1.1fr .9fr;gap:12px}.ys40-card{padding:16px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);min-width:0}.ys40-card h4{margin:0 0 12px;font-size:13px;letter-spacing:.5px}.ys40-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12px}.ys40-row:last-child{border-bottom:0}.ys40-row small{display:block;color:#9ca5c0;margin-top:3px}.ys40-row strong{white-space:nowrap;color:#cbd0ff}.ys40-bar{height:5px;border-radius:10px;background:rgba(255,255,255,.08);margin-top:7px;overflow:hidden}.ys40-bar i{display:block;height:100%;width:var(--w);background:linear-gradient(90deg,#6577ff,#50e3b0);border-radius:10px}.ys40-empty{color:#9da6bf;font-size:12px;line-height:1.5;padding:8px 0}.ys40-foot{margin-top:14px;color:#8791ad;font-size:10px;line-height:1.5}
+@media(max-width:760px){.ys40-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ys40-columns{grid-template-columns:1fr}.ys40-insights{margin:16px 0;padding:14px;border-radius:17px}.ys40-stat b{font-size:22px}.ys40-tools button{font-size:11px;padding:8px 10px}}
+@media(prefers-reduced-motion:no-preference){.ys40-insights{animation:ys40in .35s ease both}@keyframes ys40in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}}
+
+/* V42 · Music DNA Studio visual system */
+.ys42-dna{position:relative;overflow:hidden;margin:18px 0 22px;padding:clamp(18px,3vw,28px);border:1px solid color-mix(in srgb,var(--rgb,#42e98a) 28%,transparent);background:radial-gradient(ellipse at 95% 0%,color-mix(in srgb,var(--rgb,#42e98a) 15%,transparent),transparent 42%),linear-gradient(135deg,rgba(255,255,255,.035),rgba(255,255,255,.012));}
+.ys42-dna-head{display:flex;align-items:center;justify-content:space-between;gap:18px}.ys42-kicker{font-size:10px;letter-spacing:.18em;font-weight:800;color:var(--rgb,#42e98a)}.ys42-dna-head h2{font-size:clamp(22px,3vw,30px);margin:7px 0}.ys42-dna-head p{margin:0;color:var(--muted,#9aa0aa);font-size:13px;max-width:620px;line-height:1.55}.ys42-dna-orb{width:58px;height:58px;flex:0 0 58px;border-radius:18px;display:grid;place-items:center;font-size:27px;color:var(--rgb,#42e98a);background:color-mix(in srgb,var(--rgb,#42e98a) 13%,transparent);box-shadow:0 0 35px color-mix(in srgb,var(--rgb,#42e98a) 15%,transparent)}
+.ys42-dna-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:20px 0}.ys42-dna-metrics>div{padding:13px 15px;border-radius:13px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.055)}.ys42-dna-metrics b{display:block;font-size:23px;line-height:1.2}.ys42-dna-metrics span{display:block;margin-top:5px;font-size:9px;letter-spacing:.12em;color:var(--muted,#9aa0aa);font-weight:800}.ys42-dna-label{display:flex;flex-direction:column;gap:4px;margin:12px 0}.ys42-dna-label b{font-size:14px}.ys42-dna-label small{color:var(--muted,#9aa0aa);font-size:11px}.ys42-dna-tags{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px}.ys42-dna-tag{display:flex;flex-direction:column;align-items:flex-start;gap:7px;text-align:left;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.025);color:inherit;cursor:pointer;transition:transform .18s,border-color .18s,background .18s}.ys42-dna-tag:hover{transform:translateY(-2px);border-color:var(--rgb,#42e98a)}.ys42-dna-tag span{font-weight:800;font-size:13px}.ys42-dna-tag small{font-size:10px;color:var(--muted,#9aa0aa)}.ys42-dna-tag.love{border-color:color-mix(in srgb,#42e98a 60%,transparent);background:color-mix(in srgb,#42e98a 10%,transparent)}.ys42-dna-tag.love small{color:#68e9a0}.ys42-dna-tag.avoid{border-color:rgba(255,105,125,.45);background:rgba(255,105,125,.075)}.ys42-dna-tag.avoid small{color:#ff8d9e}.ys42-dna-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;color:var(--muted,#9aa0aa);font-size:11px}.ys42-dna-footer button{white-space:nowrap}
+@media(max-width:600px){.ys42-dna-head{align-items:flex-start}.ys42-dna-orb{width:44px;height:44px;flex-basis:44px;border-radius:14px}.ys42-dna-metrics{gap:6px}.ys42-dna-metrics>div{padding:10px}.ys42-dna-metrics b{font-size:19px}.ys42-dna-metrics span{font-size:8px}.ys42-dna-tags{grid-template-columns:repeat(2,minmax(0,1fr))}.ys42-dna-footer{align-items:flex-start;flex-direction:column}}
+</style>
+
+
+<script id="ys40-insights-engine">
+(function(){
+ 'use strict'; if(window.__YISUS_V40__)return;window.__YISUS_V40__=true;
+ var $=function(id){return document.getElementById(id)}, esc=function(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+ function state(){return window.S||{}} function fmtDate(n){try{return new Date(n).toLocaleDateString(undefined,{day:'2-digit',month:'short'})}catch(e){return ''}}
+ function artistName(id,s){var all=[];(s.sels||[]).forEach(function(l){(l.artists||[]).forEach(function(a){if(String(a.id)===String(id))all.push(a.name)})});return all[0]||('Artista '+String(id).slice(0,8))}
+ function trackName(id,s){var h=(s.hist||[]).find(function(t){return String(t.id)===String(id)});return h?(h.title+' — '+h.artist):('Canción '+String(id).slice(0,9))}
+ function panel(){var host=$('p-profile');if(!host)return;var old=$('ys40-insights');if(old)old.remove();var s=state(),d=s.dna||{},events=Array.isArray(d.events)?d.events:[],now=Date.now(),week=events.filter(function(e){return now-(Number(e.at)||0)<=7*86400000&&Number(e.at)>0}),pos=Number(d.positive)||0,neg=Number(d.negative)||0,plays=Number(s.listened)||0,likes=Number(s.likes)||0;
+  var traits=Object.entries(d.terms||{}).filter(function(x){return Number(x[1])>0}).sort(function(a,b){return b[1]-a[1]}).slice(0,5),max=traits.length?Math.max.apply(null,traits.map(function(x){return Number(x[1])||0})):1;
+  var listStats=Object.entries(d.lists||{}).map(function(pair){var list=(s.sels||[]).find(function(x){return String(x.id)===String(pair[0])});return {name:list?list.name:'Lista guardada',data:pair[1]||{}}}).sort(function(a,b){return ((b.data.positive||0)+(b.data.plays||0))-((a.data.positive||0)+(a.data.plays||0))}).slice(0,5);
+  var recent=events.slice().sort(function(a,b){return (b.at||0)-(a.at||0)}).slice(0,5);
+  var html='<section class="ys40-insights" id="ys40-insights"><div class="ys40-head"><div><span class="ys40-kicker">YISUS INTELLIGENCE · V40</span><h3>Music Insights</h3><p>Tu actividad y afinidades, explicadas con datos guardados por el reproductor. No inventamos minutos ni análisis de audio.</p></div><div class="ys40-tools"><button type="button" id="ys40-refresh">↻ Actualizar</button><button type="button" id="ys40-export">⇧ Exportar informe</button></div></div>'+
+  '<div class="ys40-grid"><div class="ys40-stat"><b>'+plays+'</b><span>ESCUCHAS REGISTRADAS</span></div><div class="ys40-stat"><b>'+likes+'</b><span>CANCIONES GUARDADAS</span></div><div class="ys40-stat"><b>'+pos+'</b><span>SEÑALES POSITIVAS ADN</span></div><div class="ys40-stat"><b>'+week.length+'</b><span>SEÑALES · ÚLTIMOS 7 DÍAS</span></div></div>'+
+  '<div class="ys40-columns"><div class="ys40-card"><h4>✦ TUS RASGOS CON MÁS AFINIDAD</h4>'+(traits.length?traits.map(function(x){var w=Math.max(5,Math.round((Number(x[1])||0)/max*100));return '<div class="ys40-row"><div><b>'+esc(x[0].toUpperCase())+'</b><div class="ys40-bar"><i style="--w:'+w+'%"></i></div></div><strong>'+Number(x[1]).toFixed(1)+' pts</strong></div>'}).join(''):'<div class="ys40-empty">Todavía no hay suficientes señales. Guarda canciones que te gusten y escucha recomendaciones durante un rato para construir tu ADN.</div>')+'</div>'+
+  '<div class="ys40-card"><h4>▤ ADN POR PLAYLIST</h4>'+(listStats.length?listStats.map(function(x){var n=(x.data.positive||0)+(x.data.plays||0);return '<div class="ys40-row"><div><b>'+esc(x.name)+'</b><small>'+(x.data.plays||0)+' escuchas · '+(x.data.saved||0)+' guardados · '+(x.data.skips||0)+' saltos</small></div><strong>'+n+'</strong></div>'}).join(''):'<div class="ys40-empty">Aún no hay perfiles de ADN separados por playlist. Se irán formando con tus valoraciones y escuchas.</div>')+'</div></div>'+
+  '<div class="ys40-card" style="margin-top:12px"><h4>◷ ACTIVIDAD RECIENTE</h4>'+(recent.length?recent.map(function(e){var kind=({save:'Guardaste',listen:'Escucha positiva','quick-skip':'Salto rápido',dislike:'No te gustó'})[e.kind]||'Valoraste';return '<div class="ys40-row"><div><b>'+esc(kind)+' · '+esc(trackName(e.track,s))+'</b><small>'+esc((e.artist?artistName(e.artist,s):'YISUS MUSIC')+(e.lists&&e.lists.length?' · '+e.lists.length+' playlist(s)':''))+'</small></div><strong>'+fmtDate(e.at)+'</strong></div>'}).join(''):'<div class="ys40-empty">Tu actividad aparecerá aquí cuando YISUS registre nuevas señales musicales.</div>')+'</div>'+
+  '<div class="ys40-foot">Privacidad: estos datos se calculan localmente en este navegador. Las señales de afinidad proceden de guardados, escuchas y saltos; las etiquetas dependen de metadatos y no de una escucha directa del archivo de audio. El historial de reproducción conserva un máximo limitado de canciones.</div></section>';
+  var target=host.querySelector('.ys39-profile')||host.querySelector('.ys38-identity')||host.querySelector('.phead');if(target)target.insertAdjacentHTML('afterend',html);else host.insertAdjacentHTML('afterbegin',html);var inserted=$('ys40-insights');if(inserted)inserted.dataset.refreshAt=String(events.length);
+  $('ys40-refresh').addEventListener('click',function(){panel();if(typeof window.toast==='function')window.toast('Insights actualizados')});
+  $('ys40-export').addEventListener('click',function(){var payload={app:'YISUS MUSIC',version:'V40',exportedAt:new Date().toISOString(),stats:{listened:plays,likes:likes,positive:pos,negative:neg},dna:d,playlistNames:(s.sels||[]).map(function(x){return {id:x.id,name:x.name}}),history:(s.hist||[]).slice(0,60)};var blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='yisus-music-insights-v40.json';a.click();setTimeout(function(){URL.revokeObjectURL(url)},1200);if(typeof window.toast==='function')window.toast('Informe musical exportado')});
+ }
+ function boot(){panel();var main=$('main');if(main&&!window.__ys40Observer){window.__ys40Observer=true;new MutationObserver(function(){var p=$('p-profile');if(p&&p.classList.contains('on')&&!$('ys40-insights'))panel()}).observe(main,{subtree:true,attributes:true,attributeFilter:['class']})}}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();setTimeout(boot,700);setInterval(function(){var p=$('p-profile');if(p&&p.classList.contains('on')){var el=$('ys40-insights');if(el&&el.dataset.refreshAt!==String((state().dna||{}).events?.length||0)){el.dataset.refreshAt=String((state().dna||{}).events?.length||0);panel()}}},5000);
+})();
+</script>
+
+<script>
+
+/* V42 · DNA Studio: preferencias explícitas que complementan las señales de escucha. */
+(function(){
+  var labels={trap:'Trap',drill:'Drill',electronic:'Electrónica',phonk:'Phonk',rage:'Rage',melodic:'Melódico',dark:'Oscuro',ambient:'Atmosférico',reggaeton:'Reguetón',rap:'Rap / Hip-hop',underground:'Underground'};
+  var keys=Object.keys(labels);
+  function state(){if(!S.dna)S.dna={artists:{},terms:{},tracks:{},positive:0,negative:0};if(!S.dna.manual)S.dna.manual={};return S.dna;}
+  function render(){var root=document.getElementById('ys42-dna-studio');if(!root)return;var d=state(),manual=d.manual||{},metrics=document.getElementById('ys42-dna-metrics'),tags=document.getElementById('ys42-dna-tags');
+    var fav=keys.filter(function(k){return manual[k]===1}).length,avoid=keys.filter(function(k){return manual[k]===-1}).length,signals=(d.positive||0)+(d.negative||0);
+    metrics.innerHTML='<div><b>'+signals+'</b><span>SEÑALES DE ESCUCHA</span></div><div><b>'+fav+'</b><span>SONIDOS PRIORITARIOS</span></div><div><b>'+avoid+'</b><span>SONIDOS A REDUCIR</span></div>';
+    tags.innerHTML='';keys.forEach(function(k){var v=manual[k]||0,b=document.createElement('button');b.type='button';b.className='ys42-dna-tag '+(v===1?'love':v===-1?'avoid':'');b.setAttribute('aria-pressed',String(v!==0));b.innerHTML='<span>'+labels[k]+'</span><small>'+(v===1?'♥ Me encanta':v===-1?'− Evitar':'○ Sin preferencia')+'</small>';b.addEventListener('click',function(){var cur=state().manual[k]||0;state().manual[k]=cur===0?1:cur===1?-1:0;if(!state().manual[k])delete state().manual[k];save();render();if(typeof toast==='function')toast(labels[k]+': '+(state().manual[k]===1?'priorizado':state().manual[k]===-1?'reducido':'sin preferencia'));});tags.appendChild(b)});
+    var status=document.getElementById('ys42-dna-status');if(status)status.textContent=fav||avoid?'Preferencias activas: el recomendador las suma a tus señales de escucha.':'Aún no has fijado preferencias: YISUS aprenderá de tus guardados, escuchas y saltos.';
+  }
+  document.addEventListener('click',function(e){if(e.target&&e.target.closest&&e.target.closest('#ys42-dna-reset')){if(!confirm('¿Restablecer solamente tus preferencias manuales de Music DNA? Tus escuchas y canciones guardadas se conservarán.'))return;state().manual={};save();render();if(typeof toast==='function')toast('Preferencias de Music DNA restablecidas');}});
+  window.renderYisusDNAStudio=render;
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',render);else setTimeout(render,0);
+})();
+
 </script>
 </body>
 </html>
