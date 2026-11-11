@@ -6865,7 +6865,7 @@ img,video,canvas,svg{max-width:100%} .page,.card,.panel,.box,.grid>*{min-width:0
   var items=[
    ['home','⌂','Inicio'],['search','⌕','Buscar'],['discover','✦','Discovery'],['sound','♫','Sonido'],
    ['library','▤','Biblioteca'],['local','▣','Mi música'],['radar','◈','Radar'],['duel','🏆','Duelo'],
-   ['guess','🎧','Adivina'],['room','◉','Sala'],['ai','✧','Asistente'],['settings','⚙','Ajustes']
+   ['guess','🎧','Adivina'],['room','◉','Sala'],['ai','✧','Asistente'],['profile','♙','Perfil'],['settings','⚙','Ajustes']
   ];
   nav.innerHTML=items.map(function(x){return '<button type="button" data-direct-page="'+x[0]+'"><span>'+x[1]+'</span><small>'+x[2]+'</small></button>'}).join('');
   if(side){side.classList.remove('mobile-open');side.style.transform='translateX(-110%)';side.style.pointerEvents='none';side.style.visibility='hidden'}
@@ -6908,15 +6908,15 @@ img,video,canvas,svg{max-width:100%} .page,.card,.panel,.box,.grid>*{min-width:0
 </style>
 <!-- V50: removed conflicting V49 click-capture override; restore V46 original navigation handlers. -->
 
-<style id="yisus-v51-direct-nav-css">
+<style id="yisus-v52-scroll-nav-css">
 @media(max-width:760px){
- .ys45-mobile-nav{position:fixed!important;left:6px!important;right:6px!important;bottom:calc(88px + env(safe-area-inset-bottom))!important;height:94px!important;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;gap:3px!important;padding:5px!important;background:#090f0b!important;border:1px solid var(--line2)!important;border-radius:15px!important;z-index:390!important;box-shadow:0 8px 28px #000b!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
- .ys45-mobile-nav button{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:2px!important;min-width:0!important;min-height:0!important;padding:2px 0!important;border-radius:9px!important;color:var(--mut)!important;font-size:9px!important;font-weight:800!important;line-height:1!important;touch-action:manipulation!important;pointer-events:auto!important}
- .ys45-mobile-nav button span{font-size:16px!important;line-height:1.1!important}.ys45-mobile-nav button small{font-size:8px!important;white-space:nowrap!important;line-height:1!important}.ys45-mobile-nav button.active{color:var(--g)!important;background:var(--gbg)!important}
+ .ys45-mobile-nav{position:fixed!important;left:7px!important;right:7px!important;bottom:calc(88px + env(safe-area-inset-bottom))!important;height:66px!important;display:flex!important;flex-direction:row!important;align-items:stretch!important;gap:5px!important;padding:5px!important;overflow-x:auto!important;overflow-y:hidden!important;white-space:nowrap!important;scrollbar-width:thin!important;scrollbar-color:var(--g) #101712!important;-webkit-overflow-scrolling:touch!important;touch-action:pan-x!important;background:#090f0b!important;border:1px solid var(--line2)!important;border-radius:15px!important;z-index:390!important;box-shadow:0 8px 28px #000b!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;overscroll-behavior-x:contain!important}
+ .ys45-mobile-nav button{flex:0 0 66px!important;width:66px!important;min-width:66px!important;height:100%!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:4px!important;padding:3px!important;border-radius:9px!important;color:var(--mut)!important;font-size:9px!important;font-weight:800!important;line-height:1!important;touch-action:pan-x!important;pointer-events:auto!important}
+ .ys45-mobile-nav button span{font-size:17px!important;line-height:1.1!important}.ys45-mobile-nav button small{font-size:8px!important;white-space:nowrap!important;line-height:1!important}.ys45-mobile-nav button.active{color:var(--g)!important;background:var(--gbg)!important}
  .ys45-menu,.ys45-scrim,.ys45-games-sheet{display:none!important}
  body{padding-bottom:0!important}
 }
-@media(max-width:390px){.ys45-mobile-nav{left:3px!important;right:3px!important;gap:1px!important;padding:4px!important}.ys45-mobile-nav button small{font-size:7px!important}.ys45-mobile-nav button span{font-size:14px!important}}
+@media(max-width:390px){.ys45-mobile-nav{left:4px!important;right:4px!important;gap:3px!important}.ys45-mobile-nav button{flex-basis:62px!important;width:62px!important;min-width:62px!important}}
 @media(min-width:761px){.ys45-mobile-nav{display:none!important}}
 </style>
 </body>
