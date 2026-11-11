@@ -1526,13 +1526,7 @@ input:focus,select:focus,textarea:focus{outline:none!important;border-color:#829
       <div class="list" id="queue"></div>
     </div>
   
-    <section class="ys42-dna card" id="ys42-dna-studio">
-      <div class="ys42-dna-head"><div><span class="ys42-kicker">YISUS INTELLIGENCE / PERSONAL SOUND PROFILE</span><h2>Music DNA Studio</h2><p>Enséñale directamente qué sonidos quieres descubrir. Tus ajustes se guardan en este navegador.</p></div><div class="ys42-dna-orb">✦</div></div>
-      <div class="ys42-dna-metrics" id="ys42-dna-metrics"></div>
-      <div class="ys42-dna-label"><b>¿Qué sonidos quieres escuchar más?</b><small>Marca «Me encanta» para priorizarlos o «Evitar» para reducirlos.</small></div>
-      <div class="ys42-dna-tags" id="ys42-dna-tags"></div>
-      <div class="ys42-dna-footer"><span id="ys42-dna-status">Tu perfil se adapta con tus elecciones.</span><button type="button" class="btn sm" id="ys42-dna-reset">Restablecer preferencias</button></div>
-    </section>
+
 </section>
 
   <!-- YISUS DISCOVERY -->
@@ -3739,7 +3733,7 @@ function guessRefreshPool(){
 }
 async function guessHydratePreviews(pool){
   // No lanzar decenas de peticiones JSONP a la vez: eso puede saturar el navegador.
-  var list=pool.filter(function(t){return !/^https?:\/\//i.test(t.preview||'')&&/^\d+$/.test(String(t.id))}).slice(0,8);
+  var list=pool.filter(function(t){return !/^https?:\/\//i.test(t.preview||'')&&/^\d+$/.test(String(t.id))}).slice(0,24);
   var cursor=0,workers=[];
   async function worker(){
     while(cursor<list.length){
@@ -3750,8 +3744,8 @@ async function guessHydratePreviews(pool){
       }catch(e){}
     }
   }
-  for(var i=0;i<Math.min(2,list.length);i++)workers.push(worker());
-  await Promise.race([Promise.all(workers),new Promise(function(resolve){setTimeout(resolve,8500)})]);
+  for(var i=0;i<Math.min(3,list.length);i++)workers.push(worker());
+  await Promise.all(workers);
   guessPool=pool.filter(function(t){return /^https?:\/\//i.test(t.preview||'')});
   return guessPool;
 }
@@ -3760,7 +3754,7 @@ async function guessStart(){
   guessStop();var pool=guessRefreshPool();
   $('guessPoolInfo').textContent='Comprobando fragmentos de audio…';$('guessStart').disabled=true;
   try{pool=await guessHydratePreviews(pool)}catch(e){}
-  if(pool.length<4){$('guessPoolInfo').textContent='Faltan fragmentos reproducibles. Guarda más canciones con vista previa e inténtalo de nuevo.';$('guessStart').disabled=false;toast('No hay 4 fragmentos disponibles.');return}
+  if(pool.length<4){$('guessPoolInfo').textContent='No he encontrado 4 fragmentos disponibles. Comprueba la conexión o guarda más canciones con vista previa.';$('guessStart').disabled=false;return}
   if(engine==='yt'&&yp&&ypReady){try{yp.pauseVideo()}catch(e){}}else{try{audio.pause()}catch(e){}}
   var rounds=Math.min(parseInt($('guessRounds').value,10)||10,pool.length),deck=shuffle(pool.slice()).slice(0,rounds);
   GU={deck:deck,index:0,score:0,streak:0,wins:0,answered:false,plays:0,hinted:false,difficulty:$('guessDifficulty').value};
@@ -6973,6 +6967,20 @@ img,video,canvas,svg{max-width:100%} .page,.card,.panel,.box,.grid>*{min-width:0
 @media(max-width:390px){.ys45-mobile-nav{left:4px!important;right:4px!important;gap:3px!important}.ys45-mobile-nav button{flex-basis:62px!important;width:62px!important;min-width:62px!important}}
 @media(min-width:761px){.ys45-mobile-nav{display:none!important}}
 </style>
+
+<style id="yisus-v57-mobile-background-and-cleanup">
+/* Fondo de tema persistente en todo el viewport, también durante el scroll móvil */
+html,body{min-height:100%;background-color:var(--bg,#070907)!important}
+body{position:relative;background-image:var(--bgimg,none)!important;background-color:var(--bg,#070907)!important;background-repeat:no-repeat!important;background-position:center top!important;background-size:cover!important;background-attachment:fixed!important}
+@supports (-webkit-touch-callout:none){body{background-attachment:scroll!important}}
+@media(max-width:760px){html{min-height:100dvh;background:var(--bg,#070907)!important}body{min-height:100dvh!important;background-image:var(--bgimg,none)!important;background-position:center center!important;background-size:100% 100%,cover!important;background-repeat:no-repeat!important;background-attachment:scroll!important}}
+#ys42-dna-studio{display:none!important}
+</style>
+<script id="yisus-v57-cleanup">
+(function(){function removeOldStudio(){var n=document.getElementById('ys42-dna-studio');if(n)n.remove();document.querySelectorAll('[data-page="dna-studio"],a[href="#ys42-dna-studio"]').forEach(function(x){x.remove()})}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',removeOldStudio);else removeOldStudio();setTimeout(removeOldStudio,900)})();
+</script>
+
+<style id="yisus-v57-dj-mobile">@media(max-width:650px){#yisusAIDJ .dj-video{min-height:190px!important;aspect-ratio:16/9!important}#yisusAIDJ .dj-actions button{flex:1 1 130px;min-height:44px}}#yisusAIDJ .dj-status{overflow-wrap:anywhere}</style>
 </body>
 </html>
 
@@ -7007,7 +7015,7 @@ img,video,canvas,svg{max-width:100%} .page,.card,.panel,.box,.grid>*{min-width:0
 
 <style id="yisus-ai-dj-pro-style">
 #yisusAIDJ{position:fixed;inset:0;z-index:99999;background:rgba(3,7,5,.96);backdrop-filter:blur(18px);color:#effff3;display:none;overflow:auto;padding:22px;box-sizing:border-box;font-family:inherit}
-#yisusAIDJ.on{display:block}#yisusAIDJ .dj-wrap{max-width:1050px;margin:0 auto}#yisusAIDJ .dj-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}#yisusAIDJ .dj-brand{font-weight:900;letter-spacing:.16em;color:#62f59a}#yisusAIDJ .dj-close{background:#ffffff12;color:white;border:1px solid #ffffff2b;border-radius:10px;padding:10px 14px}#yisusAIDJ .dj-decks{display:grid;grid-template-columns:1fr 1fr;gap:14px}#yisusAIDJ .dj-deck{background:linear-gradient(145deg,#15251b,#0b110d);border:1px solid #294a35;border-radius:18px;padding:18px;min-width:0}#yisusAIDJ .dj-deck small{color:#72f5a2;letter-spacing:.15em}#yisusAIDJ .dj-track{display:flex;align-items:center;gap:14px;margin-top:14px;min-width:0}#yisusAIDJ .dj-cover{width:88px;height:88px;object-fit:cover;border-radius:12px;background:#18231b}#yisusAIDJ .dj-meta{min-width:0}#yisusAIDJ .dj-meta b{display:block;overflow-wrap:anywhere;font-size:17px}#yisusAIDJ .dj-meta span{color:#a8b8ad;font-size:13px}#yisusAIDJ .dj-video{width:100%;aspect-ratio:16/9;min-height:112px;margin-top:14px;border-radius:10px;overflow:hidden;background:#050805}#yisusAIDJ .dj-video iframe{width:100%;height:100%;border:0}#yisusAIDJ .dj-wave{height:48px;margin-top:18px;border-radius:8px;background:repeating-linear-gradient(90deg,#62f59a 0 3px,transparent 3px 8px);opacity:.5;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}#yisusAIDJ .dj-mix{margin:18px 0;padding:18px;border:1px solid #294a35;background:#0c160f;border-radius:16px}#yisusAIDJ input[type=range]{width:100%;accent-color:#62f59a}#yisusAIDJ .dj-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}#yisusAIDJ button{cursor:pointer}#yisusAIDJ .dj-main{background:#62f59a;color:#07130b;border:0;border-radius:12px;padding:13px 20px;font-weight:900}#yisusAIDJ .dj-secondary{background:#ffffff12;color:white;border:1px solid #ffffff25;border-radius:12px;padding:12px 16px}#yisusAIDJ .dj-status{color:#9fb5a5;font-size:13px;margin-top:12px;line-height:1.5}
+#yisusAIDJ.on{display:block}#yisusAIDJ .dj-wrap{max-width:1050px;margin:0 auto}#yisusAIDJ .dj-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}#yisusAIDJ .dj-brand{font-weight:900;letter-spacing:.16em;color:#62f59a}#yisusAIDJ .dj-close{background:#ffffff12;color:white;border:1px solid #ffffff2b;border-radius:10px;padding:10px 14px}#yisusAIDJ .dj-decks{display:grid;grid-template-columns:1fr 1fr;gap:14px}#yisusAIDJ .dj-deck{background:linear-gradient(145deg,#15251b,#0b110d);border:1px solid #294a35;border-radius:18px;padding:18px;min-width:0}#yisusAIDJ .dj-deck small{color:#72f5a2;letter-spacing:.15em}#yisusAIDJ .dj-track{display:flex;align-items:center;gap:14px;margin-top:14px;min-width:0}#yisusAIDJ .dj-cover{width:88px;height:88px;object-fit:cover;border-radius:12px;background:#18231b}#yisusAIDJ .dj-meta{min-width:0}#yisusAIDJ .dj-meta b{display:block;overflow-wrap:anywhere;font-size:17px}#yisusAIDJ .dj-meta span{color:#a8b8ad;font-size:13px}#yisusAIDJ .dj-video{width:100%;aspect-ratio:16/9;min-height:180px;margin-top:14px;border-radius:10px;overflow:hidden;background:#050805}#yisusAIDJ .dj-video iframe{width:100%;height:100%;border:0}#yisusAIDJ .dj-wave{height:48px;margin-top:18px;border-radius:8px;background:repeating-linear-gradient(90deg,#62f59a 0 3px,transparent 3px 8px);opacity:.5;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}#yisusAIDJ .dj-mix{margin:18px 0;padding:18px;border:1px solid #294a35;background:#0c160f;border-radius:16px}#yisusAIDJ input[type=range]{width:100%;accent-color:#62f59a}#yisusAIDJ .dj-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}#yisusAIDJ button{cursor:pointer}#yisusAIDJ .dj-main{background:#62f59a;color:#07130b;border:0;border-radius:12px;padding:13px 20px;font-weight:900}#yisusAIDJ .dj-secondary{background:#ffffff12;color:white;border:1px solid #ffffff25;border-radius:12px;padding:12px 16px}#yisusAIDJ .dj-status{color:#9fb5a5;font-size:13px;margin-top:12px;line-height:1.5}
 @media(max-width:650px){#yisusAIDJ{padding:12px}#yisusAIDJ .dj-decks{grid-template-columns:1fr}#yisusAIDJ .dj-cover{width:68px;height:68px}#yisusAIDJ .dj-deck{padding:14px}}
 </style>
 <div id="yisusAIDJ" aria-label="YISUS AI DJ Pro"><div class="dj-wrap"><div class="dj-head"><div><div class="dj-brand">✦ YISUS AI DJ PRO</div><div style="color:#9fb5a5;font-size:12px;margin-top:4px">AUTOMATIC MIX ENGINE</div></div><button class="dj-close" id="ydjClose">Cerrar ×</button></div><div class="dj-decks"><div class="dj-deck"><small>DECK A · ON AIR</small><div class="dj-track"><img class="dj-cover" id="ydjCoverA"><div class="dj-meta"><b id="ydjTitleA">Preparando…</b><span id="ydjArtistA"></span></div></div><div class="dj-wave"></div><div class="dj-video" id="ydjPlayerA"></div></div><div class="dj-deck"><small>DECK B · NEXT / MIX</small><div class="dj-track"><img class="dj-cover" id="ydjCoverB"><div class="dj-meta"><b id="ydjTitleB">Analizando siguiente…</b><span id="ydjArtistB"></span></div></div><div class="dj-wave"></div><div class="dj-video" id="ydjPlayerB"></div></div></div><div class="dj-mix"><div style="display:flex;justify-content:space-between;gap:12px"><b>AI CROSSFADE</b><span id="ydjBpm" style="color:#62f59a">Preparando BPM…</span></div><input id="ydjCross" type="range" min="0" max="100" value="50" disabled><div style="display:flex;justify-content:space-between;color:#9fb5a5;font-size:11px"><span>DECK A</span><span>DECK B</span></div><div class="dj-actions"><button class="dj-main" id="ydjStart">▶ START AI MIX</button><button class="dj-secondary" id="ydjPause">Ⅱ Pausar</button><button class="dj-secondary" id="ydjSkip">Siguiente mezcla ↗</button></div><div class="dj-status" id="ydjStatus">La IA ordena tu sesión y el motor prepara las transiciones. Pulsa START para comenzar.</div></div></div></div>
@@ -7056,5 +7064,37 @@ img,video,canvas,svg{max-width:100%} .page,.card,.panel,.box,.grid>*{min-width:0
   }catch(e){status('No se pudo preparar el DJ de YouTube: '+(e.message||e));}
  };
  el('ydjStart').addEventListener('click',start);el('ydjPause').addEventListener('click',function(){if(started){stop();status('Sesión pausada. Pulsa START para reanudar.')}else start()});el('ydjSkip').addEventListener('click',skip);el('ydjClose').addEventListener('click',function(){stop();panel.classList.remove('on')});
+})();
+</script>
+
+
+<style id="yisus-v58-dna-max-style">
+#ys58-dna{margin-top:16px;padding:16px;border:1px solid rgba(120,145,255,.2);border-radius:16px;background:linear-gradient(145deg,rgba(88,101,242,.10),rgba(12,15,26,.7))}
+#ys58-dna h3{margin:0 0 6px;font-size:15px}#ys58-dna p{margin:0 0 12px;color:var(--mut,#9aa0aa);font-size:11px;line-height:1.5}
+.ys58-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.ys58-pref{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px;border:1px solid rgba(255,255,255,.1);border-radius:11px;background:rgba(255,255,255,.035);color:inherit;text-align:left;min-width:0}.ys58-pref b{font-size:11px}.ys58-pref small{display:block;color:var(--mut,#9aa0aa);font-size:9px;margin-top:3px}.ys58-pref em{font-style:normal;font-size:9px;font-weight:900;white-space:nowrap;color:#9aa0aa}.ys58-pref.love{border-color:#54d99a;background:rgba(84,217,154,.10)}.ys58-pref.love em{color:#68e6a8}.ys58-pref.avoid{border-color:#ff748b;background:rgba(255,116,139,.09)}.ys58-pref.avoid em{color:#ff9baa}
+.ys58-insight{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.ys58-chip{padding:6px 9px;border-radius:99px;background:rgba(255,255,255,.06);font-size:9px;color:#cbd3e5}.ys58-foot{margin-top:10px!important;font-size:9px!important}
+@media(max-width:520px){.ys58-grid{grid-template-columns:1fr}.ys58-pref{min-height:52px}}
+</style>
+<script id="yisus-v58-dna-max">
+(function(){
+ 'use strict'; if(window.__YISUS_V58_DNA__)return;window.__YISUS_V58_DNA__=true;
+ var FEATURES={bass:{label:'Graves potentes',desc:'808, sub-bass y bajos contundentes',re:/\b(808|bass|sub.?bass|low.?end|heavy bass|bass boosted)\b/i},synth:{label:'Sintetizadores electrónicos',desc:'Synths, arpegios y texturas digitales',re:/synth|arpeggio|electro|electronic|edm|techno|house|rave|cyber|digital/i},melody:{label:'Melodías pegadizas',desc:'Melodías claras y memorables',re:/melod|melody|sing.?along|hook|armon[ií]a|cantable/i},dark:{label:'Sonido oscuro',desc:'Atmósferas nocturnas y tensas',re:/dark|oscuro|shadow|night|nocturn|evil|sinister/i},rage:{label:'Rage / energía alta',desc:'Sonido agresivo, distorsión y energía',re:/rage|opium|distort|aggressive|agresiv|hard.?trap|mosh/i},drums:{label:'Baterías marcadas',desc:'Drill, trap drums y percusión fuerte',re:/drill|trap|808|jersey|bounce|perreo/i},ambient:{label:'Atmósferas espaciales',desc:'Pads, ambiente y sensación cinematográfica',re:/ambient|atmospher|space|spatial|ethereal|dream|cinematic/i},phonk:{label:'Phonk / cowbell',desc:'Phonk, cowbell y bajos distorsionados',re:/phonk|cowbell|drift/i},fast:{label:'Ritmo rápido',desc:'BPM altos y sensación acelerada',re:/fast|speed|uptempo|high.?energy|dnb|drum.?and.?bass/i},organic:{label:'Sonidos orgánicos',desc:'Instrumentos reales y texturas cálidas',re:/guitar|piano|strings|acoustic|live band|organic/i}};
+ function state(){return window.S||null}function save(){if(typeof window.save==='function')window.save()}
+ function ensure(){var s=state();if(!s)return null;s.dna=s.dna||{};var d=s.dna;['artists','terms','tracks','features','featureCounts','manual','events'].forEach(function(k){if(!d[k])d[k]={}});if(!Array.isArray(d.events))d.events=[];return d}
+ function features(t){var raw=[t&&t.title,t&&t.artist,t&&t.genre,t&&t.genreName,t&&t.album&&t.album.title,t&&t.why,t&&t.description].filter(Boolean).join(' ');return Object.keys(FEATURES).filter(function(k){return FEATURES[k].re.test(raw)})}
+ function clamp(n){return Math.max(-30,Math.min(30,Number(n)||0))}
+ // Feedback with feature-level learning. Save/long listen = positive; quick skip/dislike = negative.
+ window.dnaFeedback=function(t,delta,kind){if(!t||t._local)return;var d=ensure();if(!d)return;var aid=String(t.artistId||''),tid=String(t.id||'');if(aid)d.artists[aid]=clamp((d.artists[aid]||0)+delta);if(tid)d.tracks[tid]=clamp((d.tracks[tid]||0)+delta);var fs=features(t);fs.forEach(function(k){d.features[k]=clamp((d.features[k]||0)+delta);d.featureCounts[k]=(d.featureCounts[k]||0)+1});
+  // Existing descriptive tags remain compatible with earlier DNA data.
+  if(typeof window.dnaTerms==='function')window.dnaTerms(t).forEach(function(k){d.terms[k]=clamp((d.terms[k]||0)+delta)});
+  if(delta>0)d.positive=(d.positive||0)+1;if(delta<0)d.negative=(d.negative||0)+1;
+  d.events.push({at:Date.now(),id:tid,artist:aid,kind:String(kind||'feedback'),delta:delta,features:fs});if(d.events.length>500)d.events=d.events.slice(-400);save();
+ };
+ window.dnaScore=function(t){var d=ensure()||{},n=0,aid=String(t&&t.artistId||''),tid=String(t&&t.id||'');n+=(d.artists[aid]||0)*1.0;n+=(d.tracks[tid]||0)*1.6;var fs=features(t);fs.forEach(function(k){n+=(d.features[k]||0)*1.35+(d.manual[k]||0)*4});if(typeof window.dnaTerms==='function')window.dnaTerms(t).forEach(function(k){n+=(d.terms[k]||0)*.45});return n;};
+ function prefMarkup(d){return '<div id="ys58-dna"><h3>🎚️ Tu sonido: preferencias de beat</h3><p>Marca lo que te encanta o lo que prefieres evitar. YISUS combinará esto con tus canciones guardadas, escuchas largas, saltos y artistas favoritos.</p><div class="ys58-grid">'+Object.keys(FEATURES).map(function(k){var v=d.manual[k]||0,f=FEATURES[k];return '<button type="button" class="ys58-pref '+(v===1?'love':v===-1?'avoid':'')+'" data-ys58-pref="'+k+'"><span><b>'+f.label+'</b><small>'+f.desc+'</small></span><em>'+(v===1?'♥ ME ENCANTA':v===-1?'− EVITAR':'○ NEUTRO')+'</em></button>'}).join('')+'</div><div class="ys58-insight" id="ys58-insight"></div><p class="ys58-foot">El aprendizaje usa metadatos y tus decisiones; no finge escuchar ni analizar el audio interno de YouTube. Cuantas más canciones guardes, escuches y valores, mejor podrá afinar.</p></div>'}
+ function render(){var host=document.getElementById('ys39-dna')||document.getElementById('ys39-profile');if(!host)return;var d=ensure();if(!d)return;var old=document.getElementById('ys58-dna');if(old)old.remove();host.insertAdjacentHTML('beforeend',prefMarkup(d));var insight=document.getElementById('ys58-insight');if(insight){var keys=Object.keys(FEATURES).sort(function(a,b){return (d.features[b]||0)-(d.features[a]||0)}).filter(function(k){return (d.features[k]||0)>0}).slice(0,4);insight.innerHTML=keys.map(function(k){return '<span class="ys58-chip">♥ '+FEATURES[k].label+'</span>'}).join('')||'<span class="ys58-chip">Aún aprendiendo tu sonido</span>'}}
+ document.addEventListener('click',function(e){var b=e.target.closest('[data-ys58-pref]');if(!b)return;var d=ensure();if(!d)return;var k=b.dataset.ys58Pref,v=d.manual[k]||0;d.manual[k]=v===0?1:v===1?-1:0;if(!d.manual[k])delete d.manual[k];save();render();if(typeof window.toast==='function')window.toast(FEATURES[k].label+': '+(d.manual[k]===1?'priorizado':d.manual[k]===-1?'reducido':'neutro'))});
+ function boot(){render();var profile=document.getElementById('p-profile');if(profile&&window.MutationObserver){new MutationObserver(function(){if(profile.classList.contains('on')&&!document.getElementById('ys58-dna'))render()}).observe(profile,{attributes:true,attributeFilter:['class']})}}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();setTimeout(boot,1200);
 })();
 </script>
