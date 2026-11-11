@@ -2522,7 +2522,7 @@ async function createAIMix(){
     if(S.opt.aiKey){try{ordered=await orderWithClaude(tracks,vibe)}catch(e){ordered=mixLocalOrder(tracks,vibe);toast('No se pudo usar Claude; he creado la mezcla local')}}else ordered=mixLocalOrder(tracks,vibe);
     queue=ordered;over={ids:ids,name:'DJ IA · '+lists[0].name};localMode=false;gameMode=null;cur=null;showErr('');renderQueue();closeModal();goPage('home');
     $('kicker').textContent='DJ IA · '+lists[0].name+' · '+(S.opt.aiKey?'IA CONECTADA':'MODO LOCAL');$('why').textContent='Sesión de '+ordered.length+' canciones de esta lista · sin combinar otras listas';
-    toast('DJ activado para '+lists[0].name+' · '+ordered.length+' canciones');next(false);
+    toast('Sesión preparada · '+ordered.length+' canciones');startYisusProDJ(ordered);
   }catch(e){status.textContent='No he podido crear la mezcla: '+(e.message||e);}
   finally{btn.disabled=false;btn.textContent='✦ Activar DJ de esta lista'}
 }
@@ -3720,7 +3720,7 @@ var GU=null,guessAudio=new Audio(),guessClipTimer=null,guessPool=[];
 guessAudio.preload='auto';guessAudio.setAttribute('playsinline','');guessAudio.setAttribute('webkit-playsinline','');
 function guessStop(){
   if(guessClipTimer){clearTimeout(guessClipTimer);guessClipTimer=null}
-  try{guessAudio.pause();if(guessAudio.readyState)guessAudio.currentTime=0}catch(e){}
+  try{guessAudio.pause();guessAudio.onplaying=null;guessAudio.onended=null;guessAudio.onerror=null;guessAudio.removeAttribute('src');guessAudio.load()}catch(e){}
   var d=$('guessDisc');if(d)d.classList.remove('playing');
 }
 function guessTrackPool(){
@@ -3738,11 +3738,20 @@ function guessRefreshPool(){
   var b=$('guessStart');if(b)b.disabled=guessPool.length<4;return guessPool;
 }
 async function guessHydratePreviews(pool){
-  var list=pool.slice(0,40);
-  await Promise.all(list.map(async function(t){
-    if(!/^\d+$/.test(String(t.id)))return;
-    try{var d=await jp('/track/'+encodeURIComponent(t.id),{});if(d&&d.preview)t.preview=d.preview;}catch(e){}
-  }));
+  // No lanzar decenas de peticiones JSONP a la vez: eso puede saturar el navegador.
+  var list=pool.filter(function(t){return !/^https?:\/\//i.test(t.preview||'')&&/^\d+$/.test(String(t.id))}).slice(0,8);
+  var cursor=0,workers=[];
+  async function worker(){
+    while(cursor<list.length){
+      var t=list[cursor++];
+      try{
+        var d=await Promise.race([jp('/track/'+encodeURIComponent(t.id),{}),new Promise(function(resolve){setTimeout(function(){resolve(null)},6500)})]);
+        if(d&&d.preview)t.preview=d.preview;
+      }catch(e){}
+    }
+  }
+  for(var i=0;i<Math.min(2,list.length);i++)workers.push(worker());
+  await Promise.race([Promise.all(workers),new Promise(function(resolve){setTimeout(resolve,8500)})]);
   guessPool=pool.filter(function(t){return /^https?:\/\//i.test(t.preview||'')});
   return guessPool;
 }
@@ -3751,8 +3760,7 @@ async function guessStart(){
   guessStop();var pool=guessRefreshPool();
   $('guessPoolInfo').textContent='Comprobando fragmentos de audio…';$('guessStart').disabled=true;
   try{pool=await guessHydratePreviews(pool)}catch(e){}
-  if(pool.length<4){try{await refill();pool=await guessHydratePreviews(guessTrackPool())}catch(e){}}
-  if(pool.length<4){$('guessPoolInfo').textContent='No hay 4 fragmentos disponibles ahora mismo. Guarda canciones de Discovery e inténtalo de nuevo.';$('guessStart').disabled=false;toast('No he encontrado 4 fragmentos reproducibles.');return}
+  if(pool.length<4){$('guessPoolInfo').textContent='Faltan fragmentos reproducibles. Guarda más canciones con vista previa e inténtalo de nuevo.';$('guessStart').disabled=false;toast('No hay 4 fragmentos disponibles.');return}
   if(engine==='yt'&&yp&&ypReady){try{yp.pauseVideo()}catch(e){}}else{try{audio.pause()}catch(e){}}
   var rounds=Math.min(parseInt($('guessRounds').value,10)||10,pool.length),deck=shuffle(pool.slice()).slice(0,rounds);
   GU={deck:deck,index:0,score:0,streak:0,wins:0,answered:false,plays:0,hinted:false,difficulty:$('guessDifficulty').value};
@@ -6914,7 +6922,7 @@ img,video,canvas,svg{max-width:100%} .page,.card,.panel,.box,.grid>*{min-width:0
    ['guess','🎧','Adivina'],['room','◉','Sala'],['ai','✧','Asistente'],['profile','♙','Perfil'],['settings','⚙','Ajustes']
   ];
   nav.innerHTML=items.map(function(x){return '<button type="button" data-direct-page="'+x[0]+'"><span>'+x[1]+'</span><small>'+x[2]+'</small></button>'}).join('');
-  if(side){side.classList.remove('mobile-open');side.style.transform='translateX(-110%)';side.style.pointerEvents='none';side.style.visibility='hidden'}
+  if(side){side.classList.remove('mobile-open');if(window.matchMedia('(max-width: 760px)').matches){side.style.transform='translateX(-110%)';side.style.pointerEvents='none';side.style.visibility='hidden'}else{side.style.transform='';side.style.pointerEvents='';side.style.visibility=''}}
   var menu=document.querySelector('.ys45-menu');if(menu)menu.style.display='none';
   var scrim=document.querySelector('.ys45-scrim');if(scrim)scrim.style.display='none';
   var oldSheet=document.querySelector('.ys45-games-sheet');if(oldSheet)oldSheet.remove();
@@ -6996,3 +7004,33 @@ img,video,canvas,svg{max-width:100%} .page,.card,.panel,.box,.grid>*{min-width:0
 #guessPlay,#guessHint,#guessNext{touch-action:manipulation}
 #guessStatus{overflow-wrap:anywhere}
 </style>
+
+<style id="yisus-ai-dj-pro-style">
+#yisusAIDJ{position:fixed;inset:0;z-index:99999;background:rgba(3,7,5,.96);backdrop-filter:blur(18px);color:#effff3;display:none;overflow:auto;padding:22px;box-sizing:border-box;font-family:inherit}
+#yisusAIDJ.on{display:block}#yisusAIDJ .dj-wrap{max-width:1050px;margin:0 auto}#yisusAIDJ .dj-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}#yisusAIDJ .dj-brand{font-weight:900;letter-spacing:.16em;color:#62f59a}#yisusAIDJ .dj-close{background:#ffffff12;color:white;border:1px solid #ffffff2b;border-radius:10px;padding:10px 14px}#yisusAIDJ .dj-decks{display:grid;grid-template-columns:1fr 1fr;gap:14px}#yisusAIDJ .dj-deck{background:linear-gradient(145deg,#15251b,#0b110d);border:1px solid #294a35;border-radius:18px;padding:18px;min-width:0}#yisusAIDJ .dj-deck small{color:#72f5a2;letter-spacing:.15em}#yisusAIDJ .dj-track{display:flex;align-items:center;gap:14px;margin-top:14px;min-width:0}#yisusAIDJ .dj-cover{width:88px;height:88px;object-fit:cover;border-radius:12px;background:#18231b}#yisusAIDJ .dj-meta{min-width:0}#yisusAIDJ .dj-meta b{display:block;overflow-wrap:anywhere;font-size:17px}#yisusAIDJ .dj-meta span{color:#a8b8ad;font-size:13px}#yisusAIDJ .dj-wave{height:48px;margin-top:18px;border-radius:8px;background:repeating-linear-gradient(90deg,#62f59a 0 3px,transparent 3px 8px);opacity:.5;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}#yisusAIDJ .dj-mix{margin:18px 0;padding:18px;border:1px solid #294a35;background:#0c160f;border-radius:16px}#yisusAIDJ input[type=range]{width:100%;accent-color:#62f59a}#yisusAIDJ .dj-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}#yisusAIDJ button{cursor:pointer}#yisusAIDJ .dj-main{background:#62f59a;color:#07130b;border:0;border-radius:12px;padding:13px 20px;font-weight:900}#yisusAIDJ .dj-secondary{background:#ffffff12;color:white;border:1px solid #ffffff25;border-radius:12px;padding:12px 16px}#yisusAIDJ .dj-status{color:#9fb5a5;font-size:13px;margin-top:12px;line-height:1.5}
+@media(max-width:650px){#yisusAIDJ{padding:12px}#yisusAIDJ .dj-decks{grid-template-columns:1fr}#yisusAIDJ .dj-cover{width:68px;height:68px}#yisusAIDJ .dj-deck{padding:14px}}
+</style>
+<div id="yisusAIDJ" aria-label="YISUS AI DJ Pro"><div class="dj-wrap"><div class="dj-head"><div><div class="dj-brand">✦ YISUS AI DJ PRO</div><div style="color:#9fb5a5;font-size:12px;margin-top:4px">AUTOMATIC MIX ENGINE</div></div><button class="dj-close" id="ydjClose">Cerrar ×</button></div><div class="dj-decks"><div class="dj-deck"><small>DECK A · ON AIR</small><div class="dj-track"><img class="dj-cover" id="ydjCoverA"><div class="dj-meta"><b id="ydjTitleA">Preparando…</b><span id="ydjArtistA"></span></div></div><div class="dj-wave"></div></div><div class="dj-deck"><small>DECK B · NEXT / MIX</small><div class="dj-track"><img class="dj-cover" id="ydjCoverB"><div class="dj-meta"><b id="ydjTitleB">Analizando siguiente…</b><span id="ydjArtistB"></span></div></div><div class="dj-wave"></div></div></div><div class="dj-mix"><div style="display:flex;justify-content:space-between;gap:12px"><b>AI CROSSFADE</b><span id="ydjBpm" style="color:#62f59a">Preparando BPM…</span></div><input id="ydjCross" type="range" min="0" max="100" value="50" disabled><div style="display:flex;justify-content:space-between;color:#9fb5a5;font-size:11px"><span>DECK A</span><span>DECK B</span></div><div class="dj-actions"><button class="dj-main" id="ydjStart">▶ START AI MIX</button><button class="dj-secondary" id="ydjPause">Ⅱ Pausar</button><button class="dj-secondary" id="ydjSkip">Siguiente mezcla ↗</button></div><div class="dj-status" id="ydjStatus">La IA ordena tu sesión y el motor prepara las transiciones. Pulsa START para comenzar.</div></div></div></div>
+<script>
+/* YISUS AI DJ PRO · motor de dos decks con crossfade automático. */
+(function(){
+ var panel=document.getElementById('yisusAIDJ'),decks=[new Audio(),new Audio()],list=[],idx=0,active=0,started=false,mixing=false,fadeTimer=null,watchTimer=null,transitionAt=0;
+ decks.forEach(function(a){a.preload='auto';a.crossOrigin='anonymous';a.volume=0});
+ function el(id){return document.getElementById(id)}
+ function status(t){el('ydjStatus').textContent=t}
+ function valid(t){return t&&(t.preview||t._local&&t.preview)}
+ function paint(deck,t){el('ydjTitle'+deck).textContent=t?t.title:'—';el('ydjArtist'+deck).textContent=t?t.artist:'';el('ydjCover'+deck).src=t&&t.art||''}
+ function load(deck,n){var t=list[n];if(!valid(t))return false;decks[deck].src=t.preview;decks[deck].load();paint(String(deck)==='0'?'A':'B',t);return true}
+ function usableFrom(start){for(var i=start;i<list.length;i++)if(valid(list[i]))return i;return -1}
+ function bpmRate(from,to){var a=Number(from.bpm)||0,b=Number(to.bpm)||0;if(!a||!b)return 1;var r=a/b;return r>=.94&&r<=1.06?r:1}
+ function prepareNext(){var n=usableFrom(idx+1);if(n<0){paint('B',null);return false}load(1-active,n);var a=list[idx],b=list[n],rate=bpmRate(a,b);decks[1-active].playbackRate=rate;el('ydjBpm').textContent=(a.bpm&&b.bpm)?a.bpm+' → '+b.bpm+' BPM · '+(rate===1?'MATCH':'SYNC'):'BPM no disponible · crossfade';return true}
+ function crossfade(){if(mixing||!started)return;var nextIdx=usableFrom(idx+1);if(nextIdx<0){status('Fin de la sesión.');started=false;return}mixing=true;var incoming=1-active,old=active,newTrack=list[nextIdx],oldTrack=list[idx];if(decks[incoming].readyState<2){decks[incoming].addEventListener('canplay',crossfade,{once:true});return}
+  decks[incoming].currentTime=0;decks[incoming].volume=0;decks[incoming].play().then(function(){var start=Date.now(),duration=7000;status('Mezclando: '+oldTrack.title+' → '+newTrack.title+' · transición automática');function step(){var p=Math.min(1,(Date.now()-start)/duration);decks[old].volume=Math.cos(p*Math.PI/2);decks[incoming].volume=Math.sin(p*Math.PI/2);el('ydjCross').value=Math.round(p*100);if(p<1){fadeTimer=setTimeout(step,60)}else{decks[old].pause();decks[old].volume=0;active=incoming;idx=nextIdx;mixing=false;el('ydjCross').value=50;paint(active===0?'A':'B',list[idx]);prepareNext();status('Reproduciendo '+list[idx].title+' · preparando siguiente transición');}}step();}).catch(function(){mixing=false;status('El navegador bloqueó la segunda pista. Pulsa START AI MIX para reanudar.');});}
+ function monitor(){clearInterval(watchTimer);watchTimer=setInterval(function(){if(!started||mixing)return;var a=decks[active],remaining=(a.duration||30)-a.currentTime;if(remaining<=7)crossfade();if(a.ended&&!mixing)crossfade()},300)}
+ function start(){if(!list.length)return;started=true;var a=decks[active];a.volume=1;a.play().then(function(){status('AI DJ activo · transiciones automáticas habilitadas');prepareNext();monitor()}).catch(function(){started=false;status('No se pudo iniciar el audio. Comprueba que la canción tenga vista previa disponible y vuelve a pulsar START.')})}
+ function stop(){started=false;mixing=false;clearTimeout(fadeTimer);clearInterval(watchTimer);decks.forEach(function(a){a.pause()})}
+ function skip(){if(!started){start();return}if(mixing)return;crossfade()}
+ window.startYisusProDJ=async function(tracks){stop();list=(tracks||[]).map(function(t){return Object.assign({},t)});status('Actualizando enlaces de audio y preparando los decks…');panel.classList.add('on');for(var k=0;k<Math.min(list.length,12);k++){var t=list[k];if(!t._local&&t.id){try{var fresh=await jp('/track/'+t.id,{});if(fresh&&fresh.preview)t.preview=fresh.preview;if(fresh&&fresh.bpm)t.bpm=Math.round(fresh.bpm)}catch(e){}}}list=list.filter(valid);idx=usableFrom(0);active=0;if(idx<0){status('Esta lista no tiene pistas con audio procesable. Necesitas canciones con vista previa o archivos de audio compatibles.');return}el('ydjCross').value=50;load(0,idx);var n=usableFrom(idx+1);if(n>=0){load(1,n);var a=list[idx],b=list[n];el('ydjBpm').textContent=a.bpm&&b.bpm?a.bpm+' → '+b.bpm+' BPM · '+(bpmRate(a,b)===1?'MATCH':'SYNC'):'BPM no disponible · crossfade'}else{paint('B',null);el('ydjBpm').textContent='Añade más canciones con audio'}status('Sesión lista · '+list.length+' pistas con audio compatible. Pulsa START AI MIX. Las vistas previas disponibles duran aproximadamente 30 segundos.');};
+ el('ydjStart').addEventListener('click',start);el('ydjPause').addEventListener('click',function(){if(started){stop();status('Sesión pausada. Pulsa START para continuar desde la pista actual.')}else start()});el('ydjSkip').addEventListener('click',skip);el('ydjClose').addEventListener('click',function(){stop();panel.classList.remove('on')});
+})();
+</script>
