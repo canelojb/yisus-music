@@ -3728,26 +3728,38 @@ function guessTrackPool(){
 }
 function guessRefreshPool(){
   guessPool=guessTrackPool();var playable=guessPool.filter(function(t){return /^https?:\/\//i.test(t.preview||'')}).length;
-  var info=$('guessPoolInfo');if(info)info.textContent=guessPool.length+' canciones guardadas · '+playable+' con fragmento conocido. Se comprobarán antes de jugar.';
+  var info=$('guessPoolInfo');if(info)info.textContent=guessPool.length+' canciones guardadas · '+playable+' con enlace de audio. Se comprobarán antes de jugar.';
   var b=$('guessStart');if(b)b.disabled=guessPool.length<4;return guessPool;
 }
+async function guessCanPlay(url){
+  return new Promise(function(resolve){
+    if(!/^https?:\/\//i.test(url||'')){resolve(false);return}
+    var probe=new Audio();var done=false;
+    var timer=setTimeout(function(){finish(false)},5500);
+    function finish(ok){if(done)return;done=true;clearTimeout(timer);probe.oncanplay=null;probe.onerror=null;probe.onloadedmetadata=null;try{probe.pause();probe.removeAttribute('src');probe.load()}catch(e){}resolve(ok)}
+    probe.preload='metadata';probe.oncanplay=function(){finish(true)};probe.onloadedmetadata=function(){if(probe.duration>0)finish(true)};probe.onerror=function(){finish(false)};
+    probe.src=url;try{probe.load()}catch(e){finish(false)}
+  });
+}
 async function guessHydratePreviews(pool){
-  // No lanzar decenas de peticiones JSONP a la vez: eso puede saturar el navegador.
-  var list=pool.filter(function(t){return !/^https?:\/\//i.test(t.preview||'')&&/^\d+$/.test(String(t.id))}).slice(0,24);
-  var cursor=0,workers=[];
+  // Actualiza enlaces antiguos de Deezer y comprueba que cada preview responde antes de meterla en una ronda.
+  var cursor=0,workers=[],checked=[];
   async function worker(){
-    while(cursor<list.length){
-      var t=list[cursor++];
-      try{
-        var d=await Promise.race([jp('/track/'+encodeURIComponent(t.id),{}),new Promise(function(resolve){setTimeout(function(){resolve(null)},6500)})]);
-        if(d&&d.preview)t.preview=d.preview;
-      }catch(e){}
+    while(cursor<pool.length){
+      var t=pool[cursor++],url=t.preview||'';
+      if(/^\d+$/.test(String(t.id))){
+        try{
+          var d=await Promise.race([jp('/track/'+encodeURIComponent(t.id),{}),new Promise(function(resolve){setTimeout(function(){resolve(null)},7000)})]);
+          if(d&&d.preview)url=d.preview;
+        }catch(e){}
+      }
+      if(await guessCanPlay(url)){t.preview=url;checked.push(t)}
     }
   }
-  for(var i=0;i<Math.min(3,list.length);i++)workers.push(worker());
+  for(var i=0;i<Math.min(3,pool.length);i++)workers.push(worker());
   await Promise.all(workers);
-  guessPool=pool.filter(function(t){return /^https?:\/\//i.test(t.preview||'')});
-  return guessPool;
+  guessPool=checked;
+  return checked;
 }
 function guessStats(){var g=S.guessStats||{best:0,games:0,wins:0};$('guessBest').textContent=g.best||0;$('guessGames').textContent=g.games||0;$('guessWins').textContent=g.wins||0}
 async function guessStart(){
@@ -3778,7 +3790,7 @@ function guessPlay(){
   function finish(msg){if(finished)return;finished=true;if(guessClipTimer){clearTimeout(guessClipTimer);guessClipTimer=null}try{guessAudio.pause()}catch(e){}$('guessDisc').classList.remove('playing');$('guessStatus').textContent=msg}
   guessAudio.onplaying=function(){if(finished)return;started=true;$('guessDisc').classList.add('playing');$('guessStatus').textContent='Escuchando fragmento…';guessClipTimer=setTimeout(function(){finish('Fragmento terminado. ¿Cuál era?')},duration*1000)};
   guessAudio.onended=function(){finish('Fragmento terminado. ¿Cuál era?')};
-  guessAudio.onerror=function(){finish('Este fragmento no está disponible. Pulsa repetir o pasa a otra ronda.');$('guessPlay').disabled=false};
+  guessAudio.onerror=function(){finish('Este fragmento ha fallado. Saltando a otra canción…');$('guessPlay').disabled=true;var failed=t;guessPool=guessPool.filter(function(x){return String(x.id)!==String(failed.id)});setTimeout(function(){if(GU&&!GU.answered){GU.deck=GU.deck.filter(function(x,i){return i<GU.index||String(x.id)!==String(failed.id)});if(GU.index>=GU.deck.length)guessEnd();else{GU.index=Math.min(GU.index,GU.deck.length-1);guessShow()}}},1200)};
   var timeout=setTimeout(function(){if(!started&&!finished){finish('El audio está tardando. Pulsa repetir para intentarlo otra vez.');$('guessPlay').disabled=false}},9000);
   guessAudio.play().then(function(){clearTimeout(timeout)}).catch(function(){clearTimeout(timeout);finish('El navegador bloqueó el audio. Vuelve a pulsar Escuchar.');$('guessPlay').disabled=false});
 }
