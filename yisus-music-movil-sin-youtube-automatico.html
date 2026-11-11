@@ -7152,3 +7152,75 @@ body{position:relative;background-image:var(--bgimg,none)!important;background-c
 <style id="yisus-v61-dj-session">
 #yisusAIDJ .ys61-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0;padding:13px;border:1px solid #294a35;border-radius:13px;background:#07110b}#yisusAIDJ .ys61-controls label{display:flex;flex-direction:column;gap:6px;color:#9fb5a5;font-size:10px;font-weight:800;letter-spacing:.08em}#yisusAIDJ .ys61-controls select{width:100%;min-width:0;background:#14251a;color:#eafff0;border:1px solid #355c40;border-radius:9px;padding:10px;font:inherit;letter-spacing:0}#yisusAIDJ .ys61-controls .ys61-check{grid-column:1/-1;flex-direction:row;align-items:center;letter-spacing:0;font-size:11px}#yisusAIDJ .ys61-check input{accent-color:#62f59a;width:17px;height:17px}@media(max-width:420px){#yisusAIDJ .ys61-controls{grid-template-columns:1fr}}
 </style>
+
+<style id="yisus-v63-mobile-redesign">
+/* V63 · Mobile-first visual overhaul */
+@media(max-width:760px){
+ :root{--m-bg:#070b10;--m-card:rgba(17,25,30,.94);--m-line:rgba(133,255,184,.13);--m-accent:#69f5a6}
+ html,body{width:100%!important;max-width:100%!important;overflow-x:hidden!important}
+ body{padding-bottom:calc(166px + env(safe-area-inset-bottom))!important;background-color:#070b10!important}
+ .main{padding:14px 13px calc(178px + env(safe-area-inset-bottom))!important;width:100%!important;box-sizing:border-box!important}
+ .ys-topbar{position:sticky!important;top:0!important;z-index:300!important;min-height:54px!important;margin:-14px -13px 16px!important;padding:9px 13px!important;background:rgba(7,12,15,.94)!important;border-bottom:1px solid var(--m-line)!important;backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important}
+ .page{padding:0!important;margin:0 auto 18px!important;min-height:0!important}
+ .section-head,.phead,.ys39-section-head{align-items:flex-start!important;margin:10px 0 15px!important}
+ .section-head h2,.phead h2{font-size:clamp(24px,7vw,32px)!important;letter-spacing:-.045em!important;line-height:1.05!important}
+ .section-head p,.phead p{font-size:12px!important;line-height:1.5!important}
+ .hero{overflow:hidden!important;border-radius:22px!important;background:linear-gradient(145deg,rgba(28,54,41,.96),rgba(10,16,20,.98))!important;border:1px solid var(--m-line)!important;box-shadow:0 16px 42px #0005!important}
+ .hero .hcover{min-height:205px!important;border-radius:0!important}
+ .hero .hinfo{padding:18px!important}
+ .hero h1{font-size:clamp(29px,9vw,42px)!important;letter-spacing:-.055em!important;line-height:1!important}
+ .grid,.cards,.tiles,.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ .card,.tile,.stat,.panel,.box,.section-card{border-radius:17px!important;border-color:var(--m-line)!important;box-shadow:0 9px 25px #0003!important}
+ .card{min-width:0!important;overflow:hidden!important}
+ .card img,.card .cover{border-radius:12px!important}
+ .btn,button,.chip,.icon-btn{min-height:40px;-webkit-tap-highlight-color:transparent}
+ input,select,textarea{font-size:16px!important;min-height:42px}
+ .ys45-mobile-nav{left:9px!important;right:9px!important;bottom:calc(91px + env(safe-area-inset-bottom))!important;height:64px!important;gap:5px!important;padding:6px!important;border-radius:19px!important;background:rgba(9,16,19,.96)!important;border:1px solid rgba(120,255,180,.2)!important;box-shadow:0 12px 36px #000b,0 0 24px rgba(70,240,145,.08)!important;backdrop-filter:blur(20px)!important;-webkit-backdrop-filter:blur(20px)!important;scrollbar-width:none!important}
+ .ys45-mobile-nav::-webkit-scrollbar{display:none!important}
+ .ys45-mobile-nav button{flex:0 0 61px!important;width:61px!important;min-width:61px!important;border-radius:13px!important;color:#81918a!important;gap:4px!important;transition:background .18s ease,color .18s ease,transform .18s ease!important}
+ .ys45-mobile-nav button span:first-child{font-size:19px!important}
+ .ys45-mobile-nav button small{font-size:8px!important;font-weight:800!important;letter-spacing:.01em!important}
+ .ys45-mobile-nav button.active{color:#07140c!important;background:linear-gradient(145deg,#83ffc0,#4bdc8b)!important;box-shadow:0 4px 16px rgba(75,220,139,.25)!important;transform:translateY(-2px)!important}
+ .pbar{min-height:82px!important;padding:8px 12px calc(8px + env(safe-area-inset-bottom))!important;background:rgba(5,9,12,.98)!important;border-top:1px solid rgba(120,255,180,.18)!important;box-shadow:0 -10px 34px #000b!important}
+ .pbar .pcov{width:44px!important;height:44px!important;border-radius:11px!important;box-shadow:0 4px 14px #0008!important}
+ .pbar .playbtn{width:42px!important;height:42px!important;border-radius:14px!important;background:linear-gradient(145deg,#83ffc0,#4bdc8b)!important;color:#07140c!important;box-shadow:0 4px 16px rgba(75,220,139,.2)!important}
+ .pbar .ptxt b{font-size:12px!important;font-weight:900!important}
+ .pbar .ptxt span{font-size:10px!important;color:#9caaa4!important}
+ .pbar .pseek{opacity:.9!important}
+ .pbar .pline{background:rgba(255,255,255,.1)!important}
+ .modal,.dialog,.overlay .box{border-radius:20px!important;border:1px solid var(--m-line)!important;background:#0b1214!important}
+ .row{border-radius:13px!important}
+ #yisusAIDJ{padding:0!important;background:rgba(3,7,8,.985)!important;backdrop-filter:none!important}
+ #yisusAIDJ .dj-wrap{width:100%!important;max-width:none!important;min-height:100dvh!important;padding:0 12px calc(22px + env(safe-area-inset-bottom))!important;box-sizing:border-box!important}
+ #yisusAIDJ .dj-head{position:sticky!important;top:0!important;z-index:10!important;margin:0 -12px 14px!important;padding:13px 14px!important;background:rgba(5,12,9,.97)!important;border-bottom:1px solid var(--m-line)!important}
+ #yisusAIDJ .dj-brand{font-size:13px!important;letter-spacing:.13em!important}
+ #yisusAIDJ .dj-close{min-height:38px!important;padding:8px 12px!important;border-radius:12px!important}
+ #yisusAIDJ .dj-decks{grid-template-columns:minmax(0,1fr)!important;gap:12px!important}
+ #yisusAIDJ .dj-deck{padding:13px!important;border-radius:19px!important;background:linear-gradient(145deg,#14241a,#0b1110)!important;border:1px solid rgba(120,255,180,.17)!important;box-shadow:0 10px 28px #0005!important}
+ #yisusAIDJ .dj-deck small{font-size:9px!important;letter-spacing:.14em!important}
+ #yisusAIDJ .dj-track{gap:11px!important;margin-top:10px!important}
+ #yisusAIDJ .dj-cover{width:58px!important;height:58px!important;border-radius:12px!important}
+ #yisusAIDJ .dj-meta b{font-size:14px!important;line-height:1.2!important}
+ #yisusAIDJ .dj-meta span{font-size:11px!important}
+ #yisusAIDJ .dj-wave{height:22px!important;margin-top:10px!important}
+ #yisusAIDJ .dj-video{aspect-ratio:16/9!important;height:auto!important;min-height:0!important;margin-top:10px!important;border-radius:13px!important}
+ #yisusAIDJ .dj-mix{margin:13px 0!important;padding:14px!important;border-radius:19px!important;background:linear-gradient(145deg,#101b15,#0a100d)!important;border:1px solid rgba(120,255,180,.18)!important}
+ #yisusAIDJ .dj-mix>div:first-child{font-size:12px!important}
+ #yisusAIDJ .dj-actions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important;margin-top:13px!important}
+ #yisusAIDJ .dj-actions button{min-height:47px!important;border-radius:13px!important;padding:10px!important;font-size:11px!important;font-weight:900!important}
+ #yisusAIDJ .dj-actions #ydjStart{grid-column:1/-1!important;min-height:52px!important;font-size:13px!important}
+ #yisusAIDJ .ys61-controls{grid-template-columns:1fr!important;gap:9px!important;padding:12px!important;border-radius:15px!important}
+ #yisusAIDJ .ys61-controls label{font-size:9px!important}
+ #yisusAIDJ .ys61-controls select{min-height:44px!important;border-radius:11px!important}
+ #yisusAIDJ .dj-status{font-size:12px!important;padding:10px 11px!important;border-radius:12px!important;background:rgba(255,255,255,.035)!important;line-height:1.55!important}
+ #yisusAIDJ .ys61-note{font-size:10px!important;line-height:1.5!important}
+}
+@media(max-width:390px){
+ .main{padding-left:10px!important;padding-right:10px!important}
+ .grid,.cards,.tiles,.stats-grid{gap:8px!important}
+ .ys45-mobile-nav{left:6px!important;right:6px!important}
+ .ys45-mobile-nav button{flex-basis:57px!important;width:57px!important;min-width:57px!important}
+}
+@media(min-width:761px){#yisusAIDJ .dj-wrap{padding:0!important}}
+</style>
+
