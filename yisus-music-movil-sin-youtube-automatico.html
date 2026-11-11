@@ -2166,7 +2166,7 @@ function renderSel(){
   var G=$('songs');G.innerHTML='';
   if(!s.songs.length)G.innerHTML='<div class="empty">Todavía no hay canciones. Guarda las que te gusten con «Añadir».</div>';
   s.songs.forEach(function(t){
-    G.appendChild(trackRow(t,{forceSel:s,play:function(){playFresh(t)},pop:true}));
+    G.appendChild(trackRow(t,{forceSel:s,play:function(){playFresh(t)},pop:false,save:false}));
   });
   renderMoodTag();
 }
@@ -3717,31 +3717,77 @@ $('duelStart').onclick=duelStart;
 
 /* ---------- YISUS GAME: adivina la canción ---------- */
 var GU=null,guessAudio=new Audio(),guessClipTimer=null,guessPool=[];
-function guessStop(){if(guessClipTimer){clearTimeout(guessClipTimer);guessClipTimer=null}try{guessAudio.pause();guessAudio.currentTime=0}catch(e){}var d=$('guessDisc');if(d)d.classList.remove('playing')}
+guessAudio.preload='auto';guessAudio.setAttribute('playsinline','');guessAudio.setAttribute('webkit-playsinline','');
+function guessStop(){
+  if(guessClipTimer){clearTimeout(guessClipTimer);guessClipTimer=null}
+  try{guessAudio.pause();if(guessAudio.readyState)guessAudio.currentTime=0}catch(e){}
+  var d=$('guessDisc');if(d)d.classList.remove('playing');
+}
 function guessTrackPool(){
   var raw=[];S.sels.forEach(function(s){(s.songs||[]).forEach(function(t){raw.push(t)})});
   (queue||[]).forEach(function(t){raw.push(t)});(S.hist||[]).forEach(function(t){raw.push(t)});
-  var seen={},out=[];raw.forEach(function(t){if(!t||!t.preview||!t.title||!t.artist||t._local)return;var key=String(t.id||'')+'|'+String(t.artist)+'|'+String(t.title);if(seen[key])return;seen[key]=1;out.push({id:t.id||key,title:String(t.title),artist:typeof t.artist==='string'?t.artist:(t.artist.name||'Artista desconocido'),preview:t.preview,art:t.art||''})});
-  return out;
+  var seen={},out=[];raw.forEach(function(t){
+    if(!t||!t.title||!t.artist||t._local||!t.id)return;
+    var key=String(t.id);if(seen[key])return;seen[key]=1;
+    out.push({id:t.id,title:String(t.title),artist:typeof t.artist==='string'?t.artist:(t.artist.name||'Artista desconocido'),preview:t.preview||'',art:t.art||''});
+  });return out;
 }
-function guessRefreshPool(){guessPool=guessTrackPool();var info=$('guessPoolInfo');if(info)info.textContent=guessPool.length+' canciones con fragmento disponible. Necesitas al menos 4 para jugar.';var b=$('guessStart');if(b)b.disabled=guessPool.length<4;return guessPool}
+function guessRefreshPool(){
+  guessPool=guessTrackPool();var playable=guessPool.filter(function(t){return /^https?:\/\//i.test(t.preview||'')}).length;
+  var info=$('guessPoolInfo');if(info)info.textContent=guessPool.length+' canciones guardadas · '+playable+' con fragmento conocido. Se comprobarán antes de jugar.';
+  var b=$('guessStart');if(b)b.disabled=guessPool.length<4;return guessPool;
+}
+async function guessHydratePreviews(pool){
+  var list=pool.slice(0,40);
+  await Promise.all(list.map(async function(t){
+    if(!/^\d+$/.test(String(t.id)))return;
+    try{var d=await jp('/track/'+encodeURIComponent(t.id),{});if(d&&d.preview)t.preview=d.preview;}catch(e){}
+  }));
+  guessPool=pool.filter(function(t){return /^https?:\/\//i.test(t.preview||'')});
+  return guessPool;
+}
 function guessStats(){var g=S.guessStats||{best:0,games:0,wins:0};$('guessBest').textContent=g.best||0;$('guessGames').textContent=g.games||0;$('guessWins').textContent=g.wins||0}
 async function guessStart(){
-  guessStop();var pool=guessRefreshPool();if(pool.length<4){$('guessPoolInfo').textContent='Buscando canciones para preparar la partida…';try{await refill()}catch(e){}pool=guessRefreshPool()}if(pool.length<4){toast('Necesitas al menos 4 canciones con vista previa. Guarda canciones o carga más música en Inicio.');return}
+  guessStop();var pool=guessRefreshPool();
+  $('guessPoolInfo').textContent='Comprobando fragmentos de audio…';$('guessStart').disabled=true;
+  try{pool=await guessHydratePreviews(pool)}catch(e){}
+  if(pool.length<4){try{await refill();pool=await guessHydratePreviews(guessTrackPool())}catch(e){}}
+  if(pool.length<4){$('guessPoolInfo').textContent='No hay 4 fragmentos disponibles ahora mismo. Guarda canciones de Discovery e inténtalo de nuevo.';$('guessStart').disabled=false;toast('No he encontrado 4 fragmentos reproducibles.');return}
   if(engine==='yt'&&yp&&ypReady){try{yp.pauseVideo()}catch(e){}}else{try{audio.pause()}catch(e){}}
   var rounds=Math.min(parseInt($('guessRounds').value,10)||10,pool.length),deck=shuffle(pool.slice()).slice(0,rounds);
   GU={deck:deck,index:0,score:0,streak:0,wins:0,answered:false,plays:0,hinted:false,difficulty:$('guessDifficulty').value};
   $('guessSetup').classList.add('hide');$('guessResult').classList.add('hide');$('guessGame').classList.remove('hide');guessShow();
 }
 function guessShow(){
-  if(!GU)return;guessStop();var t=GU.deck[GU.index],opts=[t];var others=shuffle(guessPool.filter(function(x){return x!==t&&x.title!==t.title})).slice(0,3);opts=shuffle(opts.concat(others));
+  if(!GU)return;guessStop();var t=GU.deck[GU.index],opts=[t];
+  var others=shuffle(guessPool.filter(function(x){return String(x.id)!==String(t.id)&&x.title!==t.title})).slice(0,3);opts=shuffle(opts.concat(others));
   if(opts.length<4){guessEnd();return}GU.current=t;GU.options=opts;GU.answered=false;GU.plays=0;GU.hinted=false;
-  $('guessRound').textContent='RONDA '+(GU.index+1)+'/'+GU.deck.length;$('guessScore').textContent=GU.score;$('guessStreak').textContent=GU.streak;$('guessProgress').style.width=(GU.index/GU.deck.length*100)+'%';$('guessStatus').textContent='Pulsa reproducir para escuchar el fragmento.';$('guessHintText').textContent='';$('guessFeedback').textContent='';$('guessNext').classList.add('hide');$('guessPlay').disabled=false;$('guessPlay').textContent='▶ Escuchar fragmento';$('guessHint').disabled=false;$('guessDisc').classList.remove('playing');
+  $('guessRound').textContent='RONDA '+(GU.index+1)+'/'+GU.deck.length;$('guessScore').textContent=GU.score;$('guessStreak').textContent=GU.streak;$('guessProgress').style.width=(GU.index/GU.deck.length*100)+'%';
+  $('guessStatus').textContent='Pulsa reproducir para escuchar el fragmento.';$('guessHintText').textContent='';$('guessFeedback').textContent='';$('guessNext').classList.add('hide');$('guessPlay').disabled=false;$('guessPlay').textContent='▶ Escuchar fragmento';$('guessHint').disabled=false;$('guessDisc').classList.remove('playing');
   var box=$('guessOptions');box.innerHTML='';['A','B','C','D'].forEach(function(letter,i){var x=opts[i],b=el('button','guess-option');b.type='button';b.innerHTML='<span class="letter">'+letter+'</span><span><b>'+esc(x.title)+'</b><small>'+esc(x.artist)+'</small></span>';b.onclick=function(){guessAnswer(i,b)};box.appendChild(b)});
 }
-function guessPlay(){if(!GU||GU.answered)return;var t=GU.current;guessStop();GU.plays++;var duration=GU.difficulty==='easy'?8:GU.difficulty==='hard'?3:5;$('guessStatus').textContent='Escuchando… '+duration+' segundos';$('guessPlay').textContent='↻ Repetir ('+(3-GU.plays)+' restantes)';$('guessPlay').disabled=GU.plays>=3;guessAudio.src=t.preview;guessAudio.volume=Math.max(0,Math.min(1,(S.opt.vol||80)/100));var started=false;guessAudio.onplaying=function(){started=true;$('guessDisc').classList.add('playing')};guessAudio.onended=function(){guessStop();$('guessStatus').textContent='Fragmento terminado. Elige tu respuesta.'};guessAudio.onerror=function(){guessStop();$('guessStatus').textContent='No se pudo cargar este fragmento. Prueba otra ronda.';$('guessPlay').disabled=false};guessAudio.play().then(function(){guessClipTimer=setTimeout(function(){guessStop();$('guessStatus').textContent='Fragmento terminado. ¿Cuál era?';},duration*1000)}).catch(function(){guessStop();$('guessStatus').textContent='El navegador no pudo reproducirlo. Pulsa otra vez.';$('guessPlay').disabled=false});}
+function guessPlay(){
+  if(!GU||GU.answered)return;var t=GU.current;guessStop();GU.plays++;
+  var duration=GU.difficulty==='easy'?8:GU.difficulty==='hard'?3:5;
+  $('guessStatus').textContent='Preparando fragmento…';$('guessPlay').textContent='↻ Repetir ('+(3-GU.plays)+' restantes)';$('guessPlay').disabled=GU.plays>=3;
+  try{guessAudio.pause();guessAudio.removeAttribute('src');guessAudio.load()}catch(e){}
+  guessAudio.src=t.preview;guessAudio.volume=.9;guessAudio.muted=false;guessAudio.preload='auto';
+  var finished=false,started=false;
+  function finish(msg){if(finished)return;finished=true;if(guessClipTimer){clearTimeout(guessClipTimer);guessClipTimer=null}try{guessAudio.pause()}catch(e){}$('guessDisc').classList.remove('playing');$('guessStatus').textContent=msg}
+  guessAudio.onplaying=function(){if(finished)return;started=true;$('guessDisc').classList.add('playing');$('guessStatus').textContent='Escuchando fragmento…';guessClipTimer=setTimeout(function(){finish('Fragmento terminado. ¿Cuál era?')},duration*1000)};
+  guessAudio.onended=function(){finish('Fragmento terminado. ¿Cuál era?')};
+  guessAudio.onerror=function(){finish('Este fragmento no está disponible. Pulsa repetir o pasa a otra ronda.');$('guessPlay').disabled=false};
+  var timeout=setTimeout(function(){if(!started&&!finished){finish('El audio está tardando. Pulsa repetir para intentarlo otra vez.');$('guessPlay').disabled=false}},9000);
+  guessAudio.play().then(function(){clearTimeout(timeout)}).catch(function(){clearTimeout(timeout);finish('El navegador bloqueó el audio. Vuelve a pulsar Escuchar.');$('guessPlay').disabled=false});
+}
 function guessHint(){if(!GU||GU.answered||GU.hinted)return;GU.hinted=true;GU.score=Math.max(0,GU.score-3);$('guessScore').textContent=GU.score;$('guessHintText').textContent='Pista: el artista es «'+GU.current.artist+'».';$('guessHint').disabled=true}
-function guessAnswer(i,btn){if(!GU||GU.answered)return;GU.answered=true;guessStop();var correct=GU.options[i]===GU.current;var buttons=$('guessOptions').querySelectorAll('button');Array.prototype.forEach.call(buttons,function(b,j){b.disabled=true;if(GU.options[j]===GU.current)b.classList.add('correct')});if(!correct)btn.classList.add('wrong');if(correct){GU.streak++;GU.wins++;var points=GU.hinted?5:10;points+=Math.min(10,(GU.streak-1)*2);GU.score+=points;addXP(2);$('guessFeedback').textContent='🔥 ¡Correcto! +'+points+' puntos · '+GU.current.title+' — '+GU.current.artist;dnaFeedback({id:GU.current.id,title:GU.current.title,artist:GU.current.artist,artistId:''},1,'guess')}else{GU.streak=0;$('guessFeedback').textContent='Casi. Era «'+GU.current.title+'» de '+GU.current.artist+'.'}$('guessScore').textContent=GU.score;$('guessStreak').textContent=GU.streak;$('guessStatus').textContent='Respuesta registrada.';$('guessPlay').disabled=true;$('guessHint').disabled=true;$('guessNext').classList.remove('hide');$('guessNext').textContent=GU.index===GU.deck.length-1?'Ver resultados →':'Siguiente ronda →';}
+function guessAnswer(i,btn){
+  if(!GU||GU.answered)return;GU.answered=true;guessStop();var correct=GU.options[i]===GU.current;var buttons=$('guessOptions').querySelectorAll('button');
+  Array.prototype.forEach.call(buttons,function(b,j){b.disabled=true;if(GU.options[j]===GU.current)b.classList.add('correct')});if(!correct)btn.classList.add('wrong');
+  if(correct){GU.streak++;GU.wins++;var points=GU.hinted?5:10;points+=Math.min(10,(GU.streak-1)*2);GU.score+=points;addXP(2);$('guessFeedback').textContent='🔥 ¡Correcto! +'+points+' puntos · '+GU.current.title+' — '+GU.current.artist;dnaFeedback({id:GU.current.id,title:GU.current.title,artist:GU.current.artist,artistId:''},1,'guess')}
+  else{GU.streak=0;$('guessFeedback').textContent='Casi. Era «'+GU.current.title+'» de '+GU.current.artist+'.'}
+  $('guessScore').textContent=GU.score;$('guessStreak').textContent=GU.streak;$('guessStatus').textContent='Respuesta registrada.';$('guessPlay').disabled=true;$('guessHint').disabled=true;$('guessNext').classList.remove('hide');$('guessNext').textContent=GU.index===GU.deck.length-1?'Ver resultados →':'Siguiente ronda →';
+}
 function guessNext(){if(!GU)return;GU.index++;if(GU.index>=GU.deck.length){guessEnd();return}guessShow()}
 function guessEnd(){guessStop();var g=S.guessStats||(S.guessStats={best:0,games:0,wins:0});g.games++;g.wins+=GU?GU.wins:0;g.best=Math.max(g.best,GU?GU.score:0);save();guessStats();$('guessGame').classList.add('hide');var score=GU?GU.score:0,wins=GU?GU.wins:0,total=GU?GU.deck.length:0;GU=null;var r=$('guessResult');r.innerHTML='<span class="kick">YISUS MUSIC · GAME OVER</span><h2>Partida completada</h2><div class="bigscore">'+score+'</div><b>PUNTOS</b><p class="sub">Has acertado '+wins+' de '+total+' canciones. '+(wins===total?'¡Perfecto! Tienes oído de DJ.':wins>=Math.ceil(total*.7)?'Muy buena partida. Vas afinando el oído.':'Sigue jugando y supera tu récord.')+'</p><button type="button" class="btn primary" id="guessAgain">↻ Jugar otra vez</button><button type="button" class="btn" id="guessBack">Cambiar dificultad</button>';r.classList.remove('hide');$('guessProgress').style.width='100%';$('guessAgain').onclick=guessStart;$('guessBack').onclick=function(){r.classList.add('hide');$('guessSetup').classList.remove('hide');guessRefreshPool()};}
 $('guessStart').onclick=guessStart;$('guessPlay').onclick=guessPlay;$('guessHint').onclick=guessHint;$('guessNext').onclick=guessNext;
@@ -6921,3 +6967,32 @@ img,video,canvas,svg{max-width:100%} .page,.card,.panel,.box,.grid>*{min-width:0
 </style>
 </body>
 </html>
+
+<style id="yisus-v53-mobile-fixes">
+/* V53 · filas de canciones: el botón quitar nunca se recorta en móvil */
+#songs{min-width:0;overflow:visible}
+#songs .row{width:100%;max-width:100%;min-width:0;box-sizing:border-box;overflow:visible;gap:9px}
+#songs .row .cv{flex:0 0 44px;width:44px;height:44px}
+#songs .row .rt{flex:1 1 0;min-width:0;max-width:100%}
+#songs .row .rx{display:flex!important;flex:0 0 auto;min-width:max-content;align-items:center;gap:5px;overflow:visible}
+#songs .row .tn-del{flex:0 0 34px;width:34px;height:34px;display:grid;place-items:center;padding:0;touch-action:manipulation}
+@media(max-width:620px){
+  #songs .row{padding:8px 7px;gap:7px}
+  #songs .row .cv{flex-basis:38px;width:38px;height:38px}
+  #songs .row .rt b{font-size:12px}
+  #songs .row .rt span{font-size:10px}
+  #songs .row .rx{gap:4px}
+  #songs .row .rx>.icon-btn:not(.tn-del){width:31px;height:31px;min-width:31px}
+  #songs .row .tn-del{width:32px;height:32px;flex-basis:32px;min-width:32px;border-radius:9px}
+  #undoBar{max-width:calc(100vw - 20px);width:max-content;box-sizing:border-box;white-space:normal;bottom:calc(100px + env(safe-area-inset-bottom));font-size:12px}
+  #rmBar{max-width:calc(100vw - 20px);box-sizing:border-box;bottom:calc(100px + env(safe-area-inset-bottom));gap:6px;padding:8px 10px;font-size:11px}
+  .guess-settings{grid-template-columns:1fr 1fr;gap:8px}
+  .guess-player{gap:11px}
+  .guess-disc{width:62px;height:62px;flex-basis:62px}
+  .guess-options{grid-template-columns:1fr;gap:8px}
+  .guess-option{min-height:54px;padding:10px}
+  .guess-game-head{gap:9px}
+}
+#guessPlay,#guessHint,#guessNext{touch-action:manipulation}
+#guessStatus{overflow-wrap:anywhere}
+</style>
