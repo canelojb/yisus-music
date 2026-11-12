@@ -6993,6 +6993,660 @@ body{position:relative;background-image:var(--bgimg,none)!important;background-c
 </script>
 
 <style id="yisus-v57-dj-mobile">@media(max-width:650px){#yisusAIDJ .dj-video{min-height:190px!important;aspect-ratio:16/9!important}#yisusAIDJ .dj-actions button{flex:1 1 130px;min-height:44px}}#yisusAIDJ .dj-status{overflow-wrap:anywhere}</style>
+
+<style id="ysai-dna-v5-style">
+#ysaiDnaPanel{margin:0 0 16px;padding:20px;border-radius:22px;border:1px solid rgba(102,230,163,.2);background:radial-gradient(ellipse at 92% 0%,rgba(88,101,242,.18),transparent 42%),radial-gradient(ellipse at 0% 100%,rgba(102,230,163,.1),transparent 45%),linear-gradient(145deg,#141824,#0c1113 72%);box-shadow:0 18px 55px rgba(0,0,0,.26);position:relative;overflow:hidden}
+#ysaiDnaPanel:before{content:"";position:absolute;right:-80px;top:-120px;width:260px;height:260px;border-radius:50%;border:1px solid rgba(139,148,255,.16);box-shadow:0 0 0 26px rgba(139,148,255,.03),0 0 0 58px rgba(139,148,255,.018);pointer-events:none}
+.ysai-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;position:relative}
+.ysai-kicker{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#8fe7b5;font-weight:900}
+#ysaiDnaPanel h2{margin:6px 0 0;font-size:clamp(20px,2.6vw,27px);line-height:1.08;letter-spacing:-.03em;color:#fff}
+.ysai-lead{margin:8px 0 0;color:#aab2c4;font-size:12.5px;line-height:1.6;max-width:640px}
+.ysai-badge{flex:0 0 auto;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#aab2c4;border-radius:999px;padding:7px 11px;font-size:10px;font-weight:900;letter-spacing:.08em;white-space:nowrap}
+.ysai-badge.ready{border-color:rgba(102,230,163,.32);background:rgba(102,230,163,.1);color:#8ff0ba}
+.ysai-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px;position:relative}
+.ysai-stat{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.028);border-radius:13px;padding:11px 12px;min-width:0}
+.ysai-stat b{display:block;font-size:21px;line-height:1;color:#fff}
+.ysai-stat small{display:block;margin-top:5px;font-size:9px;letter-spacing:.14em;color:#8b93a7;font-weight:800}
+.ysai-core{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px;position:relative;min-height:22px}
+.ysai-empty{font-size:12px;color:#8b93a7;line-height:1.55;padding:9px 11px;border:1px dashed rgba(255,255,255,.12);border-radius:12px;width:100%}
+.ysai-chip{display:inline-flex;align-items:center;gap:8px;max-width:100%;padding:7px 8px 7px 10px;border-radius:999px;border:1px solid rgba(139,148,255,.26);background:linear-gradient(135deg,rgba(88,101,242,.2),rgba(102,230,163,.07));font-size:11.5px;color:#eef0ff}
+.ysai-chip-n{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;background:rgba(255,255,255,.1);font-size:9px;font-weight:900;color:#cbd1ff;flex:0 0 auto}
+.ysai-chip>span:not(.ysai-chip-n){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ysai-chip button{border:0;background:transparent;color:#98a0b8;font-size:15px;line-height:1;cursor:pointer;padding:0 2px;flex:0 0 auto}
+.ysai-chip button:hover{color:#ff9db4}
+.ysai-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;position:relative}
+.ysai-actions .btn{min-height:38px;font-size:11.5px}
+.ysai-more{margin-top:14px;border-top:1px solid rgba(255,255,255,.07);padding-top:12px;position:relative}
+.ysai-more summary{cursor:pointer;color:#b9c0d4;font-size:11.5px;font-weight:800;list-style:none;display:flex;align-items:center;gap:7px}
+.ysai-more summary::-webkit-details-marker{display:none}
+.ysai-more summary:before{content:"+";display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:6px;background:rgba(139,148,255,.14);color:#c7ccff;font-weight:900}
+.ysai-more[open] summary:before{content:"−"}
+.ysai-field{display:block;margin-top:11px;font-size:11px;color:#9aa3b8;font-weight:800}
+.ysai-field textarea{display:block;width:100%;margin-top:6px;box-sizing:border-box;resize:vertical;min-height:56px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(6,9,12,.45);color:#eef1f8;padding:10px 12px;font:inherit;font-size:12px;line-height:1.5}
+.ysai-field textarea:focus{outline:none;border-color:rgba(102,230,163,.4);box-shadow:0 0 0 3px rgba(102,230,163,.08)}
+.ysai-note{display:block;margin-top:10px;color:#798196;font-size:10.5px;line-height:1.6}
+.ysai-sugbar{display:flex;flex-wrap:wrap;gap:7px;margin:2px 0 10px}
+.ysai-sugbar .btn{min-height:34px;font-size:11px}
+.ysai-picker-head h2{margin:0 0 6px;font-size:22px;color:#fff;letter-spacing:-.02em}
+.ysai-picker-head p{margin:0;color:#9aa3b8;font-size:12px;line-height:1.55}
+.ysai-picker-search{margin-top:14px;width:100%;box-sizing:border-box}
+.ysai-pick-list{margin-top:10px;max-height:48vh;overflow:auto;display:flex;flex-direction:column;gap:6px;padding-right:3px}
+.ysai-pick-row{display:flex;align-items:center;gap:10px;padding:8px 9px;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.025);border-radius:12px;cursor:pointer;min-width:0}
+.ysai-pick-row:hover{border-color:rgba(102,230,163,.25);background:rgba(102,230,163,.05)}
+.ysai-pick-row input{flex:0 0 auto;width:17px;height:17px;accent-color:#35e07a;cursor:pointer}
+.ysai-pick-cv{flex:0 0 38px;width:38px;height:38px;border-radius:9px;background:#1a2230 center/cover no-repeat;border:1px solid rgba(255,255,255,.08)}
+.ysai-pick-rt{min-width:0;flex:1 1 auto;display:block}
+.ysai-pick-rt b{display:block;color:#eef1f8;font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ysai-pick-rt small{display:block;margin-top:3px;color:#8b93a7;font-size:10.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ysai-picker-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08);color:#9aa3b8;font-size:11px}
+.ysai-picker-foot .tools{margin:0;display:flex;gap:7px;flex-wrap:wrap}
+@media(max-width:650px){
+  #ysaiDnaPanel{padding:16px}
+  .ysai-head{display:block}
+  .ysai-badge{display:inline-block;margin-top:10px}
+  .ysai-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .ysai-stat{padding:9px}
+  .ysai-stat b{font-size:18px}
+  .ysai-actions .btn{flex:1 1 100%}
+  .ysai-picker-foot{display:block}
+  .ysai-picker-foot .tools{margin-top:10px;display:grid;grid-template-columns:1fr 1fr}
+  .ysai-pick-list{max-height:42vh}
+}
+</style>
+
+<script id="ysai-dna-v5">
+/* ===== YISUS AI DNA V5 · núcleo musical, memoria y recomendaciones desde tu biblioteca ===== */
+(function(){
+'use strict';
+if(window.__YISUS_AI_DNA_V5__)return;window.__YISUS_AI_DNA_V5__=true;
+
+var MAX_CORE=12,PROFILE_KEY='yisus_profile_identity_v39';
+
+function $(id){return document.getElementById(id)}
+function st(){var s=window.S;if(!s)return null;s.ai=s.ai||{};var a=s.ai;if(!Array.isArray(a.core))a.core=[];if(!Array.isArray(a.coreArtists))a.coreArtists=[];if(typeof a.vibe!=='string')a.vibe='';if(typeof a.avoid!=='string')a.avoid='';if(typeof a.notes!=='string')a.notes='';if(!Array.isArray(a.chat))a.chat=[];return a}
+function saveState(){try{if(typeof window.save==='function')window.save()}catch(e){}}
+function toastMsg(m){try{if(typeof window.toast==='function')window.toast(m)}catch(e){}}
+function norm(v){return String(v==null?'':v).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim()}
+function clip(v,n){v=String(v==null?'':v).trim();return v.length>n?v.slice(0,n-1)+'…':v}
+function trackName(t){t=t||{};return (t.artist?t.artist+' - ':'')+(t.title||'')}
+function el2(tag,cls,text){var n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=text;return n}
+function profileName(){try{var p=JSON.parse(localStorage.getItem(PROFILE_KEY)||'null');if(p&&p.name)return p.name}catch(e){}return 'YISUS listener'}
+
+/* ---------- biblioteca integrada ---------- */
+function library(){
+  var s=window.S;if(!s)return [];
+  var map={},out=[];
+  function add(t,listName){
+    if(!t||!t.title)return null;
+    var k=String(t.id||(norm(t.artist)+'|'+norm(t.title))),row=map[k];
+    if(!row){row=map[k]={id:t.id||'',title:t.title,artist:t.artist||'',artistId:t.artistId||'',art:t.art||'',rank:t.rank||0,preview:t.preview||'',lists:[],saved:0,heard:0};out.push(row)}
+    if(listName&&row.lists.indexOf(listName)<0)row.lists.push(listName);
+    return row;
+  }
+  (s.sels||[]).forEach(function(sel){var name=sel&&sel.name||'';(sel&&sel.songs||[]).forEach(function(t){var row=add(t,name);if(row)row.saved++})});
+  (s.hist||[]).forEach(function(t){var k=String(t.id||(norm(t.artist)+'|'+norm(t.title))),row=map[k];if(row)row.heard++});
+  var dt=(s.dna&&s.dna.tracks)||{};
+  out.forEach(function(t){
+    var tid=String(t.id||'');
+    t.affinity=(dt[tid]||0)*2+(t.saved||0)*1.1+(t.heard||0)*.5;
+    if(isCore(t))t.affinity+=8;
+  });
+  return out;
+}
+function allArtists(){
+  var s=window.S,map={},out=[];
+  function add(a,listName,weight){
+    if(!a||!a.name)return;
+    var k=String(a.id||norm(a.name)),row=map[k];
+    if(!row){row=map[k]={id:a.id||'',name:a.name,pic:a.pic||'',lists:[],weight:0};out.push(row)}
+    if(listName&&row.lists.indexOf(listName)<0)row.lists.push(listName);
+    row.weight+=weight||0;
+  }
+  (s.sels||[]).forEach(function(sel){
+    (sel.artists||[]).forEach(function(a){add(a,sel.name,(sel.w&&sel.w[a.id])||0)});
+    (sel.songs||[]).forEach(function(t){add({id:t.artistId,name:t.artist,pic:t.art},sel.name,0)});
+  });
+  var da=(s.dna&&s.dna.artists)||{};
+  out.forEach(function(a){a.dna=da[String(a.id)]||0;a.score=a.weight+a.dna*1.5});
+  return out;
+}
+function findLibrarySong(name){
+  var raw=String(name||'').replace(/^[★*\-\s]+/,'').trim(),n=norm(raw);
+  if(!n)return null;
+  var parts=raw.split(/\s+[-–—]\s+/),na=parts.length>1?norm(parts[0]):'',nt=parts.length>1?norm(parts.slice(1).join(' ')):'';
+  var lib=library(),exact=null,loose=null;
+  lib.forEach(function(t){
+    var full=norm(t.artist+' '+t.title);
+    if((nt&&norm(t.title)===nt&&(!na||norm(t.artist)===na))||full===n)exact=exact||t;
+    if(!loose&&n.length>=4&&((nt&&nt.length>=3&&norm(t.title).indexOf(nt)>=0)||full.indexOf(n)>=0))loose=t;
+  });
+  return exact||loose;
+}
+function findLibraryArtist(name){
+  var n=norm(name);if(!n)return null;
+  var lib=library(),arts=allArtists(),i;
+  for(i=0;i<arts.length;i++){if(norm(arts[i].name)===n)return arts[i]}
+  for(i=0;i<arts.length;i++){if(n.length>=4&&norm(arts[i].name).indexOf(n)>=0)return arts[i]}
+  for(i=0;i<lib.length;i++){if(norm(lib[i].artist)===n)return {id:lib[i].artistId,name:lib[i].artist,pic:lib[i].art}}
+  return null;
+}
+
+/* ---------- núcleo de canciones principales ---------- */
+function coreKey(c){return norm((c&&c.artist||'')+' '+(c&&c.title||''))}
+function isCore(t){
+  var a=st();if(!a||!t)return false;
+  var k=norm((t.artist||'')+' '+(t.title||'')),id=t.id?String(t.id):'';
+  return (a.core||[]).some(function(c){return (id&&c.id&&String(c.id)===id)||coreKey(c)===k});
+}
+function coreFromAny(x){
+  if(x==null)return null;
+  if(typeof x==='string'){
+    var raw=x.replace(/^[★*\-\s]+/,'').trim();
+    if(!raw)return null;
+    var p=raw.split(/\s+[-–—]\s+/);
+    if(p.length>1)return {title:clip(p.slice(1).join(' - '),140),artist:clip(p[0],90)};
+    var hit=findLibrarySong(raw);
+    if(hit)return {id:hit.id,title:hit.title,artist:hit.artist,artistId:hit.artistId,art:hit.art,rank:hit.rank||0};
+    return {title:clip(raw,140),artist:''};
+  }
+  if(x&&x.title)return {id:x.id||'',title:clip(x.title,140),artist:clip(x.artist||x.artista||'',90),artistId:x.artistId||'',art:x.art||'',rank:x.rank||0};
+  return null;
+}
+function setCore(list,source){
+  var a=st();if(!a)return 0;
+  var before={};a.core.forEach(function(c){before[coreKey(c)]=1});
+  var out=[],seen={};
+  (Array.isArray(list)?list:[]).forEach(function(x){
+    var c=coreFromAny(x);if(!c||!c.title)return;
+    var k=coreKey(c);if(seen[k])return;seen[k]=1;
+    if(out.length<MAX_CORE)out.push(c);
+  });
+  a.core=out;a.updatedAt=Date.now();
+  out.forEach(function(c){
+    if(before[coreKey(c)])return;
+    if(c.id&&typeof window.dnaFeedback==='function'){try{window.dnaFeedback({id:c.id,title:c.title,artist:c.artist,artistId:c.artistId||'',rank:c.rank||0},3,'core')}catch(e){}}
+  });
+  saveState();
+  try{renderAIDnaPanel();if(window.renderChat)window.renderChat()}catch(e){}
+  if(source==='ia')toastMsg(out.length?'La IA actualizó tu núcleo: '+out.length+' canciones principales':'La IA dejó tu núcleo vacío');
+  return out.length;
+}
+function addCore(t){var a=st();if(!a)return;var next=(a.core||[]).slice();next.push(t);setCore(next,'local')}
+function topTracks(n,includeCore){
+  var a=st(),seen={},out=[];
+  function push(t){if(!t||!t.title)return;var k=norm((t.artist||'')+' '+t.title);if(seen[k])return;seen[k]=1;out.push(t)}
+  if(includeCore!==false)(a.core||[]).forEach(function(c){push(c)});
+  library().slice().sort(function(x,y){return y.affinity-x.affinity}).forEach(function(t){if(out.length<n)push(t)});
+  return out.slice(0,n);
+}
+function picksFromLibrary(n,text){
+  var t=norm(text||''),lib=library().slice(),tags=[],out=[],used={};
+  var DICT={energia:['energ','hard','trap','rage','drill','phonk','bass','power','fuego','acelera'],fiesta:['perreo','reggaeton','fiesta','dance','house','techno','party','club'],chill:['chill','lofi','ambient','soft','suave','melodic','acoustic','calm','dream'],oscuro:['dark','oscuro','phonk','drill','night','sad','trap','shadow'],estudio:['lofi','ambient','instrumental','chill','soft','focus'],noche:['night','dark','ambient','slow','melodic','sad']};
+  Object.keys(DICT).forEach(function(k){if(DICT[k].some(function(w){return t.indexOf(w)>=0}))tags=tags.concat(DICT[k])});
+  lib.forEach(function(x){
+    var hay=norm(x.title+' '+x.artist+' '+(x.lists||[]).join(' ')),bonus=0;
+    tags.forEach(function(w){if(hay.indexOf(w)>=0)bonus+=2.6});
+    if(isCore(x))bonus+=4;
+    x._pick=x.affinity+bonus+Math.random()*1.1;
+  });
+  lib.sort(function(a,b){return b._pick-a._pick});
+  lib.forEach(function(x){
+    var ak=norm(x.artist||'x');
+    if(used[ak]||out.length>=n)return;
+    used[ak]=1;out.push(fromLibraryTrack(x,isCore(x)?'Núcleo de tu ADN':'Afinidad con tu biblioteca'));
+  });
+  if(out.length<n){
+    lib.forEach(function(x){if(out.length>=n)return;var id=String(x.id||x.title);if(out.some(function(y){return String(y.id||y.title)===id}))return;out.push(fromLibraryTrack(x,'Más de tu biblioteca'))});
+  }
+  return out.slice(0,n);
+}
+function fromLibraryTrack(t,why){
+  return {id:t.id||'',title:t.title,artist:t.artist||'',artistId:t.artistId||'',art:t.art||'',rank:t.rank||0,preview:t.preview||'',why:why||'De tu biblioteca',_ysaiLib:true};
+}
+
+/* ---------- rasgos y resumen ---------- */
+function dnaTraits(){
+  var d=(window.S&&window.S.dna)||{},scores={};
+  Object.keys(d.terms||{}).forEach(function(k){scores[k]=(scores[k]||0)+d.terms[k]});
+  var m=d.manual||{};
+  Object.keys(m).forEach(function(k){if(m[k]===1)scores[k]=(scores[k]||0)+8;else if(m[k]===-1)scores['evitar:'+k]=(scores['evitar:'+k]||0)+8});
+  return Object.keys(scores).filter(function(k){return scores[k]>0}).sort(function(a,b){return scores[b]-scores[a]}).slice(0,12);
+}
+function topArtists(n){return allArtists().filter(function(a){return a.score>0}).sort(function(a,b){return b.score-a.score}).slice(0,n).map(function(a){return a.name})}
+function avoidArtists(n){return allArtists().filter(function(a){return a.dna<0}).sort(function(a,b){return a.dna-b.dna}).slice(0,n).map(function(a){return a.name})}
+function dislikedTracks(n){
+  var d=(window.S&&window.S.dna&&window.S.dna.tracks)||{},names={},out=[];
+  function put(t){if(t&&t.id!=null)names[String(t.id)]=trackName(t)}
+  (window.S.hist||[]).forEach(put);(window.S.sels||[]).forEach(function(s){(s.songs||[]).forEach(put)});
+  Object.keys(d).filter(function(k){return d[k]<0}).sort(function(a,b){return d[a]-d[b]}).forEach(function(k){if(names[k]&&out.length<n)out.push(names[k])});
+  return out;
+}
+function moment(){
+  var d=new Date(),h=d.getHours();
+  return {hora:String(h).padStart(2,'0')+':00',dia:['domingo','lunes','martes','miércoles','jueves','viernes','sábado'][d.getDay()],franja:h<6?'madrugada':h<12?'mañana':h<18?'tarde':h<23?'noche':'madrugada'};
+}
+function adnSummary(){
+  var s=window.S||{},a=st(),lib=library(),arts=topArtists(5),traits=dnaTraits().slice(0,6);
+  var lines=[];
+  lines.push(a.core.length?'Núcleo: '+a.core.map(trackName).join(' · '):'Núcleo: aún sin definir');
+  lines.push('Rasgos: '+(traits.length?traits.join(' · '):'aprendiendo con tus escuchas'));
+  if(arts.length)lines.push('Artistas con más peso: '+arts.join(', '));
+  if(a.avoid)lines.push('Evitar: '+a.avoid);
+  lines.push('Biblioteca: '+lib.length+' canciones únicas · '+(s.sels||[]).length+' playlists · '+((s.dna&&s.dna.positive)||0)+' señales positivas');
+  lines.push('Filtro de canciones quemadas: '+((s.opt&&s.opt.under)||0)+'%');
+  return 'Esto es lo que sé de ti ahora mismo:\n'+lines.join('\n');
+}
+
+/* ---------- contexto y prompt del asistente ---------- */
+function aiContextV5(){
+  var s=window.S||{},a=st(),lib=library(),arts=allArtists();
+  var data={
+    usuario:{nombre:profileName(),nivel:(typeof window.level==='function'?window.level():0),xp:s.xp||0},
+    momento:moment(),
+    biblioteca:{
+      canciones_unicas:lib.length,
+      artistas_unicos:arts.length,
+      playlists:(s.sels||[]).map(function(x){return {nombre:x.name,animo:x.moods||[],artistas:(x.artists||[]).map(function(y){return y.name}).slice(0,20),canciones:(x.songs||[]).map(trackName).slice(0,20)}})
+    },
+    nucleo:{canciones:(a.core||[]).map(trackName),artistas:(a.coreArtists||[]).slice(0,12)},
+    adn:{
+      rasgos:dnaTraits(),
+      artistas_top:topArtists(10),
+      artistas_evitar:avoidArtists(5),
+      canciones_top:topTracks(10,true).map(trackName),
+      descartes:dislikedTracks(8),
+      likes:s.likes||0,
+      escuchas_sostenidas:s.listened||0,
+      senales_positivas:(s.dna&&s.dna.positive)||0,
+      senales_negativas:(s.dna&&s.dna.negative)||0,
+      filtro_quemadas_0_100:(s.opt&&s.opt.under)||0
+    },
+    historial_reciente:(s.hist||[]).slice(0,12).map(trackName),
+    preferencias:{estilo:a.vibe,evitar:a.avoid,notas:a.notes},
+    catalogo:topTracks(140,true).map(trackName)
+  };
+  return JSON.stringify(data);
+}
+function buildSystemPrompt(){
+  return [
+    'Eres YISUS AI, el DJ y curador musical personal integrado en la app YISUS MUSIC. No eres un chatbot genérico: eres la inteligencia que conoce la biblioteca, el ADN y el momento del usuario.',
+    '',
+    'PERSONALIDAD',
+    '- Español cercano, directo y cómplice. Tutea. Nada de lenguaje corporativo.',
+    '- Breve: 2-4 frases (máximo 130 palabras). Una idea por respuesta.',
+    '- Puedes usar 1-3 emojis, nunca más. Nada de listas largas si no las piden.',
+    '',
+    'MISIÓN',
+    '1) Recomendar música que encaje de verdad, usando primero las canciones guardadas y el núcleo del usuario.',
+    '2) Aprender de cada conversación: canciones principales, artistas, vibes y disgustos.',
+    '3) Descubrirle cosas nuevas sin repetirle siempre lo mismo.',
+    '',
+    'CONOCIMIENTO',
+    'Recibes un JSON con usuario, momento, biblioteca, nucleo, adn, historial_reciente, preferencias y catalogo. Es la verdad sobre el usuario: no la contradigas ni inventes datos.',
+    '- "nucleo.canciones" son sus canciones principales. Si existen, son la prioridad absoluta.',
+    '- "catalogo" son canciones que YA tiene integradas, en formato "Artista - Título". Si recomiendas de ahí, usa el nombre EXACTO tal como aparece.',
+    '- Fuera del catálogo puedes recomendar artistas reales y verificables de Deezer, pero nunca inventes títulos ni artistas.',
+    '- "adn.descartes" y "adn.artistas_evitar" son cosas que no le gustan: no las recomiendes.',
+    '',
+    'REGLA DEL NÚCLEO (OBLIGATORIA)',
+    '- Si "nucleo.canciones" está vacío: en tu PRIMERA respuesta no recomiendes todavía. Pregunta exactamente una cosa: «¿Cuáles son tus 3-5 canciones principales, las que nunca te fallan?». Ofrécele escribirlas o elegirlas en el panel «ADN del asistente». No hagas más preguntas en ese mensaje.',
+    '- Excepción: si el usuario pide explícitamente que no preguntes y que recomiendes ya, recomienda usando su biblioteca y sus artistas top, y recuérdale en una frase que puede fijar su núcleo después.',
+    '- Cuando el usuario diga sus principales, confírmalo en una frase y emite el bloque NUCLEO con la lista completa actualizada (no solo la nueva), en formato "Artista - Título".',
+    '- Si pide cambiar o quitar principales, actualiza el núcleo completo.',
+    '- Si ya hay núcleo, al menos la mitad de cada recomendación debe conectar con esas canciones, sus artistas o su sonido.',
+    '',
+    'RECOMENDACIONES',
+    '- Mezcla 60% afinidad (núcleo, artistas y rasgos) + 40% descubrimiento. Si pide «algo nuevo», baja a 30% conocido.',
+    '- No repitas el mismo artista más de una vez por tanda. Varía el orden y la energía.',
+    '- Cada recomendación debe llevar una razón concreta basada en sus datos («conecta con X», «misma energía que Y», «de tu lista Z»).',
+    '- Si pide una sesión o playlist, propón 5 canciones en orden y explica el hilo en una frase.',
+    '- Si pide poner o reproducir, dile que pulse el botón «▶ Reproducir» que aparece bajo tu respuesta.',
+    '- Respeta el filtro de canciones quemadas: si es alto, evita artistas masivos.',
+    '- Si pide algo que no está en su biblioteca, puedes buscar fuera, pero dilo con honestidad.',
+    '',
+    'APRENDIZAJE',
+    '- Si expresa un gusto duradero («odio el reggaetón», «me encanta el phonk oscuro», «para entrenar siempre...»), emite PREFERENCIAS con estilo, evitar o notas.',
+    '- Si dice que una canción es su favorita o principal, añádela al NUCLEO.',
+    '- No preguntes más de UNA cosa por mensaje. Si ya preguntaste el núcleo, espera la respuesta.',
+    '',
+    'HONESTIDAD',
+    '- Nunca digas que escuchas el audio ni que analizas ondas: trabajas con metadatos, biblioteca y señales.',
+    '- Si no sabes algo o faltan datos, dilo y pide una pista.',
+    '',
+    'FORMATO DE SALIDA (al final, una línea por bloque, JSON válido en UNA sola línea)',
+    'NUCLEO: {"canciones":["Artista - Título"],"artistas":["Artista"]}',
+    'PREFERENCIAS: {"estilo":"...","evitar":"...","notas":"..."}',
+    'SUGERENCIAS: {"artistas":["Nombre"],"canciones":["Artista - Título"]}',
+    '- Usa SUGERENCIAS siempre que recomiendes (máximo 5 artistas y 5 canciones).',
+    '- Usa NUCLEO solo si acabas de fijar o cambiar canciones principales.',
+    '- Usa PREFERENCIAS solo si aprendiste algo duradero.',
+    '- Si un bloque no aplica, omítelo. NUNCA pongas texto después de SUGERENCIAS.',
+    '',
+    'DATOS DEL USUARIO (JSON):',
+    aiContextV5()
+  ].join('\n');
+}
+
+/* ---------- lectura de bloques del modelo ---------- */
+function pullBlock(text,tag){
+  var raw=String(text||''),upper=raw.toUpperCase(),idx=upper.indexOf(tag+':');
+  if(idx<0)return {obj:null,raw:raw};
+  var start=raw.indexOf('{',idx);
+  if(start<0)return {obj:null,raw:raw};
+  var depth=0,inStr=false,esc=false,end=-1,i,ch;
+  for(i=start;i<raw.length;i++){
+    ch=raw.charAt(i);
+    if(inStr){if(esc)esc=false;else if(ch==='\\')esc=true;else if(ch==='"')inStr=false}
+    else{if(ch==='"')inStr=true;else if(ch==='{')depth++;else if(ch==='}'){depth--;if(depth===0){end=i+1;break}}}
+  }
+  if(end<0)return {obj:null,raw:raw};
+  var obj=null;
+  try{obj=JSON.parse(raw.slice(start,end))}catch(e){obj=null}
+  return {obj:obj,raw:(raw.slice(0,idx)+raw.slice(end)).replace(/[ \t]+\r?\n/g,'\n').replace(/\n{3,}/g,'\n\n')};
+}
+function cleanArtists(v){
+  return (Array.isArray(v)?v:[]).map(function(x){if(typeof x==='string')return x.trim();if(x&&(x.name||x.artista))return String(x.name||x.artista).trim();return ''}).filter(Boolean).slice(0,5);
+}
+function cleanSongs(v){
+  return (Array.isArray(v)?v:[]).map(function(x){if(typeof x==='string')return x.trim();if(x&&x.title)return (x.artist||x.artista?String(x.artist||x.artista)+' - ':'')+String(x.title);return ''}).filter(Boolean).slice(0,6);
+}
+function applyNucleus(o){
+  if(!o)return false;
+  var songs=o.canciones||o.canciones_principales||o.songs||o.tracks;
+  if(Array.isArray(songs)&&songs.length)setCore(cleanSongs(songs),'ia');
+  if(Array.isArray(o.artistas)&&o.artistas.length){var a=st();a.coreArtists=o.artistas.filter(function(x){return typeof x==='string'}).map(function(x){return clip(x,80)}).slice(0,12);saveState()}
+  return true;
+}
+function applyPrefs(p){
+  var a=st();if(!a||!p)return false;
+  var changed=false;
+  function merge(keys,field){
+    for(var i=0;i<keys.length;i++){var v=p[keys[i]];if(typeof v==='string'&&v.trim()){var nv=clip(v,400);if(a[field]!==nv){a[field]=nv;changed=true}return}}
+  }
+  merge(['estilo','vibe','estilo_prioritario'],'vibe');
+  merge(['evitar','avoid','evitar_estilo'],'avoid');
+  merge(['notas','notes','memoria'],'notes');
+  if(changed){a.updatedAt=Date.now();saveState()}
+  return changed;
+}
+function splitSong(s){var p=String(s||'').split(/\s+[-–—]\s+/);return p.length>1?{artist:p[0].trim(),title:p.slice(1).join(' - ').trim()}:{artist:'',title:String(s||'').trim()}}
+async function resolveSongName(name){
+  var hit=findLibrarySong(name);
+  if(hit)return fromLibraryTrack(hit,isCore(hit)?'Del núcleo de tu ADN':'De tu biblioteca');
+  var p=splitSong(name);
+  var q=p.artist?'artist:"'+p.artist.replace(/"/g,'')+'" track:"'+p.title.replace(/"/g,'')+'"':name;
+  var x=null;
+  try{x=await safe(jp('/search/track',{q:q,limit:1}))}catch(e){}
+  if((!x||!x.length)&&p.artist){try{x=await safe(jp('/search/track',{q:p.artist+' '+p.title,limit:1}))}catch(e){}}
+  if(!x||!x.length){try{x=await safe(jp('/search/track',{q:name,limit:1}))}catch(e){}}
+  return x&&x[0]?tr(x[0]):null;
+}
+async function resolveArtistName(name){
+  var local=findLibraryArtist(name);
+  if(local)return {id:local.id||'',name:local.name,pic:local.pic||'',fans:0};
+  try{return await findArtist(name)}catch(e){return null}
+}
+async function resolveSuggestions(o){
+  var names=cleanArtists(o.artistas||o.artists),songs=cleanSongs(o.canciones||o.songs||o.tracks);
+  var ra=await Promise.all(names.map(function(n){return resolveArtistName(n)}));
+  var rt=await Promise.all(songs.map(function(s){return resolveSongName(s)}));
+  return {artists:ra.filter(Boolean),tracks:rt.filter(Boolean)};
+}
+
+/* ---------- Claude con ADN ampliado ---------- */
+async function claudeReplyV5(){
+  var msgs=[];
+  (window.chat||[]).forEach(function(m){
+    if(m.thinking||m.error||m.failed)return;
+    var c=m.raw||m.text;
+    if(msgs.length&&msgs[msgs.length-1].role===m.role)msgs[msgs.length-1].content+='\n'+c;
+    else msgs.push({role:m.role,content:c});
+  });
+  while(msgs.length&&msgs[0].role!=='user')msgs.shift();
+  msgs=msgs.slice(-14);while(msgs.length&&msgs[0].role!=='user')msgs.shift();
+  var sys=buildSystemPrompt();
+  var ctl=new AbortController(),to=setTimeout(function(){ctl.abort()},60000),r;
+  try{
+    r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',signal:ctl.signal,
+      headers:{'content-type':'application/json','x-api-key':(window.S.opt.aiKey||''),'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:window.S.opt.aiModel||'claude-sonnet-5-5',max_tokens:1200,system:sys,messages:msgs})});
+  }catch(e){throw new Error(e.name==='AbortError'?'la respuesta tarda demasiado':'no puedo conectar con Anthropic')}
+  finally{clearTimeout(to)}
+  var j=await r.json().catch(function(){return {}});
+  if(!r.ok)throw new Error(r.status===401?'la clave de Claude no es válida':(j.error&&j.error.message)||('error '+r.status));
+  var full=(j.content||[]).map(function(b){return b.text||''}).join('').trim(),raw=full;
+  var sBlock=pullBlock(raw,'SUGERENCIAS');raw=sBlock.raw;
+  var nBlock=pullBlock(raw,'NUCLEO');raw=nBlock.raw;
+  var pBlock=pullBlock(raw,'PREFERENCIAS');raw=pBlock.raw;
+  var txt=raw.replace(/\n{3,}/g,'\n\n').trim();
+  if(nBlock.obj)applyNucleus(nBlock.obj);
+  if(pBlock.obj)applyPrefs(pBlock.obj);
+  var sug=null;
+  if(sBlock.obj){try{sug=await resolveSuggestions(sBlock.obj)}catch(e){sug=null}}
+  return {text:txt||'He actualizado tu ADN musical.',raw:full,sug:sug};
+}
+
+/* ---------- modo local inteligente ---------- */
+function playSet(tracks){
+  var list=(tracks||[]).filter(function(t){return t&&t.title});
+  if(!list.length){toastMsg('No hay canciones para reproducir');return false}
+  try{
+    window.favoriteListMode=false;window.favoriteTracks=[];window.favoriteIndex=-1;
+    if(typeof window.showErr==='function')window.showErr('');
+    window.queue=list.slice(1);window.cur=null;window.localMode=false;window.gameMode=null;window.over=null;
+    if(typeof window.goPage==='function')window.goPage('home');
+    var first=list[0];
+    if(first._local||first._aud||first.preview)window.play(first);else window.playFresh(first);
+    toastMsg('Sesión preparada: '+list.length+' canciones desde tu ADN');
+    return true;
+  }catch(e){toastMsg('No se pudo iniciar la sesión: '+(e&&e.message||e));return false}
+}
+function localReplyV5(text){
+  var raw=String(text||'').trim(),t=norm(raw),a=st(),s=window.S||{};
+  if(!a)return null;
+  var setM=raw.match(/(?:mis\s+)?(?:canciones\s+)?(?:principales|favoritas|top)\s*(?:son|:)\s*(.+)/i);
+  if(setM){
+    var parts=setM[1].split(/\s*(?:,|;|\n|\by\b|\+)\s*/i).map(function(x){return x.trim()}).filter(Boolean);
+    if(parts.length){
+      var resolved=parts.map(function(x){var hit=findLibrarySong(x);return hit?{id:hit.id,title:hit.title,artist:hit.artist,artistId:hit.artistId,art:hit.art,rank:hit.rank}:x});
+      setCore(resolved,'local');
+      var a2=st();
+      return {text:'Núcleo actualizado. Ahora mismo tus principales son:\n'+a2.core.map(function(c,i){return (i+1)+'. '+trackName(c)}).join('\n')+'\n\nA partir de aquí priorizaré estas canciones y su sonido cuando te recomiende.'};
+    }
+  }
+  if(/cuales son mis|cuales eran|que canciones son mis|dime mis|mis canciones principales|mi nucleo|mis principales/.test(t)){
+    if(!a.core.length)return {text:'Todavía no me has dicho tu núcleo. ¿Cuáles son tus 3-5 canciones principales, esas que nunca te fallan? Puedes escribirlas aquí o pulsar «Elegir principales» en el panel de ADN. Si no estás seguro, pulsa «Que la IA elija 5» y te propongo un núcleo a partir de tu biblioteca.'};
+    return {text:'Tu núcleo ahora mismo es:\n'+a.core.map(function(c,i){return (i+1)+'. '+trackName(c)}).join('\n')+'\n\nDime si quieres cambiar alguna o pídeme una sesión basada en ellas.'};
+  }
+  if(/analiza (mi|el) adn|mi adn|resumen de mi adn|que sabes de mi/.test(t))return {text:adnSummary()};
+  if(/(pon|reproduce|inicia|empieza|dj|sesion|playlist|mezcla)/.test(t)&&/(nucleo|adn|principales|mi biblioteca|mis canciones)/.test(t)){
+    if(!a.core.length)return {text:'Primero necesito tu núcleo. ¿Cuáles son tus 3-5 canciones principales? Escríbelas o elígelas en el panel de ADN y te preparo la sesión al instante.'};
+    var set=picksFromLibrary(10,raw);
+    if(set.length){playSet(set);return {text:'Sesión iniciada con tu ADN: '+set.length+' canciones que mezclan tu núcleo con tu biblioteca. Puedes saltar o cambiar la energía cuando quieras.',sug:{artists:[],tracks:set}}}
+  }
+  if(/parecid|similar|tipo\s+|menos sonad|underground|poco conocid|exitos|^\s*pon(?:me)?\b|reproduce|quiero escuchar|escuchar\s+a|entren|gym|estudi|concentr|fiesta|bailar|perre|noche|dormir|chill|relaj|tranquil/.test(t)){
+    if(typeof window.__ysaiOldLocal==='function')return window.__ysaiOldLocal(raw);
+  }
+  if(/recomiend|sugier|dame|algo|sesion|playlist|mezcla|que escuche|musica para|vibe/.test(t)){
+    if(!a.core.length)return {text:'Antes de recomendarte quiero fijar tu núcleo: ¿cuáles son tus 3-5 canciones principales, las que nunca te fallan? Escríbelas o elige «Elegir principales» en el panel de ADN. Con eso puedo recomendarte desde lo que de verdad te define.'};
+    var lib=library();
+    if(!lib.length)return {text:'Todavía no tengo canciones tuyas guardadas. Guarda algunas en tus selecciones y dime tus 3-5 principales para empezar a recomendarte de verdad.'};
+    var picks=picksFromLibrary(6,raw);
+    return {text:'He preparado '+picks.length+' canciones desde tu ADN. Las primeras conectan con tu núcleo y el resto abre un poco el círculo. Dime si quieres más energía, más oscuro o algo más desconocido.',sug:{artists:[],tracks:picks}};
+  }
+  return null;
+}
+
+/* ---------- panel de ADN ---------- */
+function ensurePanel(){
+  var page=$('p-ai');if(!page||$('ysaiDnaPanel'))return;
+  var sec=document.createElement('section');
+  sec.className='card ysai-dna';sec.id='ysaiDnaPanel';
+  sec.innerHTML='<div class="ysai-head"><div><span class="ysai-kicker">AI DNA · MEMORIA MUSICAL</span><h2>El ADN de tu asistente</h2><p class="ysai-lead">Tu asistente aprende de tu biblioteca, tu núcleo y tus señales. Cuanto más sepa, mejores serán sus recomendaciones.</p></div><span class="ysai-badge" id="ysaiDnaBadge">NÚCLEO VACÍO</span></div><div class="ysai-stats"><div class="ysai-stat"><b id="ysaiStatCore">0</b><small>PRINCIPALES</small></div><div class="ysai-stat"><b id="ysaiStatLib">0</b><small>EN BIBLIOTECA</small></div><div class="ysai-stat"><b id="ysaiStatSignals">0</b><small>SEÑALES ADN</small></div></div><div class="ysai-core" id="ysaiCoreList"></div><div class="ysai-actions"><button type="button" class="btn primary" id="ysaiPick">★ Elegir principales</button><button type="button" class="btn" id="ysaiSuggest">✨ Que la IA elija 5</button><button type="button" class="btn" id="ysaiAsk">💬 Que me pregunte</button></div><details class="ysai-more"><summary>Afinar la personalidad del asistente</summary><label class="ysai-field">Qué quieres que priorice<textarea id="ysaiVibe" rows="2" maxlength="400" placeholder="Ej.: trap oscuro, voces melódicas, energía de madrugada..."></textarea></label><label class="ysai-field">Qué debe evitar<textarea id="ysaiAvoid" rows="2" maxlength="400" placeholder="Ej.: éxitos masivos, reggaetón de radio, autotune excesivo..."></textarea></label><label class="ysai-field">Notas permanentes<textarea id="ysaiNotes" rows="2" maxlength="400" placeholder="Ej.: para entrenar quiere 140+ BPM; por la noche, ambient..."></textarea></label><div class="ysai-actions"><button type="button" class="btn primary" id="ysaiSavePrefs">Guardar ADN del asistente</button><button type="button" class="btn" id="ysaiForget">Olvidar conversación</button></div><small class="ysai-note">Todo se guarda solo en este navegador. La IA no escucha el audio: aprende de metadatos, tu biblioteca y tus decisiones.</small></details>';
+  var chat=page.querySelector('.card.chat');
+  page.insertBefore(sec,chat||page.firstChild);
+  $('ysaiPick').onclick=openPicker;
+  $('ysaiSuggest').onclick=function(){
+    var lib=library().slice().sort(function(a,b){return b.affinity-a.affinity}),picks=[];
+    lib.forEach(function(t){if(picks.length<5&&!isCore(t))picks.push(t)});
+    lib.forEach(function(t){if(picks.length<5&&picks.indexOf(t)<0)picks.push(t)});
+    if(!picks.length){toastMsg('Guarda canciones en tus selecciones primero');return}
+    setCore(picks,'local');
+    toastMsg('Núcleo propuesto: '+picks.length+' canciones. Puedes cambiarlas cuando quieras');
+  };
+  $('ysaiAsk').onclick=function(){try{window.sendAI('Ayúdame a elegir mis canciones principales')}catch(e){}};
+  $('ysaiSavePrefs').onclick=function(){
+    var a=st();a.vibe=clip($('ysaiVibe').value,400);a.avoid=clip($('ysaiAvoid').value,400);a.notes=clip($('ysaiNotes').value,400);a.updatedAt=Date.now();saveState();toastMsg('ADN del asistente guardado');renderAIDnaPanel();
+  };
+  $('ysaiForget').onclick=function(){
+    if(!confirm('¿Olvidar la conversación guardada? Tu ADN y tu biblioteca no se tocan.'))return;
+    var a=st();a.chat=[];window.chat=[];saveState();window.renderChat();toastMsg('Conversación olvidada');
+  };
+}
+function renderAIDnaPanel(){
+  ensurePanel();
+  var a=st(),s=window.S||{};if(!a||!$('ysaiDnaPanel'))return;
+  var lib=library();
+  $('ysaiStatCore').textContent=a.core.length;
+  $('ysaiStatLib').textContent=lib.length;
+  $('ysaiStatSignals').textContent=((s.dna&&s.dna.positive)||0)+((s.dna&&s.dna.negative)||0);
+  var badge=$('ysaiDnaBadge');
+  badge.textContent=a.core.length?'NÚCLEO · '+a.core.length+' CANCIONES':'NÚCLEO VACÍO';
+  badge.classList.toggle('ready',a.core.length>0);
+  var box=$('ysaiCoreList');box.innerHTML='';
+  if(!a.core.length)box.appendChild(el2('div','ysai-empty','Aún no has fijado tus canciones principales. Pídeselas a la IA o elige tú hasta 5.'));
+  else a.core.forEach(function(c,idx){
+    var chip=el2('span','ysai-chip');
+    chip.appendChild(el2('span','ysai-chip-n',String(idx+1)));
+    chip.appendChild(el2('span',null,trackName(c)));
+    var x=document.createElement('button');x.type='button';x.title='Quitar del núcleo';x.setAttribute('aria-label','Quitar '+trackName(c));x.textContent='×';
+    x.onclick=function(){var next=a.core.filter(function(y){return y!==c});setCore(next,'local');toastMsg('Quitada del núcleo: '+trackName(c))};
+    chip.appendChild(x);box.appendChild(chip);
+  });
+  ['ysaiVibe','ysaiAvoid','ysaiNotes'].forEach(function(id){
+    var n=$(id);if(!n||document.activeElement===n)return;
+    var field=id==='ysaiVibe'?'vibe':id==='ysaiAvoid'?'avoid':'notes';
+    n.value=a[field]||'';
+  });
+}
+function openPicker(){
+  var lib=library().slice().sort(function(a,b){return b.affinity-a.affinity});
+  if(!lib.length){toastMsg('Guarda canciones en tus selecciones para poder elegir tu núcleo');return}
+  var a=st(),selected={};
+  a.core.forEach(function(c){selected[coreKey(c)]=1});
+  var body=$('modalBody');
+  body.innerHTML='<div class="ysai-picker-head"><h2>Elige tus canciones principales</h2><p>Hasta 12. La IA las usará como base de todas sus recomendaciones.</p></div><input class="field ysai-picker-search" id="ysaiPickSearch" placeholder="Buscar en tu biblioteca..." autocomplete="off"><div class="ysai-pick-list" id="ysaiPickList"></div><div class="ysai-picker-foot"><span id="ysaiPickCount"></span><div class="tools"><button type="button" class="btn" id="ysaiPickCancel">Cancelar</button><button type="button" class="btn primary" id="ysaiPickSave">Guardar principales</button></div></div>';
+  function updateCount(){var n=Object.keys(selected).length;$('ysaiPickCount').textContent=n+' seleccionada'+(n===1?'':'s')}
+  function renderList(){
+    var q=norm($('ysaiPickSearch').value||''),list=$('ysaiPickList'),shown=0;
+    list.innerHTML='';
+    lib.forEach(function(t){
+      if(q&&norm(trackName(t)+' '+t.lists.join(' ')).indexOf(q)<0)return;
+      shown++;
+      var row=document.createElement('label');row.className='ysai-pick-row';
+      var cb=document.createElement('input');cb.type='checkbox';cb.checked=!!selected[coreKey(t)];cb.onchange=function(){if(cb.checked)selected[coreKey(t)]=1;else delete selected[coreKey(t)];updateCount()};
+      var cv=document.createElement('span');cv.className='ysai-pick-cv';if(typeof window.bg==='function')window.bg(cv,t.art);
+      var rt=document.createElement('span');rt.className='ysai-pick-rt';rt.innerHTML='<b>'+(typeof window.esc==='function'?window.esc(t.title):t.title)+'</b><small>'+(typeof window.esc==='function'?window.esc(t.artist):t.artist)+(t.lists.length?' · '+(typeof window.esc==='function'?window.esc(t.lists.join(' / ')):t.lists.join(' / ')):'')+'</small>';
+      row.appendChild(cb);row.appendChild(cv);row.appendChild(rt);list.appendChild(row);
+    });
+    if(!shown)list.innerHTML='<div class="empty">No hay canciones con esa búsqueda.</div>';
+    updateCount();
+  }
+  $('ysaiPickSearch').oninput=renderList;
+  $('ysaiPickCancel').onclick=function(){window.closeModal()};
+  $('ysaiPickSave').onclick=function(){
+    var chosen=lib.filter(function(t){return selected[coreKey(t)]}).slice(0,MAX_CORE);
+    setCore(chosen,'local');window.closeModal();
+    if(chosen.length)toastMsg('Núcleo guardado: '+chosen.length+' canciones');
+    else toastMsg('Núcleo vacío: la IA volverá a preguntarte por tus principales');
+  };
+  renderList();$('modal').className='modal';
+  setTimeout(function(){try{$('ysaiPickSearch').focus()}catch(e){}},60);
+}
+
+/* ---------- saludo y chips ---------- */
+function greeting(){
+  var a=st(),lib=library();
+  if(!a.core.length){
+    return lib.length
+      ? 'Antes de recomendarte quiero conocer tu núcleo: ¿cuáles son tus 3-5 canciones principales, las que nunca te fallan? Escríbelas aquí o pulsa «Elegir principales» en el panel de ADN. Si prefieres, pulsa «Que la IA elija 5» y te propongo un núcleo a partir de tu biblioteca.'
+      : 'Tu biblioteca está vacía. Guarda canciones en tus selecciones y dime cuáles son tus 3-5 principales; a partir de ahí empiezo a construir tu ADN y a recomendarte de verdad.';
+  }
+  var names=a.core.slice(0,3).map(trackName).join(' · ');
+  return 'Tu núcleo está cargado: '+names+(a.core.length>3?' y '+(a.core.length-3)+' más':'')+'. Dime una vibe, un plan o un artista y te recomiendo mezclando lo que te define con descubrimiento real.';
+}
+function decorateQuick(){
+  var a=st(),q=$('quick');if(!a)return;
+  if(!window.chat||!window.chat.length){
+    var b=$('msgs')&&$('msgs').querySelector('.msg.assistant .bub');
+    if(b)b.textContent=greeting();
+  }
+  if(!q)return;
+  var chips=a.core.length
+    ? ['Recomiéndame desde mi núcleo','Sesión con mi ADN','Algo nuevo pero parecido','Analiza mi ADN','¿Cuáles son mis principales?']
+    : ['¿Cuáles son mis principales?','Ayúdame a elegir mis principales','Analiza mi ADN','Algo para ahora'];
+  q.innerHTML='';
+  chips.forEach(function(label){
+    var btn=document.createElement('button');btn.type='button';btn.className='chip';btn.textContent=label;
+    btn.onclick=function(){try{window.sendAI(label)}catch(e){}};
+    q.appendChild(btn);
+  });
+}
+
+/* ---------- memoria de conversación ---------- */
+function persistChat(){
+  var a=st();if(!a)return;
+  a.chat=(window.chat||[]).filter(function(m){return m&&!m.thinking&&!m.error&&m.text}).slice(-24).map(function(m){
+    return {role:m.role==='user'?'user':'assistant',text:clip(m.text,4000),raw:clip(m.raw||'',6000),sug:m.sug||null};
+  });
+  saveState();
+}
+function restoreChat(){
+  var a=st();if(!a||!a.chat.length)return;
+  if(window.chat&&window.chat.length)return;
+  window.chat=a.chat.slice(-20).map(function(m){return {role:m.role==='user'?'user':'assistant',text:String(m.text||''),raw:String(m.raw||''),sug:m.sug||null,error:false}});
+}
+
+/* ---------- parches de integración ---------- */
+var _renderChat=window.renderChat;
+window.renderChat=function(){var r=_renderChat.apply(this,arguments);try{renderAIDnaPanel();decorateQuick()}catch(e){}return r};
+var _shareAI=window.sendAI;
+window.sendAI=async function(){var r;try{r=await _shareAI.apply(this,arguments)}finally{persistChat();try{renderAIDnaPanel()}catch(e){}}return r};
+var _sugBlock=window.sugBlock;
+window.sugBlock=function(sug){
+  var box=_sugBlock.apply(this,arguments);
+  try{
+    if(sug&&sug.tracks&&sug.tracks.length&&box&&box.insertBefore){
+      var bar=document.createElement('div');bar.className='ysai-sugbar';
+      var b=document.createElement('button');b.type='button';b.className='btn sm primary';b.textContent='▶ Reproducir '+sug.tracks.length;
+      b.onclick=function(){playSet(sug.tracks.slice())};bar.appendChild(b);
+      var c=document.createElement('button');c.type='button';c.className='btn sm';c.textContent='★ Usar como núcleo';
+      c.onclick=function(){setCore(sug.tracks,'local');toastMsg('Núcleo actualizado con esta selección')};bar.appendChild(c);
+      box.insertBefore(bar,box.firstChild);
+    }
+  }catch(e){}
+  return box;
+};
+var _play=window.play;
+window.play=function(t){
+  if(t&&!t._local&&!t._aud&&!t.preview&&t.id&&!t._ysaiPreview){
+    t._ysaiPreview=1;
+    try{window.playFresh(t);return}catch(e){}
+  }
+  return _play.apply(this,arguments);
+};
+if(typeof window.localReply==='function'){
+  window.__ysaiOldLocal=window.localReply;
+  window.localReply=async function(text){var r=localReplyV5(text);if(r)return r;return window.__ysaiOldLocal.apply(this,arguments)};
+}
+if(typeof window.claudeReply==='function')window.claudeReply=claudeReplyV5;
+window.aiContext=aiContextV5;
+
+/* ---------- arranque ---------- */
+try{ensurePanel();restoreChat();renderAIDnaPanel()}catch(e){}
+})();
+</script>
+
 </body>
 </html>
 
